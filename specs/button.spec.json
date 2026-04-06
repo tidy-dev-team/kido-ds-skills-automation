@@ -1,0 +1,362 @@
+{
+  "schema_version": "0.1",
+  "component": "Button",
+  "version": "1.0.0",
+  "last_updated": "2026-04-05",
+  "source": {
+    "figma_file": "https://www.figma.com/design/WNOcZbybSn7dAGjTMimIsJ/Kido---DS",
+    "figma_node_id": "98:899"
+  },
+
+  "anatomy": {
+    "layers": [
+      {
+        "name": "Container",
+        "type": "frame",
+        "required": true,
+        "notes": "Root horizontal flex frame. Has border-radius, fill, and optional border stroke. Sizes to content width, fixed height per size."
+      },
+      {
+        "name": "Icon L",
+        "type": "instance",
+        "required": false,
+        "notes": "Leading icon slot. 20px. Controlled by component property, not a variant axis."
+      },
+      {
+        "name": "Label",
+        "type": "text",
+        "required": true,
+        "notes": "Button label text. Hidden (replaced by Spinner) in loading state."
+      },
+      {
+        "name": "Icon R",
+        "type": "instance",
+        "required": false,
+        "notes": "Trailing icon slot. 20px. Controlled by component property, not a variant axis."
+      },
+      {
+        "name": "Spinner",
+        "type": "instance",
+        "required": false,
+        "notes": "Loading state only. 20px. Replaces Label and both Icon slots. PaddingY is reduced in loading state."
+      }
+    ],
+    "autolayout": {
+      "direction": "horizontal",
+      "alignment": "center",
+      "padding": "paddingX and paddingY vary by size — see design_tokens.spacing",
+      "gap": "4px constant across all sizes (token: 4)"
+    }
+  },
+
+  "variants": {
+    "type": {
+      "values": ["contained", "outlined", "ghost"],
+      "required": ["contained", "outlined", "ghost"],
+      "optional": [],
+      "default": "contained",
+      "notes": "contained = filled primary background; outlined = transparent bg with border; ghost = no border or fill"
+    },
+    "size": {
+      "values": ["s", "m", "l"],
+      "required": ["s", "m", "l"],
+      "optional": [],
+      "default": "m",
+      "notes": "Affects height, padding, min-width, and typography. s=32px, m=40px, l=48px."
+    },
+    "state": {
+      "values": ["idle", "hover", "pressed", "focused", "disabled", "loading"],
+      "required": ["idle", "hover", "pressed", "focused", "disabled", "loading"],
+      "optional": [],
+      "default": "idle",
+      "notes": "All 6 states are required. loading replaces label/icons with a Spinner."
+    },
+    "inverse": {
+      "values": ["no", "yes"],
+      "required": ["no", "yes"],
+      "optional": [],
+      "default": "no",
+      "notes": "inverse=yes is for use on dark or colored backgrounds. Uses a separate token set — cannot be auto-derived from inverse=no."
+    }
+  },
+
+  "design_tokens": {
+    "colors": {
+      "contained": {
+        "idle":     { "background": "system/bg/primary",    "label": "system/fg/inverse",  "border": "none" },
+        "hover":    { "background": "system/bg/primary",    "label": "system/fg/inverse",  "overlay": "system/overlays/overlay-hover-on-color" },
+        "pressed":  { "background": "system/bg/primary",    "label": "system/fg/inverse",  "overlay": "system/overlays/overlay-active-on-color" },
+        "focused":  { "background": "system/bg/primary",    "label": "system/fg/inverse",  "focus_border": "system/border/interactive/focused", "focus_border_width": "width/thick" },
+        "disabled": { "background": "system/bg/disabled",   "label": "system/fg/disabled", "border": "none" },
+        "loading":  { "background": "system/bg/primary",    "spinner_color": "system/fg/inverse" }
+      },
+      "outlined": {
+        "idle":     { "background": "transparent",                              "label": "system/fg/primary", "border": "system/border/interactive/03-idle" },
+        "hover":    { "background": "components/button/outlined/bg-hover",      "label": "system/fg/hover",   "border": "system/border/interactive/hover" },
+        "pressed":  { "background": "components/button/outlined/bg-pressed",    "label": "system/fg/active",  "border": "system/border/interactive/active" },
+        "focused":  { "background": "transparent",                              "label": "system/fg/primary", "border": "system/border/interactive/03-idle", "focus_border": "system/border/interactive/focused", "focus_border_width": "width/thick" },
+        "disabled": { "background": "transparent",                              "label": "system/fg/disabled","border": "system/border/interactive/disabled" },
+        "loading":  { "background": "transparent",                              "border": "system/border/interactive/03-idle", "spinner_color": "system/fg/primary" }
+      },
+      "ghost": {
+        "idle":     { "background": "transparent",                    "label": "system/fg/primary", "border": "none" },
+        "hover":    { "background": "system/overlays/overlay-hover",  "label": "system/fg/hover" },
+        "pressed":  { "background": "system/overlays/overlay-active", "label": "system/fg/active" },
+        "focused":  { "background": "transparent",                    "label": "system/fg/primary", "focus_border": "system/border/interactive/focused", "focus_border_width": "width/thick" },
+        "disabled": { "background": "transparent",                    "label": "system/fg/disabled" },
+        "loading":  { "background": "transparent",                    "spinner_color": "system/fg/primary" }
+      },
+      "contained_inverse": {
+        "idle":     { "background": "components/button/contained-inverse/bg-idle", "label": "system/fg/hover" },
+        "hover":    { "background": "components/button/contained-inverse/bg-idle", "label": "system/fg/hover", "overlay": "system/overlays/overlay-hover-on-color" },
+        "pressed":  { "background": "components/button/contained-inverse/bg-idle", "label": "system/fg/hover", "overlay": "system/overlays/overlay-active-on-color" },
+        "focused":  { "background": "components/button/contained-inverse/bg-idle", "label": "system/fg/hover", "focus_border": "system/border/interactive/focused", "focus_border_width": "width/thick" },
+        "disabled": { "background": "system/bg/disabled-inverse",                  "label": "system/fg/disabled-inverse" },
+        "loading":  { "background": "components/button/contained-inverse/bg-idle", "spinner_color": "system/fg/hover" }
+      },
+      "outlined_inverse": {
+        "idle":     { "background": "transparent",                                  "label": "system/fg/inverse", "border": "system/border/interactive/03-idle-inverse" },
+        "hover":    { "background": "components/button/outlined-inverse/bg-hover",  "label": "system/fg/inverse", "border": "system/border/interactive/hover-inverse" },
+        "pressed":  { "background": "components/button/outlined-inverse/bg-pressed","label": "system/fg/inverse", "border": "system/border/interactive/active-inverse" },
+        "focused":  { "background": "transparent",                                  "label": "system/fg/inverse", "border": "system/border/interactive/03-idle-inverse", "focus_border": "system/border/interactive/focused", "focus_border_width": "width/thick" },
+        "disabled": { "background": "transparent",                                  "label": "system/fg/disabled-inverse", "border": "system/border/interactive/disabled-inverse" },
+        "loading":  { "background": "transparent",                                  "border": "system/border/interactive/03-idle-inverse", "spinner_color": "system/fg/inverse" }
+      },
+      "ghost_inverse": {
+        "idle":     { "background": "transparent",                    "label": "system/fg/inverse" },
+        "hover":    { "background": "system/overlays/overlay-hover",  "label": "system/fg/inverse" },
+        "pressed":  { "background": "system/overlays/overlay-active", "label": "system/fg/inverse" },
+        "focused":  { "background": "transparent",                    "label": "system/fg/inverse", "focus_border": "system/border/interactive/focused", "focus_border_width": "width/thick" },
+        "disabled": { "background": "transparent",                    "label": "system/fg/disabled-inverse" },
+        "loading":  { "background": "transparent",                    "spinner_color": "system/fg/inverse" }
+      }
+    },
+    "resolved_token_values": {
+      "system/bg/primary":                              "#615fff",
+      "system/fg/primary":                              "#615fff",
+      "system/fg/hover":                                "#615fff",
+      "system/fg/active":                               "#4f39f6",
+      "system/fg/inverse":                              "#ffffff",
+      "system/fg/01":                                   "#0f172b",
+      "system/fg/disabled":                             "#cad5e2",
+      "system/fg/disabled-inverse":                     "#45556c",
+      "system/bg/disabled":                             "#62748e1f",
+      "system/bg/disabled-inverse":                     "#ffffff1f",
+      "system/border/interactive/03-idle":              "#e2e8f0",
+      "system/border/interactive/03-idle-inverse":      "#314158",
+      "system/border/interactive/hover":                "#615fff",
+      "system/border/interactive/hover-inverse":        "#45556c",
+      "system/border/interactive/active":               "#4f39f6",
+      "system/border/interactive/active-inverse":       "#62748e",
+      "system/border/interactive/focused":              "#615fff80",
+      "system/border/interactive/disabled":             "#e2e8f0",
+      "system/border/interactive/disabled-inverse":     "#1d293d",
+      "system/overlays/overlay-hover":                  "#62748e1f",
+      "system/overlays/overlay-active":                 "#62748e33",
+      "system/overlays/overlay-hover-on-color":         "#0000001f",
+      "system/overlays/overlay-active-on-color":        "#00000033",
+      "components/button/outlined/bg-hover":            "#615fff33",
+      "components/button/outlined/bg-pressed":          "#615fff61",
+      "components/button/outlined-inverse/bg-hover":    "#ffffff1f",
+      "components/button/outlined-inverse/bg-pressed":  "#ffffff33",
+      "components/button/contained-inverse/bg-idle":    "#ffffff",
+      "radius/semantic/large-controls":                 "8px",
+      "width/default":                                  "1px",
+      "width/thick":                                    "2px"
+    },
+    "spacing": {
+      "s": { "paddingX": 12, "paddingY": 9,  "gap": 4, "paddingY_loading": 8,  "min_height": 32, "min_width": 60 },
+      "m": { "paddingX": 16, "paddingY": 12, "gap": 4, "paddingY_loading": 10, "min_height": 40, "min_width": 80 },
+      "l": { "paddingX": 20, "paddingY": 16, "gap": 4, "paddingY_loading": 14, "min_height": 48, "min_width": 100 }
+    },
+    "typography": {
+      "s": { "style": "label/m", "size": 14, "weight": 500, "lineHeight": 1, "letterSpacing": 0, "fontFamily": "Inter" },
+      "m": { "style": "label/l", "size": 16, "weight": 500, "lineHeight": 1, "letterSpacing": 0, "fontFamily": "Inter" },
+      "l": { "style": "label/l", "size": 16, "weight": 500, "lineHeight": 1, "letterSpacing": 0, "fontFamily": "Inter" }
+    },
+    "border_radius": { "token": "radius/semantic/large-controls", "value": 8 },
+    "border_width": {
+      "default": { "token": "width/default", "value": 1 },
+      "focus":   { "token": "width/thick",   "value": 2 }
+    },
+    "min_dimensions": {
+      "s": { "height": 32, "width": 60 },
+      "m": { "height": 40, "width": 80 },
+      "l": { "height": 48, "width": 100 }
+    }
+  },
+
+  "accessibility": {
+    "min_touch_target": 44,
+    "touch_target_note": "size=s height is 32px — below WCAG 44px minimum. Known Kido design decision. Flag to clients when using size=s.",
+    "focus_ring": {
+      "width": 2,
+      "offset": 0,
+      "color": "system/border/interactive/focused",
+      "color_value": "#615fff80",
+      "notes": "Focus ring is a border on the container, not an external offset ring. Width increases to 2px on focused state."
+    },
+    "contrast": "WCAG AA 4.5:1 for text",
+    "required_states": ["focused", "disabled"],
+    "aria_notes": "role=button; disabled state should use aria-disabled not the HTML disabled attribute to preserve keyboard focus; loading state should use aria-busy=true"
+  },
+
+  "naming": {
+    "component_set": "button",
+    "variant_format": "size={s|m|l}, type={contained|outlined|ghost}, state={idle|hover|pressed|focused|disabled|loading}, inverse={yes|no}",
+    "notes": "All lowercase. Matches Kido naming exactly. Icon slots (Icon L, Icon R) are component properties, not variant axes."
+  },
+
+  "derivation_rules": {
+    "rules": [
+      {
+        "id": "hover-contained",
+        "description": "Contained hover: add overlay-hover-on-color (#0000001f) on top of primary background",
+        "trigger": "type=contained, state=hover is missing",
+        "source": "type=contained, state=idle, same size and inverse",
+        "method": "swap_tokens",
+        "params": { "add_overlay": "system/overlays/overlay-hover-on-color" },
+        "confidence": "high",
+        "fallback": "ask_designer"
+      },
+      {
+        "id": "pressed-contained",
+        "description": "Contained pressed: add overlay-active-on-color (#00000033) on top of primary background",
+        "trigger": "type=contained, state=pressed is missing",
+        "source": "type=contained, state=idle, same size and inverse",
+        "method": "swap_tokens",
+        "params": { "add_overlay": "system/overlays/overlay-active-on-color" },
+        "confidence": "high",
+        "fallback": "ask_designer"
+      },
+      {
+        "id": "hover-outlined",
+        "description": "Outlined hover: swap to bg-hover (#615fff33), border-hover, label-hover tokens",
+        "trigger": "type=outlined, state=hover is missing",
+        "source": "type=outlined, state=idle, same size and inverse",
+        "method": "swap_tokens",
+        "params": {
+          "background": "components/button/outlined/bg-hover",
+          "border": "system/border/interactive/hover",
+          "label": "system/fg/hover"
+        },
+        "confidence": "high",
+        "fallback": "ask_designer"
+      },
+      {
+        "id": "pressed-outlined",
+        "description": "Outlined pressed: swap to bg-pressed (#615fff61), border-active, label-active tokens",
+        "trigger": "type=outlined, state=pressed is missing",
+        "source": "type=outlined, state=idle, same size and inverse",
+        "method": "swap_tokens",
+        "params": {
+          "background": "components/button/outlined/bg-pressed",
+          "border": "system/border/interactive/active",
+          "label": "system/fg/active"
+        },
+        "confidence": "high",
+        "fallback": "ask_designer"
+      },
+      {
+        "id": "hover-ghost",
+        "description": "Ghost hover: add overlay-hover (#62748e1f) background",
+        "trigger": "type=ghost, state=hover is missing",
+        "source": "type=ghost, state=idle, same size and inverse",
+        "method": "swap_tokens",
+        "params": {
+          "background": "system/overlays/overlay-hover",
+          "label": "system/fg/hover"
+        },
+        "confidence": "high",
+        "fallback": "ask_designer"
+      },
+      {
+        "id": "pressed-ghost",
+        "description": "Ghost pressed: add overlay-active (#62748e33) background",
+        "trigger": "type=ghost, state=pressed is missing",
+        "source": "type=ghost, state=hover, same size and inverse",
+        "method": "swap_tokens",
+        "params": {
+          "background": "system/overlays/overlay-active",
+          "label": "system/fg/active"
+        },
+        "confidence": "high",
+        "fallback": "ask_designer"
+      },
+      {
+        "id": "focused-border",
+        "description": "Any focused state: change border to 2px, color system/border/interactive/focused (#615fff80)",
+        "trigger": "state=focused is missing for any type",
+        "source": "state=idle, same type and size and inverse",
+        "method": "swap_tokens",
+        "params": {
+          "border_width": "width/thick",
+          "border_color": "system/border/interactive/focused"
+        },
+        "confidence": "high",
+        "fallback": "ask_designer"
+      },
+      {
+        "id": "disabled-tokens",
+        "description": "Any disabled state: swap to disabled background and text tokens",
+        "trigger": "state=disabled is missing for any type",
+        "source": "state=idle, same type and size and inverse",
+        "method": "swap_tokens",
+        "params": {
+          "background": "system/bg/disabled",
+          "label": "system/fg/disabled",
+          "border": "system/border/interactive/disabled",
+          "remove_overlay": true
+        },
+        "confidence": "high",
+        "fallback": "ask_designer"
+      },
+      {
+        "id": "loading-spinner",
+        "description": "Any loading state: hide label and icons, show Spinner (20px), reduce paddingY",
+        "trigger": "state=loading is missing for any type",
+        "source": "state=idle, same type and size and inverse",
+        "method": "swap_tokens",
+        "params": {
+          "hide_label": true,
+          "hide_icons": true,
+          "show_spinner": true,
+          "spinner_size": 20,
+          "paddingY_override_by_size": { "s": 8, "m": 10, "l": 14 }
+        },
+        "confidence": "high",
+        "fallback": "ask_designer"
+      }
+    ],
+    "always_ask": [
+      "inverse=yes token values — a separate token set, not derivable from inverse=no",
+      "Any type beyond contained/outlined/ghost",
+      "Client brand color (replaces system/bg/primary and system/fg/primary tokens)"
+    ]
+  },
+
+  "completeness_rules": {
+    "minimum_variants": "3 types × 3 sizes × 6 states × 2 inverse values = 108 variants",
+    "required_combinations": [
+      "type=contained × size={s,m,l} × state={idle,hover,pressed,focused,disabled,loading} × inverse=no",
+      "type=contained × size={s,m,l} × state={idle,hover,pressed,focused,disabled,loading} × inverse=yes",
+      "type=outlined × size={s,m,l} × state={idle,hover,pressed,focused,disabled,loading} × inverse=no",
+      "type=outlined × size={s,m,l} × state={idle,hover,pressed,focused,disabled,loading} × inverse=yes",
+      "type=ghost × size={s,m,l} × state={idle,hover,pressed,focused,disabled,loading} × inverse=no",
+      "type=ghost × size={s,m,l} × state={idle,hover,pressed,focused,disabled,loading} × inverse=yes"
+    ],
+    "validation": [
+      "Exactly 108 variants exist in the component set",
+      "size=s height is 32px, size=m is 40px, size=l is 48px",
+      "All focused states use 2px border with system/border/interactive/focused token",
+      "All disabled states use system/bg/disabled background and system/fg/disabled label",
+      "All loading states contain a Spinner instance; label and icons are hidden",
+      "Typography: size=s uses label/m (14px Inter Medium), size=m and size=l use label/l (16px Inter Medium)",
+      "Border radius is 8px on all variants",
+      "Variant name format matches: size={s|m|l}, type={contained|outlined|ghost}, state={idle|hover|pressed|focused|disabled|loading}, inverse={yes|no}",
+      "size=s (32px) is below WCAG 44px touch target — flag as known deviation, do not fail validation"
+    ]
+  },
+
+  "notes": "This spec covers the label-only Button (with optional leading/trailing icon slots as component properties). Icon-only buttons and text-link buttons are separate Kido components and will have their own specs. PaddingY values for non-loading states should be verified directly in Figma — derived from (height - font-size) / 2."
+}
