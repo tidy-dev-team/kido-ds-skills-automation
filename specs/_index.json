@@ -1,15 +1,24 @@
 {
   "schema_version": "0.1",
-  "last_updated": "2026-04-05",
+  "last_updated": "2026-04-06",
   "components": [
     {
       "file": "specs/button.spec.json",
       "component": "Button",
-      "aliases": ["Btn", "CTA", "action button", "regular button"],
+      "aliases": ["Btn", "CTA", "action button", "regular button", "text button with icon"],
       "category": "actions",
-      "description": "Interactive element that triggers an action. Contains a text label and optional leading/trailing icon slots. Has contained (filled), outlined (border), and ghost (text-only) type variants.",
-      "anatomy_keywords": ["Container", "Label", "Icon L", "Icon R", "Spinner", "contained", "outlined", "ghost", "button", "interactive", "label", "icon slot"],
-      "related": ["IconButton", "TextButton"]
+      "description": "Interactive element with a text label and optional leading/trailing icon slots. Has contained (filled), outlined (border), and ghost (text-only) types.",
+      "anatomy_keywords": ["Container", "Label", "Icon L", "Icon R", "Spinner", "contained", "outlined", "ghost", "label", "text"],
+      "related": ["ButtonIcon"]
+    },
+    {
+      "file": "specs/button-icon.spec.json",
+      "component": "ButtonIcon",
+      "aliases": ["icon button", "icon-only button", "square button", "fab", "action icon"],
+      "category": "actions",
+      "description": "Square icon-only button for actions where space is limited. No label — icon communicates the action. Has contained, outlined, and ghost types.",
+      "anatomy_keywords": ["Container", "Icon", "Spinner", "square", "icon-only", "compact", "no label"],
+      "related": ["Button"]
     }
   ]
 }

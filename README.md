@@ -7,181 +7,125 @@
 
 ## The Problem
 
-A client hands you a button in two states. Production-ready means 108 variants — every Type, every Size, every State, every Inverse variant. Today that expansion is manual, slow, and inconsistent.
+A client hands you a button in two states. Production-ready means 54 variants minimum — every Type, every Size, every interactive State. Today that expansion is manual, slow, and inconsistent.
 
-This system encodes Kido DS expertise into structured specs. Claude reads a client's design, maps their brand values to Kido token slots, and generates the full component set automatically. The designer reviews and polishes the result — not the process.
+This system encodes Kido DS expertise into compact specs. Claude reads the client's design, maps their brand values to Kido token slots, and builds the full component set in Figma automatically. The designer reviews and polishes — not the process.
 
 ---
 
 ## How It Works
 
-Three skills, three artifacts, one pipeline.
+Two skills. Two audiences. One pipeline.
 
 ```
-[Kido DS — one-time setup]        [Per client project]
-─────────────────────────         ────────────────────────────────────────
-ds-spec-authoring                 Designer's Figma frame
-      │                                      │
-      ▼                                      ▼
-specs/{component}.spec.json  →  ds-component-analysis  →  gap-report.json
-                                                                  │
-                                                                  ▼
-                                                    ds-generation-planning
-                                                                  │
-                                                                  ▼
-                                                       generation-plan.json
-                                                                  │
-                                                                  ▼
-                                                     Claude executes via Figma MCP
+[DS team — one-time per component]      [Designer — per client project]
+───────────────────────────────         ────────────────────────────────
+/ds-spec-authoring                      /ds-generate
+      │                                        │
+      ▼                                        ▼
+specs/{component}.spec.json    →    Component set in Figma
+specs/{component}.spec.notes.md
 ```
-
----
-
-## The Three Skills
-
-### `ds-spec-authoring` — DS team only
-
-**When:** A new component is added to Kido DS, or an existing component changes significantly.
-**Who:** DS team or designer familiar with Kido internals.
-**Input:** Component name + Kido DS Figma URL.
-**Output:** `specs/{component}.spec.json`
-
-Extracts the component's full structure from Figma (via MCP) and encodes:
-- All variant axes and their values
-- Required vs. optional combinations
-- Design tokens with resolved values
-- Derivation rules (how to build every missing state/size from a base)
-- Accessibility requirements
-- The definition of "production-ready" for this component type
-
-This is infrastructure. Done once, used on every project that needs this component.
-
----
-
-### `ds-component-analysis` — Designer, per project
-
-**When:** A designer has a partial client component and wants to generate the full set.
-**Who:** Designer, in Claude app or Claude Code.
-**Input:** A Figma frame URL, screenshot, or description of the client's component.
-**Output:** `gap-report.json`
-
-Claude reads the input, identifies the component type, extracts the client's brand values (primary color, border radius, font if non-standard), and maps them to Kido token slots. All structural decisions — states, sizes, spacing, derivation — are handled by the spec automatically.
-
-**What Claude asks the designer:**
-- "This looks like a Button — correct?" (only if classification confidence is below 85%)
-- The specific brand value (only if it's genuinely not visible in the input and can't be stubbed)
-
-Everything else is automatic. Claude does not ask about states, sizes, spacing, derivation logic, or anything Kido already defines.
-
-Variants that can't be fully resolved (e.g. inverse brand colors not in the input) become **stubs** — the generation proceeds anyway, and stubs are easy to find and fill in Figma after.
-
----
-
-### `ds-generation-planning` — Designer, immediately after analysis
-
-**When:** A gap report exists.
-**Who:** Designer (or runs automatically after analysis).
-**Input:** `gap-report.json`
-**Output:** `generation-plan.json`
-
-Fully automatic. Takes the resolved token map and applies spec rules to produce ordered plugin instructions. No questions, no approvals. Stubs for anything unresolved.
 
 ---
 
 ## Spec Authoring Workflow (DS Team — One-Time Per Component)
 
 ```
-1. Open Claude app or Claude Code in this project directory
+1. Open Claude Code in this project directory
 
 2. Provide the component name and Figma URL:
+   /ds-spec-authoring
    "Spec out the Toggle component: [Kido DS Figma URL]"
 
-3. Claude extracts structure from Figma via MCP:
+3. Claude extracts from Figma via MCP:
    variant axes, layer hierarchy, tokens, spacing, typography
 
-4. Claude walks you through enrichment questions:
-   - Which variants are required vs. optional?
-   - Derivation rules: how is Hover derived from Idle? How is SM derived from MD?
-   - Accessibility: touch targets, focus ring specs, contrast requirements
-   - What must never be auto-derived and always requires designer input?
+4. Claude asks a few lightweight questions:
+   - Which combinations are required vs optional?
+   - Any known WCAG deviations?
+   - Any non-obvious design decisions?
 
-5. Claude writes specs/{component}.spec.json and updates specs/_index.json
+5. Claude writes specs/toggle.spec.json + specs/toggle.spec.notes.md
+   and updates specs/_index.json
 
-6. Review the summary:
-   "Toggle spec defines 2 Types × 3 Sizes × 5 States = 30 variants.
-    4 derivation rules encoded. 1 value always requires designer input."
-   Confirm or request corrections.
+6. Review the summary and confirm:
+   "Toggle: 2 types × 3 sizes × 5 states = 30 default variants. 18 tokens. Ready."
 ```
 
-**Typical time: 30–60 minutes** for a new component. Update-only is 10–15 minutes.
+**Typical time: 30–60 minutes** for a new component. Health check or update: 10–15 minutes.
 
 ---
 
-## Designer Workflow (Per Project)
+## Designer Workflow (Per Client Project)
 
 ```
-1. Open Claude app or Claude Code in this project directory
+1. Open Claude Code in this project directory
 
-2. Share your client's Figma frame:
+2. Share the client's Figma frame:
+   /ds-generate
    "Generate this button: [Figma URL or attach screenshot]"
 
-3. Claude classifies the component, extracts brand values, and confirms:
-   "Got it — Button. I'll generate 108 variants.
-    18 inverse variants will be stubbed (no dark-background colors in input).
-    Ready to generate?"
+3. Claude classifies, extracts brand values, and confirms:
+   "Got it — Button. Primary color #E53E3E detected.
+    Generating 54 variants (inverse=no set).
+    Ready."
 
-4. Confirm → Claude produces the generation plan and executes it directly in Figma via MCP
+4. Claude builds the component set directly in Figma via MCP
 
-5. Review output. Stubs appear in bright pink — easy to find and fill in.
+5. Review in Figma. Stubs appear in bright pink — fill them in if needed.
 ```
 
 **Typical time: under 15 minutes** from frame to generated component set.
+
+**Need dark-background variants?** Ask explicitly: "Generate with inverse variants too." Adds 54 more variants (108 total).
 
 ---
 
 ## Spec Library
 
-Specs live in `specs/`. The index at `specs/_index.json` is the entry point for component lookup.
+```
+specs/
+  _index.json                    ← component index — Claude reads this first
+  button.spec.json               ← compact token data and variant axes
+  button.spec.notes.md           ← design rationale, derivation patterns, history
+```
 
-| Component | File | Status |
-|-----------|------|--------|
-| Button | `specs/button.spec.json` | Done — 108 variants |
-| Input | — | Planned |
-| Toggle | — | Planned |
-| Checkbox | — | Planned |
+| Component | Status | Default variants |
+|-----------|--------|-----------------|
+| Button | Done | 54 (108 with inverse) |
+| Input | Planned | — |
+| Toggle | Planned | — |
+| Checkbox | Planned | — |
 
-**To add a new component spec:** use the `ds-spec-authoring` skill. This is a DS-team task, not a per-project task.
+Each spec has two files:
+- **`.spec.json`** — compact, LLM-optimized. Token values, variant axes, sizing, accessibility requirements.
+- **`.spec.notes.md`** — human-readable. Design decisions, token derivation patterns for client brands, known gaps, version history.
 
 ---
 
-## Generation Plan Format
+## Working Directory
 
-The `generation-plan.json` is the structured set of instructions Claude uses to execute the component build in Figma via MCP.
+Session artifacts are saved locally to `working/` (gitignored — not committed to the repo):
 
-```json
-{
-  "generation_plan": {
-    "component": "Button",
-    "spec_file": "specs/button.spec.json",
-    "token_mapping": {
-      "resolved": { "system/bg/primary": "#E53E3E", ... },
-      "sources":  { "#E53E3E": "designer input — primary fill on contained/idle", ... }
-    },
-    "variants": [
-      { "action": "create_from_input", ... },
-      { "action": "scale_size", ... },
-      { "action": "derive_from_variant", ... },
-      { "action": "apply_state_modifier", ... },
-      { "action": "create_stub", ... }
-    ],
-    "assembly": { "component_set_name": "button", ... },
-    "validation": { "checks": [...], "expected_variant_count": 108 },
-    "stubbed": [ { "reason": "inverse brand colors not in input", "count": 18 } ]
-  }
-}
+```
+working/
+  button-2026-04-05/
+    token-map.json        ← resolved tokens used for this generation
+    resolved-stubs.json   ← stub values provided by the designer (if any)
 ```
 
-Variants are ordered for execution: `create_from_input` → `scale_size` → `derive_from_variant` → `apply_state_modifier` → `create_stub`.
+This lets you pick up where you left off if a session spans multiple days.
+
+---
+
+## Stubs
+
+When a value can't be resolved from the client input, Claude generates a stub:
+- **Fill:** bright pink (`#FF0066`) — easy to spot in Figma
+- **Label:** describes what's needed, e.g. "NEEDS_VALUE: inverse primary color"
+
+Inverse variants are almost always stubbed — clients rarely provide dark-background designs upfront. This is expected, not a failure.
 
 ---
 
@@ -189,17 +133,23 @@ Variants are ordered for execution: `create_from_input` → `scale_size` → `de
 
 ```
 specs/
-  _index.json                ← component index for fast lookup (read this first)
-  button.spec.json
-  {component}.spec.json      ← one file per component
+  _index.json
+  {component}.spec.json
+  {component}.spec.notes.md
 
 skills/
-  ds-spec-authoring.md       ← DS team: extract and encode Kido components as specs
-  ds-component-analysis.md   ← Designer: analyze client input against specs
-  ds-generation-planning.md  ← Designer: produce generation plan, Claude executes in Figma
+  ds-spec-authoring.md     ← full instructions for spec authoring
+  ds-generate.md           ← full instructions for component generation
 
-CLAUDE.md                    ← agent instructions (Claude reads this at session start)
-README.md                    ← this file
+working/                   ← local session artifacts (gitignored)
+
+.claude/
+  commands/
+    ds-spec-authoring.md   ← /ds-spec-authoring slash command
+    ds-generate.md         ← /ds-generate slash command
+
+CLAUDE.md                  ← agent instructions (auto-loaded by Claude Code)
+README.md                  ← this file
 ```
 
 ---
@@ -208,31 +158,32 @@ README.md                    ← this file
 
 | Requirement | Purpose |
 |-------------|---------|
-| Claude app or Claude Code | Where the designer interacts |
-| Figma MCP connected | Enables reading Figma frames directly via URL |
-| Figma MCP connected | Enables Claude to read designs and write components directly into Figma |
+| Claude Code | Runs the workflow; auto-loads CLAUDE.md |
+| Figma MCP connected | Reads Kido DS for spec authoring; writes components for generation |
 
 ---
 
 ## Design Principles
 
-**Kido rules are the default.** The designer's input provides brand values only. States, sizes, spacing, derivation logic, and accessibility come from the spec — not from the designer, and not from Claude's judgment.
+**Kido rules are the default.** The designer's input provides brand values only — primary color, border radius, font if non-standard. States, sizes, spacing, and derivation come from the spec automatically.
 
-**Questions block progress; stubs don't.** When a value can't be resolved, Claude creates a stub and proceeds. The designer polishes stubs in Figma after generation, not before.
+**Compact generation by default.** `inverse=no` variants only unless dark-background support is explicitly needed. Avoids unnecessary stubs on every project.
 
-**Client styling is preserved through token mapping.** Kido defines the structure (what variants exist and how they relate). The client's input provides the values (their colors, radius, font). The output looks like the client's brand, not Kido.
+**Stubs over blocking.** Generate with gaps visible. Polish in Figma after, not before.
 
-**Specs are infrastructure.** One well-authored spec pays for itself across every project that needs that component type. The better the spec, the more automatic the generation.
+**Specs are data.** Token names are self-documenting. Claude reasons about derivation — the spec doesn't need to explain it. Smaller spec = faster reads = less context consumed.
+
+**Client styling preserved through token mapping.** Kido provides structure. The client's input provides values. The output looks like the client's brand, not Kido.
 
 ---
 
 ## Limitations
 
-- **No spec = no full automation.** Components without a spec trigger `ds-spec-authoring` first. This is a one-time setup cost, not a per-project cost.
-- **Inverse variants almost always stub.** Client designs rarely show dark-background variants explicitly. Stubs are expected output — not a failure.
-- **Figma MCP required for frame input.** Screenshot input works but extracts less precise token values. Figma URL input is strongly preferred.
-- **Kido drift.** If Kido DS changes and specs aren't updated, output may not match the current standard. Re-run `ds-spec-authoring` for any changed Kido component.
+- **No spec = no full automation.** Novel components need `/ds-spec-authoring` first. One-time cost.
+- **Inverse variants are almost always stubbed.** Expected behavior — clients rarely provide dark-background designs.
+- **Figma MCP required.** Screenshot input works but extracts less precise token values. Figma URL is strongly preferred.
+- **Kido drift.** Run `/ds-spec-authoring check [component]` if Kido DS has changed. Stale specs produce off-brand output.
 
 ---
 
-*The goal: adding the tenth component to a client project takes five minutes, not five hours.*
+*The goal: generating the tenth client button takes five minutes, not five hours.*

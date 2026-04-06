@@ -11,83 +11,69 @@ The skill file is the authoritative instruction set — follow it exactly.**
 ## What This System Does
 
 Designers deliver partial client component concepts — a button in one or two states.
-A production-ready component set for that button requires 108 variants across Type × Size × State × Inverse.
+A production-ready component set requires 54–108 variants across Type × Size × State × Inverse.
 This system bridges that gap automatically, using Kido DS best practices as the foundation.
 
 ```
-Kido DS (Figma)
-      │
-      ▼
-[ds-spec-authoring]  →  specs/{component}.spec.json
-                                  │
-              Client Figma frame ──▼
-                    [ds-component-analysis]  →  gap-report.json
-                                                      │
-                                                      ▼
-                                        [ds-generation-planning]  →  Claude executes via Figma MCP
+[One-time setup — DS team]          [Per client project — Designer]
+───────────────────────────         ──────────────────────────────
+ds-spec-authoring                   Client Figma frame
+      │                                      │
+      ▼                                      ▼
+specs/{component}.spec.json  →  ds-generate  →  Component set in Figma
+specs/{component}.spec.notes.md
 ```
 
 ---
 
-## The Three Skills
+## The Two Skills
 
 ### `ds-spec-authoring`
 **File:** `skills/ds-spec-authoring.md`
-**When:** A new component is added to Kido DS, or an existing spec needs updating.
-**Who:** DS team or designer familiar with Kido internals. Not a per-project task.
+**When:** A new component is added to Kido DS, an existing spec needs updating, or you want to run a spec health check.
+**Who:** DS team. Not a per-project task.
 **Input:** Component name + Kido DS Figma URL.
-**Output:** `specs/{component-name}.spec.json` + updated `specs/_index.json`
+**Output:** `specs/{component}.spec.json` + `specs/{component}.spec.notes.md` + updated `specs/_index.json`
 **Read the skill file before running.**
 
-### `ds-component-analysis`
-**File:** `skills/ds-component-analysis.md`
-**When:** A designer provides a client Figma frame, screenshot, or description of a component.
+### `ds-generate`
+**File:** `skills/ds-generate.md`
+**When:** A designer provides a client Figma frame, screenshot, or description of a component to generate.
 **Who:** Designer, per client project.
-**Input:** Client component input + spec library (`specs/_index.json` → relevant spec file).
-**Output:** `gap-report.json`
-**Philosophy:** Generate-first. Kido rules cover everything structural. Designer input provides brand values only. Stub what can't be resolved — do not ask about it.
-**Read the skill file before running.**
-
-### `ds-generation-planning`
-**File:** `skills/ds-generation-planning.md`
-**When:** A gap report exists.
-**Who:** Designer (or runs automatically after analysis in the same session).
-**Input:** `gap-report.json`
-**Output:** `generation-plan.json` → Claude executes in Figma via MCP
-**Philosophy:** Fully automatic. No questions. Stubs for anything unresolved.
+**Input:** Client component input (Figma URL, screenshot, or description).
+**Output:** Component set built directly in Figma via MCP.
+**Philosophy:** Classify → extract brand values → map tokens → execute. No intermediate files. No approval gates. Stubs for anything unresolved.
 **Read the skill file before running.**
 
 ---
 
 ## Spec Library
 
-Specs live in `specs/`. Always read `specs/_index.json` first — it is the entry point for finding the right spec.
-
-Current schema version: **0.1** (defined in `skills/ds-spec-authoring.md`)
+Always read `specs/_index.json` first — it is the entry point for finding the right spec.
+Spec files: `specs/{component}.spec.json` (compact, LLM-optimized data)
+Notes files: `specs/{component}.spec.notes.md` (human-readable rationale and history)
 
 Component tiers (implementation priority):
-- **Tier 1** (start here): Button, Input, Toggle, Checkbox
-- **Tier 2**: Select, Card, Tab Bar, Badge
-- **Tier 3** (later): Modal, Navigation, Table, Form
+- **Tier 1:** Button, Input, Toggle, Checkbox
+- **Tier 2:** Select, Card, Tab Bar, Badge
+- **Tier 3:** Modal, Navigation, Table, Form
 
 When no spec exists for the component being worked on, follow the "No Matching Spec" protocol
-in `skills/ds-component-analysis.md`: find the closest spec, attempt composition, or ask — in that order.
+in `skills/ds-generate.md`.
 
 ---
 
 ## Figma MCP
 
-Used for both spec authoring (reading Kido DS) and generation (writing components into Figma).
+Used for spec authoring (reading Kido DS) and generation (writing components into Figma).
 
 | Tool | Used in | Purpose |
 |------|---------|---------|
-| `get_metadata` | spec-authoring | Locate component in file |
-| `get_design_context` | spec-authoring, analysis | Layer structure, variants, tokens |
+| `get_metadata` | spec-authoring | Locate component, get variant IDs |
+| `get_design_context` | spec-authoring, generate | Layer structure, variants, tokens |
 | `get_variable_defs` | spec-authoring | Design token definitions |
-| `get_screenshot` | analysis | Visual input when no frame URL |
-| `figma_execute` / `figma_create_child` etc. | generation | Write component variants into Figma |
-
-If the MCP is unavailable during spec authoring: ask the user to paste layer structure manually or accept a screenshot. Document the fallback in the spec's `notes` field.
+| `get_screenshot` | generate | Visual input when no frame URL |
+| `figma_execute` / layer tools | generate | Write component variants into Figma |
 
 ---
 
@@ -95,41 +81,52 @@ If the MCP is unavailable during spec authoring: ask the user to paste layer str
 
 ```
 specs/
-  _index.json                ← read this first when looking up a component
-  button.spec.json
-  {component}.spec.json
+  _index.json                      ← read this first when looking up a component
+  {component}.spec.json            ← compact token data, variant axes, sizing
+  {component}.spec.notes.md        ← design rationale, derivation notes, history
 
 skills/
   ds-spec-authoring.md
-  ds-component-analysis.md
-  ds-generation-planning.md
+  ds-generate.md
 
-CLAUDE.md                    ← this file (auto-loaded by Claude Code)
-README.md                    ← human-facing overview
+working/                           ← local session artifacts (gitignored)
+  {component}-{YYYY-MM-DD}/
+    token-map.json
+    resolved-stubs.json
+
+.claude/
+  commands/
+    ds-spec-authoring.md           ← /ds-spec-authoring
+    ds-generate.md                 ← /ds-generate
+
+CLAUDE.md                          ← this file (auto-loaded by Claude Code)
+README.md                          ← human-facing overview
 ```
 
 ---
 
 ## Critical Rules
 
-**Read the skill file first.** Every skill file contains the full instruction set for that stage. Do not improvise from memory — the skills evolve and CLAUDE.md summaries may lag behind.
+**Read the skill file first.** Skill files are the authoritative instruction set. CLAUDE.md summaries may lag behind skill updates.
 
-**Never fabricate token values.** If a value cannot be determined from the input or a derivation rule, stub it as `NEEDS_VALUE`. A plan with visible stubs is better than one with invented values.
+**Never fabricate token values.** Stub as `NEEDS_VALUE`. A plan with visible stubs is better than one with invented values.
 
-**Stubs are valid output.** Stubs make gaps visible in Figma. The designer polishes them after generation. Never block generation waiting for a value that can be stubbed.
+**Stubs are valid output.** The designer polishes them in Figma after generation. Never block generation waiting for a value that can be stubbed.
 
-**Client styling is preserved through token mapping.** Kido provides structure. The client's input provides values. The token mapping step is what makes the output look like the client's brand, not Kido.
+**Default to compact generation.** Generate `inverse=no` variants only unless the designer explicitly requests dark-background support.
 
-**Specs are configuration.** When a variant axis changes (e.g. adding XL size), that is a spec update. When component behavior changes (e.g. Loading state logic), that is a skill update. Keep these concerns separate.
+**Client styling is preserved through token mapping.** Kido provides structure. The client's input provides brand values. The output should look like the client's brand, not Kido.
+
+**Specs are data, not instructions.** Token names are self-documenting — Claude reasons about derivation. The spec does not need to explain how to derive states.
 
 ---
 
 ## When Things Go Wrong
 
-**Spec and Kido have diverged:** Re-run `ds-spec-authoring` for the changed component. Diff against the existing spec, update only changed fields, bump the version. Do not rewrite from scratch.
+**Spec and Kido have diverged:** Run `/ds-spec-authoring check [component]`. Diff, update changed fields, bump version. Do not rewrite from scratch.
 
-**Classification confidence is low:** Ask the user to confirm the component type before running analysis. A wrong classification produces a useless gap report.
+**Classification confidence is low:** Ask to confirm the component type before proceeding. Wrong classification = wrong spec = wrong output.
 
-**Spec missing for this component type:** Follow the "No Matching Spec" protocol in `skills/ds-component-analysis.md`. Do not silently fall back to guessing.
+**No spec for this component:** Follow "No Matching Spec" in `skills/ds-generate.md`. Do not guess.
 
-**Generation plan has stubs:** Expected and acceptable. Stubs appear as bright pink fills in Figma so they are easy to find and fill in manually.
+**Generation plan has stubs:** Expected. Stubs appear as bright pink fills in Figma.

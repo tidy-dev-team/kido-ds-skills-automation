@@ -1,46 +1,40 @@
 {
-  "component": "Button",
+  "component": "ButtonIcon",
   "version": "1.0.0",
   "last_updated": "2026-04-06",
   "source": {
     "figma_file": "https://www.figma.com/design/WNOcZbybSn7dAGjTMimIsJ/Kido---DS",
-    "figma_node_id": "98:899"
+    "figma_node_id": "107:322"
   },
 
   "variants": {
     "type":    { "values": ["contained", "outlined", "ghost"],                                        "default": "contained" },
-    "size":    { "values": ["s", "m", "l"],                                                           "default": "m" },
+    "size":    { "values": ["xs", "s", "m", "l"],                                                     "default": "m" },
     "state":   { "values": ["idle", "hover", "pressed", "focused", "disabled", "loading"],            "default": "idle" },
     "inverse": { "values": ["no", "yes"],                                                             "default": "no", "generate_by_default": false }
   },
 
   "naming": {
-    "component_set": "button",
-    "variant_format": "size={size}, type={type}, state={state}, inverse={inverse}"
+    "component_set": "button-icon",
+    "variant_format": "type={type}, size={size}, state={state}, inverse={inverse}"
   },
 
   "anatomy": {
-    "layers": ["Container", "Icon L", "Label", "Icon R", "Spinner"],
-    "layout": "horizontal, center-aligned, fixed height",
-    "gap": 4,
-    "notes": "Spinner (20px) replaces Label + Icon L + Icon R in loading state. Icon L and Icon R are component properties, not variant axes."
+    "layers": ["Container", "Icon", "Spinner"],
+    "layout": "square, fixed size, center-aligned, equal padding all sides",
+    "gap": 0,
+    "notes": "No label. Icon is a component instance. Spinner (replaces Icon) in loading state."
   },
 
   "sizing": {
-    "s": { "height": 32, "min_width": 60,  "paddingX": 12, "paddingY": 9,  "paddingY_loading": 6  },
-    "m": { "height": 40, "min_width": 80,  "paddingX": 16, "paddingY": 12, "paddingY_loading": 10 },
-    "l": { "height": 48, "min_width": 100, "paddingX": 20, "paddingY": 16, "paddingY_loading": 14 }
-  },
-
-  "typography": {
-    "s": { "token": "label/m", "size": 14, "weight": 500, "lineHeight": 1, "letterSpacing": 0 },
-    "m": { "token": "label/l", "size": 16, "weight": 500, "lineHeight": 1, "letterSpacing": 0 },
-    "l": { "token": "label/l", "size": 16, "weight": 500, "lineHeight": 1, "letterSpacing": 0 }
+    "xs": { "size": 24, "padding": 4,  "icon_size": 16, "spinner_size": 16 },
+    "s":  { "size": 32, "padding": 6,  "icon_size": 20, "spinner_size": 20, "verify": "padding and icon_size — not confirmed from design context" },
+    "m":  { "size": 40, "padding": 8,  "icon_size": 24, "spinner_size": 20 },
+    "l":  { "size": 48, "padding": 12, "icon_size": 24, "spinner_size": 20, "verify": "padding and icon_size — not confirmed from design context" }
   },
 
   "border_radius": { "token": "radius/semantic/large-controls", "value": 8 },
   "border_width":  { "default": 1, "focus": 2 },
-  "font_family":   "Inter",
 
   "tokens": {
     "system/bg/primary":                              "#615fff",
@@ -54,7 +48,7 @@
     "system/fg/disabled-inverse":                     "#45556c",
     "system/bg/disabled":                             "#62748e1f",
     "system/bg/disabled-inverse":                     "#ffffff1f",
-    "system/border/interactive/03-idle":              "#e2e8f0",
+    "system/border/static/03":                        "#e2e8f0",
     "system/border/interactive/03-idle-inverse":      "#314158",
     "system/border/interactive/hover":                "#615fff",
     "system/border/interactive/hover-inverse":        "#45556c",
@@ -77,20 +71,21 @@
   "accessibility": {
     "min_touch_target": 44,
     "focus_ring": { "width": 2, "color_token": "system/border/interactive/focused" },
-    "contrast": "WCAG AA 4.5:1",
-    "aria": "role=button; aria-disabled for disabled state; aria-busy=true for loading state"
+    "contrast": "WCAG AA 3:1 for icons (non-text)",
+    "aria": "role=button; aria-label required (no visible text); aria-disabled for disabled; aria-busy=true for loading"
   },
 
   "completeness": {
-    "default_set": "54 variants — type={contained,outlined,ghost} × size={s,m,l} × state={idle,hover,pressed,focused,disabled,loading} × inverse=no",
-    "full_set":    "108 variants — same × inverse={no,yes}",
+    "default_set": "72 variants — type={contained,outlined,ghost} × size={xs,s,m,l} × state={idle,hover,pressed,focused,disabled,loading} × inverse=no",
+    "full_set":    "144 variants — same × inverse={no,yes}",
     "validation": [
-      "size=s height=32px, size=m height=40px, size=l height=48px",
+      "size=xs 24×24px, size=s 32×32px, size=m 40×40px, size=l 48×48px",
+      "all variants are square (width = height)",
       "focused states: 2px border with system/border/interactive/focused token",
-      "disabled states: system/bg/disabled background, system/fg/disabled text",
-      "loading states: Spinner (20px) visible, Label and icons hidden",
-      "variant format: size={s|m|l}, type={contained|outlined|ghost}, state={idle|hover|pressed|focused|disabled|loading}, inverse={yes|no}",
-      "size=s (32px) is below WCAG 44px touch target — known deviation, do not fail validation"
+      "disabled states: system/bg/disabled background, system/fg/disabled icon color",
+      "loading states: Spinner visible, Icon hidden",
+      "variant format: type={contained|outlined|ghost}, size={xs|s|m|l}, state={idle|hover|pressed|focused|disabled|loading}, inverse={yes|no}",
+      "xs and s (24px, 32px) are below WCAG 44px touch target — known deviation"
     ]
   }
 }
