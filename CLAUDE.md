@@ -15,18 +15,18 @@ A production-ready component set requires 54–108 variants across Type × Size 
 This system bridges that gap automatically, using Kido DS best practices as the foundation.
 
 ```
-[One-time setup — DS team]    [Per client project — Designer]    [After DS polish]
-───────────────────────────   ──────────────────────────────     ─────────────────
-ds-spec-authoring             Client input                       ds-push
-      │                       (Figma / screenshot /                    │
-      ▼                        live site / repo)                       ▼
-specs/{component}.spec.json  →  ds-generate  →  Figma  →  DS review  →  GitHub PR
-specs/{component}.spec.notes.md                 component   & polish     (code updated)
+[DS team — one-time]    [Designer — per project]    [After DS polish]          [Documentation]
+────────────────────    ────────────────────────    ─────────────────          ───────────────
+ds-spec-authoring       Client input                ds-push                    ds-storybook
+      │                 (Figma/screenshot/               │                           │
+      ▼                  site/repo)                      ▼                           ▼
+specs/*.spec.json  →  ds-generate  →  Figma  →  DS review  →  GitHub PR  →  stories PR
+                                      component   & polish     (tokens)      (CSF3 file)
 ```
 
 ---
 
-## The Three Skills
+## The Four Skills
 
 ### `ds-spec-authoring`
 **File:** `skills/ds-spec-authoring.md`
@@ -52,6 +52,15 @@ specs/{component}.spec.notes.md                 component   & polish     (code u
 **Input:** Polished Figma component set URL + GitHub repo URL.
 **Output:** GitHub PR with updated CSS variables, Tailwind config, and/or component source.
 **Philosophy:** Read polished Figma → extract resolved token values → diff → surgically update repo files → open PR. Never rewrites structure — only values.
+**Read the skill file before running.**
+
+### `ds-storybook`
+**File:** `skills/ds-storybook.md`
+**When:** A component is production-ready (post-polish) and needs Storybook documentation.
+**Who:** DS specialist or developer.
+**Input:** Component name + GitHub repo URL. Reads Kido DS spec for variant axes and repo source for the prop interface.
+**Output:** GitHub PR with a CSF3 `{component}.stories.tsx` file. Includes Storybook setup instructions in the PR body if Storybook is not yet installed.
+**Philosophy:** Map Figma variant axes → React props → named stories. Axes that have no prop equivalent (hover, pressed, focus) become pseudo-state stories. 8–12 named stories is the target — not 54.
 **Read the skill file before running.**
 
 ---
@@ -98,6 +107,7 @@ skills/
   ds-spec-authoring.md
   ds-generate.md
   ds-push.md
+  ds-storybook.md
 
 working/                           ← local session artifacts (gitignored)
   {component}-{YYYY-MM-DD}/
@@ -110,6 +120,7 @@ working/                           ← local session artifacts (gitignored)
     ds-spec-authoring.md           ← /ds-spec-authoring
     ds-generate.md                 ← /ds-generate
     ds-push.md                     ← /ds-push
+    ds-storybook.md                ← /ds-storybook
 
 CLAUDE.md                          ← this file (auto-loaded by Claude Code)
 README.md                          ← human-facing overview

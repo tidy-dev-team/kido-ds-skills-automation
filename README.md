@@ -17,19 +17,16 @@ This system closes both gaps automatically.
 
 ## How It Works
 
-Three skills. A closed loop.
+Four skills. A closed loop.
 
 ```
-[DS team — one-time]         [Designer — per project]        [After DS polish]
-────────────────────         ────────────────────────        ──────────────────
-/ds-spec-authoring           /ds-generate                    /ds-push
-        │                           │                               │
-        ▼                           ▼                               ▼
-  specs/*.spec.json    →    Component set in Figma    →    GitHub PR
-                             (54 variants, branded)         (CSS vars + config updated)
-                                     │
-                               DS specialist
-                               reviews & polishes
+[DS team — one-time]   [Designer — per project]   [After DS polish]     [Documentation]
+────────────────────   ────────────────────────   ─────────────────     ───────────────
+/ds-spec-authoring     /ds-generate               /ds-push              /ds-storybook
+        │                     │                         │                      │
+        ▼                     ▼                         ▼                      ▼
+ specs/*.spec.json  →  Component in Figma  →  DS review  →  GitHub PR  →  Stories PR
+                        (54 variants)         & polish      (tokens)      (CSF3 file)
 ```
 
 | Skill | Who | When | Output |
@@ -37,6 +34,7 @@ Three skills. A closed loop.
 | `/ds-spec-authoring` | DS team | One-time per component type | `specs/{component}.spec.json` |
 | `/ds-generate` | Designer | Per client project | Component set in Figma |
 | `/ds-push` | DS specialist | After Figma polish | GitHub PR with updated token values |
+| `/ds-storybook` | DS specialist / dev | After tokens are pushed | GitHub PR with `{component}.stories.tsx` |
 
 ---
 
@@ -94,6 +92,40 @@ Three skills. A closed loop.
 **Typical time:** under 15 minutes from input to generated component set.
 
 **Need dark-background variants?** Ask: "Generate with inverse variants too." Adds 54 more (108 total).
+
+---
+
+### `/ds-storybook` — DS Specialist / Dev, After Tokens Are Pushed
+
+```
+1. Run: /ds-storybook
+   "Add storybook stories for the button: [GitHub repo URL]"
+
+2. Claude checks the repo:
+   - Is Storybook installed? Which addons?
+   - Reads component source → extracts prop interface and variant options
+   - Reads specs/button.spec.json → gets variant axes (type, size, state, inverse)
+
+3. Claude maps Figma axes to story structure:
+   - type → variant argType (select control)
+   - size → size argType (select control)
+   - state=disabled → disabled boolean prop + Disabled story
+   - state=hover/pressed/focused → pseudo-state stories
+     (uses storybook-addon-pseudo-states if installed, play functions otherwise)
+   - inverse → dark mode decorator story if applicable
+
+4. Claude generates button.stories.tsx with:
+   - CSF3 format (Storybook 7+)
+   - Meta with full argTypes
+   - 8-12 named stories (not 54 — one per meaningful variant, not every Figma combo)
+   - AllVariants render grid
+
+5. Claude opens a GitHub PR with:
+   - The generated story file
+   - Storybook setup instructions in the PR body (if Storybook isn't installed yet)
+```
+
+**Typical time:** under 5 minutes from component to open PR.
 
 ---
 
@@ -207,6 +239,7 @@ skills/
   ds-spec-authoring.md     ← /ds-spec-authoring instructions
   ds-generate.md           ← /ds-generate instructions
   ds-push.md               ← /ds-push instructions
+  ds-storybook.md          ← /ds-storybook instructions
 
 working/                   ← local session artifacts (gitignored)
 
@@ -215,6 +248,7 @@ working/                   ← local session artifacts (gitignored)
     ds-spec-authoring.md   ← /ds-spec-authoring slash command
     ds-generate.md         ← /ds-generate slash command
     ds-push.md             ← /ds-push slash command
+    ds-storybook.md        ← /ds-storybook slash command
 
 CLAUDE.md                  ← agent instructions (auto-loaded by Claude Code)
 README.md                  ← this file
@@ -228,7 +262,7 @@ README.md                  ← this file
 |-------------|---------|
 | Claude Code | Runs the workflow; auto-loads CLAUDE.md |
 | Figma MCP connected | Reads Kido DS for spec authoring; reads/writes Figma for generate and push |
-| `gh` CLI authenticated | Used by ds-generate (repo reads) and ds-push (repo writes + PR) |
+| `gh` CLI authenticated | Used by ds-generate (reads), ds-push (writes + PR), and ds-storybook (writes + PR) |
 
 ---
 
@@ -253,7 +287,8 @@ README.md                  ← this file
 - **No spec = no full automation.** Novel components need `/ds-spec-authoring` first. One-time cost.
 - **Inverse variants are almost always stubbed.** Expected — clients rarely provide dark-background designs upfront.
 - **Figma MCP required.** Screenshot input works but extracts less precise values. Figma URL is strongly preferred.
-- **`gh` CLI required for ds-push.** Must be authenticated (`gh auth login`) before running `/ds-push`.
+- **`gh` CLI required for ds-push and ds-storybook.** Must be authenticated (`gh auth login`).
+- **Storybook optional.** `/ds-storybook` generates valid story files regardless — setup instructions are included in the PR body if Storybook isn't installed yet.
 - **Kido drift.** Run `/ds-spec-authoring check [component]` if Kido DS has changed. Stale specs produce off-brand output.
 
 ---
