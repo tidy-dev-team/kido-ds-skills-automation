@@ -15,18 +15,18 @@ A production-ready component set requires 54–108 variants across Type × Size 
 This system bridges that gap automatically, using Kido DS best practices as the foundation.
 
 ```
-[One-time setup — DS team]          [Per client project — Designer]
-───────────────────────────         ──────────────────────────────
-ds-spec-authoring                   Client Figma frame
-      │                                      │
-      ▼                                      ▼
-specs/{component}.spec.json  →  ds-generate  →  Component set in Figma
-specs/{component}.spec.notes.md
+[One-time setup — DS team]    [Per client project — Designer]    [After DS polish]
+───────────────────────────   ──────────────────────────────     ─────────────────
+ds-spec-authoring             Client input                       ds-push
+      │                       (Figma / screenshot /                    │
+      ▼                        live site / repo)                       ▼
+specs/{component}.spec.json  →  ds-generate  →  Figma  →  DS review  →  GitHub PR
+specs/{component}.spec.notes.md                 component   & polish     (code updated)
 ```
 
 ---
 
-## The Two Skills
+## The Three Skills
 
 ### `ds-spec-authoring`
 **File:** `skills/ds-spec-authoring.md`
@@ -38,11 +38,20 @@ specs/{component}.spec.notes.md
 
 ### `ds-generate`
 **File:** `skills/ds-generate.md`
-**When:** A designer provides a client Figma frame, screenshot, or description of a component to generate.
+**When:** A designer provides a client Figma frame, screenshot, description, live site URL, or code repository for a component to generate.
 **Who:** Designer, per client project.
-**Input:** Client component input (Figma URL, screenshot, or description).
+**Input:** Client component input (Figma URL, screenshot, description, live site URL, or GitHub repo).
 **Output:** Component set built directly in Figma via MCP.
 **Philosophy:** Classify → extract brand values → map tokens → execute. No intermediate files. No approval gates. Stubs for anything unresolved.
+**Read the skill file before running.**
+
+### `ds-push`
+**File:** `skills/ds-push.md`
+**When:** A DS specialist has polished the generated Figma component and the code needs to be updated to match.
+**Who:** DS specialist or designer, after Figma review.
+**Input:** Polished Figma component set URL + GitHub repo URL.
+**Output:** GitHub PR with updated CSS variables, Tailwind config, and/or component source.
+**Philosophy:** Read polished Figma → extract resolved token values → diff → surgically update repo files → open PR. Never rewrites structure — only values.
 **Read the skill file before running.**
 
 ---
@@ -88,16 +97,19 @@ specs/
 skills/
   ds-spec-authoring.md
   ds-generate.md
+  ds-push.md
 
 working/                           ← local session artifacts (gitignored)
   {component}-{YYYY-MM-DD}/
     token-map.json
     resolved-stubs.json
+    push-summary.json              ← before/after diff + PR URL (written by ds-push)
 
 .claude/
   commands/
     ds-spec-authoring.md           ← /ds-spec-authoring
     ds-generate.md                 ← /ds-generate
+    ds-push.md                     ← /ds-push
 
 CLAUDE.md                          ← this file (auto-loaded by Claude Code)
 README.md                          ← human-facing overview

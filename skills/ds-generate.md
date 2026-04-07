@@ -2,11 +2,12 @@
 name: ds-generate
 description: >
   Analyze a client component input and generate a production-ready component set directly in Figma.
-  Use this skill whenever a designer provides a Figma frame, screenshot, or description of a component
-  they want to generate. This is the primary designer-facing skill — it handles classification,
-  brand value extraction, token mapping, and Figma execution in one pass.
+  Use this skill whenever a designer provides a Figma frame, screenshot, description, live site URL,
+  or code repository for a component they want to generate. This is the primary designer-facing skill
+  — it handles classification, brand value extraction, token mapping, and Figma execution in one pass.
   Triggers on phrases like "generate this button", "build this component", "here's my design",
-  "create variants for this", or when a designer shares a Figma URL or image.
+  "create variants for this", "here's the repo", "here's the site", "use this codebase",
+  or when a designer shares a Figma URL, image, live site link, or GitHub repo.
 ---
 
 # DS Generate
@@ -29,6 +30,8 @@ It does not need to be the component being generated. A badge, a card, a header 
 
 The designer rarely provides a fully interactive multi-state component. A single idle state, or any frame showing the brand primary color, is enough to generate the full set.
 
+A live site URL or code repository works the same way: it supplies the brand values (colors, radius, font). The component to generate still comes from the request text.
+
 ---
 
 ## Step 1 — Identify Target Component
@@ -46,13 +49,29 @@ Do not try to classify the frame as a component type. The frame provides values,
 
 ## Step 2 — Extract Brand Values
 
-Use `get_design_context` (Figma URL) or visual analysis (screenshot/description) to extract the client's concrete values from the input frame.
+Use the appropriate method based on what the designer provided:
 
----
+- **Figma URL** → `get_design_context`
+- **Screenshot / description** → visual analysis
+- **Live site URL** → `WebFetch` the URL; extract CSS custom properties and computed styles from the returned markup/CSS
+- **GitHub repo** → `gh api repos/{owner}/{repo}/contents/{file} | base64 -d`
+  Priority files:
+  1. `src/index.css` or `globals.css` — CSS custom properties (`--primary`, `--radius`, etc.)
+  2. `tailwind.config.ts/js` — `theme.extend.colors`, `borderRadius`, custom keyframes
+  3. The component source file — Tailwind class names (`rounded-*`, `font-*`, `tracking-*`, `uppercase`)
 
-## Step 2 — Extract Brand Values
+  **CSS/Tailwind → token slot mapping:**
+  | Source value | Token slot |
+  |---|---|
+  | `--primary` / `theme.colors.primary` | `system/bg/primary` |
+  | `--radius` / `rounded-{size}` | `border_radius` |
+  | `font-{family}` class | `font_family` |
+  | `font-black` / `font-bold` | typography weight |
+  | `tracking-{size}` | `letterSpacing` |
+  | `uppercase` | `textCase: UPPER` |
 
-Use `get_design_context` (Figma URL) or visual analysis (screenshot/description) to extract the client's concrete values.
+  **HSL → hex:** CSS often uses `hsl(H, S%, L%)` — convert to hex before applying to tokens.
+  **Font matching:** if the exact font isn't in Figma, find the closest available option with `listAvailableFontsAsync()`. Prefer weight match over family match.
 
 **What to extract:**
 - Primary brand color — dominant interactive fill
