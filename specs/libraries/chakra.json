@@ -1,0 +1,94 @@
+{
+  "library": "Chakra UI",
+  "package": "@chakra-ui/react",
+  "version_supported": "^2.8.0",
+  "last_updated": "2026-04-15",
+
+  "variant_axes": {
+    "primary": ["variant", "colorScheme", "size"],
+    "notes": "Chakra components use `variant` for style type (solid/outline/ghost/link), `colorScheme` for color family, and `size` for sizing. Not all components support all three."
+  },
+
+  "component_props": {
+    "Button": {
+      "variant":     ["solid", "outline", "ghost", "link", "unstyled"],
+      "size":        ["xs", "sm", "md", "lg"],
+      "colorScheme": ["gray", "red", "orange", "yellow", "green", "teal", "blue", "cyan", "purple", "pink"],
+      "boolean_props": ["isLoading", "isDisabled", "isActive", "loadingText"],
+      "anatomy":     ["Button (root)", "leftIcon", "Label", "rightIcon", "spinner (when isLoading)"]
+    },
+    "Input": {
+      "variant":     ["outline", "filled", "flushed", "unstyled"],
+      "size":        ["xs", "sm", "md", "lg"],
+      "boolean_props": ["isDisabled", "isInvalid", "isRequired", "isReadOnly"],
+      "anatomy":     ["InputGroup (optional)", "InputLeftElement", "Input", "InputRightElement"]
+    },
+    "Checkbox": {
+      "variant":     [],
+      "size":        ["sm", "md", "lg"],
+      "colorScheme": ["gray", "red", "green", "blue", "teal", "purple", "pink"],
+      "boolean_props": ["isChecked", "isIndeterminate", "isDisabled", "isInvalid"],
+      "anatomy":     ["Checkbox (root)", "CheckboxControl (the box)", "CheckboxIcon", "CheckboxLabel"]
+    },
+    "Switch": {
+      "variant":     [],
+      "size":        ["sm", "md", "lg"],
+      "colorScheme": ["gray", "red", "green", "blue", "teal", "purple", "pink"],
+      "boolean_props": ["isChecked", "isDisabled", "isInvalid"],
+      "anatomy":     ["Switch (root track)", "SwitchThumb"]
+    },
+    "Select": {
+      "variant":     ["outline", "filled", "flushed", "unstyled"],
+      "size":        ["xs", "sm", "md", "lg"],
+      "boolean_props": ["isDisabled", "isInvalid", "isRequired"],
+      "anatomy":     ["Select (root)", "SelectIcon (chevron)"]
+    },
+    "Card": {
+      "variant":     ["elevated", "outline", "filled", "unstyled"],
+      "size":        ["sm", "md", "lg"],
+      "anatomy":     ["Card", "CardHeader", "CardBody", "CardFooter"]
+    },
+    "Tabs": {
+      "variant":     ["line", "enclosed", "enclosed-colored", "soft-rounded", "solid-rounded", "unstyled"],
+      "size":        ["sm", "md", "lg"],
+      "colorScheme": ["gray", "red", "green", "blue", "teal", "purple", "pink"],
+      "anatomy":     ["Tabs", "TabList", "Tab", "TabPanels", "TabPanel"]
+    },
+    "Badge": {
+      "variant":     ["solid", "outline", "subtle"],
+      "colorScheme": ["gray", "red", "green", "blue", "teal", "purple", "pink"],
+      "anatomy":     ["Badge (single slot)"]
+    },
+    "Modal": {
+      "size":        ["xs", "sm", "md", "lg", "xl", "2xl", "3xl", "4xl", "5xl", "6xl", "full"],
+      "anatomy":     ["Modal", "ModalOverlay", "ModalContent", "ModalHeader", "ModalBody", "ModalFooter", "ModalCloseButton"]
+    }
+  },
+
+  "token_slots": {
+    "description": "Where DESIGN.md tokens should map in Chakra's theme system.",
+    "color": {
+      "primary":        "colors.{colorScheme}.500",
+      "primaryHover":   "colors.{colorScheme}.600",
+      "primaryActive":  "colors.{colorScheme}.700",
+      "text":           "colors.chakra-body-text",
+      "textOnPrimary":  "colors.white",
+      "border":         "colors.chakra-border-color"
+    },
+    "radius": {
+      "default":        "radii.md",
+      "full":           "radii.full"
+    },
+    "typography": {
+      "button":         "textStyles.button (or defaults from component theme)"
+    }
+  },
+
+  "generation_notes": [
+    "Chakra uses a theme object; override color palettes per `colorScheme` value.",
+    "The `size` prop affects height + padding + font size together — use Chakra's size scale as reference.",
+    "Loading state with `isLoading` auto-shows a Spinner and dims content — represent as a separate Figma variant.",
+    "Ghost and link variants have no background on idle; hover adds a subtle bg — honor this in token mapping.",
+    "Compound components (Tabs.List, Card.Body) should be built as nested Figma frames under a parent component."
+  ]
+}

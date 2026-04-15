@@ -71,12 +71,26 @@ Use the appropriate method based on what the designer provided:
   | `uppercase` | `textCase: UPPER` |
 
   **HSL → hex:** CSS often uses `hsl(H, S%, L%)` — convert to hex before applying to tokens.
-  **Font matching:** if the exact font isn't in Figma, find the closest available option with `listAvailableFontsAsync()`. Prefer weight match over family match.
+
+  **Font resolution (always run this — do not assume Inter):**
+  1. Extract the font family from the source (`font-family` CSS, `fontFamily` in Tailwind, `font-{family}` class on the component)
+  2. Call `listAvailableFontsAsync()` in Figma and check if the exact family is available
+  3. If exact match exists → use it
+  4. If not → find closest by category:
+     - Monospace (`font-mono`, `Courier`, `Menlo`, `Consolas`) → prefer **Geist Mono**, then JetBrains Mono, IBM Plex Mono
+     - Geometric sans → prefer **Plus Jakarta Sans**, then DM Sans, Nunito
+     - Neutral sans (system-ui, -apple-system) → prefer **Inter**
+     - Serif → prefer **Playfair Display**, then Lora
+  5. Match the weight: `font-black`=Black, `font-bold`=Bold, `font-semibold`=SemiBold, `font-medium`=Medium, `font-normal`=Regular
+  6. If no weight variant exists for the chosen family, use the heaviest available
+  7. Load the resolved font with `loadFontAsync` before applying
+  8. Note the substitution in the session summary
 
 **What to extract:**
 - Primary brand color — dominant interactive fill
 - Border radius — if visibly different from spec standard
-- Font family — if visibly different from spec standard (Inter is Kido's default)
+- Font family — always extract; never default to Inter unless the client explicitly uses Inter
+- Font weight, text transform, letter spacing — if specified in the source
 - Any additional color values explicitly present in the input
 
 **Map extracted values to spec token slots:**

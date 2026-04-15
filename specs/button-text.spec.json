@@ -1,0 +1,78 @@
+{
+  "component": "ButtonText",
+  "version": "1.0.0",
+  "last_updated": "2026-04-09",
+  "source": {
+    "figma_file": "https://www.figma.com/design/WNOcZbybSn7dAGjTMimIsJ/Kido---DS",
+    "figma_node_id": "109:1057"
+  },
+
+  "variants": {
+    "size":    { "values": ["s", "m"],                               "default": "m" },
+    "state":   { "values": ["idle", "hover", "pressed", "disabled"], "default": "idle" },
+    "inverse": { "values": ["no", "yes"],                            "default": "no", "generate_by_default": false }
+  },
+
+  "naming": {
+    "component_set": "button-text",
+    "variant_format": "size={size}, state={state}, inverse={inverse}"
+  },
+
+  "anatomy": {
+    "layers": ["Icon L", "Label", "Icon R"],
+    "layout": "horizontal, center-aligned, no container",
+    "gap": 4,
+    "notes": "No background, border, or border-radius — pure text row. Icon L and Icon R are optional slot properties (not variant axes). Icon placeholder size is 16×16px for both sizes."
+  },
+
+  "sizing": {
+    "s": { "height": null, "min_width": 32, "paddingX": 0, "paddingY": 0, "icon_size": 16, "note": "Height is text-derived: 12px × 1.4lh ≈ 17px" },
+    "m": { "height": null, "min_width": 32, "paddingX": 0, "paddingY": 0, "icon_size": 16, "note": "Height is text-derived: 16px × 1.4lh ≈ 22px" }
+  },
+
+  "typography": {
+    "s": { "token": "body/s-medium", "size": 12, "weight": 500, "lineHeight": 1.4, "letterSpacing": 0 },
+    "m": { "token": "body/l-medium", "size": 16, "weight": 500, "lineHeight": 1.4, "letterSpacing": 0 }
+  },
+
+  "border_radius": null,
+  "border_width":  null,
+  "font_family":   "Inter",
+
+  "tokens": {
+    "components/button/text/fg-idle":           "#45556c",
+    "components/button/text/fg-hover":          "#0f172b",
+    "components/button/text/fg-active":         "#45556c",
+    "components/button/text-inverse/fg-idle":   "#cad5e2",
+    "components/button/text-inverse/fg-hover":  "#f8fafc",
+    "components/button/text-inverse/fg-active": "#cad5e2",
+    "system/fg/disabled":                       "#cad5e2",
+    "system/fg/disabled-inverse":               "#45556c",
+    "body/s-medium": "Font(family: Inter, weight: 500, size: 12, lineHeight: 1.4, letterSpacing: 0)",
+    "body/l-medium": "Font(family: Inter, weight: 500, size: 16, lineHeight: 1.4, letterSpacing: 0)"
+  },
+
+  "accessibility": {
+    "min_touch_target": 44,
+    "focus_ring": null,
+    "contrast": "WCAG AA 4.5:1",
+    "aria": "role=button; aria-disabled for disabled state",
+    "notes": "Neither size meets the WCAG 44px touch target — known deviation. No focused state exists in the Figma component set."
+  },
+
+  "completeness": {
+    "default_set": "8 variants — size={s,m} × state={idle,hover,pressed,disabled} × inverse=no",
+    "full_set":    "16 variants — same × inverse={no,yes}",
+    "validation": [
+      "No background fill, border, or border-radius on any variant",
+      "size=s: 12px body/s-medium text, size=m: 16px body/l-medium text",
+      "Icon placeholders are 16px × 16px for both sizes",
+      "Gap between icon and label is 4px",
+      "disabled states use system/fg/disabled (#cad5e2) and system/fg/disabled-inverse (#45556c)",
+      "hover state text is darker than idle (fg-hover vs fg-idle)",
+      "pressed/active text color matches idle (#45556c) — pressed darkens via overlay, not token change",
+      "variant format: size={s|m}, state={idle|hover|pressed|disabled}, inverse={yes|no}",
+      "Both sizes (~17px and ~22px) are below WCAG 44px touch target — known deviation, do not fail validation"
+    ]
+  }
+}

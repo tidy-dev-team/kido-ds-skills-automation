@@ -1,295 +1,249 @@
 # DS Component Automation
 
-> A methodology for expanding partial client component designs into production-ready Figma component sets, and syncing the polished result back to code — using Kido DS rules as the foundation.
+> Turn partial client inputs into production-ready Figma component sets, and keep code and Figma in sync automatically — using Kido DS expertise as the foundation.
 > Built by Tidy Dev. Powered by Claude + Figma MCP.
 
 ---
 
-## The Problem
+## The Big Idea
 
-A client hands you a button in two states. Production-ready means 54 variants minimum — every Type, every Size, every interactive State. Today that expansion is manual, slow, and inconsistent.
+Designers do the same work over and over for every new client: taking a handful of reference designs and expanding them into a full production-grade component library in Figma. 54 variants per component. 12 components per project. Every project.
 
-And once the DS specialist polishes the component in Figma, someone still has to update the codebase to match. That's another manual step, another opportunity for drift.
+This repo turns that expansion into a skill system. Claude reads Kido's design-system expertise (encoded in specs and skill files), reads whatever the client has provided (Figma, site, repo, library), and builds the components directly in Figma.
 
-This system closes both gaps automatically.
+There are **two ways a client shows up** — and each gets its own workflow.
 
 ---
 
-## How It Works
+## The Two Workflows
 
-Four skills. A closed loop.
+### A · Client has no UI library yet → **`/ds-generate`**
+
+The client has brand direction (a logo, a primary color, a landing page, maybe a button design) but no production component library. You want to give them Kido's battle-tested component structure, styled with their brand values.
 
 ```
-[DS team — one-time]   [Designer — per project]   [After DS polish]     [Documentation]
-────────────────────   ────────────────────────   ─────────────────     ───────────────
-/ds-spec-authoring     /ds-generate               /ds-push              /ds-storybook
-        │                     │                         │                      │
-        ▼                     ▼                         ▼                      ▼
- specs/*.spec.json  →  Component in Figma  →  DS review  →  GitHub PR  →  Stories PR
-                        (54 variants)         & polish      (tokens)      (CSF3 file)
+Client Figma frame / screenshot / site / repo
+                    ↓
+           Extract brand values
+            (color, radius, font)
+                    ↓
+        Map to Kido spec token slots
+                    ↓
+         Build in Figma — 54 variants
+      (Kido structure + client brand)
 ```
+
+### B · Client already has a UI library → **`/ds-build`**
+
+The client ships a React library (Chakra, Mantine, shadcn/ui, or their own) and you want the Figma components to mirror exactly what their engineers use — their variant names, their size scale, their prop axes. Meanwhile, Kido's design tokens go on top so the styling stays consistent with Kido's opinions.
+
+```
+ Client library (GitHub / Storybook)  →  library structure
+                                           +
+          Kido foundation Figma       →  DESIGN.md (DTCG tokens)
+                                           +
+              Designer + PM           →  REQUIREMENTS.md (job rules)
+                                           ↓
+                                      Build in Figma
+                                           ↓
+                                  Validator (soft-advisory)
+                                           ↓
+                              Library-matched component set
+```
+
+### Shared post-polish — **`/ds-push`** + **`/ds-storybook`**
+
+Once the DS specialist polishes the generated component in Figma, two skills close the loop:
+
+- **`/ds-push`** — reads resolved Figma values, surgically updates CSS variables / Tailwind config / component source in the client repo, opens a PR.
+- **`/ds-storybook`** — generates a CSF3 story file from the component's Figma axes and the codebase's prop interface, opens a PR.
+
+Both are workflow-agnostic — they don't care whether the component came from Workflow A or B.
+
+---
+
+## The Six Skills at a Glance
 
 | Skill | Who | When | Output |
 |---|---|---|---|
-| `/ds-spec-authoring` | DS team | One-time per component type | `specs/{component}.spec.json` |
-| `/ds-generate` | Designer | Per client project | Component set in Figma |
-| `/ds-push` | DS specialist | After Figma polish | GitHub PR with updated token values |
-| `/ds-storybook` | DS specialist / dev | After tokens are pushed | GitHub PR with `{component}.stories.tsx` |
+| `/ds-spec-authoring` | DS team | New Kido component, one-time | `specs/{component}.spec.json` |
+| `/ds-extract-design` | Designer | Start of Workflow B project | `working/{project}/DESIGN.md` |
+| `/ds-generate` | Designer | Per client project, Workflow A | Figma component set |
+| `/ds-build` | Designer | Per component, Workflow B | Figma component set + validation report |
+| `/ds-push` | DS specialist | After Figma polish | GitHub PR (token sync) |
+| `/ds-storybook` | DS specialist / dev | After tokens pushed | GitHub PR (CSF3 stories) |
+
+Each skill has its own file in `skills/` — **those files are authoritative**. CLAUDE.md and this README are overviews.
 
 ---
 
-## Skill Workflows
-
-### `/ds-spec-authoring` — DS Team, One-Time Per Component
+## Quick Start — Workflow A (no client library)
 
 ```
-1. Run: /ds-spec-authoring
-   "Spec out the Toggle component: [Kido DS Figma URL]"
-
-2. Claude reads the component from Kido DS via Figma MCP:
-   variant axes, layer hierarchy, tokens, spacing, typography
-
-3. Claude asks a few lightweight questions:
-   - Which combinations are required vs optional?
-   - Any known WCAG deviations?
-   - Any non-obvious design decisions?
-
-4. Claude writes:
-   specs/toggle.spec.json        ← compact token data, variant axes
-   specs/toggle.spec.notes.md    ← design rationale, version history
-   specs/_index.json             ← updated
-
-5. Review the summary:
-   "Toggle: 2 types × 3 sizes × 5 states = 30 default variants. 18 tokens. Ready."
+1. Designer opens Claude Code in this repo.
+2. /ds-generate "Generate this button: [Figma URL / screenshot / site / repo]"
+3. Claude identifies the component, extracts brand values, maps to Kido tokens,
+   and builds 54 variants directly in the designer's Figma file.
+4. DS specialist polishes in Figma (fills pink stubs, refines visuals).
+5. /ds-push "Push the polished button: [Figma URL] [GitHub repo URL]"
+   → GitHub PR opens with updated CSS vars / Tailwind config.
+6. /ds-storybook "Add stories: [GitHub repo URL]"
+   → GitHub PR with {component}.stories.tsx.
 ```
 
-**Typical time:** 30–60 minutes for a new component. Health check or update: 10–15 minutes.
+Typical end-to-end: 30 minutes from client input to open PRs.
+
+## Quick Start — Workflow B (client has a library)
+
+```
+1. Extract design foundation once per project:
+   /ds-extract-design "Extract tokens from: [Kido foundation Figma URL]"
+   → working/{project}/DESIGN.md
+
+2. Build each component:
+   /ds-build "Build a Button for [library GitHub/Storybook URL]"
+
+   • Claude reads/creates working/{job}/REQUIREMENTS.md
+     (pastes if provided, interviews designer if not — modes, locales, prefix, a11y)
+   • Claude reads the client library (Storybook stories.json or gh api repo source)
+   • Claude maps DESIGN.md tokens onto the library's prop/variant axes
+   • Claude builds the component in Figma matching the library's structure
+   • Validator subagent runs a 6-category checklist → validation-report.md
+   • Designer reviews; decides whether to fix issues or accept
+
+3. Post-polish: same /ds-push and /ds-storybook as Workflow A.
+```
 
 ---
 
-### `/ds-generate` — Designer, Per Client Project
+## Inputs Accepted by Each Workflow
 
-```
-1. Run: /ds-generate
-   "Generate this button: [Figma URL / screenshot / site URL / GitHub repo]"
+**`/ds-generate`** takes any of:
 
-2. Claude identifies the target component, extracts brand values from the input:
-   - Figma URL → get_design_context
-   - Screenshot/description → visual analysis
-   - Live site URL → WebFetch (CSS custom properties, computed styles)
-   - GitHub repo → gh api (index.css, tailwind.config, component source)
-
-3. Claude maps client values to Kido token slots:
-   primary color, border radius, font, weight, letter spacing, etc.
-
-4. Claude builds the component set directly in Figma via MCP:
-   54 variants (inverse=no): 3 types × 3 sizes × 6 states
-
-5. Review in Figma. Stubs appear in bright pink — fill them in if needed.
-   DS specialist polishes to production-ready.
-```
-
-**Typical time:** under 15 minutes from input to generated component set.
-
-**Need dark-background variants?** Ask: "Generate with inverse variants too." Adds 54 more (108 total).
-
----
-
-### `/ds-storybook` — DS Specialist / Dev, After Tokens Are Pushed
-
-```
-1. Run: /ds-storybook
-   "Add storybook stories for the button: [GitHub repo URL]"
-
-2. Claude checks the repo:
-   - Is Storybook installed? Which addons?
-   - Reads component source → extracts prop interface and variant options
-   - Reads specs/button.spec.json → gets variant axes (type, size, state, inverse)
-
-3. Claude maps Figma axes to story structure:
-   - type → variant argType (select control)
-   - size → size argType (select control)
-   - state=disabled → disabled boolean prop + Disabled story
-   - state=hover/pressed/focused → pseudo-state stories
-     (uses storybook-addon-pseudo-states if installed, play functions otherwise)
-   - inverse → dark mode decorator story if applicable
-
-4. Claude generates button.stories.tsx with:
-   - CSF3 format (Storybook 7+)
-   - Meta with full argTypes
-   - 8-12 named stories (not 54 — one per meaningful variant, not every Figma combo)
-   - AllVariants render grid
-
-5. Claude opens a GitHub PR with:
-   - The generated story file
-   - Storybook setup instructions in the PR body (if Storybook isn't installed yet)
-```
-
-**Typical time:** under 5 minutes from component to open PR.
-
----
-
-### `/ds-push` — DS Specialist, After Figma Polish
-
-```
-1. Polish the generated component in Figma (adjust any tokens, fix stubs, refine details)
-
-2. Run: /ds-push
-   "Push the polished button to GitHub: [Figma node URL] [GitHub repo URL]"
-
-3. Claude reads the polished component set via Figma MCP:
-   extracts resolved token values from key variants
-   (contained idle → primary, contained hover → hover bg, etc.)
-
-4. Claude discovers the repo structure and locates:
-   src/index.css (or globals.css)    ← CSS custom properties
-   tailwind.config.ts                ← theme colors, custom tokens
-   src/components/ui/button.tsx      ← component source (if structural changes)
-
-5. Claude opens a GitHub PR with:
-   - Updated CSS variable values
-   - Updated Tailwind config color tokens
-   - Updated component class names (if radius, weight, or border-width changed)
-   - PR description with before/after token diff
-
-6. Merge the PR. Lovable (or your deploy pipeline) picks it up automatically.
-```
-
-**Typical time:** under 5 minutes from polished Figma to open PR.
-
----
-
-## Input Sources for `/ds-generate`
-
-The designer can provide brand context in any of these formats:
-
-| Input type | How Claude reads it |
+| Input | How Claude reads it |
 |---|---|
 | Figma URL | `get_design_context` via Figma MCP |
 | Screenshot | Visual analysis |
 | Description | Text extraction |
-| Live site URL | `WebFetch` — CSS custom properties, computed styles |
+| Live site URL | `WebFetch` — CSS custom properties |
 | GitHub repo URL | `gh api` — `index.css`, `tailwind.config.ts`, component source |
 
-Any frame, page, or component carrying the client's visual style is valid — not just the target component itself.
+**`/ds-build`** takes a component name + one or more of:
+
+| Input | How Claude reads it |
+|---|---|
+| Storybook URL | `WebFetch` `{url}/stories.json` or `/index.json` |
+| GitHub repo URL | `gh api` — component source + `package.json` |
+| DESIGN.md (from `/ds-extract-design`) | Local file read |
+| REQUIREMENTS.md | Local file read, or interview Step 0 |
 
 ---
 
-## Spec Library
+## File Layout
 
 ```
 specs/
-  _index.json                    ← component index — Claude reads this first
-  button.spec.json               ← compact token data and variant axes
-  button.spec.notes.md           ← design rationale, derivation patterns, history
-```
-
-| Component | Tier | Status | Default variants |
-|-----------|------|--------|-----------------|
-| Button | 1 | Done | 54 (108 with inverse) |
-| Input | 1 | Planned | — |
-| Toggle | 1 | Planned | — |
-| Checkbox | 1 | Planned | — |
-| Select | 2 | Planned | — |
-| Card | 2 | Planned | — |
-| Tab Bar | 2 | Planned | — |
-| Badge | 2 | Planned | — |
-
-Each spec has two files:
-- **`.spec.json`** — compact, LLM-optimized. Token values, variant axes, sizing, accessibility requirements.
-- **`.spec.notes.md`** — human-readable. Design decisions, token derivation patterns, known gaps, version history.
-
----
-
-## Working Directory
-
-Session artifacts are saved locally to `working/` (gitignored):
-
-```
-working/
-  button-2026-04-07/
-    token-map.json          ← resolved tokens used for generation
-    resolved-stubs.json     ← stub values provided by the designer (if any)
-    push-summary.json       ← before/after diff + PR URL (written by ds-push)
-```
-
-This lets you pick up where you left off if a session spans multiple days, and gives `ds-push` a baseline to diff against.
-
----
-
-## Stubs
-
-When a value can't be resolved from the client input, Claude generates a stub:
-- **Fill:** bright pink (`#FF0066`) — easy to spot in Figma
-- **Label:** describes what's needed, e.g. "NEEDS_VALUE: inverse primary color"
-
-Stubs are expected — not a failure. The DS specialist fills them in during the polish pass. `ds-push` then picks up the resolved values and updates the code.
-
----
-
-## Repository Structure
-
-```
-specs/
-  _index.json
-  {component}.spec.json
-  {component}.spec.notes.md
+  _index.json                          ← Kido component lookup
+  {component}.spec.json                ← Kido spec (compact)
+  {component}.spec.notes.md            ← rationale + history
+  libraries/
+    _index.json                        ← library mapping lookup
+    chakra.json | mantine.json | …     ← UI library conventions
 
 skills/
-  ds-spec-authoring.md     ← /ds-spec-authoring instructions
-  ds-generate.md           ← /ds-generate instructions
-  ds-push.md               ← /ds-push instructions
-  ds-storybook.md          ← /ds-storybook instructions
+  ds-spec-authoring.md
+  ds-generate.md
+  ds-extract-design.md
+  ds-build.md
+  ds-push.md
+  ds-storybook.md
+  templates/
+    REQUIREMENTS.template.md           ← per-job rules template
 
-working/                   ← local session artifacts (gitignored)
+working/                               ← gitignored per-session artifacts
+  {component-or-project}-{YYYY-MM-DD}/
+    DESIGN.md                          ← Workflow B
+    REQUIREMENTS.md                    ← Workflow B
+    library-snapshot.json              ← Workflow B
+    token-map.json                     ← both
+    validation-report.md               ← Workflow B
+    resolved-stubs.json                ← Workflow A
+    push-summary.json                  ← ds-push
 
 .claude/
-  commands/
-    ds-spec-authoring.md   ← /ds-spec-authoring slash command
-    ds-generate.md         ← /ds-generate slash command
-    ds-push.md             ← /ds-push slash command
-    ds-storybook.md        ← /ds-storybook slash command
+  commands/                            ← /slash-command wiring
+    ds-*.md
 
-CLAUDE.md                  ← agent instructions (auto-loaded by Claude Code)
-README.md                  ← this file
+CLAUDE.md                              ← agent instructions (auto-loaded)
+README.md                              ← this file
 ```
+
+---
+
+## Core Concepts
+
+**Spec** (Kido's)
+A compact JSON file describing a Kido DS component: variant axes, tokens, sizing, accessibility. Used by `ds-generate` as the structure source. Authored once by the DS team via `/ds-spec-authoring`.
+
+**DESIGN.md** (per-project)
+A Markdown file with embedded DTCG-formatted JSON blocks describing design foundations — colors (primitives + semantic), typography, spacing, radius, shadow, themes. Extracted by `/ds-extract-design` from a Figma foundation file at the start of each Workflow B project. Lives in `working/` (not committed).
+
+**REQUIREMENTS.md** (per-job)
+A Markdown file describing job-specific rules — color modes required, locales, naming prefixes, accessibility level, any component-specific constraints. Either pasted in by the designer or generated via a short interview at the start of `/ds-build`.
+
+**Library mapping** (`specs/libraries/*.json`)
+A small committed reference describing a UI library's variant prop names, size scale, and compound component conventions. Loaded by `/ds-build` when a library is detected from a `package.json`. Currently shipped: Chakra, Mantine, shadcn.
+
+**Stubs (`#FF0066`)**
+When Claude can't resolve a value from the input, it places a bright pink fill in Figma with a label describing what's needed. The DS specialist fills these in during polish. Stubs are expected and valid — they never block generation.
+
+**Validator (Workflow B only)**
+A subagent inside `/ds-build` that reviews the generated component against a 6-category checklist: structure fidelity, token application, variant completeness, naming conventions, accessibility, mode/locale constraints. Writes `validation-report.md`. Soft advisory — doesn't block completion.
+
+---
+
+## Design Principles
+
+**Two workflows, one post-polish.** `ds-generate` and `ds-build` split the front half based on client context. `ds-push` and `ds-storybook` are shared and unaware of which path produced the component.
+
+**Skills are authoritative.** Skill files in `skills/` hold the real instructions. CLAUDE.md and README are overviews that may lag.
+
+**Never fabricate.** Missing values become stubs (pink fills) or `NEEDS_VALUE` entries. A visible gap is better than an invented value.
+
+**Preserve the client's font.** Extract it; find closest available match in Figma; never silently default to Inter.
+
+**Kido rules in Workflow A.** Client brand on Kido structure.
+**Library rules in Workflow B.** Kido tokens on library structure.
+
+**Compact generation by default.** Workflow A generates `inverse=no` only unless dark-background support is explicitly requested.
+
+**Validator is advisory, not a gate.** It catches issues but the designer decides what to do about them.
+
+**Specs are data.** Token names are self-documenting. Claude reasons about derivation patterns; the spec doesn't need to spell them out.
+
+**Closed loop.** Figma → code via `/ds-push`. Code → Figma via `/ds-generate` or `/ds-build`. No manual translation either direction.
 
 ---
 
 ## Requirements
 
 | Requirement | Purpose |
-|-------------|---------|
-| Claude Code | Runs the workflow; auto-loads CLAUDE.md |
-| Figma MCP connected | Reads Kido DS for spec authoring; reads/writes Figma for generate and push |
-| `gh` CLI authenticated | Used by ds-generate (reads), ds-push (writes + PR), and ds-storybook (writes + PR) |
-
----
-
-## Design Principles
-
-**Kido rules are the default.** The designer's input provides brand values only — primary color, border radius, font if non-standard. States, sizes, spacing, and derivation come from the spec automatically.
-
-**Closed loop.** Design changes in Figma propagate to code via `ds-push`. Code changes are sourced for future generation via `ds-generate`. No manual translation step either direction.
-
-**Compact generation by default.** `inverse=no` variants only unless dark-background support is explicitly needed.
-
-**Stubs over blocking.** Generate with gaps visible. Polish in Figma after, not before. Push after polish.
-
-**Specs are data.** Token names are self-documenting. Claude reasons about derivation — the spec doesn't need to explain it.
-
-**Client styling preserved through token mapping.** Kido provides structure. The client's input provides values. The output looks like the client's brand, not Kido.
+|---|---|
+| Claude Code | Runs the workflows; auto-loads CLAUDE.md |
+| Figma MCP connected | Reads and writes Figma for all skills |
+| `gh` CLI authenticated (`gh auth login`) | Reading client repos, opening PRs |
+| Optional — Storybook running for client | Used by `/ds-build` when client provides a Storybook URL |
 
 ---
 
 ## Limitations
 
-- **No spec = no full automation.** Novel components need `/ds-spec-authoring` first. One-time cost.
-- **Inverse variants are almost always stubbed.** Expected — clients rarely provide dark-background designs upfront.
-- **Figma MCP required.** Screenshot input works but extracts less precise values. Figma URL is strongly preferred.
-- **`gh` CLI required for ds-push and ds-storybook.** Must be authenticated (`gh auth login`).
-- **Storybook optional.** `/ds-storybook` generates valid story files regardless — setup instructions are included in the PR body if Storybook isn't installed yet.
-- **Kido drift.** Run `/ds-spec-authoring check [component]` if Kido DS has changed. Stale specs produce off-brand output.
+- **No Kido spec = no `/ds-generate`.** Novel components need `/ds-spec-authoring` first (one-time cost).
+- **Unknown library = fallback to Kido spec in `/ds-build`.** Claude notes the deviation in `token-map.json`. Ship a `specs/libraries/{name}.json` mapping to upgrade fidelity.
+- **Inverse variants often stubbed** in Workflow A — clients rarely provide dark designs upfront.
+- **Screenshot input extracts less precisely than Figma URL** in Workflow A.
+- **Validator is advisory.** It catches common errors; it does not guarantee correctness. Human review is still required.
+- **Kido drift** — run `/ds-spec-authoring check [component]` if Kido DS has changed. Stale specs produce off-brand output.
 
 ---
 

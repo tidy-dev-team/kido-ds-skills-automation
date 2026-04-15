@@ -1,6 +1,6 @@
 {
   "schema_version": "0.1",
-  "last_updated": "2026-04-06",
+  "last_updated": "2026-04-09",
   "components": [
     {
       "file": "specs/button.spec.json",
@@ -19,6 +19,24 @@
       "description": "Square icon-only button for actions where space is limited. No label — icon communicates the action. Has contained, outlined, and ghost types.",
       "anatomy_keywords": ["Container", "Icon", "Spinner", "square", "icon-only", "compact", "no label"],
       "related": ["Button"]
+    },
+    {
+      "file": "specs/button-text.spec.json",
+      "component": "ButtonText",
+      "aliases": ["text button", "link button", "ghost text", "inline action", "text-only button"],
+      "category": "actions",
+      "description": "Minimal button that appears as clickable text with no container. No background, border, or border-radius — state is communicated by text color. Has optional leading/trailing icon slots.",
+      "anatomy_keywords": ["Label", "Icon L", "Icon R", "text-only", "no background", "inline", "link-style"],
+      "related": ["Button", "ButtonIcon"]
+    },
+    {
+      "file": "specs/checkbox-icon.spec.json",
+      "component": "CheckboxIcon",
+      "aliases": ["checkbox icon", "check box", "checkbox mark", "selection icon", "checkbox-1"],
+      "category": "forms",
+      "description": "Icon-only visual sub-component of a checkbox. Renders unchecked, checked, or indeterminate state using Material Symbols Outlined icons. No label — intended to be composed inside a full Checkbox component.",
+      "anatomy_keywords": ["check_box_outline_blank", "check_box", "indeterminate_check_box", "icon", "selection", "mark", "tick", "dash"],
+      "related": ["Checkbox"]
     }
   ]
 }

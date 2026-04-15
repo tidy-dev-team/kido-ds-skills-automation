@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0.0",
+  "last_updated": "2026-04-15",
+  "description": "Library mapping index. Each entry describes a UI library's variant/prop conventions for use by ds-build. ds-build loads the matching file when it detects the library from package.json or designer input.",
+  "libraries": [
+    {
+      "file": "chakra.json",
+      "library": "Chakra UI",
+      "package": "@chakra-ui/react",
+      "website": "https://chakra-ui.com",
+      "notes": "Uses `variant` + `colorScheme` + `size` as variant props. Compound components via `{Component}.{Part}` syntax (e.g., Menu.Item)."
+    },
+    {
+      "file": "mantine.json",
+      "library": "Mantine",
+      "package": "@mantine/core",
+      "website": "https://mantine.dev",
+      "notes": "Uses `variant` + `color` + `size` as variant props. Many components have `.Item`, `.Target`, `.Dropdown` subcomponents."
+    },
+    {
+      "file": "shadcn.json",
+      "library": "shadcn/ui",
+      "package": "radix-ui/*",
+      "website": "https://ui.shadcn.com",
+      "notes": "CVA-based variant system. Copy-paste components in `components/ui/`. Built on Radix primitives. Uses `variant` + `size` props; colors from CSS variables."
+    }
+  ]
+}

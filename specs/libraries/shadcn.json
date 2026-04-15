@@ -1,0 +1,91 @@
+{
+  "library": "shadcn/ui",
+  "package": "n/a (copy-paste components using Radix primitives)",
+  "primitives": "@radix-ui/react-*",
+  "variant_engine": "class-variance-authority (CVA)",
+  "last_updated": "2026-04-15",
+
+  "variant_axes": {
+    "primary": ["variant", "size"],
+    "notes": "shadcn uses CVA with `variant` and `size` as the two standard axes. No `colorScheme` — colors come from CSS variables (`--primary`, `--destructive`, etc.) defined in globals.css."
+  },
+
+  "component_props": {
+    "Button": {
+      "variant":     ["default", "destructive", "outline", "secondary", "ghost", "link"],
+      "size":        ["default", "sm", "lg", "icon"],
+      "boolean_props": ["asChild", "disabled"],
+      "anatomy":     ["button (root)", "children (flex row: icon? + label + icon?)"],
+      "css_classes_base": "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+    },
+    "Input": {
+      "variant":     [],
+      "size":        [],
+      "boolean_props": ["disabled", "readOnly", "required"],
+      "anatomy":     ["input (single slot)"],
+      "css_classes_base": "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+    },
+    "Checkbox": {
+      "anatomy":     ["Checkbox (root)", "CheckboxIndicator (check icon)"],
+      "boolean_props": ["checked", "disabled"],
+      "primitive":   "@radix-ui/react-checkbox"
+    },
+    "Switch": {
+      "anatomy":     ["Switch (root track)", "SwitchThumb"],
+      "boolean_props": ["checked", "disabled"],
+      "primitive":   "@radix-ui/react-switch"
+    },
+    "Select": {
+      "anatomy":     ["Select (root)", "SelectTrigger", "SelectValue", "SelectIcon", "SelectContent", "SelectItem", "SelectGroup", "SelectLabel"],
+      "primitive":   "@radix-ui/react-select"
+    },
+    "Card": {
+      "anatomy":     ["Card", "CardHeader", "CardTitle", "CardDescription", "CardContent", "CardFooter"]
+    },
+    "Tabs": {
+      "anatomy":     ["Tabs", "TabsList", "TabsTrigger", "TabsContent"],
+      "primitive":   "@radix-ui/react-tabs"
+    },
+    "Badge": {
+      "variant":     ["default", "secondary", "destructive", "outline"],
+      "anatomy":     ["Badge (single slot)"]
+    },
+    "Dialog": {
+      "anatomy":     ["Dialog", "DialogTrigger", "DialogContent", "DialogHeader", "DialogTitle", "DialogDescription", "DialogFooter", "DialogClose"],
+      "primitive":   "@radix-ui/react-dialog"
+    }
+  },
+
+  "token_slots": {
+    "description": "shadcn uses CSS variables in globals.css. Tailwind colors reference them (`bg-primary`, `text-primary-foreground`).",
+    "css_vars": {
+      "--background":            "color.surface.base",
+      "--foreground":            "color.text.default",
+      "--primary":               "color.interactive.primary",
+      "--primary-foreground":    "color.text.onPrimary",
+      "--secondary":             "color.interactive.secondary",
+      "--secondary-foreground":  "color.text.onSecondary",
+      "--destructive":           "color.feedback.error",
+      "--destructive-foreground":"color.text.onError",
+      "--muted":                 "color.surface.muted",
+      "--muted-foreground":      "color.text.muted",
+      "--accent":                "color.surface.accent",
+      "--accent-foreground":     "color.text.onAccent",
+      "--border":                "color.border.default",
+      "--input":                 "color.border.input",
+      "--ring":                  "color.border.focus",
+      "--radius":                "radius.md"
+    },
+    "notes": "CSS variables in shadcn use HSL space-separated format (`0 0% 100%` not `hsl(0, 0%, 100%)`) so Tailwind can apply opacity modifiers. Convert DESIGN.md hex values to this format when mapping."
+  },
+
+  "generation_notes": [
+    "shadcn components are copy-pasted into the user's repo (`components/ui/`) — there's no import from an npm package. The library mapping here is for shape reference only.",
+    "CVA is the variant engine — each component has a `{component}Variants` function exporting `cva(...)`. Read the component source to get the exact variant list.",
+    "`variant=ghost` has no background until hover (using `hover:bg-accent`).",
+    "`variant=link` has no background ever — just underlined text.",
+    "Radius comes from the shared `--radius` CSS variable (default 0.5rem). All components reference it.",
+    "Focus ring uses the shared `--ring` CSS variable and appears on all interactive components via `focus-visible:ring-2 focus-visible:ring-ring`.",
+    "Dark mode is class-based (`.dark` on <html>) — DESIGN.md tokens for dark mode map to the `.dark` section of globals.css."
+  ]
+}

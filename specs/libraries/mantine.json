@@ -1,0 +1,95 @@
+{
+  "library": "Mantine",
+  "package": "@mantine/core",
+  "version_supported": "^7.0.0",
+  "last_updated": "2026-04-15",
+
+  "variant_axes": {
+    "primary": ["variant", "color", "size"],
+    "notes": "Mantine uses `variant` for style type, `color` for the theme color name, and `size` (usually xs/sm/md/lg/xl) for sizing."
+  },
+
+  "component_props": {
+    "Button": {
+      "variant":     ["filled", "light", "outline", "subtle", "transparent", "white", "default", "gradient"],
+      "size":        ["xs", "sm", "md", "lg", "xl"],
+      "color":       ["blue", "cyan", "teal", "green", "lime", "yellow", "orange", "red", "pink", "grape", "violet", "indigo", "gray"],
+      "boolean_props": ["loading", "disabled", "fullWidth"],
+      "anatomy":     ["Button (root)", "leftSection", "Label", "rightSection", "loader (when loading)"]
+    },
+    "TextInput": {
+      "variant":     ["default", "filled", "unstyled"],
+      "size":        ["xs", "sm", "md", "lg", "xl"],
+      "boolean_props": ["disabled", "required", "readOnly", "error"],
+      "anatomy":     ["TextInput (wrapper)", "label", "description", "input", "leftSection", "rightSection", "error"]
+    },
+    "Checkbox": {
+      "variant":     ["filled", "outline"],
+      "size":        ["xs", "sm", "md", "lg", "xl"],
+      "color":       ["blue", "cyan", "teal", "green", "lime", "yellow", "orange", "red", "pink", "grape", "violet", "indigo", "gray"],
+      "boolean_props": ["checked", "indeterminate", "disabled", "error"],
+      "anatomy":     ["Checkbox (root)", "input (the box)", "icon", "label", "description"]
+    },
+    "Switch": {
+      "size":        ["xs", "sm", "md", "lg", "xl"],
+      "color":       ["blue", "cyan", "teal", "green", "lime", "yellow", "orange", "red", "pink", "grape", "violet", "indigo", "gray"],
+      "boolean_props": ["checked", "disabled"],
+      "anatomy":     ["Switch (root track)", "thumb", "label", "description"]
+    },
+    "Select": {
+      "variant":     ["default", "filled", "unstyled"],
+      "size":        ["xs", "sm", "md", "lg", "xl"],
+      "boolean_props": ["disabled", "required", "searchable", "clearable"],
+      "anatomy":     ["Select (root)", "input", "Select.Dropdown", "Select.Option"]
+    },
+    "Card": {
+      "radius":      ["xs", "sm", "md", "lg", "xl"],
+      "shadow":      ["xs", "sm", "md", "lg", "xl"],
+      "boolean_props": ["withBorder"],
+      "anatomy":     ["Card", "Card.Section"]
+    },
+    "Tabs": {
+      "variant":     ["default", "outline", "pills"],
+      "orientation": ["horizontal", "vertical"],
+      "anatomy":     ["Tabs", "Tabs.List", "Tabs.Tab", "Tabs.Panel"]
+    },
+    "Badge": {
+      "variant":     ["filled", "light", "outline", "dot", "transparent", "white", "default", "gradient"],
+      "size":        ["xs", "sm", "md", "lg", "xl"],
+      "color":       ["blue", "cyan", "teal", "green", "lime", "yellow", "orange", "red", "pink", "grape", "violet", "indigo", "gray"],
+      "anatomy":     ["Badge (single slot)"]
+    },
+    "Modal": {
+      "size":        ["xs", "sm", "md", "lg", "xl", "100%"],
+      "boolean_props": ["centered", "fullScreen", "withCloseButton"],
+      "anatomy":     ["Modal", "Modal.Overlay", "Modal.Content", "Modal.Header", "Modal.Title", "Modal.CloseButton", "Modal.Body"]
+    }
+  },
+
+  "token_slots": {
+    "description": "Where DESIGN.md tokens should map in Mantine's theme system.",
+    "color": {
+      "primary":        "theme.colors.{color}[6]",
+      "primaryHover":   "theme.colors.{color}[7]",
+      "primaryActive":  "theme.colors.{color}[8]",
+      "text":           "theme.black / theme.white (mode-dependent)",
+      "border":         "theme.colors.gray[3] (light) / theme.colors.dark[4] (dark)"
+    },
+    "radius": {
+      "default":        "theme.defaultRadius",
+      "values":         "theme.radius.{xs|sm|md|lg|xl}"
+    },
+    "typography": {
+      "fontFamily":     "theme.fontFamily",
+      "sizes":          "theme.fontSizes.{xs|sm|md|lg|xl}"
+    }
+  },
+
+  "generation_notes": [
+    "Mantine uses a color array of 10 shades per color — primary is usually shade 6.",
+    "`variant=light` uses a subtle tinted background with the color-shade text.",
+    "`variant=subtle` has no background until hover.",
+    "Mantine 7 uses CSS variables extensively — structure the Figma component set with variables bound to mode.",
+    "Compound components (Tabs.List, Card.Section) use dot notation in JSX — build as nested frames in Figma with matching names."
+  ]
+}

@@ -146,6 +146,13 @@ Do not generate 54 individual stories (one per Figma variant). Generate meaningf
 
 ## Step 5 — Generate the Story File
 
+**File extension rule:** Always use `.jsx` or `.tsx` — never `.js` or `.ts` — for story files that contain JSX. Vite (including the `vite:oxc` plugin in Storybook 10+) will not parse JSX in `.js` files and throws `Unexpected token` at runtime.
+
+- TypeScript repo → `{Component}.stories.tsx`
+- JavaScript repo → `{Component}.stories.jsx`
+
+Same rule applies to the component file itself (`Button.jsx`, not `Button.js`).
+
 Use CSF3 format (Storybook 7+). Template:
 
 ```tsx
@@ -253,8 +260,8 @@ BRANCH="ds/storybook-{component}-{date}"
 MAIN_SHA=$(gh api repos/{owner}/{repo}/git/ref/heads/main --jq '.object.sha')
 gh api repos/{owner}/{repo}/git/refs -X POST -f ref="refs/heads/${BRANCH}" -f sha="${MAIN_SHA}"
 
-# Push story file
-FILE_PATH="src/components/ui/{component}.stories.tsx"
+# Push story file — use .tsx for TypeScript repos, .jsx for JavaScript repos
+FILE_PATH="src/stories/{component}.stories.tsx"  # adjust path and extension to match repo
 ENCODED=$(printf '%s' "${STORY_CONTENT}" | base64)
 gh api repos/{owner}/{repo}/contents/${FILE_PATH} \
   -X PUT \

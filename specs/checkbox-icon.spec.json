@@ -1,0 +1,124 @@
+{
+  "component": "CheckboxIcon",
+  "version": "1.0.0",
+  "last_updated": "2026-04-09",
+  "source": {
+    "figma_file": "https://www.figma.com/design/WNOcZbybSn7dAGjTMimIsJ/Kido---DS",
+    "figma_node_id": "2545:11819"
+  },
+
+  "variants": {
+    "size":           { "values": ["s", "m"],                                             "default": "m" },
+    "state":          { "values": ["idle", "hover", "pressed", "focused", "disabled"],    "default": "idle" },
+    "selection type": { "values": ["unchecked", "checked", "indeterminate"],              "default": "unchecked" }
+  },
+
+  "naming": {
+    "component_set": "checkbox-1",
+    "variant_format": "size={size}, state={state}, selection type={selection type}"
+  },
+
+  "anatomy": {
+    "layers": ["check_box_outlined_blank", "check_box", "indeterminate_check_box"],
+    "layout": "single icon, fixed square, centered",
+    "gap": null,
+    "notes": "One icon layer is visible at a time — swapped per selection type. Icons are Material Symbols Outlined (Google Fonts). Each icon is rendered at 75% of the container (inset 12.5%). No background fill on the root — the icon itself carries the background color (baked into the SVG for checked/indeterminate). Focus ring is a 2px border applied to the icon container in focused state."
+  },
+
+  "sizing": {
+    "s": { "height": 16, "width": 16, "min_width": null, "paddingX": 0, "paddingY": 0 },
+    "m": { "height": 20, "width": 20, "min_width": null, "paddingX": 0, "paddingY": 0 }
+  },
+
+  "typography": null,
+
+  "border_radius": {
+    "s": { "token": "radius/semantic/tiny-elements",  "value": 2 },
+    "m": { "token": "radius/semantic/small-elements", "value": 4 }
+  },
+
+  "border_width": {
+    "focus": 2,
+    "focus_token": "width/thick"
+  },
+
+  "font_family": null,
+
+  "icon_source": {
+    "library": "Material Symbols Outlined",
+    "url": "https://fonts.google.com/icons",
+    "icons": {
+      "unchecked":     "check_box_outline_blank",
+      "checked":       "check_box",
+      "indeterminate": "indeterminate_check_box"
+    },
+    "params": "FILL@1; wght@400; GRAD@0; opsz@24"
+  },
+
+  "tokens": {
+    "system/fg/primary":                       "#615fff",
+    "system/fg/active":                        "#4f39f6",
+    "system/fg/03":                            "#90a1b9",
+    "system/fg/disabled":                      "#cad5e2",
+    "system/border/interactive/focused":       "#615fff80",
+    "system/overlays/overlay-hover-on-color":  "#0000001f",
+    "system/overlays/overlay-active-on-color": "#00000033",
+    "radius/semantic/small-elements":          "4",
+    "radius/semantic/tiny-elements":           "2",
+    "width/thick":                             "2"
+  },
+
+  "color_map": {
+    "unchecked": {
+      "idle":     "system/fg/03",
+      "hover":    "system/fg/03 + overlay-hover-on-color",
+      "pressed":  "system/fg/03 + overlay-active-on-color",
+      "focused":  "system/fg/03",
+      "disabled": "system/fg/disabled"
+    },
+    "checked": {
+      "idle":     "system/fg/primary",
+      "hover":    "system/fg/primary + overlay-hover-on-color",
+      "pressed":  "system/fg/active",
+      "focused":  "system/fg/primary",
+      "disabled": "system/fg/disabled"
+    },
+    "indeterminate": {
+      "idle":     "system/fg/primary",
+      "hover":    "system/fg/primary + overlay-hover-on-color",
+      "pressed":  "system/fg/active",
+      "focused":  "system/fg/primary",
+      "disabled": "system/fg/disabled"
+    }
+  },
+
+  "accessibility": {
+    "min_touch_target": 44,
+    "focus_ring": {
+      "width_token": "width/thick",
+      "width": 2,
+      "color_token": "system/border/interactive/focused",
+      "placement": "border on icon container",
+      "radius_s": 2,
+      "radius_m": 4
+    },
+    "contrast": "WCAG AA 4.5:1",
+    "aria": "role=checkbox; aria-checked=true|false|mixed; aria-disabled for disabled state",
+    "notes": "Both sizes (16px and 20px) are below the WCAG 44px touch target — expected for icon-only sub-component. The parent Checkbox (with label) must provide adequate touch area."
+  },
+
+  "completeness": {
+    "default_set": "30 variants — size={s,m} × state={idle,hover,pressed,focused,disabled} × selection type={unchecked,checked,indeterminate} — no inverse axis",
+    "full_set":    "30 variants — same (no inverse axis exists)",
+    "validation": [
+      "size=s: 16×16px fixed square; size=m: 20×20px fixed square",
+      "unchecked icon is check_box_outline_blank, color system/fg/03 (#90a1b9)",
+      "checked icon is check_box, color system/fg/primary (#615fff) idle/hover/focused; system/fg/active (#4f39f6) pressed",
+      "indeterminate icon is indeterminate_check_box, same colors as checked",
+      "disabled: all selection types use system/fg/disabled (#cad5e2)",
+      "focused: 2px border in system/border/interactive/focused (#615fff80); radius 2px (s) / 4px (m)",
+      "no inverse axis — no dark-background variants",
+      "variant format: size={s|m}, state={idle|hover|pressed|focused|disabled}, selection type={unchecked|checked|indeterminate}"
+    ]
+  }
+}
