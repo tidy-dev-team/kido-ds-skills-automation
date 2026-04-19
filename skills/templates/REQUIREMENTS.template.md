@@ -8,6 +8,7 @@
 
 - **Project / client:** _{e.g., Acme Corp — Button library}_
 - **Component(s) being built:** _{e.g., Button, Input, Checkbox}_
+- **Figma build target:** _{Figma file URL + page name where the component set will be created}_
 - **Date started:** _{YYYY-MM-DD}_
 
 ---

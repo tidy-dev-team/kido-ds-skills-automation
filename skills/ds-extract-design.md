@@ -32,13 +32,15 @@ Do **not** run this for Workflow A projects (`/ds-generate`) — that flow extra
 ## Inputs
 
 - **Figma foundation file URL** — the file to extract from. Usually Kido's foundation. Can be a client's own foundation if they have one.
-- **Project name** (optional) — used in the output directory path. Default: derive from the Figma file name.
+- **Project name** (required) — a short slug used as the working directory name (e.g., `acme`, `payzo`, `quirky`). All `/ds-build` runs for this project will reference the same directory, so the name should be recognizable and reusable.
+
+**If the designer doesn't provide a project name, ask for one.** Don't derive it silently — it's the key that ties all Workflow B artifacts together for this project.
 
 ---
 
 ## Output
 
-`working/{project}-{YYYY-MM-DD}/DESIGN.md`
+`working/{project}/DESIGN.md`
 
 Hybrid Markdown + DTCG JSON blocks. Markdown headings for human navigation; JSON for programmatic consumption by `/ds-build`.
 
@@ -214,7 +216,7 @@ Free text. Record anything that couldn't be extracted cleanly (missing tokens, u
 DESIGN.md extracted.
 
 Source: {Figma file name}
-Output: working/{project}-{date}/DESIGN.md
+Output: working/{project}/DESIGN.md
 Modes:  light, dark
 Tokens: 247 (184 primitive, 63 semantic)
 

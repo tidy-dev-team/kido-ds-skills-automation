@@ -69,7 +69,7 @@ Ask the designer early: "Does your client already have a UI library in productio
 **When:** Starting a new client project that uses Workflow B. Extracts the client's (or Kido's) foundation file into a DTCG-formatted DESIGN.md.
 **Who:** Designer, once per project.
 **Input:** Figma foundation file URL.
-**Output:** `working/{project}-{YYYY-MM-DD}/DESIGN.md` — Markdown + DTCG JSON blocks (Colors, Typography, Spacing, Radius, Shadow, Themes).
+**Output:** `working/{project}/DESIGN.md` — Markdown + DTCG JSON blocks (Colors, Typography, Spacing, Radius, Shadow, Themes). The `{project}` is a short slug the designer names at the start (e.g., `acme`, `payzo`).
 
 ### `ds-generate` — Workflow A orchestrator
 **File:** `skills/ds-generate.md`
@@ -165,7 +165,8 @@ skills/
     REQUIREMENTS.template.md       ← new — per-job rules template
 
 working/                           ← local session artifacts (gitignored)
-  {component-or-project}-{YYYY-MM-DD}/
+  {component}-{YYYY-MM-DD}/             ← Workflow A (per generation session)
+  {project}/                            ← Workflow B (per project, shared across components)
     DESIGN.md                      ← extracted per-project (Workflow B)
     REQUIREMENTS.md                ← per-job rules (Workflow B)
     library-snapshot.json          ← resolved library structure (Workflow B)

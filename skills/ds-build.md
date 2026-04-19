@@ -22,7 +22,7 @@ For the flow where the client has **no** library (Kido structure, client brand),
 
 Before running, `/ds-build` expects:
 
-1. **DESIGN.md** — at `working/{project}-{date}/DESIGN.md`. Produced by `/ds-extract-design`. If missing, the skill asks the designer to run that first.
+1. **DESIGN.md** — at `working/{project}/DESIGN.md`. Produced by `/ds-extract-design`. If missing, the skill asks the designer to run that first. The `{project}` is a short slug set during extraction (e.g., `acme`, `payzo`).
 2. **Library reference** — GitHub repo URL, Storybook URL, or package name. At least one.
 3. **Component name** — the component to build (e.g., "Button", "Input"). Looked up in library conventions first, Kido specs second.
 
@@ -30,23 +30,29 @@ REQUIREMENTS.md is **not** a prerequisite — if it's missing, Step 0 interviews
 
 ---
 
-## Step 0 — REQUIREMENTS Check (Hybrid)
+## Step 0 — Project Name + REQUIREMENTS Check
 
-Look for `working/{job}/REQUIREMENTS.md` in the current session directory.
+**First, resolve the project name.** All Workflow B artifacts for a project share a single `working/{project}/` directory. If the designer hasn't named the project yet:
+- Ask: "What's the project name? (A short slug like `acme` or `payzo` — used for the working directory.)"
+- Once set, all subsequent `/ds-build` and `/ds-extract-design` calls for this project use the same `working/{project}/` directory.
+
+**Then, check for REQUIREMENTS.md** at `working/{project}/REQUIREMENTS.md`.
 
 **If present** → read it. Proceed.
 
-**If missing** → run a 5-question interview, then write the answers to `working/{job}/REQUIREMENTS.md` using the template at `skills/templates/REQUIREMENTS.template.md`.
+**If missing** → run a 5-question interview, then write the answers to `working/{project}/REQUIREMENTS.md` using the template at `skills/templates/REQUIREMENTS.template.md`.
 
 Interview questions:
 
-1. **Color modes required?** light / dark / both (default: both if DESIGN.md has dark mode, else light only)
-2. **Locales / RTL?** single locale / multi-locale with RTL (e.g., en + he) (default: single)
-3. **Naming prefix?** Any prefix required on Figma node names or variables (e.g., `pz_`)? (default: none)
-4. **Accessibility target?** WCAG AA (default) / AAA
-5. **Component-specific constraints?** Free text — anything else the designer knows about this job (optional)
+1. **Figma build target?** Which Figma file + page should the component be built on? Ask for a URL or page name. (required — no default)
+2. **Library?** What UI library does the client use? GitHub repo URL / Storybook URL / library name (Chakra, Mantine, shadcn, custom). (required — no default)
+3. **Color modes required?** light / dark / both (default: both if DESIGN.md has dark mode, else light only)
+4. **Locales / RTL?** single locale / multi-locale with RTL (e.g., en + he) (default: single)
+5. **Naming prefix?** Any prefix required on Figma node names or variables (e.g., `pz_`)? (default: none)
+6. **Accessibility target?** WCAG AA (default) / AAA
+7. **Component-specific constraints?** Free text — anything else the designer knows about this job (optional)
 
-Keep questions short. Offer a single "accept defaults" option if the designer is in a hurry.
+Keep questions short. Offer a single "accept defaults" option if the designer is in a hurry (questions 3–7 only — build target and library are always required).
 
 ---
 
@@ -64,7 +70,7 @@ Extract:
 - Default `args` → default values
 - Compound structure (e.g., `ButtonGroup` as a parent of `Button`)
 
-Save to `working/{job}/library-snapshot.json` as `{source: "storybook", stories: [...], argTypes: {...}}`.
+Save to `working/{project}/library-snapshot.json` as `{source: "storybook", stories: [...], argTypes: {...}}`.
 
 ### 1b. GitHub repo URL provided
 
@@ -89,7 +95,7 @@ or the library's equivalent path. Extract:
 - Variant definitions (CVA calls, styled-components, theme.ts entries)
 - Compound component children
 
-Save to `working/{job}/library-snapshot.json` as `{source: "github", library: "chakra", props: {...}, variants: {...}}`.
+Save to `working/{project}/library-snapshot.json` as `{source: "github", library: "chakra", props: {...}, variants: {...}}`.
 
 ### 1c. Package/library name only
 
@@ -117,7 +123,7 @@ Apply REQUIREMENTS overrides:
 - If `modes: ["dark"]` only, skip building light variants.
 - If locales include RTL, set `textDirection: RTL` on label text nodes for RTL variants.
 
-Write `working/{job}/token-map.json`:
+Write `working/{project}/token-map.json`:
 ```json
 {
   "component": "Button",
@@ -166,7 +172,7 @@ Invoke a validator via the `Agent` tool. Hand it:
 
 Validator prompt template:
 
-> You are a design-system validator. Review the Figma component set at node `{nodeId}` in file `{fileKey}`. Check it against the checklist below. For each finding, output severity (`error` / `warning` / `info`), category, and a one-sentence description. Write the result to `working/{job}/validation-report.md`.
+> You are a design-system validator. Review the Figma component set at node `{nodeId}` in file `{fileKey}`. Check it against the checklist below. For each finding, output severity (`error` / `warning` / `info`), category, and a one-sentence description. Write the result to `working/{project}/validation-report.md`.
 >
 > **Checklist:**
 > 1. **Structure fidelity** — does the component tree match the library anatomy in `library-snapshot.json`? Slot count, nesting, compound children all present?
@@ -194,9 +200,9 @@ Variants:   {N} variants across {axes}
 Modes:      {modes}
 Tokens:     {resolved_count} resolved, {stub_count} stubs
 Validator:  {errors} errors, {warnings} warnings, {infos} notes
-            → working/{job}/validation-report.md
+            → working/{project}/validation-report.md
 
-Artifacts saved to working/{job}/:
+Artifacts saved to working/{project}/:
   library-snapshot.json
   token-map.json
   validation-report.md
