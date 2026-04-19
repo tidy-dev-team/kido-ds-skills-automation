@@ -154,7 +154,27 @@ Use `figma_execute` or `use_figma` to create the component set. Structure:
 - **Modes** — if REQUIREMENTS requests multiple modes, use Figma variables for mode-bound tokens so switching modes works at the component level
 - **Font handling** — per the font rules in `skills/ds-generate.md` Step 2 "Font resolution": extract the client's font from DESIGN.md; find closest available match in Figma; never default silently to Inter
 
+### ❗ Auto-Layout — STRICT (applies to every frame in every component)
+
+Every frame that contains children **must** use auto-layout (`layoutMode = 'HORIZONTAL'` or `'VERTICAL'`). This is non-negotiable.
+
+In every `figma_execute` call:
+- Set `layoutMode` on the component root frame and on every child frame.
+- Set `primaryAxisSizingMode` and `counterAxisSizingMode` explicitly — `'FIXED'`, `'HUG'`, or infer from context. Never leave undefined.
+- After setting `layoutMode`, if a fixed size is required, call `resize()` and then re-set `primaryAxisSizingMode = 'FIXED'` (auto-layout resets sizing mode to `'HUG'` on assignment).
+- Express all inter-child spacing as `itemSpacing` (gap), not as padding on individual children.
+- Absolute positioning (`x` / `y` on a child) is only acceptable for elements that genuinely float: focus rings rendered as effects, overlay badges, or tooltip arrows.
+
+### Other build rules
+
 Generate all combinations implied by `variant_axes` × modes. For locales with RTL, generate mirrored variants where the library's behavior requires them.
+
+Apply the Kido DS Quality Standards from `skills/templates/REQUIREMENTS.template.md` — specifically:
+- All layers use semantic names (no "Frame 1", "Group 2")
+- All text nodes get component text properties
+- Icon slots get instance-swap properties; icon vector named `ic`, fill `#000000`
+- Component master sits above any frame/section on the page
+- Component description is written: `Also known as: …\n{Hebrew misprint}`
 
 Save the resulting component set node ID to `token-map.json` under `figma_node_id`.
 
@@ -176,13 +196,16 @@ Validator prompt template:
 >
 > **Checklist:**
 > 1. **Structure fidelity** — does the component tree match the library anatomy in `library-snapshot.json`? Slot count, nesting, compound children all present?
-> 2. **Token application** — read the Figma fills / strokes / typography back (via `figma_get_component_details`). Do they match `slot_mapping` in `token-map.json`?
+> 2. **Token application** — read the Figma fills / strokes / typography back (via `figma_get_component_details`). Do they match `slot_mapping` in `token-map.json`? Are colors, typography, effects, and spacing bound to variables — no hardcoded hex values?
 > 3. **Variant completeness** — are all combinations from `variant_axes` × modes present?
-> 4. **Naming conventions** — do all node names honor the `naming_prefix` from REQUIREMENTS?
+> 4. **Naming conventions** — do all node names honor the `naming_prefix` from REQUIREMENTS? Are layers named semantically (no "Frame 1", "Group 2")? Is variant property vocabulary consistent with the Kido naming table (sm/md/lg, default/hover/focused/disabled)?
 > 5. **Accessibility** — focus ring on every focused variant, WCAG contrast met per REQUIREMENTS target, touch target ≥ 44×44 on interactive elements.
 > 6. **Mode/locale constraints** — only the modes/locales listed in REQUIREMENTS are present. No extras.
+> 7. **Auto-layout** — does every frame in the component tree have `layoutMode` set? Flag any frame using absolute child positioning where auto-layout would be appropriate.
+> 8. **Component properties** — do all user-facing text nodes have component text properties? Do boolean properties exist for optional elements? Do icon slots have instance-swap properties?
+> 9. **Component description** — is the Figma description present and does it contain an "Also known as" line and a Hebrew-keyboard misprint?
 >
-> Be concise. Group findings by category. Report all 6 categories even if one has no findings ("No issues found").
+> Be concise. Group findings by category. Report all 9 categories even if one has no findings ("No issues found").
 
 **Soft advisory** — the validator produces a report. `/ds-build` continues regardless of findings. The designer reads the report and decides.
 
