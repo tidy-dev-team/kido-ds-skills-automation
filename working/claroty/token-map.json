@@ -1,0 +1,78 @@
+{
+  "component": "Button",
+  "library": "mantine",
+  "library_version": "^7.0.0",
+  "structure_source": "specs/libraries/mantine.json",
+  "project": "claroty",
+  "modes": ["light", "dark"],
+  "vertical": "Industrial (default)",
+
+  "variant_axes": {
+    "Type":  ["filled", "light", "outline", "subtle"],
+    "Size":  ["sm", "md", "lg"],
+    "State": ["Default", "Hover", "Focused", "Disabled"]
+  },
+
+  "size_specs": {
+    "sm": { "paddingH": 12, "paddingV": 8,  "fontSize": 12, "lineHeight": 16, "gap": 8, "radius": 8,  "note": "4px grid: height auto=32px" },
+    "md": { "paddingH": 16, "paddingV": 12, "fontSize": 14, "lineHeight": 20, "gap": 8, "radius": 8,  "note": "4px grid: height auto=44px, meets 44px touch target" },
+    "lg": { "paddingH": 20, "paddingV": 12, "fontSize": 16, "lineHeight": 24, "gap": 8, "radius": 8,  "note": "4px grid: height auto=48px" }
+  },
+
+  "slot_mapping": {
+    "typography.fontFamily":       "typography.fontFamily.sans → Montserrat",
+    "typography.weight":           "SemiBold (600)",
+
+    "filled.Default.bg":           "color.bg.brand → light:#7938B2 / dark:#8E4EC6",
+    "filled.Default.text":         "color.text.inverse → #FCF8FF (both modes)",
+    "filled.Hover.bg":             "color.bg.interactive.brand.hover → light:#8E4EC6 / dark:#BF7AF0",
+    "filled.Hover.text":           "color.text.inverse → #FCF8FF",
+    "filled.Focused.bg":           "color.bg.brand → light:#7938B2 / dark:#8E4EC6",
+    "filled.Focused.text":         "color.text.inverse → #FCF8FF",
+    "filled.Focused.ring":         "color.effect.focused → light:#BF7AF0 / dark:#D6AAF5 (2px spread)",
+    "filled.Disabled.bg":          "color.bg.interactive.brand.disabled → light:#DBDFE2 / dark:#495359",
+    "filled.Disabled.text":        "color.text.interactive.disabled → light:#C0C8CD / dark:#878F94",
+
+    "light.Default.bg":            "color.bg.interactive.base.hover → light:#FCF8FF / dark:#221527",
+    "light.Default.text":          "color.text.brand → light:#5A2B7D / dark:#BF7AF0",
+    "light.Hover.bg":              "color.bg.interactive.base.selected → light:#F9F1FE / dark:#3A1E48",
+    "light.Hover.text":            "color.text.brand → light:#5A2B7D / dark:#BF7AF0",
+    "light.Focused.bg":            "color.bg.interactive.base.hover → light:#FCF8FF / dark:#221527",
+    "light.Focused.text":          "color.text.brand → light:#5A2B7D / dark:#BF7AF0",
+    "light.Focused.ring":          "color.effect.focused → light:#BF7AF0 / dark:#D6AAF5",
+    "light.Disabled.bg":           "color.bg.interactive.base.disabled → light:#F5F6F7 / dark:#172127",
+    "light.Disabled.text":         "color.text.interactive.disabled → light:#C0C8CD / dark:#878F94",
+
+    "outline.Default.bg":          "transparent",
+    "outline.Default.text":        "color.text.brand → light:#5A2B7D / dark:#BF7AF0",
+    "outline.Default.border":      "color.border.brand → light:#5A2B7D / dark:#BF7AF0 (1px inside)",
+    "outline.Hover.bg":            "color.bg.interactive.base.hover → light:#FCF8FF / dark:#221527",
+    "outline.Hover.text":          "color.text.interactive.hover → light:#3A1E48 / dark:#EDDBF9",
+    "outline.Hover.border":        "color.bg.interactive.brand.hover → light:#8E4EC6 / dark:#BF7AF0",
+    "outline.Focused.bg":          "color.bg.interactive.base.hover → light:#FCF8FF / dark:#221527",
+    "outline.Focused.text":        "color.text.brand → light:#5A2B7D / dark:#BF7AF0",
+    "outline.Focused.border":      "color.border.brand → light:#5A2B7D / dark:#BF7AF0",
+    "outline.Focused.ring":        "color.effect.focused → light:#BF7AF0 / dark:#D6AAF5",
+    "outline.Disabled.bg":         "transparent",
+    "outline.Disabled.text":       "color.text.interactive.disabled → light:#C0C8CD / dark:#878F94",
+    "outline.Disabled.border":     "color.border.interactive.disabled → light:#F5F6F7 / dark:#202B31",
+
+    "subtle.Default.bg":           "transparent",
+    "subtle.Default.text":         "color.text.brand → light:#5A2B7D / dark:#BF7AF0",
+    "subtle.Hover.bg":             "color.bg.interactive.base.hover → light:#FCF8FF / dark:#221527",
+    "subtle.Hover.text":           "color.text.interactive.hover → light:#3A1E48 / dark:#EDDBF9",
+    "subtle.Focused.bg":           "color.bg.interactive.base.hover → light:#FCF8FF / dark:#221527",
+    "subtle.Focused.text":         "color.text.brand → light:#5A2B7D / dark:#BF7AF0",
+    "subtle.Focused.ring":         "color.effect.focused → light:#BF7AF0 / dark:#D6AAF5",
+    "subtle.Disabled.bg":          "transparent",
+    "subtle.Disabled.text":        "color.text.interactive.disabled → light:#C0C8CD / dark:#878F94"
+  },
+
+  "stubs": [],
+
+  "requirements_overrides": {
+    "accessibility": "WCAG AAA — note: filled/sm at 12px may need AAA contrast review (primary/7 #5A2B7D on white = 9.9:1 ✓ but filled bg #7938B2 + text #FCF8FF ≈ 6.97:1 — borderline for AAA small text)",
+    "grid": "4px grid enforced on all padding, gap, radius, and sizing values",
+    "modes": "light + dark via resolved hex values (Figma variables recommended for production)"
+  }
+}
