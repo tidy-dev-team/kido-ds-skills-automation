@@ -1,5 +1,5 @@
 ---
-description: Extract design tokens from a Figma foundation file and produce a DESIGN.md in DTCG format. Run this first when starting a Workflow B (ds-build) project. Arguments: Figma foundation file URL + optional project slug.
+description: Extract design tokens from one or more Figma foundation files → single DESIGN.md (hybrid YAML front matter + DTCG body, google-labs-code/design.md compatible). Supports split foundations (e.g. colors file + tokens file). Run before /ds-build. Arguments: one or more Figma URLs + optional project slug.
 ---
 
 Read `skills/ds-extract-design.md` and follow its instructions.
