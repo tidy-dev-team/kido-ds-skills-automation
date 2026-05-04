@@ -32,7 +32,7 @@ by the Figma polish pass. Only the values change — the structure stays.
 
 - **Figma URL** — the polished component set node (e.g. `?node-id=2009:110`)
 - **GitHub repo URL** — the target codebase (e.g. `https://github.com/owner/repo`)
-- **Session token-map.json** (optional) — from `working/{component}-{date}/token-map.json`.
+- **Session token-map.json** (optional) — from `working/{component}-{YYYY-MM-DD}/token-map.json` (Workflow A) or `working/{project}/token-map.json` (Workflow B).
   If present, used to diff and push only changed values. If absent, push all extracted values.
 
 ---
@@ -45,7 +45,7 @@ Use `get_design_context` on the Figma component set node to extract resolved tok
 
 | Variant | What to extract |
 |---|---|
-| `type=contained, size=m, state=idle` | fill → primary color; text fill → fg on primary; cornerRadius → border_radius; fontName → font_family + weight; letterSpacing, textCase |
+| `type=contained, size=m, state=idle` | fill → primary color; text fill → fg on primary; cornerRadius → border_radius; fontName → font_family + weight; letterSpacing, textCase; **layout props (see below)** |
 | `type=contained, size=m, state=hover` | fill → hover bg color |
 | `type=contained, size=m, state=pressed` | fill → pressed bg color |
 | `type=contained, size=m, state=focused` | stroke → focus ring color |
@@ -55,6 +55,40 @@ Use `get_design_context` on the Figma component set node to extract resolved tok
 Read all fills as hex. Convert RGBA opacity to token notation (e.g. `rgba(21,193,93,0.2)` → `#15C15D33`).
 
 If `get_design_context` returns colors as RGB 0–1 floats, convert: `Math.round(val * 255).toString(16).padStart(2,'0')`.
+
+### 1a — Read alignment & layout properties (NOT tokenized)
+
+Auto-layout alignment, direction, padding, and gap are **not** Figma variables — they are raw node properties. The DS specialist often nudges these during polish (e.g. switching icon-left vs. icon-right, tightening padding, centering content). These changes will not show up in `get_variable_defs` and must be read directly off the node.
+
+For each target variant, also extract the following auto-layout properties from the root frame (and any inner content row/stack if present):
+
+| Figma property | Read as | Maps to |
+|---|---|---|
+| `layoutMode` | `"HORIZONTAL"` \| `"VERTICAL"` \| `"NONE"` | `flex-row` / `flex-col` / (none) |
+| `primaryAxisAlignItems` | `"MIN"` \| `"CENTER"` \| `"MAX"` \| `"SPACE_BETWEEN"` | `justify-start` / `justify-center` / `justify-end` / `justify-between` |
+| `counterAxisAlignItems` | `"MIN"` \| `"CENTER"` \| `"MAX"` \| `"BASELINE"` | `items-start` / `items-center` / `items-end` / `items-baseline` |
+| `itemSpacing` | number (px) | `gap-{n}` (Tailwind 4px scale) |
+| `paddingLeft/Right/Top/Bottom` | number (px) | `pl-/pr-/pt-/pb-` or shorthand `px-/py-/p-` |
+| `layoutWrap` | `"NO_WRAP"` \| `"WRAP"` | absent / `flex-wrap` |
+| `textAlignHorizontal` (on text node) | `"LEFT"` \| `"CENTER"` \| `"RIGHT"` | `text-left` / `text-center` / `text-right` |
+| Child order (icon vs. label) | array index | determines `flex-row` vs. `flex-row-reverse` |
+
+Use `figma_execute` or `figma_get_component_details` to read these — `get_design_context` may abstract them away. Example read script:
+
+```javascript
+const node = await figma.getNodeByIdAsync(VARIANT_ID);
+return {
+  layoutMode: node.layoutMode,
+  primary: node.primaryAxisAlignItems,
+  counter: node.counterAxisAlignItems,
+  gap: node.itemSpacing,
+  padX: [node.paddingLeft, node.paddingRight],
+  padY: [node.paddingTop, node.paddingBottom],
+  childOrder: node.children.map(c => ({ name: c.name, type: c.type })),
+};
+```
+
+Record alignment values alongside token values in the extracted state — they are pushed via component source updates, not CSS variables.
 
 ---
 
@@ -121,7 +155,24 @@ Update only Tailwind utility classes that map to changed token slots:
 | font_weight (900 → 500) | `font-black` → `font-medium` |
 | text transform removed | remove `uppercase` |
 
-If the border_radius, font, and border_width are unchanged — skip this file entirely.
+#### Alignment & layout (from Step 1a)
+
+Alignment changes always update the component source, since they are not tokenized. Map the read values to utility classes:
+
+| Figma property | Value | Tailwind class |
+|---|---|---|
+| `layoutMode` | `HORIZONTAL` / `VERTICAL` | `flex-row` / `flex-col` |
+| `primaryAxisAlignItems` | `MIN` / `CENTER` / `MAX` / `SPACE_BETWEEN` | `justify-start` / `justify-center` / `justify-end` / `justify-between` |
+| `counterAxisAlignItems` | `MIN` / `CENTER` / `MAX` / `BASELINE` | `items-start` / `items-center` / `items-end` / `items-baseline` |
+| `itemSpacing` | `4` / `8` / `12` / `16` | `gap-1` / `gap-2` / `gap-3` / `gap-4` |
+| `paddingX` symmetric | `8` / `12` / `16` / `24` | `px-2` / `px-3` / `px-4` / `px-6` |
+| `paddingY` symmetric | `4` / `8` / `12` | `py-1` / `py-2` / `py-3` |
+| `textAlignHorizontal` | `LEFT` / `CENTER` / `RIGHT` | `text-left` / `text-center` / `text-right` |
+| Icon-after-label child order | reversed from default | add `flex-row-reverse` |
+
+Round Figma px values to the nearest Tailwind 4px step (1 = 4px, 2 = 8px, 3 = 12px, 4 = 16px, 6 = 24px). If asymmetric padding is detected (left ≠ right or top ≠ bottom), emit per-side classes (`pl-`, `pr-`, etc.) instead of shorthand.
+
+If border_radius, font, border_width, **and** all alignment values are unchanged — skip this file entirely.
 
 ---
 
@@ -133,8 +184,8 @@ Create a branch, push each changed file, open a PR.
 # 1. Get main branch SHA
 MAIN_SHA=$(gh api repos/{owner}/{repo}/git/ref/heads/main --jq '.object.sha')
 
-# 2. Create a new branch
-BRANCH="ds-sync-$(date +%Y-%m-%d)"
+# 2. Create a new branch (canonical naming: ds/{action}-{component}-{date})
+BRANCH="ds/push-{component}-$(date +%Y-%m-%d)"
 gh api repos/{owner}/{repo}/git/refs \
   -X POST \
   -f ref="refs/heads/${BRANCH}" \
@@ -200,9 +251,15 @@ No changes detected. The polished component matches the generated values — no 
 
 ## Working Directory
 
-Save updated token map after push:
-- `working/{component}-{date}/token-map.json` — overwrite with final pushed values
-- `working/{component}-{date}/push-summary.json` — before/after diff, PR URL, files touched
+Save updated token map after push. Use the same working directory the upstream skill used:
+- **Workflow A (came from `/ds-generate`):** `working/{component}-{YYYY-MM-DD}/`
+- **Workflow B (came from `/ds-build`):** `working/{project}/`
+
+Files written:
+- `token-map.json` — overwrite with final pushed values
+- `push-summary.json` — before/after diff, PR URL, files touched
+
+See `LANGUAGE.md` for canonical paths and branch-naming conventions.
 
 ---
 

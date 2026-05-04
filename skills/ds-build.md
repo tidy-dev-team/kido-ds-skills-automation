@@ -152,7 +152,7 @@ Use `figma_execute` or `use_figma` to create the component set. Structure:
 - **Anatomy** — mirror the library's compound structure. Button with Icon becomes a parent frame with `LeftIcon`, `Label`, `RightIcon` children matching the library's naming
 - **Styling** — apply resolved token values from `slot_mapping`
 - **Modes** — if REQUIREMENTS requests multiple modes, use Figma variables for mode-bound tokens so switching modes works at the component level
-- **Font handling** — per the font rules in `skills/ds-generate.md` Step 2 "Font resolution": extract the client's font from DESIGN.md; find closest available match in Figma; never default silently to Inter
+- **Font handling** — extract the client's font from DESIGN.md `typography.*.fontFamily`; find closest available match in Figma via `listAvailableFontsAsync()`; never default silently to Inter. See the canonical "Font resolution" procedure in `skills/ds-generate.md` Step 2 (the same rule applies in both workflows)
 
 ### ❗ Auto-Layout — STRICT (applies to every frame in every component)
 
@@ -169,7 +169,7 @@ In every `figma_execute` call:
 
 Generate all combinations implied by `variant_axes` × modes. For locales with RTL, generate mirrored variants where the library's behavior requires them.
 
-Apply the Kido DS Quality Standards from `skills/templates/REQUIREMENTS.template.md` — specifically:
+Apply the Kido DS Quality Standards from `skills/templates/QUALITY_STANDARDS.md` — specifically:
 - All layers use semantic names (no "Frame 1", "Group 2")
 - All text nodes get component text properties
 - Icon slots get instance-swap properties; icon vector named `ic`, fill `#000000`
@@ -255,7 +255,7 @@ If the requested component name doesn't exist in the library:
 
 **REQUIREMENTS.md overrides both.** If REQUIREMENTS says "dark mode only", ignore library light variants. If it says "prefix `pz_`", apply to every node name. Explicit job rules beat library conventions.
 
-**Preserve the client's font.** Do not force Inter. Resolve via DESIGN.md `typography.*.fontFamily`. Apply the font resolution logic from `skills/ds-generate.md` Step 2 (exact match → category fallback → note substitution).
+**Preserve the client's font.** Do not force Inter. Resolve via DESIGN.md `typography.*.fontFamily` using the canonical font-resolution procedure in `skills/ds-generate.md` Step 2 (exact match → category fallback → note substitution).
 
 **Stubs stay pink.** Unresolved values get `#FF0066`. Never invent a value to avoid a stub.
 

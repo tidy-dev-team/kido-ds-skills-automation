@@ -1,0 +1,109 @@
+{
+  "component": "BannerContained",
+  "version": "1.0.0",
+  "last_updated": "2026-04-30",
+  "source": {
+    "figma_file": "https://www.figma.com/design/WNOcZbybSn7dAGjTMimIsJ/Kido---DS",
+    "figma_node_id": "2803:91656"
+  },
+
+  "variants": {
+    "severity": {
+      "values": ["neutral", "success", "info", "warning", "danger"],
+      "default": "neutral",
+      "generate_by_default": true
+    }
+  },
+
+  "naming": {
+    "component_set": "banner-contained",
+    "variant_format": "severity={severity}"
+  },
+
+  "component_properties": {
+    "text":         { "type": "string",   "default": "Text",  "purpose": "Primary banner title" },
+    "description":  { "type": "string",   "default": "Text",  "purpose": "Secondary description text" },
+    "description1": { "type": "boolean",  "default": true,    "purpose": "Show description line" },
+    "content":      { "type": "boolean",  "default": true,    "purpose": "Show leading icon slot" },
+    "content1":     { "type": "instance", "default": "Slot",  "purpose": "Leading icon slot content" },
+    "action":       { "type": "boolean",  "default": true,    "purpose": "Show action button" },
+    "dismiss":      { "type": "boolean",  "default": true,    "purpose": "Show dismiss (close) icon button" }
+  },
+
+  "anatomy": {
+    "layers": ["Container", "left content", "Slot (icon)", "texts", "Text", "Description", "buttons-container", "button (action)", "button-icon (dismiss)"],
+    "layout": "horizontal, center-aligned, fill width",
+    "gap": 16,
+    "notes": "Container is a horizontal auto-layout: [left content] + [buttons-container]. left content (gap=8) holds an icon Slot + texts (vertical, gap=2: Text + Description). buttons-container (gap=4, justify-end, flex 1) holds optional action button + dismiss button-icon. action and dismiss are component-property booleans, not variant axes."
+  },
+
+  "sizing": {
+    "container":          { "min_width": 220, "paddingX": 16, "paddingY": 16, "gap": 16 },
+    "left_content":       { "gap": 8 },
+    "texts":              { "gap": 2 },
+    "buttons_container":  { "gap": 4 },
+    "action_button":      { "min_height": 32, "max_height": 32, "min_width": 60, "paddingX": 12, "paddingY": 11 },
+    "dismiss_button":     { "padding": 8, "icon_size": 16 }
+  },
+
+  "typography": {
+    "text":         { "token": "body/l-medium",  "size": 16, "weight": 500, "lineHeight": 1.4 },
+    "description":  { "token": "body/l-regular", "size": 16, "weight": 400, "lineHeight": 1.4 },
+    "action_label": { "token": "label/m",        "size": 14, "weight": 500, "lineHeight": 1 }
+  },
+
+  "border_radius": {
+    "container":      { "token": "radius/semantic/sharp",          "value": 0 },
+    "action_button":  { "token": "radius/semantic/large-controls", "value": 8 },
+    "dismiss_button": { "token": "radius/semantic/large-controls", "value": 8 }
+  },
+
+  "font_family": "Inter",
+
+  "tokens": {
+    "system/feedback/neutral/strong":  "#314158",
+    "system/feedback/neutral/subtle":  "#f1f5f9",
+    "system/feedback/success/strong":  "#007a55",
+    "system/feedback/success/subtle":  "#d0fae5",
+    "system/feedback/info/strong":     "#0069a8",
+    "system/feedback/info/subtle":     "#dff2fe",
+    "system/feedback/warning/strong":  "#9f2d00",
+    "system/feedback/warning/subtle":  "#ffedd4",
+    "system/feedback/danger/strong":   "#c10007",
+    "system/feedback/danger/subtle":   "#ffe2e2",
+    "system/fg/inverse":               "#ffffff",
+    "system/bg/01":                    "#ffffff"
+  },
+
+  "token_mapping": {
+    "container_bg":        "system/feedback/{severity}/strong",
+    "text_color":          "system/feedback/{severity}/subtle",
+    "description_color":   "system/feedback/{severity}/subtle",
+    "action_label_color":  "system/fg/inverse",
+    "dismiss_icon_color":  "system/fg/inverse"
+  },
+
+  "accessibility": {
+    "min_touch_target": 44,
+    "focus_ring": { "width": 2, "color_token": "system/border/interactive/focused" },
+    "contrast": "WCAG AA 4.5:1 — subtle-on-strong pairings per severity",
+    "aria": "role=status (neutral/success/info) or role=alert (warning/danger); aria-live=polite|assertive accordingly; dismiss button needs aria-label='Dismiss'",
+    "notes": "Action button (32px) and dismiss button-icon (32px effective) are below WCAG 44px touch target — known deviation."
+  },
+
+  "completeness": {
+    "default_set": "5 variants — severity={neutral, success, info, warning, danger}",
+    "full_set":    "5 variants — severity is the only variant axis; action/dismiss/content/description1 are component-property booleans, not variants",
+    "validation": [
+      "5 variants total, one per severity value",
+      "container background uses system/feedback/{severity}/strong",
+      "text and description colors use system/feedback/{severity}/subtle",
+      "container padding 16, gap 16; left content gap 8; texts gap 2; buttons gap 4",
+      "action button: 32px min/max height, min-width 60, paddingX 12, radius 8",
+      "dismiss button-icon: padding 8, icon 16, radius 8",
+      "text uses body/l-medium (16/500/1.4); description uses body/l-regular (16/400/1.4); action label uses label/m (14/500/1)",
+      "container border-radius is sharp (0)",
+      "action button (32px) below WCAG 44px touch target — known deviation, do not fail validation"
+    ]
+  }
+}

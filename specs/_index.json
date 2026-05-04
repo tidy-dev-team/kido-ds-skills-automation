@@ -1,7 +1,25 @@
 {
   "schema_version": "0.1",
-  "last_updated": "2026-04-09",
+  "last_updated": "2026-04-30",
   "components": [
+    {
+      "file": "specs/banner-contained.spec.json",
+      "component": "BannerContained",
+      "aliases": ["banner", "notification banner", "message bar", "alert banner", "status banner", "inline alert"],
+      "category": "feedback",
+      "description": "High-emphasis notification banner with a severity-colored fill. Displays a title, optional description and leading icon, optional inline action button, and optional dismiss icon button.",
+      "anatomy_keywords": ["Container", "left content", "Slot", "icon", "texts", "Text", "Description", "buttons-container", "button", "button-icon", "dismiss", "close", "neutral", "success", "info", "warning", "danger", "contained", "filled"],
+      "related": ["Button", "ButtonIcon", "BannerOutlined"]
+    },
+    {
+      "file": "specs/banner-outlined.spec.json",
+      "component": "BannerOutlined",
+      "aliases": ["outlined banner", "bordered banner", "notification banner", "message bar", "alert banner", "status banner", "inline alert", "soft banner"],
+      "category": "feedback",
+      "description": "Medium-emphasis notification banner with a severity-colored 1px border over a white or severity-tinted background. Same anatomy as BannerContained — title, optional description, leading icon, inline action, and dismiss — but with neutral text color.",
+      "anatomy_keywords": ["Container", "left content", "Slot", "icon", "texts", "Text", "Description", "buttons-container", "button", "button-icon", "dismiss", "close", "neutral", "success", "info", "warning", "danger", "outlined", "bordered", "border", "subtle", "feedback", "default", "bgColor"],
+      "related": ["Button", "ButtonIcon", "BannerContained"]
+    },
     {
       "file": "specs/button.spec.json",
       "component": "Button",

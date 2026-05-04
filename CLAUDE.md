@@ -5,6 +5,8 @@ This project encodes Tidy Dev's design system expertise into **two parallel pipe
 **Before acting on any request in this domain, read the relevant skill file from `skills/`.
 The skill file is the authoritative instruction set — follow it exactly.**
 
+**Use shared vocabulary.** `LANGUAGE.md` (in the project root) is the canonical glossary — terms, roles, artifact paths, verbs, and skill boundaries. When skills disagree with LANGUAGE.md, the glossary wins; update the skill, not the glossary.
+
 ---
 
 ## What This System Does
@@ -162,7 +164,8 @@ skills/
   ds-push.md
   ds-storybook.md
   templates/
-    REQUIREMENTS.template.md       ← new — per-job rules template
+    REQUIREMENTS.template.md       ← per-job rules template
+    QUALITY_STANDARDS.md           ← Kido DS baseline (applies to every component)
 
 working/                           ← local session artifacts (gitignored)
   {component}-{YYYY-MM-DD}/             ← Workflow A (per generation session)
@@ -185,6 +188,7 @@ working/                           ← local session artifacts (gitignored)
     ds-storybook.md
 
 CLAUDE.md                          ← this file (auto-loaded by Claude Code)
+LANGUAGE.md                        ← canonical glossary (terms, roles, paths, verbs)
 README.md                          ← human-facing overview
 ```
 

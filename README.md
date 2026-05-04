@@ -75,6 +75,8 @@ Both are workflow-agnostic — they don't care whether the component came from W
 
 Each skill has its own file in `skills/` — **those files are authoritative**. CLAUDE.md and this README are overviews.
 
+For shared vocabulary (terms, roles, artifact paths, verbs, skill boundaries), see [`LANGUAGE.md`](./LANGUAGE.md). The glossary wins when skills disagree.
+
 ---
 
 ## Quick Start — Workflow A (no client library)
@@ -85,9 +87,9 @@ Each skill has its own file in `skills/` — **those files are authoritative**. 
 3. Claude identifies the component, extracts brand values, maps to Kido tokens,
    and builds 54 variants directly in the designer's Figma file.
 4. DS specialist polishes in Figma (fills pink stubs, refines visuals).
-5. /ds-push "Push the polished button: [Figma URL] [GitHub repo URL]"
+5. DS specialist runs /ds-push "Push the polished button: [Figma URL] [GitHub repo URL]"
    → GitHub PR opens with updated CSS vars / Tailwind config.
-6. /ds-storybook "Add stories: [GitHub repo URL]"
+6. DS specialist runs /ds-storybook "Add stories: [GitHub repo URL]"
    → GitHub PR with {component}.stories.tsx.
 ```
 
@@ -103,12 +105,12 @@ Typical end-to-end: 30 minutes from client input to open PRs.
 2. Build each component:
    /ds-build "Build a Button for [library GitHub/Storybook URL]"
 
-   • Claude reads/creates working/{job}/REQUIREMENTS.md
+   • Claude reads/creates working/{project}/REQUIREMENTS.md
      (pastes if provided, interviews designer if not — modes, locales, prefix, a11y)
    • Claude reads the client library (Storybook stories.json or gh api repo source)
    • Claude maps DESIGN.md tokens onto the library's prop/variant axes
    • Claude builds the component in Figma matching the library's structure
-   • Validator subagent runs a 6-category checklist → validation-report.md
+   • Validator subagent runs a 9-category checklist → validation-report.md
    • Designer reviews; decides whether to fix issues or accept
 
 3. Post-polish: same /ds-push and /ds-storybook as Workflow A.
@@ -159,22 +161,27 @@ skills/
   ds-storybook.md
   templates/
     REQUIREMENTS.template.md           ← per-job rules template
+    QUALITY_STANDARDS.md               ← Kido DS baseline (applies to every component)
 
 working/                               ← gitignored per-session artifacts
-  {component-or-project}-{YYYY-MM-DD}/
-    DESIGN.md                          ← Workflow B
-    REQUIREMENTS.md                    ← Workflow B
-    library-snapshot.json              ← Workflow B
-    token-map.json                     ← both
-    validation-report.md               ← Workflow B
-    resolved-stubs.json                ← Workflow A
-    push-summary.json                  ← ds-push
+  {component}-{YYYY-MM-DD}/            ← Workflow A (per generation session)
+    token-map.json                     ← /ds-generate
+    resolved-stubs.json                ← /ds-generate
+    push-summary.json                  ← /ds-push (Workflow A)
+  {project}/                           ← Workflow B (per project, shared across components)
+    DESIGN.md                          ← /ds-extract-design
+    REQUIREMENTS.md                    ← /ds-build
+    library-snapshot.json              ← /ds-build
+    token-map.json                     ← /ds-build
+    validation-report.md               ← /ds-build (validator)
+    push-summary.json                  ← /ds-push (Workflow B)
 
 .claude/
   commands/                            ← /slash-command wiring
     ds-*.md
 
 CLAUDE.md                              ← agent instructions (auto-loaded)
+LANGUAGE.md                            ← canonical glossary (terms, roles, paths, verbs)
 README.md                              ← this file
 ```
 
@@ -198,7 +205,7 @@ A small committed reference describing a UI library's variant prop names, size s
 When Claude can't resolve a value from the input, it places a bright pink fill in Figma with a label describing what's needed. The DS specialist fills these in during polish. Stubs are expected and valid — they never block generation.
 
 **Validator (Workflow B only)**
-A subagent inside `/ds-build` that reviews the generated component against a 6-category checklist: structure fidelity, token application, variant completeness, naming conventions, accessibility, mode/locale constraints. Writes `validation-report.md`. Soft advisory — doesn't block completion.
+A subagent inside `/ds-build` that reviews the generated component against a 9-category checklist: structure fidelity, token application, variant completeness, naming conventions, accessibility, mode/locale constraints, auto-layout, component properties, and component description. Writes `validation-report.md`. Soft advisory — doesn't block completion.
 
 ---
 
