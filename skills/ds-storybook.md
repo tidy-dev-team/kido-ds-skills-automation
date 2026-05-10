@@ -52,6 +52,8 @@ If Storybook is missing, the skill pushes the story file and PRs the setup instr
 
 The three modes share generation logic and verification — only the read/write surface differs. **Hybrid mode** is the right choice when `/ds-push` has already updated a Lovable (or similar) repo and the designer wants to test the component in a separate, locally-running Storybook sandbox without forking the Lovable project.
 
+**Intake gate.** Before any mode resolution, confirm the skill has at least: a **component name** and a **source** (GitHub repo URL or local project path). If either is missing (e.g. invoked with empty args via `/ds-guide`), ask the designer for the missing piece(s). Destination defaults to "same as source" unless the designer mentions a separate Storybook folder. Storybook URL and Figma URL remain optional; do not block on them.
+
 ---
 
 ## Step 0 — Resolve the Storybook URL

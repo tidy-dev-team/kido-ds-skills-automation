@@ -34,6 +34,17 @@ A live site URL or code repository works the same way: it supplies the brand val
 
 ---
 
+## Intake
+
+Before Step 0, confirm the two inputs this skill needs:
+
+1. **Target component name** — read from the request text (e.g. "generate this button").
+2. **Client input** — at least one of: Figma URL, screenshot, live site URL, GitHub repo, or a one-line brand description.
+
+If either is missing (e.g. invoked with empty args via `/ds-guide`, or the request text doesn't name a component), ask the designer for the missing piece(s) before proceeding. Do not classify the absence as `NEEDS_VALUE` and do not pick a default component — the `NEEDS_VALUE` rule in Step 2 applies to *token values*, not to the component identity or the brand input itself.
+
+---
+
 ## Step 0 — Read Project-Level Rules (always)
 
 Before Step 1, check the repo root for **`DESIGN-SYSTEM.md`**. If present, read it.
@@ -198,6 +209,69 @@ Build in dependency order — base before derived:
 3. **Size variants** — if only one size was provided, scale others using spec sizing tokens
 4. **Inverse variants** — only if requested; stub if inverse brand colors are unknown
 
+### Variable binding (always, when collections exist)
+
+Bind component slots to **Figma variables**, not raw hex/number values. A bound slot updates automatically when a brand mode switches; a raw value requires per-mode rework. This is the default path — fall back to raw values only when no matching variable exists.
+
+#### When the input includes `variable_collection`
+
+If the request supplies a `variable_collection` argument (or the file already has Local Variables), do this once before generating:
+
+```js
+// Read all collections in the target file
+const collections = await figma.variables.getLocalVariableCollectionsAsync();
+
+// Build token-name → variable map (token name = variable name)
+const tokenMap = {};
+for (const c of collections) {
+  for (const id of c.variableIds) {
+    const v = await figma.variables.getVariableByIdAsync(id);
+    tokenMap[v.name] = v;
+  }
+}
+```
+
+`v.name` matches the spec's token name (`system/bg/primary`, `border/interactive/brand/hover`, etc.) when the project follows the naming in `DESIGN-SYSTEM.md`. Names that don't match indicate either a stale spec or a project-specific override.
+
+#### Apply at write-time
+
+Whenever a slot needs a value, prefer binding:
+
+```js
+const v = tokenMap[tokenName];
+if (v) {
+  node.setBoundVariable('fills',  v);   // for fg/* and bg/* tokens
+  node.setBoundVariable('strokes', v);  // for border/* tokens
+  // For radius / spacing / typography:
+  // node.setBoundVariable('topLeftRadius',   v); // etc per corner
+  // node.setBoundVariable('paddingLeft',     v); // etc per side
+} else {
+  // No matching variable — fall back to raw value, OR stub as NEEDS_VALUE
+}
+```
+
+Field-name reference (Figma plugin API):
+
+| Slot type | `setBoundVariable` field |
+|---|---|
+| `fg/*`, `bg/*` (fills) | `'fills'` |
+| `border/*` (strokes) | `'strokes'` |
+| Corner radius | `'topLeftRadius'`, `'topRightRadius'`, `'bottomLeftRadius'`, `'bottomRightRadius'` (or one if uniform) |
+| Padding | `'paddingLeft'`, `'paddingRight'`, `'paddingTop'`, `'paddingBottom'` |
+| Item spacing (gap) | `'itemSpacing'` |
+| Width / height (rare for tokens) | `'width'`, `'height'` |
+| Font family / weight | typography variables — set via `node.fontName` paired with `setBoundVariable('fontFamily', v)` |
+
+#### Hardcoded values are exceptional
+
+Hardcoded values are acceptable only when no variable exists for the slot. Examples that legitimately have no variable: opacity overlays (`#0000001f` for hover, `#00000033` for pressed) on brands that don't ship overlay tokens. Anything else should be either bound or stubbed `NEEDS_VALUE`.
+
+#### Self-audit verifies bindings
+
+Step 5 verifies every slot whose token name matches a collection entry actually came out as a `VARIABLE_ALIAS` reference (read back via `figma_get_design_context`). A slot that ended up as a raw hex when a matching variable existed is the canonical "binding regression" — fail and fix.
+
+---
+
 ### Token application per state
 
 Token names are self-documenting — use them to determine what applies where.
@@ -307,7 +381,7 @@ If any item fails, attempt **one** corrective pass (re-run the missing piece —
 ### What to verify per section
 
 - **Variant axes** — full cartesian product produced; no missing combinations.
-- **Token bindings** — every visible fill / stroke / spacing on the produced component reads back as a variable reference, not a raw value (except declared `NEEDS_VALUE` stubs).
+- **Token bindings** — every visible fill / stroke / spacing on the produced component reads back as a variable reference (`VARIABLE_ALIAS`), not a raw value, **whenever a matching variable exists in the file's collections**. A slot whose spec token name matches a collection entry but came out as a raw hex is a binding regression — fail and fix. Raw values are only acceptable when (a) the slot is a declared `NEEDS_VALUE` stub or (b) no matching variable exists in any local collection.
 - **Component properties** — each property in the plan exists on the component set with the correct *type* (TEXT / BOOLEAN / INSTANCE_SWAP) and bound to the correct layer.
 - **State anatomy** — each item in `completeness.validation` holds (e.g. heights per size, focus border present, disabled tokens applied, loading swap correct).
 - **Sizing modes** — for every variant, the auto-layout sizing modes match the spec's `layout` intent. For a `"horizontal, ..., fixed height"` component (e.g. Button): `primaryAxisSizingMode === 'AUTO'` and `counterAxisSizingMode === 'FIXED'` on every variant. A variant that ends up width-fixed at the minimum is the canonical resize() regression — fail and restore. (See "Auto-layout sizing — pitfalls" in Step 4.)

@@ -62,10 +62,11 @@ Both are workflow-agnostic — they don't care whether the component came from W
 
 ---
 
-## The Six Skills at a Glance
+## The Seven Skills at a Glance
 
 | Skill | Who | When | Output |
 |---|---|---|---|
+| `/ds-guide` | Anyone | Unsure where to start | Routes to the right skill |
 | `/ds-spec-authoring` | DS team | New Kido component, one-time | `specs/{component}.spec.json` |
 | `/ds-extract-design` | Designer | Start of Workflow B project | `working/{project}/DESIGN.md` |
 | `/ds-generate` | Designer | Per client project, Workflow A | Figma component set |
@@ -73,9 +74,15 @@ Both are workflow-agnostic — they don't care whether the component came from W
 | `/ds-push` | DS specialist | After Figma polish | GitHub PR (token sync) |
 | `/ds-storybook` | DS specialist / dev | After tokens pushed | GitHub PR (CSF3 stories) |
 
+`/ds-guide` is the optional guided entry point — it asks a short series of questions and invokes the right skill for you. Direct invocation of any individual skill works exactly the same as before.
+
 Each skill has its own file in `skills/` — **those files are authoritative**. CLAUDE.md and this README are overviews.
 
 For shared vocabulary (terms, roles, artifact paths, verbs, skill boundaries), see [`LANGUAGE.md`](./LANGUAGE.md). The glossary wins when skills disagree.
+
+For token logic (decision tree, State Ownership Rule, Bootstrap mapping, modes-as-brands), see [`DESIGN-SYSTEM.md`](./DESIGN-SYSTEM.md). Every skill reads it at Step 0; the file overrides skill defaults when they conflict.
+
+For the layered architecture (data → rules → skills) and where each issue fits, see [`documentation/ARCHITECTURE.md`](./documentation/ARCHITECTURE.md).
 
 ---
 

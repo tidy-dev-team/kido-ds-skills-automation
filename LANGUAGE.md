@@ -17,6 +17,9 @@ The pipeline for clients **with an existing UI library** (Chakra, Mantine, shadc
 ### Shared post-polish
 The stages after either workflow finishes generation: **polish** (manual, in Figma) → **`/ds-push`** (PR with token values) → **`/ds-storybook`** (PR with stories). Identical for both workflows.
 
+### Wizard entry (`/ds-guide`)
+The optional guided entry point. Asks Q1 (action) and Q2 (workflow A vs B, when "generate" is picked) using clickable options, detects prerequisites (`DESIGN.md`, `REQUIREMENTS.md`), then invokes the target skill. **Routing only — never duplicates target-skill logic.** Direct invocation of any individual skill remains the canonical entry; the wizard is opt-in.
+
 > Always pair the workflow letter with the slash command on first reference: "Workflow A (`/ds-generate`)". Avoid bare "the generate workflow" or "the build path."
 
 ---
@@ -100,7 +103,7 @@ The manual Figma refinement step performed by the **DS specialist** between gene
 
 ### Validation report
 The soft-advisory checklist emitted by the validator subagent at the end of `/ds-build`. Stored as `working/{project}/validation-report.md`. Errors **never block** completion.
-Validator currently has **9 categories** (see `ds-build.md` Step 4). Older docs reference "6 categories" — that count is outdated.
+Validator currently has **10 categories** — 1, 2, 2a, 3–9 (see `ds-build.md` Step 4). Category 2a (unbound-but-bindable slots) was added with #4. Older docs reference "6 categories" or "9 categories" — those counts are outdated.
 
 ### Working directory
 Local, gitignored session storage:
@@ -172,6 +175,7 @@ Each verb has one job. Don't substitute.
 | **discover** | Find files in a target repo via `gh api`. **Not** for Figma reads (use *extract*). | `/ds-push`, `/ds-storybook` |
 | **stub** | Mark a value as `NEEDS_VALUE`, rendered as `#FF0066` in Figma. Both verb and noun. | all generation |
 | **classify** | **Banned.** `/ds-generate` explicitly does not classify frames as component types. Use *identify*. | — |
+| **route** | Hand off control from the wizard to a target skill via the `Skill` tool with the collected inputs. Reserved for `/ds-guide`. | `/ds-guide` |
 
 ---
 
@@ -181,6 +185,7 @@ Each skill owns one stage. If two skills appear to do the same thing, one of the
 
 | Skill | Owns | Never does |
 |---|---|---|
+| `/ds-guide` | Wizard UX — collects inputs and routes to one target skill via the `Skill` tool. | Any actual generation, extraction, or push work. Duplicating target-skill logic. Acting as a required gate. |
 | `/ds-spec-authoring` | Authoring/updating Kido DS specs (`specs/*.json`). | Per-project work. Reading client foundations. |
 | `/ds-extract-design` | Reading **foundation files** → `DESIGN.md`. | Reading specific components. Building component sets. |
 | `/ds-generate` | Workflow A end-to-end: identify → extract brand values → generate Figma component set. | Reading from `DESIGN.md`. Building from a UI library. Pushing to GitHub. |

@@ -52,12 +52,21 @@ Kido-structured component set                       ▼
 | has no existing UI library — they want Kido's structure styled with their brand | **`ds-generate`** |
 | already ships a UI library (Chakra/Mantine/shadcn/custom) and wants Figma to match it | **`ds-build`** |
 | is updating a Kido DS component (rare — DS team only) | **`ds-spec-authoring`** |
+| is unsure where to start, or wants the system to ask the right questions | **`ds-guide`** |
 
-Ask the designer early: "Does your client already have a UI library in production?" The answer determines the path.
+Ask the designer early: "Does your client already have a UI library in production?" The answer determines the path. If the designer can't answer, point them at `/ds-guide` — the wizard asks the same question with a built-in disambiguator.
 
 ---
 
-## The Six Skills
+## The Seven Skills
+
+### `ds-guide` — guided wizard entry point
+**File:** `skills/ds-guide.md`
+**When:** First-time user, or anyone unsure which skill to invoke.
+**Who:** Designer / DS specialist.
+**Input:** none — the wizard asks for what it needs.
+**Output:** none directly — routes to the appropriate skill via the `Skill` tool with the collected inputs.
+**Philosophy:** Routing, not duplication. Direct invocation of `ds-generate`, `ds-build`, etc. remains fully supported. The wizard is opt-in.
 
 ### `ds-spec-authoring` — Kido DS foundation
 **File:** `skills/ds-spec-authoring.md`
@@ -157,14 +166,16 @@ specs/
     shadcn.json                    ← shadcn/ui + Radix conventions
 
 skills/
+  ds-guide.md                      ← guided wizard entry point
   ds-spec-authoring.md
   ds-generate.md
-  ds-extract-design.md             ← new — Workflow B prerequisite
-  ds-build.md                      ← new — Workflow B orchestrator
+  ds-extract-design.md             ← Workflow B prerequisite
+  ds-build.md                      ← Workflow B orchestrator
   ds-push.md
   ds-storybook.md
   templates/
     REQUIREMENTS.template.md       ← per-job rules template
+    CHANGES.template.md            ← per-project change log template
     QUALITY_STANDARDS.md           ← Kido DS baseline (applies to every component)
 
 working/                           ← local session artifacts (gitignored)
@@ -179,20 +190,23 @@ working/                           ← local session artifacts (gitignored)
     push-summary.json              ← ds-push diff + PR URL
     CHANGES.md                     ← per-project change log, two-category split
 
-DESIGN-SYSTEM.md                   ← authoritative cross-project rules (optional, read by every skill)
+DESIGN-SYSTEM.md                   ← authoritative cross-project token rules (read by every skill at Step 0)
 
 .claude/
   commands/
+    ds-guide.md                    ← wizard slash command
     ds-spec-authoring.md
     ds-generate.md
-    ds-extract-design.md           ← new
-    ds-build.md                    ← new
+    ds-extract-design.md
+    ds-build.md
     ds-push.md
     ds-storybook.md
 
 CLAUDE.md                          ← this file (auto-loaded by Claude Code)
 LANGUAGE.md                        ← canonical glossary (terms, roles, paths, verbs)
 README.md                          ← human-facing overview
+documentation/
+  ARCHITECTURE.md                  ← planned target architecture
 ```
 
 ---

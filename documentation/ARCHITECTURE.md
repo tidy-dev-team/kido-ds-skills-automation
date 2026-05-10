@@ -1,6 +1,6 @@
-# Architecture (planned)
+# Architecture
 
-This document describes the target architecture of the DS component automation system. Some pieces exist today; others are tracked as open issues. The intent is to give a single shared picture so contributors know where each piece belongs and why.
+This document describes the architecture of the DS component automation system. As of this writing, all eight tracked issues (#1–6, #8, #9) have shipped — the system below reflects the current state of the repo, not a future plan.
 
 > **Status legend:** ✅ shipped · 🟡 in progress · ⏳ planned (issue link)
 
@@ -33,7 +33,7 @@ Hard-won learnings — token relationships, state ownership rules, library conve
                           │
 ┌─────────────────────────────────────────────────────────────┐
 │  RULES layer — how to THINK about design                     │
-│  DESIGN-SYSTEM.md (project-level, optional)                  │
+│  DESIGN-SYSTEM.md (repo root, authoritative when present)    │
 │    token decision tree, state ownership, modes-as-brands    │
 └─────────────────────────────────────────────────────────────┘
                           ▲
@@ -68,12 +68,14 @@ Project-level knowledge that applies *across* components. Lives in the repo root
 
 The Step 0 hook is ✅ wired into `ds-generate` and `ds-build` (#6). The CLAUDE.md critical rules section also makes it standing for any skill running in the repo.
 
-Contents (⏳ [#5](https://github.com/tidy-dev-team/kido-ds-skills-automation/issues/5) — file does not exist yet):
-- Token decision tree (`static` vs `interactive`; `fg` / `bg` / `border`; `brand` / `muted` / `base`)
-- State ownership rule (which slot owns hover/pressed; what stays static)
-- Modes as brands
+Contents ✅ ([#5](https://github.com/tidy-dev-team/kido-ds-skills-automation/issues/5)):
+- Token decision tree (`static` vs `interactive`; `fg` / `bg` / `border`; `brand` / `muted` / `base` / `secondary`)
+- State Ownership Rule (which layer owns hover/pressed; what stays static; radio button as canonical reference)
+- Modes-as-brands
 - Bootstrap state-name mapping
 - Disabled family rule
+- Interactive state token mapping (stroke-primary vs fill-primary vs bg-zone)
+- Per-project overrides section at the file's tail (variable IDs, active modes)
 
 ### Skills layer — `skills/`
 
@@ -84,6 +86,7 @@ Each skill is an instruction file. Skills follow the same shape regardless of wo
 3. **Self-audit** — read the result back, tick the checklist, attempt one corrective pass, surface remaining gaps
 
 Skills:
+- `ds-guide` — guided wizard entry point that routes to the right skill (optional, opt-in)
 - `ds-spec-authoring` — author/maintain Kido specs (DS team)
 - `ds-extract-design` — extract client tokens to DESIGN.md (Workflow B prerequisite)
 - `ds-generate` — Workflow A: client has no UI library
@@ -91,7 +94,7 @@ Skills:
 - `ds-push` — sync polished Figma values back to code
 - `ds-storybook` — generate CSF3 stories
 
-`ds-generate` and `ds-build` are the two workflow orchestrators. `ds-push` and `ds-storybook` are the shared post-polish pipeline.
+`ds-generate` and `ds-build` are the two workflow orchestrators. `ds-push` and `ds-storybook` are the shared post-polish pipeline. `ds-guide` is a routing layer above all of them — it never duplicates their work.
 
 ---
 
@@ -169,7 +172,7 @@ Template lives at `skills/templates/CHANGES.template.md`. This is how project qu
 
 ## 5. The plan-execute-audit loop
 
-This is the contract every generation skill follows. Stage 1 ([#1](https://github.com/tidy-dev-team/kido-ds-skills-automation/issues/1), ✅) put it into `ds-generate`; Workflow B ([#4](https://github.com/tidy-dev-team/kido-ds-skills-automation/issues/4)) and other skills will adopt the same shape.
+This is the contract every generation skill follows. Established in `ds-generate` ([#1](https://github.com/tidy-dev-team/kido-ds-skills-automation/issues/1), ✅) and extended into `ds-build`'s validator and binding pass ([#4](https://github.com/tidy-dev-team/kido-ds-skills-automation/issues/4), ✅).
 
 ### Step — Plan (hard gate)
 
@@ -199,18 +202,18 @@ One corrective pass is allowed. Anything still failing is surfaced explicitly in
 
 ---
 
-## 6. Where each open issue fits
+## 6. Where each tracked issue lives in the architecture
 
 | Issue | Layer | What it adds |
 |---|---|---|
 | [#1](https://github.com/tidy-dev-team/kido-ds-skills-automation/issues/1) ✅ | Skills | Plan-execute-audit loop in `ds-generate` |
-| [#2](https://github.com/tidy-dev-team/kido-ds-skills-automation/issues/2) ⏳ | Skills | Fix variant resize bug; regression check in self-audit |
+| [#2](https://github.com/tidy-dev-team/kido-ds-skills-automation/issues/2) ✅ | Skills | Fix variant resize bug; regression check in self-audit |
 | [#3](https://github.com/tidy-dev-team/kido-ds-skills-automation/issues/3) ✅ | Skills | Icon-missing protocol (placeholder, never silent failure) |
-| [#4](https://github.com/tidy-dev-team/kido-ds-skills-automation/issues/4) ⏳ | Skills | Variable-binding parity for `ds-build` |
-| [#5](https://github.com/tidy-dev-team/kido-ds-skills-automation/issues/5) ⏳ | Rules | Token decision tree + authoritative DESIGN-SYSTEM.md content |
+| [#4](https://github.com/tidy-dev-team/kido-ds-skills-automation/issues/4) ✅ | Skills | Variable-binding parity for `ds-build` |
+| [#5](https://github.com/tidy-dev-team/kido-ds-skills-automation/issues/5) ✅ | Rules | Token decision tree + authoritative DESIGN-SYSTEM.md content |
 | [#6](https://github.com/tidy-dev-team/kido-ds-skills-automation/issues/6) ✅ | Rules / per-project | Step 0 hook + `CHANGES.md` two-category split |
 | [#8](https://github.com/tidy-dev-team/kido-ds-skills-automation/issues/8) ✅ | Data | Spec schema 0.2 — structured `anatomy.component_properties` |
-| [#9](https://github.com/tidy-dev-team/kido-ds-skills-automation/issues/9) ⏳ | Skills | New `ds-start` wizard — guided UX entry point that routes to the right skill |
+| [#9](https://github.com/tidy-dev-team/kido-ds-skills-automation/issues/9) ✅ | Skills | New `ds-guide` wizard — guided UX entry point that routes to the right skill |
 
 ---
 

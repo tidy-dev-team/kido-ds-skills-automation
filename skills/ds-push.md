@@ -35,6 +35,8 @@ by the Figma polish pass. Only the values change — the structure stays.
 - **Session token-map.json** (optional) — from `working/{component}-{YYYY-MM-DD}/token-map.json` (Workflow A) or `working/{project}/token-map.json` (Workflow B).
   If present, used to diff and push only changed values. If absent, push all extracted values.
 
+**Intake gate.** The Figma URL and the GitHub repo URL are both required. If either is missing (e.g. invoked with empty args via `/ds-guide`), ask the designer for the missing one(s) before running Step 1. Do not attempt `get_design_context` or `gh api` calls without both URLs in hand.
+
 ---
 
 ## Step 1 — Read the Polished Component Set

@@ -178,7 +178,27 @@ Apply the Kido DS Quality Standards from `skills/templates/QUALITY_STANDARDS.md`
 - Component master sits above any frame/section on the page
 - Component description is written: `Also known as: …\n{Hebrew misprint}`
 
-Save the resulting component set node ID to `token-map.json` under `figma_node_id`.
+### Variable binding (always, when collections exist)
+
+`/ds-build` extracts client tokens into `DESIGN.md`, then re-applies them while building. **Re-applying as raw values disconnects the component from the source variable collection** — a designer editing a variable upstream sees no propagation. Always bind to the existing collections instead.
+
+Procedure is identical to `ds-generate`'s "Variable binding (always, when collections exist)" — see `skills/ds-generate.md` Step 4 for the canonical `setBoundVariable` pattern, the field-name reference table, and the token-name → variable map. The same code applies here; do not re-derive it.
+
+Two paths in this skill:
+
+**Preferred — at-write-time binding.** When the build path generates color/spacing/radius/typography slots, it uses `setBoundVariable` directly (consulting the token map built in Step 0 if collections exist), rather than writing raw values from `DESIGN.md`.
+
+**Fallback — post-generation binding pass.** If the library-resolution path produced raw values (e.g. structure was lifted from a snapshot with hex literals), run a second pass over the component tree:
+
+```js
+// Walk every node; for each fill/stroke/spacing slot,
+// look up the token name in the slot_mapping (token-map.json),
+// resolve the matching variable in tokenMap, and bind.
+```
+
+The post-pass is the documented "missing step" referenced in the original issue — it ensures Workflow B doesn't ship components disconnected from the variable source.
+
+Save the resulting component set node ID to `token-map.json` under `figma_node_id`. Also save which slots were bound vs. left raw under `binding_summary` so the validator can audit it cheaply.
 
 ---
 
@@ -199,6 +219,7 @@ Validator prompt template:
 > **Checklist:**
 > 1. **Structure fidelity** — does the component tree match the library anatomy in `library-snapshot.json`? Slot count, nesting, compound children all present?
 > 2. **Token application** — read the Figma fills / strokes / typography back (via `figma_get_component_details`). Do they match `slot_mapping` in `token-map.json`? Are colors, typography, effects, and spacing bound to variables — no hardcoded hex values?
+> 2a. **Unbound-but-bindable slots** — for each slot that came out as a raw value (hex / number), check whether a variable with the matching token name exists in any local collection. If yes, this is an `error`: a binding was possible but missed. List each missed slot with its token name and the variable that should have been bound. (This is the canonical regression that motivates Workflow B's binding pass — flag it loudly.)
 > 3. **Variant completeness** — are all combinations from `variant_axes` × modes present?
 > 4. **Naming conventions** — do all node names honor the `naming_prefix` from REQUIREMENTS? Are layers named semantically (no "Frame 1", "Group 2")? Is variant property vocabulary consistent with the Kido naming table (sm/md/lg, default/hover/focused/disabled)?
 > 5. **Accessibility** — focus ring on every focused variant, WCAG contrast met per REQUIREMENTS target, touch target ≥ 44×44 on interactive elements.
@@ -207,7 +228,7 @@ Validator prompt template:
 > 8. **Component properties** — do all user-facing text nodes have component text properties? Do boolean properties exist for optional elements? Do icon slots have instance-swap properties?
 > 9. **Component description** — is the Figma description present and does it contain an "Also known as" line and a Hebrew-keyboard misprint?
 >
-> Be concise. Group findings by category. Report all 9 categories even if one has no findings ("No issues found").
+> Be concise. Group findings by category. Report all 10 categories (1, 2, 2a, 3–9) even if one has no findings ("No issues found").
 
 **Soft advisory** — the validator produces a report. `/ds-build` continues regardless of findings. The designer reads the report and decides.
 
