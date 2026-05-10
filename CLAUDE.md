@@ -196,6 +196,8 @@ README.md                          ← human-facing overview
 
 ## Critical Rules
 
+**Update `CHANGELOG.md` on every meaningful change.** Whenever you modify `skills/**`, `specs/**`, `CLAUDE.md`, `LANGUAGE.md`, `README.md`, or `.claude/commands/**`, add an entry under `## [Unreleased]` in `CHANGELOG.md` (categories: Added / Changed / Fixed / Removed / Deprecated / Security). Skip entries for `working/**`, logs, and formatting-only edits. See `CHANGELOG.md` for format.
+
 **Read the skill file first.** Skill files are authoritative. CLAUDE.md summaries can lag behind skill updates.
 
 **Never fabricate token values.** Stub as `NEEDS_VALUE` (shown as `#FF0066` fill in Figma). A visible stub is better than an invented value.

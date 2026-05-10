@@ -114,7 +114,56 @@ All other token values come from the spec unchanged — they are Kido system val
 
 ---
 
-## Step 3 — Generate in Figma
+## Step 3 — Pre-flight Checklist & Execution Plan
+
+**Hard gate.** Before any Figma code runs, emit a written execution plan derived from the loaded spec. Generation must not start until this plan has been output as a markdown checklist with every item unchecked. Step 5 (Self-Audit) ticks against it.
+
+### Derivation rules
+
+The plan is derived from the spec — not memorized. For any component:
+
+| Section | Source in spec |
+|---|---|
+| **Variant axes** | `variants` — list each axis × its values. If `inverse.generate_by_default` is `false` and the designer didn't request inverse, exclude `inverse=yes` and use `completeness.default_set`; otherwise use `completeness.full_set`. |
+| **Token bindings** | `tokens` — every color slot must be bound to a semantic variable (not a raw hex); every spacing/radius/typography slot must be bound to a variable. One checklist line per token group is enough. |
+| **Component properties** | `anatomy.component_properties` (when present — see schema upgrade in #8). When absent, infer heuristically: layers named `Label`, `Title`, `Description` → **TEXT**; layers matching `Icon*` / `*Icon` → a **BOOLEAN** visibility property + an **INSTANCE_SWAP** swap property, paired. Any layer flagged in `anatomy.notes` as "component property, not variant axis" must appear here. If a layer is ambiguous, emit `[ ] (NEEDS_SPEC: clarify property type for {layer})` and continue. |
+| **State anatomy** | one line per entry in `completeness.validation` that describes a state's visual contract (focus border, disabled tokens, loading swap, etc.). |
+| **Identity** | component set name = `naming.component_set`; variant property format = `naming.variant_format`; component description written (one or two sentences derived from the spec or from `_index.json` description). |
+
+### Output shape (illustration only — your component's plan is derived from its spec)
+
+```
+## Execution plan — <Component> (<N> variants)
+
+### Variant axes
+- [ ] <axis>: <v1>, <v2>, ...
+  ...
+
+### Token bindings
+- [ ] All color slots bound to semantic variables
+- [ ] All spacing/radius/typography slots bound to variables
+
+### Component properties
+- [ ] <Layer> → <TYPE> property
+  ...
+
+### State anatomy
+- [ ] <state>: <validation contract from spec>
+  ...
+
+### Identity
+- [ ] Component set name = "<naming.component_set>"
+- [ ] Variant format = "<naming.variant_format>"
+- [ ] Component description written
+```
+
+Items remain unchecked through Step 4. They get ticked off in Step 5 after reading the produced component set back from Figma.
+
+If the spec is missing data needed to derive an item, surface the gap as a `[ ] (NEEDS_SPEC: ...)` line and proceed — never silently drop the item.
+
+---
+
+## Step 4 — Generate in Figma
 
 Use Figma MCP tools to build the component set directly.
 
@@ -166,18 +215,40 @@ Use the spec's `naming` field exactly:
 
 Arrange variants: grouped by type, then size. Group spacing 40px, variant spacing 16px.
 
-### Validation
+---
 
-After generation, verify against `completeness.validation` in the spec:
-- Correct heights per size
-- Focus border present on all focused variants
-- Disabled tokens applied correctly
-- Loading state anatomy correct
-- Naming format correct
+## Step 5 — Self-Audit
+
+After generation, read the produced component set back from Figma and tick the Step 3 checklist item by item. Never skip this step. Never silently omit a failure.
+
+### Read-back tools
+
+- `figma_get_component_details` — variant set, component properties (name + type + default), variant property format
+- `figma_get_design_context` — token bindings on the produced component
+- `get_screenshot` — visual confirmation of state anatomy
+
+### Audit procedure
+
+For each item in the execution plan:
+- **Pass** → mark `[x]`
+- **Fail** → mark `[ ]` and add a one-line note
+- **Partial** → mark `[~]` with notes
+
+If any item fails, attempt **one** corrective pass (re-run the missing piece — e.g. add the missing component property, rebind the missing token, fix the variant format). After the corrective pass, re-audit. If items still fail, surface them explicitly in Step 6 — do not silently omit.
+
+### What to verify per section
+
+- **Variant axes** — full cartesian product produced; no missing combinations.
+- **Token bindings** — every visible fill / stroke / spacing on the produced component reads back as a variable reference, not a raw value (except declared `NEEDS_VALUE` stubs).
+- **Component properties** — each property in the plan exists on the component set with the correct *type* (TEXT / BOOLEAN / INSTANCE_SWAP) and bound to the correct layer.
+- **State anatomy** — each item in `completeness.validation` holds (e.g. heights per size, focus border present, disabled tokens applied, loading swap correct).
+- **Identity** — component set name and variant property format match `naming` exactly; component description is set on the component set.
+
+Output the audited checklist before the Step 6 report. The designer sees both the original plan and the resulting state.
 
 ---
 
-## Step 4 — Report and Offer Feedback Capture
+## Step 6 — Report and Offer Feedback Capture
 
 Give the designer a brief summary:
 
