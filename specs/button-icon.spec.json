@@ -1,7 +1,8 @@
 {
+  "schema_version": "0.2",
   "component": "ButtonIcon",
-  "version": "1.0.0",
-  "last_updated": "2026-04-06",
+  "version": "1.1.0",
+  "last_updated": "2026-05-10",
   "source": {
     "figma_file": "https://www.figma.com/design/WNOcZbybSn7dAGjTMimIsJ/Kido---DS",
     "figma_node_id": "107:322"
@@ -23,7 +24,10 @@
     "layers": ["Container", "Icon", "Spinner"],
     "layout": "square, fixed size, center-aligned, equal padding all sides",
     "gap": 0,
-    "notes": "No label. Icon is a component instance. Spinner (replaces Icon) in loading state."
+    "component_properties": [
+      { "name": "Icon", "type": "INSTANCE_SWAP", "default_component": "icons/placeholder", "preferred_set": "icons", "bound_layer": "Icon" }
+    ],
+    "notes": "No label. Icon is always visible (no Show toggle — without it, the button has no affordance). Spinner (replaces Icon) in loading state."
   },
 
   "sizing": {

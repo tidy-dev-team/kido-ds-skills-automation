@@ -1,7 +1,8 @@
 {
+  "schema_version": "0.2",
   "component": "BannerOutlined",
-  "version": "1.0.0",
-  "last_updated": "2026-04-30",
+  "version": "1.1.0",
+  "last_updated": "2026-05-10",
   "source": {
     "figma_file": "https://www.figma.com/design/WNOcZbybSn7dAGjTMimIsJ/Kido---DS",
     "figma_node_id": "2873:51786"
@@ -25,21 +26,20 @@
     "variant_format": "severity={severity}, bg color={bgColor}"
   },
 
-  "component_properties": {
-    "text":         { "type": "string",   "default": "Text",  "purpose": "Primary banner title" },
-    "description":  { "type": "string",   "default": "Text",  "purpose": "Secondary description text" },
-    "description1": { "type": "boolean",  "default": true,    "purpose": "Show description line" },
-    "content":      { "type": "boolean",  "default": true,    "purpose": "Show leading icon slot" },
-    "content1":     { "type": "instance", "default": "Slot",  "purpose": "Leading icon slot content" },
-    "action":       { "type": "boolean",  "default": true,    "purpose": "Show action button" },
-    "dismiss":      { "type": "boolean",  "default": true,    "purpose": "Show dismiss (close) icon button" }
-  },
-
   "anatomy": {
     "layers": ["Container", "left content", "Slot (icon)", "texts", "Text", "Description", "buttons-container", "button (action)", "button-icon (dismiss)"],
     "layout": "horizontal, center-aligned, fill width",
     "gap": 16,
-    "notes": "Container is a horizontal auto-layout with a 1px solid severity-colored border: [left content] + [buttons-container]. left content (gap=8) holds an icon Slot + texts (vertical, gap=2: Text + Description). buttons-container (gap=4, justify-end, flex 1) holds optional action button + dismiss button-icon. action and dismiss are component-property booleans, not variant axes. Same anatomy as banner-contained — only the surface treatment differs (outlined uses border + light fill instead of strong fill)."
+    "component_properties": [
+      { "name": "Text",             "type": "TEXT",          "default": "Text",                        "bound_layer": "Text" },
+      { "name": "Description",      "type": "TEXT",          "default": "Description text",            "bound_layer": "Description" },
+      { "name": "Show description", "type": "BOOLEAN",       "default": true,                          "bound_layers": ["Description"] },
+      { "name": "Show icon",        "type": "BOOLEAN",       "default": true,                          "bound_layers": ["Slot (icon)"] },
+      { "name": "Icon",             "type": "INSTANCE_SWAP", "default_component": "icons/placeholder", "preferred_set": "icons", "bound_layer": "Slot (icon)" },
+      { "name": "Show action",      "type": "BOOLEAN",       "default": true,                          "bound_layers": ["button (action)"] },
+      { "name": "Show dismiss",     "type": "BOOLEAN",       "default": true,                          "bound_layers": ["button-icon (dismiss)"] }
+    ],
+    "notes": "Container is a horizontal auto-layout with a 1px solid severity-colored border: [left content] + [buttons-container]. left content (gap=8) holds an icon Slot + texts (vertical, gap=2: Text + Description). buttons-container (gap=4, justify-end, flex 1) holds optional action button + dismiss button-icon. The action button and dismiss button-icon are nested instances — their inner properties (label, icon swap) are exposed via Figma nested-instance property exposure. Same anatomy as banner-contained — only the surface treatment differs (outlined uses border + light fill instead of strong fill)."
   },
 
   "sizing": {

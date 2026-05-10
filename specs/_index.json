@@ -1,6 +1,6 @@
 {
-  "schema_version": "0.1",
-  "last_updated": "2026-04-30",
+  "schema_version": "0.2",
+  "last_updated": "2026-05-10",
   "components": [
     {
       "file": "specs/banner-contained.spec.json",

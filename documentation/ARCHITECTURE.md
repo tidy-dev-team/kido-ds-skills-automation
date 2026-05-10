@@ -26,7 +26,7 @@ Hard-won learnings — token relationships, state ownership rules, library conve
 ┌─────────────────────────────────────────────────────────────┐
 │  DATA layer — what components ARE                            │
 │  specs/*.spec.json                                           │
-│    variants, tokens, anatomy, component_properties (0.2 ⏳)  │
+│    variants, tokens, anatomy, component_properties (0.2 ✅)  │
 └─────────────────────────────────────────────────────────────┘
                           ▲
                           │ skills READ
@@ -60,7 +60,7 @@ Compact JSON describing *what a component is*. Variants, anatomy, tokens, compon
 - `specs/_index.json` — lookup table (name, aliases, description)
 - `specs/libraries/*.json` — UI library conventions (Chakra, Mantine, shadcn) for Workflow B
 
-The current schema is `0.1`. Schema `0.2` (⏳ [#8](https://github.com/tidy-dev-team/kido-ds-skills-automation/issues/8)) adds structured `anatomy.component_properties` so component-property types (TEXT / BOOLEAN / INSTANCE_SWAP) are data, not prose.
+The current schema is `0.2` ✅ ([#8](https://github.com/tidy-dev-team/kido-ds-skills-automation/issues/8)) — adds structured `anatomy.component_properties` so component-property types (TEXT / BOOLEAN / INSTANCE_SWAP) are data, not prose. Skills consume the field directly; the 0.1 → 0.2 heuristic bridge added in #1 has been removed from `ds-generate`.
 
 ### Rules layer — `DESIGN-SYSTEM.md`
 
@@ -209,7 +209,7 @@ One corrective pass is allowed. Anything still failing is surfaced explicitly in
 | [#4](https://github.com/tidy-dev-team/kido-ds-skills-automation/issues/4) ⏳ | Skills | Variable-binding parity for `ds-build` |
 | [#5](https://github.com/tidy-dev-team/kido-ds-skills-automation/issues/5) ⏳ | Rules | Token decision tree + authoritative DESIGN-SYSTEM.md content |
 | [#6](https://github.com/tidy-dev-team/kido-ds-skills-automation/issues/6) ✅ | Rules / per-project | Step 0 hook + `CHANGES.md` two-category split |
-| [#8](https://github.com/tidy-dev-team/kido-ds-skills-automation/issues/8) ⏳ | Data | Spec schema 0.2 — structured `anatomy.component_properties` |
+| [#8](https://github.com/tidy-dev-team/kido-ds-skills-automation/issues/8) ✅ | Data | Spec schema 0.2 — structured `anatomy.component_properties` |
 | [#9](https://github.com/tidy-dev-team/kido-ds-skills-automation/issues/9) ⏳ | Skills | New `ds-start` wizard — guided UX entry point that routes to the right skill |
 
 ---
