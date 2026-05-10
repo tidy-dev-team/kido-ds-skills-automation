@@ -33,4 +33,10 @@ Group entries under a dated section. Use these categories: **Added**, **Changed*
 
 ### Changed
 - `skills/ds-generate.md` — added Step 3 (Pre-flight Checklist & Execution Plan) as a hard gate before generation, and Step 5 (Self-Audit) that reads the produced component set back from Figma and ticks the plan; renumbered prior Step 3 → 4 and Step 4 → 6. Pre-flight derives from the spec; component-property type inference is heuristic until spec schema 0.2 lands (#8). (#1)
+- `skills/ds-generate.md` — documented the auto-layout sizing pitfall in Step 4 (`resize()` resets both axes to FIXED; assigning `layoutMode` resets both to AUTO) and added a sizing-mode regression check to the Step 5 self-audit + the Step 3 pre-flight derivation table. Fixes Button variants shipping at fixed minimum width instead of hugging content. (#2)
+- `skills/ds-generate.md`, `skills/ds-build.md`, `CLAUDE.md` — added Step 0 hook reading `DESIGN-SYSTEM.md` from the repo root as authoritative cross-project rules, and codified the per-project `working/{project}/CHANGES.md` two-category split (Generic improvements vs Project-specific) as a standing rule. (#6)
+- `skills/ds-generate.md` — defined the icon-missing protocol: search the target file for an icon library; if absent, insert bright-pink `#FF0066` placeholder frames per icon slot (never draw inline); self-audit verifies every icon slot is populated; final report surfaces missing-icon gaps separately from token stubs. (#3)
+
+### Added
+- `skills/templates/CHANGES.template.md` — template for per-project change logs with the two-category split. (#6)
 

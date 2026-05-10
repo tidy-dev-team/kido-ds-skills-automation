@@ -64,16 +64,16 @@ The current schema is `0.1`. Schema `0.2` (⏳ [#8](https://github.com/tidy-dev-
 
 ### Rules layer — `DESIGN-SYSTEM.md`
 
-Project-level knowledge that applies *across* components. Lives in the project root when present. Skills read it via a Step 0 hook and treat it as authoritative.
+Project-level knowledge that applies *across* components. Lives in the repo root when present. Skills read it via a Step 0 hook and treat it as authoritative — when a skill default conflicts with the file, the file wins.
 
-Contents (⏳ [#5](https://github.com/tidy-dev-team/kido-ds-skills-automation/issues/5)):
+The Step 0 hook is ✅ wired into `ds-generate` and `ds-build` (#6). The CLAUDE.md critical rules section also makes it standing for any skill running in the repo.
+
+Contents (⏳ [#5](https://github.com/tidy-dev-team/kido-ds-skills-automation/issues/5) — file does not exist yet):
 - Token decision tree (`static` vs `interactive`; `fg` / `bg` / `border`; `brand` / `muted` / `base`)
 - State ownership rule (which slot owns hover/pressed; what stays static)
 - Modes as brands
 - Bootstrap state-name mapping
 - Disabled family rule
-
-The mechanism for plugging this into every skill is ⏳ [#6](https://github.com/tidy-dev-team/kido-ds-skills-automation/issues/6).
 
 ### Skills layer — `skills/`
 
@@ -156,14 +156,14 @@ working/{project}/
   resolved-stubs.json    ← designer-provided stub values (Workflow A)
   validation-report.md   ← validator output (Workflow B)
   push-summary.json      ← ds-push diff + PR URL
-  CHANGES.md             ← project-specific changes (⏳ #6)
+  CHANGES.md             ← project-specific changes (template at skills/templates/CHANGES.template.md)
 ```
 
-The `CHANGES.md` convention (⏳ [#6](https://github.com/tidy-dev-team/kido-ds-skills-automation/issues/6)) splits each project's notes into:
+The `CHANGES.md` convention ✅ ([#6](https://github.com/tidy-dev-team/kido-ds-skills-automation/issues/6)) splits each project's notes into:
 - **Generic improvements** — safe to merge to main
 - **Project-specific** — must not travel to other projects
 
-This is how project quirks survive without polluting `main`.
+Template lives at `skills/templates/CHANGES.template.md`. This is how project quirks survive without polluting `main` — when the project finishes, the **Generic** section is lifted into the next PR; **Project-specific** stays in the working dir.
 
 ---
 
@@ -205,10 +205,10 @@ One corrective pass is allowed. Anything still failing is surfaced explicitly in
 |---|---|---|
 | [#1](https://github.com/tidy-dev-team/kido-ds-skills-automation/issues/1) ✅ | Skills | Plan-execute-audit loop in `ds-generate` |
 | [#2](https://github.com/tidy-dev-team/kido-ds-skills-automation/issues/2) ⏳ | Skills | Fix variant resize bug; regression check in self-audit |
-| [#3](https://github.com/tidy-dev-team/kido-ds-skills-automation/issues/3) ⏳ | Skills | Icon-missing protocol (placeholder, never silent failure) |
+| [#3](https://github.com/tidy-dev-team/kido-ds-skills-automation/issues/3) ✅ | Skills | Icon-missing protocol (placeholder, never silent failure) |
 | [#4](https://github.com/tidy-dev-team/kido-ds-skills-automation/issues/4) ⏳ | Skills | Variable-binding parity for `ds-build` |
 | [#5](https://github.com/tidy-dev-team/kido-ds-skills-automation/issues/5) ⏳ | Rules | Token decision tree + authoritative DESIGN-SYSTEM.md content |
-| [#6](https://github.com/tidy-dev-team/kido-ds-skills-automation/issues/6) ⏳ | Rules / per-project | Step 0 hook + `CHANGES.md` two-category split |
+| [#6](https://github.com/tidy-dev-team/kido-ds-skills-automation/issues/6) ✅ | Rules / per-project | Step 0 hook + `CHANGES.md` two-category split |
 | [#8](https://github.com/tidy-dev-team/kido-ds-skills-automation/issues/8) ⏳ | Data | Spec schema 0.2 — structured `anatomy.component_properties` |
 | [#9](https://github.com/tidy-dev-team/kido-ds-skills-automation/issues/9) ⏳ | Skills | New `ds-start` wizard — guided UX entry point that routes to the right skill |
 

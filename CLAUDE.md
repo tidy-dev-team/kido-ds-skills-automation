@@ -177,6 +177,9 @@ working/                           ← local session artifacts (gitignored)
     resolved-stubs.json            ← designer-provided values (Workflow A)
     validation-report.md           ← validator output (Workflow B)
     push-summary.json              ← ds-push diff + PR URL
+    CHANGES.md                     ← per-project change log, two-category split
+
+DESIGN-SYSTEM.md                   ← authoritative cross-project rules (optional, read by every skill)
 
 .claude/
   commands/
@@ -197,6 +200,13 @@ README.md                          ← human-facing overview
 ## Critical Rules
 
 **Update `CHANGELOG.md` on every meaningful change.** Whenever you modify `skills/**`, `specs/**`, `CLAUDE.md`, `LANGUAGE.md`, `README.md`, or `.claude/commands/**`, add an entry under `## [Unreleased]` in `CHANGELOG.md` (categories: Added / Changed / Fixed / Removed / Deprecated / Security). Skip entries for `working/**`, logs, and formatting-only edits. See `CHANGELOG.md` for format.
+
+**Read `DESIGN-SYSTEM.md` first if present.** Every skill that runs in this repo must check the repo root for `DESIGN-SYSTEM.md` as its first action. If present, it is **authoritative** — overrides any default behavior in the skill (token decision tree, state ownership, modes-as-brands, etc.). If absent, skills proceed with their defaults; never invent rules to fill the gap.
+
+**Per-project changes live in `working/{project}/CHANGES.md`, split into two categories.** While working on a client project, when you make a change to skills/specs/templates that grew out of this work, add it to `working/{project}/CHANGES.md` under one of:
+- **Generic improvements** — applies to any future project. Candidate for the next PR to `main`.
+- **Project-specific** — only makes sense inside this project. Must not travel to `main`.
+Use `skills/templates/CHANGES.template.md` as the starting point for new projects. When the project finishes, lift the **Generic** section into a `CHANGELOG.md` entry + matching skill/spec edits; leave **Project-specific** in the working dir.
 
 **Read the skill file first.** Skill files are authoritative. CLAUDE.md summaries can lag behind skill updates.
 
