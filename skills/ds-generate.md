@@ -34,6 +34,18 @@ A live site URL or code repository works the same way: it supplies the brand val
 
 ---
 
+## Step 0 — Read Project-Level Rules (always)
+
+Before Step 1, check the repo root for **`DESIGN-SYSTEM.md`**. If present, read it.
+
+Its contents are **authoritative** — they override any default behavior in this skill (token decision tree, state ownership, modes-as-brands, bootstrap state names, etc.). When this skill's defaults conflict with `DESIGN-SYSTEM.md`, the file wins.
+
+If absent, proceed with this skill's defaults. Never invent rules to fill the gap — surface a `NEEDS_VALUE` stub or a `NEEDS_SPEC` plan item instead.
+
+This step is silent — no output unless the file is present and changed your behavior in a way the designer should know about.
+
+---
+
 ## Step 1 — Identify Target Component
 
 Read the request text to determine what component to generate.
@@ -114,7 +126,58 @@ All other token values come from the spec unchanged — they are Kido system val
 
 ---
 
-## Step 3 — Generate in Figma
+## Step 3 — Pre-flight Checklist & Execution Plan
+
+**Hard gate.** Before any Figma code runs, emit a written execution plan derived from the loaded spec. Generation must not start until this plan has been output as a markdown checklist with every item unchecked. Step 5 (Self-Audit) ticks against it.
+
+### Derivation rules
+
+The plan is derived from the spec — not memorized. For any component:
+
+| Section | Source in spec |
+|---|---|
+| **Variant axes** | `variants` — list each axis × its values. If `inverse.generate_by_default` is `false` and the designer didn't request inverse, exclude `inverse=yes` and use `completeness.default_set`; otherwise use `completeness.full_set`. |
+| **Token bindings** | `tokens` — every color slot must be bound to a semantic variable (not a raw hex); every spacing/radius/typography slot must be bound to a variable. One checklist line per token group is enough. |
+| **Component properties** | `anatomy.component_properties` (schema 0.2). One checklist line per entry: `[ ] {name} → {type}` bound to `{bound_layer}` / `{bound_layers}`. If the field is missing or the spec's `schema_version` is below `0.2`, emit `[ ] (NEEDS_SPEC: spec is pre-0.2; component_properties not declared)` and continue. Never infer property types from layer names — that path is removed in 0.2. |
+| **State anatomy** | one line per entry in `completeness.validation` that describes a state's visual contract (focus border, disabled tokens, loading swap, etc.). |
+| **Sizing modes** | derived from `anatomy.layout`. If `layout` says "fixed height" → counter axis FIXED. If it says "hug" or implies content-driven width → primary axis AUTO. Emit one checklist line: e.g. `[ ] All variants: primaryAxisSizingMode = AUTO, counterAxisSizingMode = FIXED`. |
+| **Icon slots** | derived from `anatomy.layers` and component_properties — any layer matching `Icon*` / `*Icon` / `Spinner` is an icon slot. If any exist, search the target Figma file for an icon library (component set named `icons`, `icon`, `icon-library`, or any set whose components are 16/20/24px square instances). Emit two lines: `[ ] Icon library: <found at {path}> | <not found — using placeholders>` and one `[ ] {Slot} populated` line per icon slot. See "Icon Slots" in Step 4. |
+| **Identity** | component set name = `naming.component_set`; variant property format = `naming.variant_format`; component description written (one or two sentences derived from the spec or from `_index.json` description). |
+
+### Output shape (illustration only — your component's plan is derived from its spec)
+
+```
+## Execution plan — <Component> (<N> variants)
+
+### Variant axes
+- [ ] <axis>: <v1>, <v2>, ...
+  ...
+
+### Token bindings
+- [ ] All color slots bound to semantic variables
+- [ ] All spacing/radius/typography slots bound to variables
+
+### Component properties
+- [ ] <Layer> → <TYPE> property
+  ...
+
+### State anatomy
+- [ ] <state>: <validation contract from spec>
+  ...
+
+### Identity
+- [ ] Component set name = "<naming.component_set>"
+- [ ] Variant format = "<naming.variant_format>"
+- [ ] Component description written
+```
+
+Items remain unchecked through Step 4. They get ticked off in Step 5 after reading the produced component set back from Figma.
+
+If the spec is missing data needed to derive an item, surface the gap as a `[ ] (NEEDS_SPEC: ...)` line and proceed — never silently drop the item.
+
+---
+
+## Step 4 — Generate in Figma
 
 Use Figma MCP tools to build the component set directly.
 
@@ -149,6 +212,30 @@ Key patterns to know:
 - `system/bg/disabled` + `system/fg/disabled` → disabled state (all types)
 - Loading state: hide Label and icons, show Spinner (20px), apply `paddingY_loading` from spec sizing
 
+### Auto-layout sizing — pitfalls
+
+Two operations silently override sizing modes. After either, **explicitly restore the intended modes** before moving to the next variant.
+
+| Operation | Side effect | Required follow-up |
+|---|---|---|
+| Assigning `layoutMode` | Both sizing modes reset to `'AUTO'` (hug) | If a fixed dimension is required, set `primaryAxisSizingMode` / `counterAxisSizingMode = 'FIXED'` after assignment. |
+| Calling `resize(w, h)` | Both sizing modes reset to `'FIXED'` | If the variant is meant to hug content on an axis, restore that axis to `'AUTO'` after `resize()`. |
+
+For Button (and any component with `layout: "horizontal, ..., fixed height"` in its spec):
+- counter axis (height) = `'FIXED'` — height comes from sizing tokens, never hugs
+- primary axis (width) = `'AUTO'` — width hugs the label + icons
+
+Correct pattern:
+
+```js
+comp.layoutMode = 'HORIZONTAL';            // resets both → AUTO
+comp.resize(sc.mw, sc.h);                  // resets both → FIXED
+comp.counterAxisSizingMode = 'FIXED';      // height stays FIXED
+comp.primaryAxisSizingMode = 'AUTO';       // width restored to HUG
+```
+
+The order matters: do `resize()` first, then restore the modes. Never leave either mode unset after one of these operations.
+
 ### Stubs
 
 Any variant with a `NEEDS_VALUE` token gets a stub:
@@ -156,6 +243,36 @@ Any variant with a `NEEDS_VALUE` token gets a stub:
 - Label text: describes what's needed, e.g. "NEEDS_VALUE: inverse primary color"
 
 Never drop a required variant silently. Either generate it or stub it.
+
+### Icon Slots
+
+When the spec's anatomy declares icon slots (e.g. `Icon L`, `Icon R`, `Icon`, `Spinner`), follow this protocol — **never draw icons inline with vector primitives**.
+
+**1. Search for an icon library.** Look in the target Figma file for:
+- A component set named `icons`, `icon`, `icon-library`, `Icons`, or `Material Symbols Outlined`
+- Any published library whose components are square instances at standard sizes (16 / 20 / 24 / 32 px)
+- Components matching the icon names referenced in the spec (e.g. for CheckboxIcon: `check_box`, `check_box_outline_blank`, `indeterminate_check_box`)
+
+If multiple candidates exist, prefer the one whose name or path most closely matches the spec's referenced icons.
+
+**2a. Library found.** Use real icon instances — wire them to the slot's INSTANCE_SWAP property. Set the `default_component` to the most representative icon for the variant (e.g. arrow_forward for `Icon R`, the spec's specific icon for CheckboxIcon's checked state).
+
+**2b. Library absent or doesn't cover the needed icons.** Insert a **placeholder frame** for every icon slot:
+- Frame size: matches the spec's icon size (default 24 × 24, or per spec)
+- Fill: `#FF0066` (bright pink — same convention as `NEEDS_VALUE` stubs)
+- Centered text label: the icon's intended name in lowercase, e.g. `icon`, `arrow_forward`, `check_box`
+- Make the placeholder a component instance so it can be swapped to a real icon later via INSTANCE_SWAP
+
+The placeholder is the icon-slot equivalent of `NEEDS_VALUE` — visible, swappable, and surfaced in the report. Never substitute a hand-drawn shape, an emoji, or a reused glyph from another component.
+
+**3. Surface the gap.** If any placeholder was used, add a line to the Step 6 report:
+
+```
+Icons not found — N placeholder(s) inserted: <Icon L>, <Icon R>, ...
+Wire real icons via INSTANCE_SWAP during polish, or run `/ds-icon-bootstrap` to import a default icon set.
+```
+
+(`ds-icon-bootstrap` is not yet a skill — the message points the designer at the future bootstrap path; for now they import icons manually.)
 
 ### Component set assembly
 
@@ -166,18 +283,42 @@ Use the spec's `naming` field exactly:
 
 Arrange variants: grouped by type, then size. Group spacing 40px, variant spacing 16px.
 
-### Validation
+---
 
-After generation, verify against `completeness.validation` in the spec:
-- Correct heights per size
-- Focus border present on all focused variants
-- Disabled tokens applied correctly
-- Loading state anatomy correct
-- Naming format correct
+## Step 5 — Self-Audit
+
+After generation, read the produced component set back from Figma and tick the Step 3 checklist item by item. Never skip this step. Never silently omit a failure.
+
+### Read-back tools
+
+- `figma_get_component_details` — variant set, component properties (name + type + default), variant property format
+- `figma_get_design_context` — token bindings on the produced component
+- `get_screenshot` — visual confirmation of state anatomy
+
+### Audit procedure
+
+For each item in the execution plan:
+- **Pass** → mark `[x]`
+- **Fail** → mark `[ ]` and add a one-line note
+- **Partial** → mark `[~]` with notes
+
+If any item fails, attempt **one** corrective pass (re-run the missing piece — e.g. add the missing component property, rebind the missing token, fix the variant format). After the corrective pass, re-audit. If items still fail, surface them explicitly in Step 6 — do not silently omit.
+
+### What to verify per section
+
+- **Variant axes** — full cartesian product produced; no missing combinations.
+- **Token bindings** — every visible fill / stroke / spacing on the produced component reads back as a variable reference, not a raw value (except declared `NEEDS_VALUE` stubs).
+- **Component properties** — each property in the plan exists on the component set with the correct *type* (TEXT / BOOLEAN / INSTANCE_SWAP) and bound to the correct layer.
+- **State anatomy** — each item in `completeness.validation` holds (e.g. heights per size, focus border present, disabled tokens applied, loading swap correct).
+- **Sizing modes** — for every variant, the auto-layout sizing modes match the spec's `layout` intent. For a `"horizontal, ..., fixed height"` component (e.g. Button): `primaryAxisSizingMode === 'AUTO'` and `counterAxisSizingMode === 'FIXED'` on every variant. A variant that ends up width-fixed at the minimum is the canonical resize() regression — fail and restore. (See "Auto-layout sizing — pitfalls" in Step 4.)
+- **Icon slots** — every layer declared as an icon slot is populated with either (a) a real icon instance from the resolved library or (b) a `#FF0066` placeholder frame whose label matches the intended icon name. No icon slot is empty; no slot contains a hand-drawn shape. Count placeholders for the Step 6 report.
+- **Identity** — component set name and variant property format match `naming` exactly; component description is set on the component set.
+
+Output the audited checklist before the Step 6 report. The designer sees both the original plan and the resulting state.
 
 ---
 
-## Step 4 — Report and Offer Feedback Capture
+## Step 6 — Report and Offer Feedback Capture
 
 Give the designer a brief summary:
 
@@ -201,6 +342,16 @@ Button generated.
 54 variants created. 6 stubs (bright pink) — secondary color not in input.
 Find them in Figma and fill in the brand secondary color.
 ```
+
+If icon placeholders were used, surface them as a separate line:
+
+```
+Icons not found in this file — 2 placeholder(s) inserted: Icon L, Icon R.
+Wire real icons via INSTANCE_SWAP during polish, or import an icon set first
+(e.g. Material Symbols Outlined) and re-run the icon-swap step.
+```
+
+The icon line appears in addition to the regular stub count, never merged with it — they're different gaps with different fixes.
 
 **Offer feedback capture** if any stubs were resolved during the session:
 

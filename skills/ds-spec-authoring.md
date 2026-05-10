@@ -99,10 +99,11 @@ Ask: "Does this look right? Anything wrong or missing?"
 
 ---
 
-## Spec Schema
+## Spec Schema (0.2)
 
 ```json
 {
+  "schema_version": "0.2",
   "component": "ComponentName",
   "version": "1.0.0",
   "last_updated": "YYYY-MM-DD",
@@ -128,7 +129,12 @@ Ask: "Does this look right? Anything wrong or missing?"
     "layers": ["LayerName"],
     "layout": "horizontal | vertical, alignment",
     "gap": 0,
-    "notes": "anything not obvious from layer names"
+    "component_properties": [
+      { "name": "Label",       "type": "TEXT",          "default": "Action",            "bound_layer": "Label" },
+      { "name": "Show icon L", "type": "BOOLEAN",       "default": false,               "bound_layers": ["Icon L"] },
+      { "name": "Icon L",      "type": "INSTANCE_SWAP", "default_component": "icons/placeholder", "preferred_set": "icons", "bound_layer": "Icon L" }
+    ],
+    "notes": "anything not obvious from layer names or component_properties"
   },
 
   "sizing": {
@@ -165,6 +171,48 @@ Ask: "Does this look right? Anything wrong or missing?"
   }
 }
 ```
+
+---
+
+## `anatomy.component_properties` — required for any non-variant property
+
+Figma supports four property types: VARIANT, TEXT, BOOLEAN, INSTANCE_SWAP. VARIANT is already covered by the `variants` block. The other three live here as structured data so generation/audit skills don't have to read English from `notes`.
+
+### Required fields per type
+
+| Type | Fields | Example |
+|---|---|---|
+| `TEXT` | `name`, `type`, `default` (string), `bound_layer` | `{ "name": "Label", "type": "TEXT", "default": "Button", "bound_layer": "Label" }` |
+| `BOOLEAN` | `name`, `type`, `default` (true/false), `bound_layers` (array — layer(s) whose visibility flips with the boolean) | `{ "name": "Show icon L", "type": "BOOLEAN", "default": false, "bound_layers": ["Icon L"] }` |
+| `INSTANCE_SWAP` | `name`, `type`, `default_component`, `preferred_set`, `bound_layer` | `{ "name": "Icon L", "type": "INSTANCE_SWAP", "default_component": "icons/placeholder", "preferred_set": "icons", "bound_layer": "Icon L" }` |
+
+### Convention: BOOLEAN + INSTANCE_SWAP pairing for optional icons
+
+When an icon slot is **optional** (the icon may or may not be present), define both a BOOLEAN and an INSTANCE_SWAP property pointing at the same layer:
+
+```json
+{ "name": "Show icon L", "type": "BOOLEAN",       "default": false, "bound_layers": ["Icon L"] },
+{ "name": "Icon L",      "type": "INSTANCE_SWAP", "default_component": "icons/placeholder", "preferred_set": "icons", "bound_layer": "Icon L" }
+```
+
+The boolean controls visibility; the swap controls which icon appears when visible. Always pair them in this order. Use a `Show {slot}` naming convention for the boolean.
+
+### Convention: required (always-visible) icons
+
+When the icon is required (e.g. ButtonIcon — without it, no affordance), declare only the INSTANCE_SWAP. No `Show` boolean.
+
+### Convention: pure variant-driven components
+
+Some components (e.g. CheckboxIcon) have no component properties — every variation is a variant axis. In that case set `"component_properties": []` explicitly. The empty array is the contract; missing field is ambiguous.
+
+### Naming the property
+
+Use the same human-readable names a designer would type in the Figma sidebar:
+- `Label`, `Title`, `Description` for TEXT
+- `Show {slot}` for BOOLEAN visibility
+- The slot's anatomy name for INSTANCE_SWAP (`Icon L`, `Icon`, `Avatar`)
+
+Don't auto-generate names like `text1` or `content2` — those leak Figma's internal numbering into the spec.
 
 ---
 

@@ -1,7 +1,8 @@
 {
+  "schema_version": "0.2",
   "component": "ButtonText",
-  "version": "1.0.0",
-  "last_updated": "2026-04-09",
+  "version": "1.1.0",
+  "last_updated": "2026-05-10",
   "source": {
     "figma_file": "https://www.figma.com/design/WNOcZbybSn7dAGjTMimIsJ/Kido---DS",
     "figma_node_id": "109:1057"
@@ -22,7 +23,14 @@
     "layers": ["Icon L", "Label", "Icon R"],
     "layout": "horizontal, center-aligned, no container",
     "gap": 4,
-    "notes": "No background, border, or border-radius — pure text row. Icon L and Icon R are optional slot properties (not variant axes). Icon placeholder size is 16×16px for both sizes."
+    "component_properties": [
+      { "name": "Label",       "type": "TEXT",          "default": "Action",                       "bound_layer": "Label" },
+      { "name": "Show icon L", "type": "BOOLEAN",       "default": false,                          "bound_layers": ["Icon L"] },
+      { "name": "Icon L",      "type": "INSTANCE_SWAP", "default_component": "icons/placeholder",  "preferred_set": "icons", "bound_layer": "Icon L" },
+      { "name": "Show icon R", "type": "BOOLEAN",       "default": false,                          "bound_layers": ["Icon R"] },
+      { "name": "Icon R",      "type": "INSTANCE_SWAP", "default_component": "icons/placeholder",  "preferred_set": "icons", "bound_layer": "Icon R" }
+    ],
+    "notes": "No background, border, or border-radius — pure text row. Icon placeholder size is 16×16px for both sizes."
   },
 
   "sizing": {

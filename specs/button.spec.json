@@ -1,7 +1,8 @@
 {
+  "schema_version": "0.2",
   "component": "Button",
-  "version": "1.0.0",
-  "last_updated": "2026-04-06",
+  "version": "1.1.0",
+  "last_updated": "2026-05-10",
   "source": {
     "figma_file": "https://www.figma.com/design/WNOcZbybSn7dAGjTMimIsJ/Kido---DS",
     "figma_node_id": "98:899"
@@ -23,7 +24,14 @@
     "layers": ["Container", "Icon L", "Label", "Icon R", "Spinner"],
     "layout": "horizontal, center-aligned, fixed height",
     "gap": 4,
-    "notes": "Spinner (20px) replaces Label + Icon L + Icon R in loading state. Icon L and Icon R are component properties, not variant axes."
+    "component_properties": [
+      { "name": "Label",       "type": "TEXT",          "default": "Button",            "bound_layer": "Label" },
+      { "name": "Show icon L", "type": "BOOLEAN",       "default": false,               "bound_layers": ["Icon L"] },
+      { "name": "Icon L",      "type": "INSTANCE_SWAP", "default_component": "icons/placeholder", "preferred_set": "icons", "bound_layer": "Icon L" },
+      { "name": "Show icon R", "type": "BOOLEAN",       "default": false,               "bound_layers": ["Icon R"] },
+      { "name": "Icon R",      "type": "INSTANCE_SWAP", "default_component": "icons/placeholder", "preferred_set": "icons", "bound_layer": "Icon R" }
+    ],
+    "notes": "Spinner (20px) replaces Label + Icon L + Icon R in loading state."
   },
 
   "sizing": {

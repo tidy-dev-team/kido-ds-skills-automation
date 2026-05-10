@@ -30,9 +30,11 @@ REQUIREMENTS.md is **not** a prerequisite — if it's missing, Step 0 interviews
 
 ---
 
-## Step 0 — Project Name + REQUIREMENTS Check
+## Step 0 — Project-Level Rules + Project Name + REQUIREMENTS Check
 
-**First, resolve the project name.** All Workflow B artifacts for a project share a single `working/{project}/` directory. If the designer hasn't named the project yet:
+**First, read project-level rules.** Check the repo root for **`DESIGN-SYSTEM.md`**. If present, read it. Its contents are **authoritative** — they override any default behavior in this skill (token decision tree, state ownership, modes-as-brands, bootstrap state names, etc.). When this skill's defaults conflict with `DESIGN-SYSTEM.md`, the file wins. If absent, proceed with this skill's defaults — never invent rules to fill the gap; flag deviations in `validation-report.md` instead.
+
+**Then, resolve the project name.** All Workflow B artifacts for a project share a single `working/{project}/` directory. If the designer hasn't named the project yet:
 - Ask: "What's the project name? (A short slug like `acme` or `payzo` — used for the working directory.)"
 - Once set, all subsequent `/ds-build` and `/ds-extract-design` calls for this project use the same `working/{project}/` directory.
 

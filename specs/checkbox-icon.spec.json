@@ -1,7 +1,8 @@
 {
+  "schema_version": "0.2",
   "component": "CheckboxIcon",
-  "version": "1.0.0",
-  "last_updated": "2026-04-09",
+  "version": "1.1.0",
+  "last_updated": "2026-05-10",
   "source": {
     "figma_file": "https://www.figma.com/design/WNOcZbybSn7dAGjTMimIsJ/Kido---DS",
     "figma_node_id": "2545:11819"
@@ -22,7 +23,8 @@
     "layers": ["check_box_outlined_blank", "check_box", "indeterminate_check_box"],
     "layout": "single icon, fixed square, centered",
     "gap": null,
-    "notes": "One icon layer is visible at a time — swapped per selection type. Icons are Material Symbols Outlined (Google Fonts). Each icon is rendered at 75% of the container (inset 12.5%). No background fill on the root — the icon itself carries the background color (baked into the SVG for checked/indeterminate). Focus ring is a 2px border applied to the icon container in focused state."
+    "component_properties": [],
+    "notes": "Pure variant-driven — no component properties. One icon layer is visible at a time, swapped per selection-type variant. Icons are Material Symbols Outlined (Google Fonts). Each icon is rendered at 75% of the container (inset 12.5%). No background fill on the root — the icon itself carries the background color (baked into the SVG for checked/indeterminate). Focus ring is a 2px border applied to the icon container in focused state."
   },
 
   "sizing": {
