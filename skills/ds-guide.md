@@ -22,14 +22,14 @@ Two questions max. Q1 is always shown; Q2 only fires when Q1's choice covers two
 
 ### Q1 — Action
 
-`AskUserQuestion`. Header: `Action` · multiSelect: false. Four options:
+`AskUserQuestion`. Header: `Action` · multiSelect: false. Four options, ordered by how often a designer reaches them (most common first):
 
 | Option label | Description shown to user | Next step |
 |---|---|---|
-| Generate a Figma component set | Build a new component set in Figma from client inputs. Ask Q2 (no library vs has library). | → Q2a |
-| Extract design tokens from a Figma foundation file | Read a Kido or client foundation Figma file and emit `tokens.json` + `DESIGN.md` for a Workflow B project. | → `ds-extract-design` |
-| Author or update a Kido DS component spec | DS team only: maintain a Kido spec (`specs/{component}.spec.json` + notes). | → `ds-spec-authoring` |
-| Post-polish (sync values to code / add stories) | The component is built and polished in Figma; you want to push it to the repo or add Storybook stories. Ask Q2 (push vs stories). | → Q2b |
+| Generate a Figma component set | Build a new component set in Figma from client inputs. I'll ask one more question to figure out whether the client has a UI library. | → Q2a |
+| Push to repo or add Storybook stories | The component is built and polished in Figma. I'll ask which: push resolved token values to the client repo as a PR, or generate a CSF3 stories file. | → Q2b |
+| Extract design tokens from a Figma foundation file | Read a Kido or client foundation Figma file and emit `tokens.json` + `DESIGN.md` for a Workflow B project. Run once at the start of each project. | → `ds-extract-design` |
+| Author or update a Kido DS component spec (DS team) | Maintained by the DS team only — a per-project designer rarely needs this. Authors `specs/{component}.spec.json` + notes for a Kido component. | → `ds-spec-authoring` |
 
 ### Q2a — only if Q1 was "Generate a Figma component set"
 
@@ -37,17 +37,17 @@ Two questions max. Q1 is always shown; Q2 only fires when Q1's choice covers two
 
 | Option label | Description shown to user | Routes to |
 |---|---|---|
-| Client has **NO** UI library | Styled site / Figma frame / brand guide / repo, but no installable component package. Kido structure + client brand values. | `ds-generate` |
-| Client **HAS** a UI library | Their codebase imports components from a package (Mantine, Chakra, shadcn, `@acme/ui`, etc.). Figma mirrors the library structure. | `ds-build` |
+| Client has **NO** UI library | Workflow A → `ds-generate`. Styled site / Figma frame / brand guide / repo, but no installable component package. Kido structure + client brand values. | `ds-generate` |
+| Client **HAS** a UI library | Workflow B → `ds-build`. Their codebase imports components from a package (Mantine, Chakra, shadcn, `@acme/ui`, etc.). Figma mirrors the library structure. | `ds-build` |
 
-### Q2b — only if Q1 was "Post-polish"
+### Q2b — only if Q1 was "Push to repo or add Storybook stories"
 
 `AskUserQuestion`. Header: `Direction` · multiSelect: false.
 
 | Option label | Description shown to user | Routes to |
 |---|---|---|
-| Push polished Figma values back to code | Sync resolved CSS variables, Tailwind config, and/or component source to the client repo as a PR. | `ds-push` |
-| Add Storybook stories | Generate a CSF3 `{component}.stories.tsx` file for a production-ready component. | `ds-storybook` |
+| Push values to repo | `ds-push`. Sync resolved CSS variables, Tailwind config, and/or component source from the polished Figma component to the client repo as a PR. | `ds-push` |
+| Add Storybook stories | `ds-storybook`. Generate a CSF3 `{component}.stories.tsx` file for a production-ready component. | `ds-storybook` |
 
 ### Other
 
