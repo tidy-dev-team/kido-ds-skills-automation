@@ -18,7 +18,7 @@ The pipeline for clients **with an existing UI library** (Chakra, Mantine, shadc
 The stages after either workflow finishes generation: **polish** (manual, in Figma) → **`/ds-push`** (PR with token values) → **`/ds-storybook`** (PR with stories). Identical for both workflows.
 
 ### Wizard entry (`/ds-guide`)
-The optional guided entry point. Asks Q1 (action) and Q2 (workflow A vs B, when "generate" is picked) using clickable options, detects prerequisites (`DESIGN.md`, `REQUIREMENTS.md`), then invokes the target skill. **Routing only — never duplicates target-skill logic.** Direct invocation of any individual skill remains the canonical entry; the wizard is opt-in.
+The optional guided entry point. Asks Q1 (action bucket: Generate / Extract tokens / Author Kido spec / Post-polish) and a conditional Q2 (A vs B for Generate, push vs stories for Post-polish) using clickable options, then invokes the target skill with no arguments. **Routing only — never collects inputs, never checks prerequisites, never duplicates target-skill logic.** Direct invocation of any individual skill remains the canonical entry; the wizard is opt-in.
 
 > Always pair the workflow letter with the slash command on first reference: "Workflow A (`/ds-generate`)". Avoid bare "the generate workflow" or "the build path."
 

@@ -88,7 +88,7 @@ Each skill is an instruction file. Skills follow the same shape regardless of wo
 Skills:
 - `ds-guide` — guided wizard entry point that routes to the right skill (optional, opt-in)
 - `ds-spec-authoring` — author/maintain Kido specs (DS team)
-- `ds-extract-design` — extract client tokens to DESIGN.md (Workflow B prerequisite)
+- `ds-extract-design` — extract client tokens to `tokens.json` + `DESIGN.md` (Workflow B prerequisite)
 - `ds-generate` — Workflow A: client has no UI library
 - `ds-build` — Workflow B: client has an existing UI library
 - `ds-push` — sync polished Figma values back to code
@@ -121,7 +121,7 @@ Kido-structured component set in Figma
 Client **already ships** a UI library (Chakra, Mantine, shadcn, custom). Figma should mirror it.
 
 ```
-Client library (GitHub / Storybook) + DESIGN.md + REQUIREMENTS.md
+Client library (GitHub / Storybook) + tokens.json + DESIGN.md + REQUIREMENTS.md
     │
     ▼
 ds-build
@@ -152,7 +152,8 @@ Per-client work lives in `working/{project}/`. Gitignored. Local only.
 
 ```
 working/{project}/
-  DESIGN.md              ← extracted tokens (Workflow B)
+  tokens.json            ← DTCG token tree, source of truth (Workflow B)
+  DESIGN.md              ← spec-compliant front matter + prose rationale (Workflow B)
   REQUIREMENTS.md        ← per-job rules (Workflow B)
   library-snapshot.json  ← resolved library structure (Workflow B)
   token-map.json         ← resolved tokens (both workflows)

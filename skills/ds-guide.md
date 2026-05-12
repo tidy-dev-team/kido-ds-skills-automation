@@ -2,8 +2,9 @@
 name: ds-guide
 description: >
   Guided wizard entry point for the DS automation system. Run this when a designer
-  doesn't know which skill to invoke. Asks one question and routes to ds-generate,
-  ds-build, ds-extract-design, ds-push, ds-storybook, or ds-spec-authoring.
+  doesn't know which skill to invoke. Asks up to two questions (Q1 picks an action
+  bucket; Q2 disambiguates when needed) and routes to ds-generate, ds-build,
+  ds-extract-design, ds-push, ds-storybook, or ds-spec-authoring.
   Triggers: "/ds-guide", "guide me", "I don't know where to start", "which skill do I use".
 ---
 
@@ -17,21 +18,48 @@ This skill **routes**. It does not collect inputs and does not duplicate target-
 
 ## Flow
 
-Ask one question with `AskUserQuestion`. Header: `Action` · multiSelect: false.
+Two questions max. Q1 is always shown; Q2 only fires when Q1's choice covers two skills.
+
+### Q1 — Action
+
+`AskUserQuestion`. Header: `Action` · multiSelect: false. Four options:
+
+| Option label | Description shown to user | Next step |
+|---|---|---|
+| Generate a Figma component set | Build a new component set in Figma from client inputs. Ask Q2 (no library vs has library). | → Q2a |
+| Extract design tokens from a Figma foundation file | Read a Kido or client foundation Figma file and emit `tokens.json` + `DESIGN.md` for a Workflow B project. | → `ds-extract-design` |
+| Author or update a Kido DS component spec | DS team only: maintain a Kido spec (`specs/{component}.spec.json` + notes). | → `ds-spec-authoring` |
+| Post-polish (sync values to code / add stories) | The component is built and polished in Figma; you want to push it to the repo or add Storybook stories. Ask Q2 (push vs stories). | → Q2b |
+
+### Q2a — only if Q1 was "Generate a Figma component set"
+
+`AskUserQuestion`. Header: `Library` · multiSelect: false.
 
 | Option label | Description shown to user | Routes to |
 |---|---|---|
-| Generate — client has **NO** UI library | Use this if the client has a styled site, Figma frame, or brand guide but no installable component package. | `ds-generate` |
-| Generate — client **HAS** a UI library | Use this if their codebase imports components from a package (Mantine, Chakra, shadcn, `@acme/ui`, etc.). | `ds-build` |
-| Push polished Figma back to code | Sync resolved values from a polished Figma component to the client repo as a PR. | `ds-push` |
-| Add Storybook stories | Generate a CSF3 stories file for a production-ready component. | `ds-storybook` |
+| Client has **NO** UI library | Styled site / Figma frame / brand guide / repo, but no installable component package. Kido structure + client brand values. | `ds-generate` |
+| Client **HAS** a UI library | Their codebase imports components from a package (Mantine, Chakra, shadcn, `@acme/ui`, etc.). Figma mirrors the library structure. | `ds-build` |
 
-The auto-added **Other** option catches the two rarer routes:
+### Q2b — only if Q1 was "Post-polish"
 
-- Free text mentioning **extract**, **tokens**, **DESIGN.md**, or a Figma foundation file → `ds-extract-design`
-- Free text mentioning **spec**, **Kido DS**, or **spec-authoring** → `ds-spec-authoring`
+`AskUserQuestion`. Header: `Direction` · multiSelect: false.
 
-If the free text is ambiguous, ask once more with the two leftover options as a follow-up `AskUserQuestion`. If it doesn't match any of the six routes, reply: "There's no skill for that yet." and stop.
+| Option label | Description shown to user | Routes to |
+|---|---|---|
+| Push polished Figma values back to code | Sync resolved CSS variables, Tailwind config, and/or component source to the client repo as a PR. | `ds-push` |
+| Add Storybook stories | Generate a CSF3 `{component}.stories.tsx` file for a production-ready component. | `ds-storybook` |
+
+### Other
+
+`AskUserQuestion`'s auto-added **Other** option catches off-script free text. Map common phrases:
+
+- **extract / tokens / DESIGN.md / tokens.json / foundation** → `ds-extract-design`
+- **spec / Kido DS / spec-authoring** → `ds-spec-authoring`
+- **generate / build / component set** → ask Q2a
+- **push / sync / PR** → `ds-push`
+- **stories / Storybook / CSF3** → `ds-storybook`
+
+If the free text is ambiguous, ask once more with the two closest options as a follow-up `AskUserQuestion`. If it doesn't match any of the six routes, reply: "There's no skill for that yet." and stop.
 
 ---
 

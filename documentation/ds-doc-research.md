@@ -124,7 +124,7 @@ Slot-template based, spec-driven. Fits next to `ds-storybook`: same trigger poin
 - `setSharedPluginData` persistence — spec + notes file is the persistence.
 - Section-toggle UI — sensible defaults; designer deletes what's unwanted.
 - Custom marker components for spacing — use Figma's built-in measurement/redline or a single shared spacing-marker component in the DS file.
-- Inter-everywhere defaults — match `DESIGN.md` typography tokens (same rule as `ds-build`).
+- Inter-everywhere defaults — match `tokens.json` typography tokens (same rule as `ds-build`).
 
 ---
 
