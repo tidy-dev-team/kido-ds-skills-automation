@@ -12,7 +12,7 @@ When two terms might mean the same thing, this file picks one. The other is a **
 The pipeline for clients **without an existing UI library**. Uses Kido's component structure styled with the client's brand values. Trigger: client supplies a Figma frame, screenshot, live site URL, repo, or description — but no shippable component library.
 
 ### Workflow B (`/ds-build`)
-The pipeline for clients **with an existing UI library** (Chakra, Mantine, shadcn, custom). Uses the library's structure styled with tokens from `DESIGN.md`. Trigger: client ships a UI library in production and wants Figma to mirror it.
+The pipeline for clients **with an existing UI library** (Chakra, Mantine, shadcn, custom). Uses the library's structure styled with tokens from `tokens.json` (the sibling of `DESIGN.md`, both produced by `/ds-extract-design`). Trigger: client ships a UI library in production and wants Figma to mirror it.
 
 ### Shared post-polish
 The stages after either workflow finishes generation: **polish** (manual, in Figma) → **`/ds-push`** (PR with token values) → **`/ds-storybook`** (PR with stories). Identical for both workflows.
@@ -69,8 +69,11 @@ A Figma file containing the **design tokens** (variables + styles) for a project
 The named, semantic values (colors, typography, spacing, radius, shadow) that drive component styling. Always **DTCG-formatted** when serialized.
 
 ### `DESIGN.md`
-The per-project artifact written by `/ds-extract-design` to `working/{project}/DESIGN.md`. Markdown body with embedded DTCG JSON blocks. The single source of token truth for Workflow B.
+The per-project artifact written by `/ds-extract-design` to `working/{project}/DESIGN.md`. **Front matter** (token summary, conforms to the google-labs-code/design.md spec) + **prose body** (rationale, palette philosophy, do's/don'ts, gaps). The token *source of truth* is the sibling **`tokens.json`** file — `DESIGN.md` is the human-readable companion.
 Always uppercase, always `.md`. Never "design.md", "tokens.md", "foundation.md".
+
+### `tokens.json`
+The per-project DTCG token tree written by `/ds-extract-design` to `working/{project}/tokens.json` alongside `DESIGN.md`. W3C DTCG format with `$type`/`$value`/`$description` and `{path.to.token}` aliases. Top-level keys: `colors`, `typography`, `spacing`, `breakpoint`, `grid`, `shadow`, `rounded`, `components`, `theme`. The machine source of truth for Workflow B — read by `/ds-build`. Always travels with `DESIGN.md`; never emit one without the other.
 
 ### `REQUIREMENTS.md`
 The per-project per-job rules file at `working/{project}/REQUIREMENTS.md`. Authored by interview at the start of `/ds-build`. Captures modes, locales, prefix, a11y level, scope overrides.
@@ -133,6 +136,7 @@ The lightweight in-skill checks performed by `/ds-generate` (e.g., font availabi
 | Library mapping | `specs/libraries/{library}.json` | (static; maintained by DS team) |
 | Library mapping index | `specs/libraries/_index.json` | (static) |
 | `DESIGN.md` | `working/{project}/DESIGN.md` | `/ds-extract-design` |
+| `tokens.json` | `working/{project}/tokens.json` | `/ds-extract-design` |
 | `REQUIREMENTS.md` | `working/{project}/REQUIREMENTS.md` | `/ds-build` |
 | Library snapshot | `working/{project}/library-snapshot.json` | `/ds-build` |
 | Token map (B) | `working/{project}/token-map.json` | `/ds-build` |
@@ -187,9 +191,9 @@ Each skill owns one stage. If two skills appear to do the same thing, one of the
 |---|---|---|
 | `/ds-guide` | Wizard UX — collects inputs and routes to one target skill via the `Skill` tool. | Any actual generation, extraction, or push work. Duplicating target-skill logic. Acting as a required gate. |
 | `/ds-spec-authoring` | Authoring/updating Kido DS specs (`specs/*.json`). | Per-project work. Reading client foundations. |
-| `/ds-extract-design` | Reading **foundation files** → `DESIGN.md`. | Reading specific components. Building component sets. |
-| `/ds-generate` | Workflow A end-to-end: identify → extract brand values → generate Figma component set. | Reading from `DESIGN.md`. Building from a UI library. Pushing to GitHub. |
-| `/ds-build` | Workflow B end-to-end: interview → resolve library → map tokens from `DESIGN.md` → build Figma component set → validator. | Extracting tokens (delegated to `/ds-extract-design`). Authoring specs. |
+| `/ds-extract-design` | Reading **foundation files** → `tokens.json` + `DESIGN.md` (sibling pair). | Reading specific components. Building component sets. |
+| `/ds-generate` | Workflow A end-to-end: identify → extract brand values → generate Figma component set. | Reading from `tokens.json` / `DESIGN.md`. Building from a UI library. Pushing to GitHub. |
+| `/ds-build` | Workflow B end-to-end: interview → resolve library → map tokens from `tokens.json` → build Figma component set → validator. | Extracting tokens (delegated to `/ds-extract-design`). Authoring specs. |
 | `/ds-push` | Reading polished Figma values → opening a PR that updates **token values** (CSS vars, Tailwind config, component class swaps). | Adding new files. Changing component structure. Generating stories. |
 | `/ds-storybook` | Reading Figma variant axes → opening a PR that adds `{component}.stories.tsx`. | Updating tokens. Editing existing files except stories config. |
 
@@ -197,7 +201,7 @@ Each skill owns one stage. If two skills appear to do the same thing, one of the
 
 These are points where boundaries are easy to blur — call them out explicitly when working in either skill:
 
-1. **`/ds-build` falling back to a Kido spec** when no library mapping resolves. At that moment `/ds-build` looks like `/ds-generate`. Boundary remains: `/ds-build` consumes `DESIGN.md`; `/ds-generate` consumes brand values directly. The presence of `DESIGN.md` is the dividing line.
+1. **`/ds-build` falling back to a Kido spec** when no library mapping resolves. At that moment `/ds-build` looks like `/ds-generate`. Boundary remains: `/ds-build` consumes `tokens.json` + `DESIGN.md`; `/ds-generate` consumes brand values directly. The presence of `tokens.json` (and its sibling `DESIGN.md`) is the dividing line.
 2. **Token extraction** appears in four skills (`/ds-extract-design`, `/ds-generate`, `/ds-spec-authoring`, `/ds-push`). Each reads from a different source for a different purpose — `/ds-extract-design` from foundations, `/ds-generate` from brand inputs, `/ds-spec-authoring` from a Kido component, `/ds-push` from a polished component. The verb `extract` is shared; the source and target are not.
 3. **Both `/ds-push` and `/ds-storybook`** open GitHub PRs. Use the canonical branch naming above; never share branches.
 4. **"No matching spec" handoff.** Both `/ds-generate` and `/ds-build` may prompt the user to run `/ds-spec-authoring` first. The wording should match across both: *"No Kido spec exists for {component}. Author one with `/ds-spec-authoring`, or proceed with the closest match?"*

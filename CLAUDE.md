@@ -19,7 +19,7 @@ Client has no component library              Client has an existing UI library
                                              (Chakra, Mantine, shadcn, etc.)
 ────────────────────────────────────         ─────────────────────────────────────
 Client Figma frame / screenshot /            Client library (GitHub / Storybook)
-site / repo                                  + Kido's DESIGN.md (extracted tokens)
+site / repo                                  + tokens.json + DESIGN.md
        │                                     + REQUIREMENTS.md (job rules)
        ▼                                            │
 ds-generate                                         ▼
@@ -77,10 +77,14 @@ Ask the designer early: "Does your client already have a UI library in productio
 
 ### `ds-extract-design` — per-client token extraction (Workflow B)
 **File:** `skills/ds-extract-design.md`
-**When:** Starting a new client project that uses Workflow B. Extracts the client's (or Kido's) foundation file into a DTCG-formatted DESIGN.md.
+**When:** Starting a new client project that uses Workflow B. Extracts the client's (or Kido's) foundation file into two sibling files: a DTCG `tokens.json` and a prose `DESIGN.md`.
 **Who:** Designer, once per project.
 **Input:** Figma foundation file URL.
-**Output:** `working/{project}/DESIGN.md` — Markdown + DTCG JSON blocks (Colors, Typography, Spacing, Radius, Shadow, Themes). The `{project}` is a short slug the designer names at the start (e.g., `acme`, `payzo`).
+**Output:** Two files in `working/{project}/`:
+- `tokens.json` — full W3C DTCG token tree (Colors, Typography, Spacing, Rounded, Shadow, Components, Themes). Source of token truth, consumed by `/ds-build`.
+- `DESIGN.md` — google-labs-code/design.md-compliant front matter (token summary) + prose body (rationale, do's/don'ts, gaps). Lints cleanly with `npx @google/design.md lint`.
+
+The `{project}` is a short slug the designer names at the start (e.g., `acme`, `payzo`).
 
 ### `ds-generate` — Workflow A orchestrator
 **File:** `skills/ds-generate.md`
@@ -94,9 +98,9 @@ Ask the designer early: "Does your client already have a UI library in productio
 **File:** `skills/ds-build.md`
 **When:** Client has an existing UI library. Designer wants Figma components that mirror the library's structure.
 **Who:** Designer, per client project (per component).
-**Input:** Component name + library reference (GitHub repo / Storybook URL / site) + DESIGN.md + REQUIREMENTS.md.
+**Input:** Component name + library reference (GitHub repo / Storybook URL / site) + `tokens.json` + `DESIGN.md` + REQUIREMENTS.md.
 **Output:** Library-matched component set in Figma + `validation-report.md` (soft advisory).
-**Philosophy:** Library provides structure. DESIGN.md provides style. REQUIREMENTS.md provides project rules. Validator catches hallucinations.
+**Philosophy:** Library provides structure. `tokens.json` provides values; `DESIGN.md` provides rationale. REQUIREMENTS.md provides project rules. Validator catches hallucinations.
 
 ### `ds-push` — sync polished Figma back to code
 **File:** `skills/ds-push.md`
@@ -181,7 +185,8 @@ skills/
 working/                           ← local session artifacts (gitignored)
   {component}-{YYYY-MM-DD}/             ← Workflow A (per generation session)
   {project}/                            ← Workflow B (per project, shared across components)
-    DESIGN.md                      ← extracted per-project (Workflow B)
+    tokens.json                    ← DTCG token tree, source of truth (Workflow B)
+    DESIGN.md                      ← prose rationale + spec-compliant token summary (Workflow B)
     REQUIREMENTS.md                ← per-job rules (Workflow B)
     library-snapshot.json          ← resolved library structure (Workflow B)
     token-map.json                 ← resolved tokens (both workflows)
@@ -234,7 +239,7 @@ Use `skills/templates/CHANGES.template.md` as the starting point for new project
 
 **Workflow A preserves client styling through token mapping.** Kido provides structure. Client's input provides brand values. Output should look like the client's brand.
 
-**Workflow B preserves library structure.** Library dictates the component anatomy and prop axes. DESIGN.md dictates visual values. REQUIREMENTS.md dictates scope overrides. The validator checks all three.
+**Workflow B preserves library structure.** Library dictates the component anatomy and prop axes. `tokens.json` dictates visual values (DESIGN.md is the human-readable companion). REQUIREMENTS.md dictates scope overrides. The validator checks all three.
 
 **Specs are data, not instructions.** Token names are self-documenting.
 

@@ -40,7 +40,7 @@ The client ships a React library (Chakra, Mantine, shadcn/ui, or their own) and 
 ```
  Client library (GitHub / Storybook)  →  library structure
                                            +
-          Kido foundation Figma       →  DESIGN.md (DTCG tokens)
+          Kido foundation Figma       →  tokens.json (DTCG) + DESIGN.md (rationale)
                                            +
               Designer + PM           →  REQUIREMENTS.md (job rules)
                                            ↓
@@ -68,7 +68,7 @@ Both are workflow-agnostic — they don't care whether the component came from W
 |---|---|---|---|
 | `/ds-guide` | Anyone | Unsure where to start | Routes to the right skill |
 | `/ds-spec-authoring` | DS team | New Kido component, one-time | `specs/{component}.spec.json` |
-| `/ds-extract-design` | Designer | Start of Workflow B project | `working/{project}/DESIGN.md` |
+| `/ds-extract-design` | Designer | Start of Workflow B project | `working/{project}/tokens.json` + `DESIGN.md` |
 | `/ds-generate` | Designer | Per client project, Workflow A | Figma component set |
 | `/ds-build` | Designer | Per component, Workflow B | Figma component set + validation report |
 | `/ds-push` | DS specialist | After Figma polish | GitHub PR (token sync) |
@@ -107,7 +107,8 @@ Typical end-to-end: 30 minutes from client input to open PRs.
 ```
 1. Extract design foundation once per project:
    /ds-extract-design "Extract tokens from: [Kido foundation Figma URL]"
-   → working/{project}/DESIGN.md
+   → working/{project}/tokens.json   (DTCG, source of truth)
+     working/{project}/DESIGN.md     (front matter + prose)
 
 2. Build each component:
    /ds-build "Build a Button for [library GitHub/Storybook URL]"
@@ -115,7 +116,7 @@ Typical end-to-end: 30 minutes from client input to open PRs.
    • Claude reads/creates working/{project}/REQUIREMENTS.md
      (pastes if provided, interviews designer if not — modes, locales, prefix, a11y)
    • Claude reads the client library (Storybook stories.json or gh api repo source)
-   • Claude maps DESIGN.md tokens onto the library's prop/variant axes
+   • Claude maps tokens.json values onto the library's prop/variant axes
    • Claude builds the component in Figma matching the library's structure
    • Validator subagent runs a 9-category checklist → validation-report.md
    • Designer reviews; decides whether to fix issues or accept
@@ -143,7 +144,8 @@ Typical end-to-end: 30 minutes from client input to open PRs.
 |---|---|
 | Storybook URL | `WebFetch` `{url}/stories.json` or `/index.json` |
 | GitHub repo URL | `gh api` — component source + `package.json` |
-| DESIGN.md (from `/ds-extract-design`) | Local file read |
+| `tokens.json` (from `/ds-extract-design`) | Local file read — token values |
+| `DESIGN.md` (from `/ds-extract-design`) | Local file read — rationale, do's/don'ts |
 | REQUIREMENTS.md | Local file read, or interview Step 0 |
 
 ---
@@ -176,7 +178,8 @@ working/                               ← gitignored per-session artifacts
     resolved-stubs.json                ← /ds-generate
     push-summary.json                  ← /ds-push (Workflow A)
   {project}/                           ← Workflow B (per project, shared across components)
-    DESIGN.md                          ← /ds-extract-design
+    tokens.json                        ← /ds-extract-design (DTCG, source of truth)
+    DESIGN.md                          ← /ds-extract-design (front matter + prose)
     REQUIREMENTS.md                    ← /ds-build
     library-snapshot.json              ← /ds-build
     token-map.json                     ← /ds-build
@@ -199,8 +202,11 @@ README.md                              ← this file
 **Spec** (Kido's)
 A compact JSON file describing a Kido DS component: variant axes, tokens, sizing, accessibility. Used by `ds-generate` as the structure source. Authored once by the DS team via `/ds-spec-authoring`.
 
-**DESIGN.md** (per-project)
-A Markdown file with embedded DTCG-formatted JSON blocks describing design foundations — colors (primitives + semantic), typography, spacing, radius, shadow, themes. Extracted by `/ds-extract-design` from a Figma foundation file at the start of each Workflow B project. Lives in `working/` (not committed).
+**`tokens.json`** (per-project)
+A W3C DTCG token tree — colors (primitives + semantic), typography, spacing, rounded, shadow, components, themes. Extracted by `/ds-extract-design` from a Figma foundation file at the start of each Workflow B project. Source of token truth, consumed by `/ds-build`. Lives in `working/` (not committed).
+
+**`DESIGN.md`** (per-project)
+The human/agent-readable companion to `tokens.json`. Front matter is a flat token summary conforming to the [google-labs-code/design.md](https://github.com/google-labs-code/design.md) spec (lints cleanly with `npx @google/design.md lint`). Prose body covers palette philosophy, typography intent, do's and don'ts, gaps. Lives in `working/` next to `tokens.json` (not committed). The two files always travel together.
 
 **REQUIREMENTS.md** (per-job)
 A Markdown file describing job-specific rules — color modes required, locales, naming prefixes, accessibility level, any component-specific constraints. Either pasted in by the designer or generated via a short interview at the start of `/ds-build`.

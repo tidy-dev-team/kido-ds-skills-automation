@@ -48,14 +48,14 @@ Skill(skill="ds-extract-design",   args="")
 Skill(skill="ds-spec-authoring",   args="")
 ```
 
-Before invoking, send a one-line handoff: "Routing to `{skill}`. It'll ask what it needs." The target skill is responsible for collecting component name, project slug, URLs, and any prerequisite checks (`DESIGN.md`, `REQUIREMENTS.md`, etc.).
+Before invoking, send a one-line handoff: "Routing to `{skill}`. It'll ask what it needs." The target skill is responsible for collecting component name, project slug, URLs, and any prerequisite checks (`tokens.json`, `DESIGN.md`, `REQUIREMENTS.md`, etc.).
 
 ---
 
 ## What this skill does not do
 
 - **Does not collect inputs upfront.** Component names, URLs, slugs, library references — the target skill asks for these. Coupling the wizard to target-skill arg shapes makes every skill rename ripple here.
-- **Does not check prerequisites.** `ds-build` decides whether `DESIGN.md` is needed. `ds-extract-design` decides whether the Figma URL is valid. The wizard does not pre-flight.
+- **Does not check prerequisites.** `ds-build` decides whether `tokens.json` / `DESIGN.md` are present. `ds-extract-design` decides whether the Figma URL is valid. The wizard does not pre-flight.
 - **Does not maintain session state.** If the user has been talking about a component earlier in the conversation, the target skill picks that up — not the wizard.
 - **Does not paraphrase target skills.** Don't tell the user what `ds-build` is going to do; let `ds-build` describe itself.
 

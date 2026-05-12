@@ -24,7 +24,7 @@ Which modes must the components support?
 - [ ] both
 - [ ] other: _{name}_
 
-> If "both", generate variants for each mode using Figma variables bound to mode-aware tokens from DESIGN.md.
+> If "both", generate variants for each mode using Figma variables bound to mode-aware tokens from `tokens.json` (under `theme.{mode}`).
 > If a single mode, skip the other to keep the variant count down.
 
 ---
@@ -84,13 +84,14 @@ _{List your constraints here, one per line.}_
 
 ---
 
-## DESIGN.md Reference
+## Token Source Reference
 
-- Path: _{working/{project}/DESIGN.md}_
-- Extracted from: _{Figma URL}_
-- Extracted on: _{YYYY-MM-DD}_
+- Token tree (source of truth): _{working/{project}/tokens.json}_
+- Companion prose:              _{working/{project}/DESIGN.md}_
+- Extracted from:               _{Figma URL}_
+- Extracted on:                 _{YYYY-MM-DD}_
 
-> If DESIGN.md doesn't exist yet, run `/ds-extract-design` first.
+> If either file doesn't exist yet, run `/ds-extract-design` first — it emits both together.
 
 ---
 

@@ -53,7 +53,7 @@ All of the following must be bound to Figma variables or styles — no hardcoded
 - ⚙️ **Effects** (shadows, blurs) → effect styles or variables
 - ⚙️ **Spacing & sizing** (padding, gap, corner radius, fixed widths/heights) → spacing/radius variables, or manually verified on 4px grid if variables don't exist yet
 
-> If spacing variables exist in DESIGN.md, bind. If not, every spacing value must be a multiple of 4px.
+> If spacing variables exist in `tokens.json` (under `spacing.*`), bind. If not, every spacing value must be a multiple of 4px.
 
 ---
 
