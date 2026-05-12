@@ -3,3 +3,4 @@ node_modules
 working/*
 !working/.gitkeep
 !working/claroty
+/working/claroty
