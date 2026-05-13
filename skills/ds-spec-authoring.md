@@ -59,11 +59,25 @@ Write two files:
 
 **`specs/{component-name}.spec.json`** — compact, LLM-optimized. Follow the schema below.
 
-**`specs/{component-name}.spec.notes.md`** — human-readable. Include:
+**`specs/{component-name}.spec.notes.md`** — human-readable. Two audiences live in this file:
+
+*Kido-internal (rationale, written by DS team):*
 - Non-obvious design decisions
 - Token derivation patterns for client brand colors
 - Known gaps or deviations
 - Version history
+
+*User-facing Usage Guidelines (consumed by `/ds-doc`):* placed **above** the internal sections so designers see them first. Heading taxonomy parsed by `/ds-doc`:
+
+- `## When to use` — bullets
+- `## When not to use` — bullets
+- `## General guidelines` — bullets
+- `## Accessibility` — bullets (added 2026-05-13 alongside the `/ds-doc` skill)
+- `## Behavior` — Do/Don't pairs by rule (sub-headings `### Do: …` / `### Don't: …` with optional `**Slug:** {kebab-case-id}` for `.dodont.json` cross-reference)
+- `## Content` — Do/Don't pairs by rule
+- `## Look & Feel` — Do/Don't pairs by rule
+
+Missing sections in this taxonomy render as `NEEDS_CONTENT` pink stubs at `/ds-doc` time. The internal Rationale / Token Derivation / Known Gaps / History sections remain unchanged below the Usage Guidelines block.
 
 ### Step 5 — Update the Index
 
@@ -99,11 +113,11 @@ Ask: "Does this look right? Anything wrong or missing?"
 
 ---
 
-## Spec Schema (0.2)
+## Spec Schema (0.3)
 
 ```json
 {
-  "schema_version": "0.2",
+  "schema_version": "0.3",
   "component": "ComponentName",
   "version": "1.0.0",
   "last_updated": "YYYY-MM-DD",
@@ -140,6 +154,7 @@ Ask: "Does this look right? Anything wrong or missing?"
   "sizing": {
     "SizeName": {
       "height": 0, "min_width": 0,
+      "max_width": 0, "max_height": 0,
       "paddingX": 0, "paddingY": 0
     }
   },
@@ -168,9 +183,29 @@ Ask: "Does this look right? Anything wrong or missing?"
     "validation": [
       "plain-English assertion to check after generation"
     ]
+  },
+
+  "doc": {
+    "variants_grid": {
+      "rows": ["axisA", "axisB"],
+      "cols": ["axisC"]
+    }
   }
 }
 ```
+
+### 0.3 additions
+
+**`sizing.{size}.max_width` / `max_height`** (optional, dimension in px) — upper bounds for the component at this size. Consumed by `/ds-doc` to render the "Maximum width / height" section in the Component Breakdown page. If absent, the section row for that size is omitted. Use only when the component has meaningful max bounds (Button max_width is a thing; CheckboxIcon's isn't).
+
+**`doc.variants_grid`** (required) — declares how the variants grid is laid out in the Component Breakdown doc page. `rows` and `cols` are arrays of variant axis names from `variants`. The grid is rendered as the cross-product of row-axis values × column-axis values. Each cell is a live instance of the polished component with those variant props bound.
+
+Examples:
+- Button: `rows: ["type", "size"]`, `cols: ["state"]` → 9 × 6 grid (54 cells)
+- ButtonText: `rows: ["size"]`, `cols: ["state"]` → 2 × 4 grid
+- BannerContained: `rows: ["severity"]`, `cols: []` → vertical strip (1 column)
+
+If `cols` is empty, the grid renders as a single-column vertical strip. If `rows` is empty, single-row horizontal strip. Empty both → just the default variant (rarely useful).
 
 ---
 

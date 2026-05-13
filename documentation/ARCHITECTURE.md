@@ -93,8 +93,9 @@ Skills:
 - `ds-build` — Workflow B: client has an existing UI library
 - `ds-push` — sync polished Figma values back to code
 - `ds-storybook` — generate CSF3 stories
+- `ds-doc` — build canvas documentation pages (Component Breakdown / Mode / Usage Guidelines) for a polished component; see [`docs/adr/0001-ds-doc-three-page-architecture.md`](../docs/adr/0001-ds-doc-three-page-architecture.md). Workflow B v1.
 
-`ds-generate` and `ds-build` are the two workflow orchestrators. `ds-push` and `ds-storybook` are the shared post-polish pipeline. `ds-guide` is a routing layer above all of them — it never duplicates their work.
+`ds-generate` and `ds-build` are the two workflow orchestrators. `ds-push`, `ds-storybook`, and `ds-doc` are the shared post-polish pipeline (`ds-doc` is Workflow B only for v1). `ds-guide` is a routing layer above all of them — it never duplicates their work.
 
 ---
 

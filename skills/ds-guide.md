@@ -4,7 +4,7 @@ description: >
   Guided wizard entry point for the DS automation system. Run this when a designer
   doesn't know which skill to invoke. Asks up to two questions (Q1 picks an action
   bucket; Q2 disambiguates when needed) and routes to ds-generate, ds-build,
-  ds-extract-design, ds-push, ds-storybook, or ds-spec-authoring.
+  ds-extract-design, ds-push, ds-storybook, ds-doc, or ds-spec-authoring.
   Triggers: "/ds-guide", "guide me", "I don't know where to start", "which skill do I use".
 ---
 
@@ -27,7 +27,7 @@ Two questions max. Q1 is always shown; Q2 only fires when Q1's choice covers two
 | Option label | Description shown to user | Next step |
 |---|---|---|
 | Generate a Figma component set | Build a new component set in Figma from client inputs. I'll ask one more question to figure out whether the client has a UI library. | → Q2a |
-| Push to repo or add Storybook stories | The component is built and polished in Figma. I'll ask which: push resolved token values to the client repo as a PR, or generate a CSF3 stories file. | → Q2b |
+| Push to repo, add Storybook stories, or build canvas docs | The component is built and polished in Figma. I'll ask which: push resolved token values to the client repo, generate a CSF3 stories file, or build the three canvas doc pages. | → Q2b |
 | Extract design tokens from a Figma foundation file | Read a Kido or client foundation Figma file and emit `tokens.json` + `DESIGN.md` for a Workflow B project. Run once at the start of each project. | → `ds-extract-design` |
 | Author or update a Kido DS component spec (DS team) | Maintained by the DS team only — a per-project designer rarely needs this. Authors `specs/{component}.spec.json` + notes for a Kido component. | → `ds-spec-authoring` |
 
@@ -40,7 +40,7 @@ Two questions max. Q1 is always shown; Q2 only fires when Q1's choice covers two
 | Client has **NO** UI library | Workflow A → `ds-generate`. Styled site / Figma frame / brand guide / repo, but no installable component package. Kido structure + client brand values. | `ds-generate` |
 | Client **HAS** a UI library | Workflow B → `ds-build`. Their codebase imports components from a package (Mantine, Chakra, shadcn, `@acme/ui`, etc.). Figma mirrors the library structure. | `ds-build` |
 
-### Q2b — only if Q1 was "Push to repo or add Storybook stories"
+### Q2b — only if Q1 was the post-polish bucket
 
 `AskUserQuestion`. Header: `Direction` · multiSelect: false.
 
@@ -48,6 +48,7 @@ Two questions max. Q1 is always shown; Q2 only fires when Q1's choice covers two
 |---|---|---|
 | Push values to repo | `ds-push`. Sync resolved CSS variables, Tailwind config, and/or component source from the polished Figma component to the client repo as a PR. | `ds-push` |
 | Add Storybook stories | `ds-storybook`. Generate a CSF3 `{component}.stories.tsx` file for a production-ready component. | `ds-storybook` |
+| Build canvas doc pages | `ds-doc`. Build the three Figma doc pages (Component Breakdown / Mode / Usage Guidelines) on a `📄 Documentation` page in the target file. Workflow B only. | `ds-doc` |
 
 ### Other
 
@@ -58,8 +59,9 @@ Two questions max. Q1 is always shown; Q2 only fires when Q1's choice covers two
 - **generate / build / component set** → ask Q2a
 - **push / sync / PR** → `ds-push`
 - **stories / Storybook / CSF3** → `ds-storybook`
+- **doc / docs / documentation / canvas docs / doc page / breakdown / usage guidelines** → `ds-doc`
 
-If the free text is ambiguous, ask once more with the two closest options as a follow-up `AskUserQuestion`. If it doesn't match any of the six routes, reply: "There's no skill for that yet." and stop.
+If the free text is ambiguous, ask once more with the two closest options as a follow-up `AskUserQuestion`. If it doesn't match any of the seven routes, reply: "There's no skill for that yet." and stop.
 
 ---
 
@@ -72,6 +74,7 @@ Skill(skill="ds-generate",         args="")
 Skill(skill="ds-build",            args="")
 Skill(skill="ds-push",             args="")
 Skill(skill="ds-storybook",        args="")
+Skill(skill="ds-doc",              args="")
 Skill(skill="ds-extract-design",   args="")
 Skill(skill="ds-spec-authoring",   args="")
 ```

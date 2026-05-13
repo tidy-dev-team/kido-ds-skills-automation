@@ -58,7 +58,7 @@ Ask the designer early: "Does your client already have a UI library in productio
 
 ---
 
-## The Seven Skills
+## The Eight Skills
 
 ### `ds-guide` — guided wizard entry point
 **File:** `skills/ds-guide.md`
@@ -120,6 +120,15 @@ The `{project}` is a short slug the designer names at the start (e.g., `acme`, `
 **Philosophy:** Map Figma variant axes → React props → 8–12 named stories. Pseudo-state axes become decorators.
 **Works for both workflows.**
 
+### `ds-doc` — canvas documentation pages
+**File:** `skills/ds-doc.md`
+**When:** Component is polished and needs canvas documentation in Figma. Sibling to `ds-storybook` — both run after polish; `ds-storybook` produces code-side stories, `ds-doc` produces canvas-side doc pages.
+**Who:** DS specialist or designer.
+**Input:** Component name + polished Figma component-set URL.
+**Output:** Three Figma frames on a `📄 Documentation` page in the target file — Component Breakdown / Mode / Usage Guidelines.
+**Philosophy:** Clone three canonical Kido DS master templates (`doc-template / {page-id}`), fill named slots from spec + `.spec.notes.md` prose + `.dodont.json` example refs + `tokens.json` modes. Missing prose / examples render as `NEEDS_CONTENT` / `NEEDS_EXAMPLE` pink stubs.
+**Workflow B only for v1.** See [`docs/adr/0001-ds-doc-three-page-architecture.md`](docs/adr/0001-ds-doc-three-page-architecture.md) for rationale.
+
 ---
 
 ## Spec & Reference Library
@@ -160,9 +169,10 @@ Used across all workflows for reading Kido/client foundations and writing compon
 
 ```
 specs/
-  _index.json                      ← Kido component lookup
+  _index.json                      ← Kido component lookup (schema_version 0.3)
   {component}.spec.json            ← compact Kido component spec
-  {component}.spec.notes.md        ← human-readable rationale
+  {component}.spec.notes.md        ← human-readable rationale + Usage Guidelines prose (consumed by /ds-doc)
+  {component}.dodont.json          ← Do/Don't visual example refs (Kido DS Figma node IDs) — consumed by /ds-doc
   libraries/
     _index.json                    ← UI library mapping lookup
     chakra.json                    ← Chakra UI conventions
@@ -177,10 +187,15 @@ skills/
   ds-build.md                      ← Workflow B orchestrator
   ds-push.md
   ds-storybook.md
+  ds-doc.md                        ← canvas documentation (Workflow B v1)
   templates/
     REQUIREMENTS.template.md       ← per-job rules template
     CHANGES.template.md            ← per-project change log template
     QUALITY_STANDARDS.md           ← Kido DS baseline (applies to every component)
+
+docs/
+  adr/                             ← architectural decision records
+    0001-ds-doc-three-page-architecture.md
 
 working/                           ← local session artifacts (gitignored)
   {component}-{YYYY-MM-DD}/             ← Workflow A (per generation session)

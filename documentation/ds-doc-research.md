@@ -1,8 +1,7 @@
 # `ds-doc` — design research
 
-**Status:** Research only. Paused pending doc-page layout from designers.
-**Date:** 2026-05-12
-**Next step:** Designers will deliver the canvas doc-page layout. Resume by inspecting that layout and shaping the slot template around it (see "Open questions" at the end).
+**Status:** ⚠️ **Superseded.** This document captured the pre-implementation research and a single-page slot-template recommendation. The shipped design is the **three-page architecture** documented in [`docs/adr/0001-ds-doc-three-page-architecture.md`](../docs/adr/0001-ds-doc-three-page-architecture.md), with the skill itself at [`skills/ds-doc.md`](../skills/ds-doc.md). Kept here for historical context — do not act on this file's recommendations.
+**Date:** 2026-05-12 (research) → superseded the same day by ADR 0001 after designers delivered the three-page layout.
 
 ---
 

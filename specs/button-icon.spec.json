@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.2",
+  "schema_version": "0.3",
   "component": "ButtonIcon",
   "version": "1.1.0",
   "last_updated": "2026-05-10",
@@ -91,5 +91,12 @@
       "variant format: type={contained|outlined|ghost}, size={xs|s|m|l}, state={idle|hover|pressed|focused|disabled|loading}, inverse={yes|no}",
       "xs and s (24px, 32px) are below WCAG 44px touch target — known deviation"
     ]
+  },
+
+  "doc": {
+    "variants_grid": {
+      "rows": ["type", "size"],
+      "cols": ["state"]
+    }
   }
 }

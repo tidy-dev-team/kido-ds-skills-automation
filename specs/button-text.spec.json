@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.2",
+  "schema_version": "0.3",
   "component": "ButtonText",
   "version": "1.1.0",
   "last_updated": "2026-05-10",
@@ -82,5 +82,12 @@
       "variant format: size={s|m}, state={idle|hover|pressed|disabled}, inverse={yes|no}",
       "Both sizes (~17px and ~22px) are below WCAG 44px touch target — known deviation, do not fail validation"
     ]
+  },
+
+  "doc": {
+    "variants_grid": {
+      "rows": ["size"],
+      "cols": ["state"]
+    }
   }
 }

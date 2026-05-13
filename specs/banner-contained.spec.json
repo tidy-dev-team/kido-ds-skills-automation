@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.2",
+  "schema_version": "0.3",
   "component": "BannerContained",
   "version": "1.1.0",
   "last_updated": "2026-05-10",
@@ -105,5 +105,12 @@
       "container border-radius is sharp (0)",
       "action button (32px) below WCAG 44px touch target — known deviation, do not fail validation"
     ]
+  },
+
+  "doc": {
+    "variants_grid": {
+      "rows": ["severity"],
+      "cols": []
+    }
   }
 }

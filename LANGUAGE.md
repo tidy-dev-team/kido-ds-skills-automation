@@ -18,7 +18,7 @@ The pipeline for clients **with an existing UI library** (Chakra, Mantine, shadc
 The stages after either workflow finishes generation: **polish** (manual, in Figma) → **`/ds-push`** (PR with token values) → **`/ds-storybook`** (PR with stories). Identical for both workflows.
 
 ### Wizard entry (`/ds-guide`)
-The optional guided entry point. Asks Q1 (action bucket, ordered by frequency: Generate / Push-or-Stories / Extract tokens / Author Kido spec) and a conditional Q2 (A vs B for Generate; push vs stories for Push-or-Stories) using clickable options, then invokes the target skill with no arguments. **Routing only — never collects inputs, never checks prerequisites, never duplicates target-skill logic.** Direct invocation of any individual skill remains the canonical entry; the wizard is opt-in.
+The optional guided entry point. Asks Q1 (action bucket, ordered by frequency: Generate / Post-polish / Extract tokens / Author Kido spec) and a conditional Q2 (A vs B for Generate; push vs stories vs docs for Post-polish) using clickable options, then invokes the target skill with no arguments. **Routing only — never collects inputs, never checks prerequisites, never duplicates target-skill logic.** Direct invocation of any individual skill remains the canonical entry; the wizard is opt-in.
 
 > Always pair the workflow letter with the slash command on first reference: "Workflow A (`/ds-generate`)". Avoid bare "the generate workflow" or "the build path."
 
@@ -124,6 +124,27 @@ The client-supplied visual primitives extracted in Workflow A: brand colors, rad
 ### Inline validation
 The lightweight in-skill checks performed by `/ds-generate` (e.g., font availability, token coverage). Distinct from the **validator subagent** that runs in `/ds-build`.
 
+### Doc page
+A Figma frame produced by `/ds-doc` describing a component on the canvas. Three doc pages exist per component: **Component Breakdown**, **Mode**, **Usage Guidelines**. All three live side-by-side on a `📄 Documentation` page in the target Figma file. Each is a clone of a canonical Kido DS master template. The Usage Guidelines page is organized into seven sub-sections: **When to use** / **When not to use** / **General guidelines** / **Accessibility** / **Behavior** / **Content** / **Look & Feel**.
+
+### Doc-page master template
+A canonical frame in the Kido DS Figma file, named `doc-template / {page-id}` (lowercase, slash-separated). Three exist: `doc-template / component-breakdown`, `doc-template / mode`, `doc-template / usage-guidelines`. `/ds-doc` clones a master into the target file and fills its slots. **Designers own the visual layout; the agent never draws layout procedurally.**
+
+### Slot
+A named empty layer in a doc-page master (e.g., `slot/title`, `slot/variants-grid`, `slot/when-to-use`). The agent locates slots by exact-name search and replaces their content. Repeating slots (Do/Don't pairs) clone a `pair-template` component N times inside the slot.
+
+### Status pill
+The colored badge on each doc page's header showing its lifecycle stage. Three values: **IDEATION** (default; rendered by `/ds-doc` on first run), **READY** (polished, awaiting approval), **PUBLISHED** (approved and shared). Advanced manually by the designer — the agent never changes it (preserves on re-run).
+
+### Do/Don't pair
+A two-cell visual example inside the Usage Guidelines page's Behavior / Content / Look & Feel sections — one cell shows correct usage (green check), the other shows an anti-pattern (red X). Each pair has a **rule slug** identifying it. The slug maps to Kido DS Figma node IDs in `specs/{component}.dodont.json`. Missing entries render as `NEEDS_EXAMPLE` pink stubs.
+
+### `NEEDS_CONTENT` / `NEEDS_EXAMPLE`
+Pink-fill placeholder frames rendered by `/ds-doc` when prose (in `.spec.notes.md`) or visual examples (in `.dodont.json`) are missing. Same convention as `NEEDS_VALUE` used by `/ds-generate` and `/ds-build` — visible stubs are always better than invented content.
+
+### ADR (Architectural Decision Record)
+A short markdown document at `docs/adr/{NNNN}-{slug}.md` capturing a hard-to-reverse architectural decision, the alternatives considered, and the trade-offs accepted. Created sparingly — only when a decision is (1) hard to reverse, (2) surprising without context, and (3) the result of a real trade-off. Numbered sequentially.
+
 ---
 
 ## Artifacts (canonical paths)
@@ -131,7 +152,8 @@ The lightweight in-skill checks performed by `/ds-generate` (e.g., font availabi
 | Artifact | Path | Owner skill |
 |---|---|---|
 | Kido spec | `specs/{component}.spec.json` | `/ds-spec-authoring` |
-| Spec notes | `specs/{component}.spec.notes.md` | `/ds-spec-authoring` |
+| Spec notes | `specs/{component}.spec.notes.md` | `/ds-spec-authoring` (rationale) + `/ds-doc` (reads Usage Guidelines prose) |
+| Dodont refs | `specs/{component}.dodont.json` | (manually authored by DS team; consumed by `/ds-doc`) |
 | Spec index | `specs/_index.json` | `/ds-spec-authoring` |
 | Library mapping | `specs/libraries/{library}.json` | (static; maintained by DS team) |
 | Library mapping index | `specs/libraries/_index.json` | (static) |
@@ -146,6 +168,7 @@ The lightweight in-skill checks performed by `/ds-generate` (e.g., font availabi
 | Push summary | `working/{component-or-project}/push-summary.json` | `/ds-push` |
 | Storybook output (local) | `working/{component-or-project}/storybook.tsx` | `/ds-storybook` |
 | Stories file (in repo) | `{component}.stories.tsx` | `/ds-storybook` |
+| Architectural Decision Record | `docs/adr/{NNNN}-{slug}.md` | (DS engineering; one per architectural decision) |
 
 All `working/` files are gitignored. All `specs/` files are committed.
 
@@ -196,6 +219,7 @@ Each skill owns one stage. If two skills appear to do the same thing, one of the
 | `/ds-build` | Workflow B end-to-end: interview → resolve library → map tokens from `tokens.json` → build Figma component set → validator. | Extracting tokens (delegated to `/ds-extract-design`). Authoring specs. |
 | `/ds-push` | Reading polished Figma values → opening a PR that updates **token values** (CSS vars, Tailwind config, component class swaps). | Adding new files. Changing component structure. Generating stories. |
 | `/ds-storybook` | Reading Figma variant axes → opening a PR that adds `{component}.stories.tsx`. | Updating tokens. Editing existing files except stories config. |
+| `/ds-doc` | Cloning three Kido DS canonical doc-page master templates into the target file's `📄 Documentation` page, filling slots from spec + `.spec.notes.md` prose + `.dodont.json` example refs + `tokens.json` modes. | Writing prose. Generating Do/Don't visual examples. Touching code. Workflow A (v1 scope). |
 
 ### Known overlap watchpoints
 

@@ -62,7 +62,7 @@ Both are workflow-agnostic — they don't care whether the component came from W
 
 ---
 
-## The Seven Skills at a Glance
+## The Eight Skills at a Glance
 
 | Skill | Who | When | Output |
 |---|---|---|---|
@@ -72,7 +72,8 @@ Both are workflow-agnostic — they don't care whether the component came from W
 | `/ds-generate` | Designer | Per client project, Workflow A | Figma component set |
 | `/ds-build` | Designer | Per component, Workflow B | Figma component set + validation report |
 | `/ds-push` | DS specialist | After Figma polish | GitHub PR (token sync) |
-| `/ds-storybook` | DS specialist / dev | After tokens pushed | GitHub PR (CSF3 stories) |
+| `/ds-storybook` | DS specialist / dev | After polish | GitHub PR (CSF3 stories) |
+| `/ds-doc` | DS specialist / designer | After polish (Workflow B v1) | Three canvas doc frames (Component Breakdown / Mode / Usage Guidelines) |
 
 `/ds-guide` is the optional guided entry point — it asks a short series of questions and invokes the right skill for you. Direct invocation of any individual skill works exactly the same as before.
 
@@ -156,7 +157,8 @@ Typical end-to-end: 30 minutes from client input to open PRs.
 specs/
   _index.json                          ← Kido component lookup
   {component}.spec.json                ← Kido spec (compact)
-  {component}.spec.notes.md            ← rationale + history
+  {component}.spec.notes.md            ← rationale + history + Usage Guidelines prose (consumed by /ds-doc)
+  {component}.dodont.json              ← Do/Don't visual example refs (consumed by /ds-doc)
   libraries/
     _index.json                        ← library mapping lookup
     chakra.json | mantine.json | …     ← UI library conventions
@@ -168,9 +170,14 @@ skills/
   ds-build.md
   ds-push.md
   ds-storybook.md
+  ds-doc.md                            ← canvas documentation (Workflow B v1)
   templates/
     REQUIREMENTS.template.md           ← per-job rules template
     QUALITY_STANDARDS.md               ← Kido DS baseline (applies to every component)
+
+docs/
+  adr/
+    0001-ds-doc-three-page-architecture.md
 
 working/                               ← gitignored per-session artifacts
   {component}-{YYYY-MM-DD}/            ← Workflow A (per generation session)
