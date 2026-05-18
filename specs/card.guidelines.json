@@ -1,0 +1,273 @@
+{
+  "component": "card",
+  "schema_version": "0.1",
+  "source": "competitive research, imported 2026-05-17",
+  "entries": [
+    {
+      "type": "Accessibility",
+      "value": "For users that navigate solely using focus traversal (using a D-pad and keyboard), cards should have either a primary action or open a new screen containing primary and supplemental actions.",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/cards"
+    },
+    {
+      "type": "Best",
+      "value": "Card layouts can vary to support the types of content they contain.",
+      "source": "Material",
+      "recommended": true,
+      "link": "https://m2.material.io/components/cards"
+    },
+    {
+      "type": "Best",
+      "value": "The card container is the only required element in a card. All other elements are optional.",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/cards"
+    },
+    {
+      "type": "Best",
+      "value": "Each card is made up of content blocks. All of the blocks, as a whole, are related to a single subject or destination. Content can receive different levels of emphasis, depending on its level of hierarchy.",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/cards"
+    },
+    {
+      "type": "Best",
+      "value": "As cards scale to adapt to different screen sizes, their position and alignment can also change.",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/cards"
+    },
+    {
+      "type": "Best",
+      "value": "Cards and their elements can align left, right, or center as the layout scales. They can also have a fixed position, like FABs or navigation drawers.",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/cards"
+    },
+    {
+      "type": "Best",
+      "value": "Adjust the layout of components to meet the breakpoint’s ergonomic needs of large screen devices",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/cards"
+    },
+    {
+      "type": "Best",
+      "value": "Device breakpoints are the primary indicators for an interface to trigger a component swap that will better match the device or user context.",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/cards"
+    },
+    {
+      "type": "Best",
+      "value": "When swapping components, ensure that each component’s function is clear and aligns with user expectations for the given context.",
+      "source": "Material",
+      "recommended": true,
+      "link": "https://m2.material.io/components/cards"
+    },
+    {
+      "type": "Best",
+      "value": "As screen sizes increase, there are new opportunities for text and image compositions",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/cards"
+    },
+    {
+      "type": "Best",
+      "value": "cards in a collection are coplanar, sharing the same resting elevation unless they are picked up or dragged.",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/cards"
+    },
+    {
+      "type": "Description",
+      "value": "Cards display content and actions about a single subject",
+      "source": "Material",
+      "recommended": true,
+      "link": "https://m2.material.io/components/cards"
+    },
+    {
+      "type": "Description",
+      "value": "Cards group information into flexible containers to let users to browse a collection of related items and actions. They show a taste of information and reveal more details upon interaction.",
+      "source": "Spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/cards/#Usage-guidelines"
+    },
+    {
+      "type": "Description",
+      "value": "Card is a container that groups related content.",
+      "source": "Wise",
+      "recommended": false,
+      "link": "https://wise.design/components/card"
+    },
+    {
+      "type": "Description",
+      "value": "A card is a container that holds information and actions related to a single concept or object, like a document or a contact.",
+      "source": "Fluent",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Expand a card to reveal information.",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/cards"
+    },
+    {
+      "type": "Do",
+      "value": "A card should only have one swipe action assigned to it.",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/cards"
+    },
+    {
+      "type": "Do",
+      "value": "When moving a card, increase its elevation.",
+      "source": "Material",
+      "recommended": true,
+      "link": "https://m2.material.io/components/cards"
+    },
+    {
+      "type": "Do",
+      "value": "On mobile, cards can expand to reveal more content, scrolling within the screen",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/cards"
+    },
+    {
+      "type": "Do",
+      "value": "limit number of actions",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/cards"
+    },
+    {
+      "type": "Do",
+      "value": "A card collection can horizontally scroll within a container",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/cards"
+    },
+    {
+      "type": "Do",
+      "value": "Set expectations on what someone will find and where they will go once they interact with a card.",
+      "source": "Spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/cards/#Usage-guidelines"
+    },
+    {
+      "type": "Do",
+      "value": "Set clear expectations on what someone will find or start once they interact with a card.",
+      "source": "Spectrum",
+      "recommended": true,
+      "link": "https://spectrum.adobe.com/page/cards/#Usage-guidelines"
+    },
+    {
+      "type": "Do",
+      "value": "Can be placed together in a carousel, grid or vertical list.",
+      "source": "Wise",
+      "recommended": true,
+      "link": "https://wise.design/components/card"
+    },
+    {
+      "type": "Not",
+      "value": "A card cannot merge with another card, or divide into multiple cards.",
+      "source": "Material",
+      "recommended": true,
+      "link": "https://m2.material.io/components/cards"
+    },
+    {
+      "type": "Not",
+      "value": "Cards don’t flip over to reveal information.",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/cards"
+    },
+    {
+      "type": "Not",
+      "value": "Cards should not contain swipeable content (such as an image carousel or pagination). Swipe gestures should also not cause portions of cards to detach upon swipe.",
+      "source": "Material",
+      "recommended": true,
+      "link": "https://m2.material.io/components/cards"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t move cards behind other cards.",
+      "source": "Material",
+      "recommended": true,
+      "link": "https://m2.material.io/components/cards"
+    },
+    {
+      "type": "Not",
+      "value": "Content within cards doesn’t scroll.",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/cards"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t overload cards with extraneous information or actions.",
+      "source": "Material",
+      "recommended": true,
+      "link": "https://m2.material.io/components/cards"
+    },
+    {
+      "type": "Not",
+      "value": "The container for a collection should not be a card, and the entire surface area of the container should not be interactive.",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/cards"
+    },
+    {
+      "type": "Not",
+      "value": "Cards are meant to just show a taste of the available information. Don’t overload cards with more information than necessary.",
+      "source": "Spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/cards/#Usage-guidelines"
+    },
+    {
+      "type": "Not",
+      "value": "Don't add buttons to quiet cards - Only standard cards can have a footer, and buttons can only appear inside a footer. Use an action bar for quiet cards that need to support actions.",
+      "source": "Spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/cards/#Usage-guidelines"
+    },
+    {
+      "type": "Not",
+      "value": "Don't align individual cards to the column grid#",
+      "source": "Spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/cards/#Usage-guidelines"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t use “new” in card titles - Avoid using the word “new” in a card unless the design has a limited timeframe, or if there’s a guarantee that the content is actually new and relevant to someone. Avoiding this word also helps to minimize the work required to go back and update card titles when a feature is no longer new. If you need to display a word to distinguish a card or cards from all others, use the badge component.",
+      "source": "Spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/cards/#Usage-guidelines"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t speak abstractly or obscure a card’s destination.",
+      "source": "Spectrum",
+      "recommended": true,
+      "link": "https://spectrum.adobe.com/page/cards/#Usage-guidelines"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t pose open questions or speak abstractly about what someone will find at a card’s destination.",
+      "source": "Spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/cards/#Usage-guidelines"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t use cards for listed content or components.",
+      "source": "Wise",
+      "recommended": false,
+      "link": "https://wise.design/components/card"
+    }
+  ]
+}

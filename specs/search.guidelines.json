@@ -1,0 +1,210 @@
+{
+  "component": "search",
+  "schema_version": "0.1",
+  "source": "competitive research, imported 2026-05-17",
+  "entries": [
+    {
+      "type": "Accessibility",
+      "value": "Carbon’s search component provides the basic input mechanism for conducting a search. No accessibility annotations are needed for the input, but design annotations are needed to make the search messaging and results accessible.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Accessibility",
+      "value": "Search suggestions and typeaheads",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Accessibility",
+      "value": "Users should be able to TAB into the input field of the search box to begin typing and press ENTER to run the search query.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Accessibility",
+      "value": "For type-ahead suggestions, the ARROW keys should cycle through displayed suggestions, with ENTER choosing a suggestion and ESCAPE allowing the user to exit the type-ahead menu without selecting anything.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Accessibility",
+      "value": "Search outcomes and status (e.g., “25 results found”, “no results found”)",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Accessibility",
+      "value": "Results navigation",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "In Material Design 2, there is no search component - all information is located under the \"Text fields\" (input) section.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Use at a global level when searching an entire site.",
+      "source": "carbon",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Carbon provides a search pattern that outlines three search types: basic, active, and focused",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Avoid dead ends",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Include a loading indicator",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Display the number of results",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Don’t include a label",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "If a search returns “No results”, suggest a follow-up action. Provide suggestions and helpful resources to aid the user in finding what they are looking for. For more on no results for searches",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "If the search will take longer than a moment or two, include a loading indicator. Your loading state should reflect your empty state with useful helper text signaling that the search is still ongoing. Include a progress bar for advanced, resource-intensive searches. Let the user know how far along the search is, and roughly how long it will take to finish.",
+      "source": "carbon",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Always include the number of search results, including for searches with no results. If you plan to offer a scope filter, also include the number of results for each scope selector.",
+      "source": "carbon",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Avoid adding a label to your search field. Users expect and understand search fields, and no label is necessary. A search icon along with useful placeholder text should clearly indicate that the field is intended for search.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Search offers users a way to explore a website or application using keywords. Search can be used as the primary means of discovering content or as a filter to aid the user in finding content.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "there is no search component - all information is located under the \"Text fields\" (input) section.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Description",
+      "value": "Search enables users to specify a word or a phrase to find relevant content without navigation",
+      "source": "carbon",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Description",
+      "value": "A search field is used for searching and filtering items.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Provide useful placeholder text and include a search icon.",
+      "source": "carbon",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Localize the search field-For languages that read right to left, flip the layout of the search box as shown in the next example",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Add a scope filter to your search field- The optional scoped search allows users to limit their searches to a section or category of content on a website, as opposed to a global search that searches everything at once. Only one scoped category can be selected at a time, but the dropdown should always include an “All” or “Any” option, and this option should be selected by default. With “All” or “Any” selected, the field will function as",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Show a \"No results\" state instead of an error",
+      "source": "spectrum",
+      "recommended": true,
+      "link": "https://spectrum.adobe.com/page/search-field/"
+    },
+    {
+      "type": "Do",
+      "value": "Any search field should include a label inside the field, in the default state.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/search-field/"
+    },
+    {
+      "type": "Do",
+      "value": "The label within the search field should be in sentence case",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/search-field/"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t include a label for search fields",
+      "source": "carbon",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "The search icon is recognized and acceptable across languages and countries",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    }
+  ]
+}

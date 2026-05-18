@@ -66,11 +66,24 @@ Foundations are frequently split across multiple Figma files. Extract each file 
 | Icons file | Icon components (referenced, not extracted as tokens) |
 | Components file | Component library (may contain token references) |
 
-**For each file**, use the highest-fidelity extraction available:
+**For each file**, read via the official Figma MCP (see `CLAUDE.md` § Figma MCP):
 
-1. **`figma_get_design_system_kit`** — one-call extraction of variables + styles + components. Use if available.
-2. **`figma_get_variables`** + **`figma_get_styles`** — separate calls, combine the results.
-3. **`figma_get_variable_defs`** + **`get_design_context`** — fallback when the other tools aren't available.
+1. **`get_variable_defs`** with the file's URL → primary source for color / spacing / radius / typography variables, including aliases.
+2. **`use_figma`** (`fileKey` = the foundation file) for anything the typed read tools can't reach — full collection mode enumeration, paint / text styles, effect styles, etc. Sample script for paint + text styles:
+    ```js
+    return {
+      paint: figma.getLocalPaintStyles().map(s => ({ name: s.name, paints: s.paints })),
+      text:  figma.getLocalTextStyles().map(s => ({
+        name: s.name, fontName: s.fontName, fontSize: s.fontSize,
+        lineHeight: s.lineHeight, letterSpacing: s.letterSpacing
+      })),
+      effect:figma.getLocalEffectStyles().map(s => ({ name: s.name, effects: s.effects })),
+      collections: (await figma.variables.getLocalVariableCollectionsAsync())
+        .map(c => ({ name: c.name, modes: c.modes }))
+    };
+    ```
+3. **`get_libraries`** + **`search_design_system`** when the foundation references published Kido components or tokens — use these to discover library subscriptions and named library entries instead of guessing keys.
+4. **`get_design_context`** is a fallback when the file is messy and you need a React+Tailwind reference render of a small section to interpret the structure.
 
 Extract every mode each file contains (light, dark, brand variations). If two files share the same mode name (e.g., both have a "light" mode), merge their tokens under that mode — do not create duplicate mode sections.
 

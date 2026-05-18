@@ -1,0 +1,693 @@
+{
+  "component": "button",
+  "schema_version": "0.1",
+  "source": "competitive research, imported 2026-05-17",
+  "entries": [
+    {
+      "type": "Accessibility",
+      "value": "To maintain accessibility, Material Design provides baseline opacity values for the color overlays used by states. A brand can adjust opacity values to suit its color scheme.",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/buttons#text-button"
+    },
+    {
+      "type": "Accessibility",
+      "value": "When buttons do not have a persistently displayed label, they must be annotated with a label that will be exposed on hover or focus.",
+      "source": "carbon",
+      "recommended": true,
+      "link": "https://carbondesignsystem.com/components/button/usage/"
+    },
+    {
+      "type": "Accessibility",
+      "value": "Where links have been ‘repurposed’ as a button, they need to be coded so the Space key can also activate (since links are only activated by default by Enter).",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/button/usage/"
+    },
+    {
+      "type": "Accessibility",
+      "value": "Toggle buttons can be accessibility supported by changing the value of aria-pressed between \"true\" and \"false\" or with a change of name that reflects a change in the icon shape (for example: “play” / “pause” )",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/button/usage/"
+    },
+    {
+      "type": "Accessibility",
+      "value": "Include alternative text using the aria-label prop when using icon buttons.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/button/usage"
+    },
+    {
+      "type": "Accessibility",
+      "value": "When using an icon alongside text, do not add a label to the icon. Doing so will confuse people using screen readers.",
+      "source": "atlassian",
+      "recommended": true,
+      "link": "https://atlassian.design/components/button/usage"
+    },
+    {
+      "type": "Accessibility",
+      "value": "Avoid using disabled buttons, especially in forms. Disabled buttons provide no feedback, making it hard to know why the button isn't usable. Instead, use validation and errors to show what needs to be done.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/button/usage"
+    },
+    {
+      "type": "Accessibility",
+      "value": "Buttons need clear, descriptive labels to ensure accessible names convey the action. Labels should be concise, descriptive, and include sufficient context without relying too heavily on icons or other visual cues. In fact, leading and trailing icons are purely decorative and ignored by screen readers.",
+      "source": "primer",
+      "recommended": true,
+      "link": "https://primer.style/product/components/button/accessibility/"
+    },
+    {
+      "type": "Accessibility",
+      "value": "Button schemes (danger, primary, invisible) offer visual distinctions, but color alone isn’t reliable for users with color impairments or screen readers. Make sure button text always provides sufficient meaning.",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/button/accessibility/"
+    },
+    {
+      "type": "Best",
+      "value": "By default Material uses capitalized button text labels (for languages that have capitalization). This is to distinguish the text label from surrounding text. If a text button does not use capitalization for button text, find another characteristic to distinguish it such as color, size, or placement.",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/buttons"
+    },
+    {
+      "type": "Best",
+      "value": "An app can show more than one button in a layout at a time, so a high-emphasis button can be accompanied by medium- and low-emphasis buttons that perform less important actions. When using multiple buttons, ensure the available state of one button doesn’t look like the disabled state of another.",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/buttons"
+    },
+    {
+      "type": "Best",
+      "value": "Outlined buttons are also a lower emphasis alternative to contained buttons, or a higher emphasis alternative to text buttons.",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/buttons"
+    },
+    {
+      "type": "Best",
+      "value": "Outlined buttons can be placed on top of a variety of backgrounds. Its container is transparent and until the button is interacted with, a color isn’t visible.",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/buttons"
+    },
+    {
+      "type": "Best",
+      "value": "Contained buttons are high-emphasis, distinguished by their use of elevation and fill. They contain actions that are primary to your app.",
+      "source": "Material",
+      "recommended": true,
+      "link": "https://m2.material.io/components/buttons"
+    },
+    {
+      "type": "Best",
+      "value": "Buttons at higher elevations typically appear more prominent in a design. On press, elevated buttons lift up and the container displays touch feedback.",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/buttons"
+    },
+    {
+      "type": "Best",
+      "value": "Recommended opacity values for button container fill colors can be found in the states guidelines. An app can alter the overlay values of the button to suit a brand’s color palette",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/buttons"
+    },
+    {
+      "type": "Best",
+      "value": "As a general rule, a layout should contain a single high-emphasis button that makes it clear that other buttons have less importance in the hierarchy. This high-emphasis button commands the most attention.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/button/usage/"
+    },
+    {
+      "type": "Best",
+      "value": "As a general rule, on full-page designs, the primary button is on the left side of the page. When the browser window is large and the user is scrolling to read, it’s best to have the primary button where the user’s attention has been focused all along. Whereas in wizards, where a user is progressing through a series of steps or dialog windows, the primary action traditionally sits at the bottom right. Buttons within components such as notifications, search fields, and data tables are also right-aligned.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/button/usage/"
+    },
+    {
+      "type": "Best",
+      "value": "Use a primary button to indicate the main action of a group button set.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/button/usage"
+    },
+    {
+      "type": "Best",
+      "value": "Subtle or secondary buttons should use a less dominant color.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/button/usage"
+    },
+    {
+      "type": "Best",
+      "value": "Button size matters - make sure the size of the button is large enough to interact with on web or other device but not too large so as to be visually overwhelming.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/button/usage"
+    },
+    {
+      "type": "Best",
+      "value": "Use action verbs or phrases to tell the user what will happen next.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/button/usage"
+    },
+    {
+      "type": "Best",
+      "value": "Only use one primary Button on a page, whenever possible, to indicate its emphasis relative to other actions.",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/button/guidelines/"
+    },
+    {
+      "type": "Description",
+      "value": "A button triggers an event or action. They let users know what will happen next.",
+      "source": "atlassian",
+      "recommended": true,
+      "link": "https://atlassian.design/components/button/usage"
+    },
+    {
+      "type": "Description",
+      "value": "Buttons prompt most actions in a U",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/buttons"
+    },
+    {
+      "type": "Description",
+      "value": "Buttons are used to initialize an action. Button labels express what action will occur when the user interacts with it.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/button/usage/"
+    },
+    {
+      "type": "Description",
+      "value": "Buttons allow users to perform an action or to navigate to another page. They have multiple styles for various needs, and are ideal for calling attention to where a user needs to do something in order to move forward in a flow.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/button/"
+    },
+    {
+      "type": "Description",
+      "value": "Button is used to initiate actions on a page or form",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/button/"
+    },
+    {
+      "type": "Do",
+      "value": "In a bottom bar, when using multiple buttons, indicate the more important action by placing it in a contained button (next to a text button).",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/buttons"
+    },
+    {
+      "type": "Do",
+      "value": "In a bottom bar, when using multiple buttons, you can place a outlined button (medium emphasis) next to a contained button (high emphasis).",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/buttons"
+    },
+    {
+      "type": "Do",
+      "value": "When using multiple buttons in a bottom bar, you can place a text button (low emphasis) next to an outlined button (medium emphasis).",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/buttons"
+    },
+    {
+      "type": "Do",
+      "value": "Use a contained button in a bottom sheet next to other important details.",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/buttons"
+    },
+    {
+      "type": "Do",
+      "value": "Group internal elements so that they scale appropriately. Icons and text labels remain centered when button width increases.",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/buttons"
+    },
+    {
+      "type": "Do",
+      "value": "An outlined button’s width is dynamically set to fit the text label.",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/buttons"
+    },
+    {
+      "type": "Do",
+      "value": "Text labels can be written in sentence case, as long as the button is clearly distinguishable from elements around it.",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/buttons"
+    },
+    {
+      "type": "Do",
+      "value": "A button container’s width is dynamically set to fit its text label.",
+      "source": "Material",
+      "recommended": true,
+      "link": "https://m2.material.io/components/buttons"
+    },
+    {
+      "type": "Do",
+      "value": "Use icons that clearly communicate their meaning.",
+      "source": "Material",
+      "recommended": true,
+      "link": "https://m2.material.io/components/buttons"
+    },
+    {
+      "type": "Do",
+      "value": "Do use high-emphasis and medium-emphasis buttons in a button group.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/button/usage/"
+    },
+    {
+      "type": "Do",
+      "value": "Do bleed ghost button hovers when they are paired with other fluid buttons.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/button/usage/"
+    },
+    {
+      "type": "Do",
+      "value": "Do use a primary and two of the same lower emphasis buttons in a button group.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/button/usage/"
+    },
+    {
+      "type": "Do",
+      "value": "Do apply the same width to all buttons in a group, even if they don’t bleed.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/button/usage/"
+    },
+    {
+      "type": "Do",
+      "value": "Do use the {verb} + {noun} content formula in buttons whenever possible.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/button/usage/"
+    },
+    {
+      "type": "Do",
+      "value": "Do place the icon on the right side of the button after the text.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/button/usage/"
+    },
+    {
+      "type": "Do",
+      "value": "Use buttons to communicate actions users can take and to allow users to interact with the page. Each page should have only one primary button, and any remaining calls to action should be represented as lower emphasis buttons.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/button/usage/"
+    },
+    {
+      "type": "Do",
+      "value": "Use concise, easy to scan, and clear button labels to indicate the next action to the user.",
+      "source": "atlassian",
+      "recommended": true,
+      "link": "https://atlassian.design/components/button/usage"
+    },
+    {
+      "type": "Do",
+      "value": "Use sentence-case capitalization.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/button/usage"
+    },
+    {
+      "type": "Do",
+      "value": "Use active verbs or phrases that clearly indicate action.",
+      "source": "atlassian",
+      "recommended": true,
+      "link": "https://atlassian.design/components/button/usage"
+    },
+    {
+      "type": "Do",
+      "value": "Icons can be used in buttons when additional clarity is required and the icon is highly relevant to the action.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/button/"
+    },
+    {
+      "type": "Do",
+      "value": "Use a button group to show additional actions",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/button/"
+    },
+    {
+      "type": "Do",
+      "value": "Button text should be concise: 1 or 2 words, no longer than 4 words, with fewer than 20 characters including spaces.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/button/"
+    },
+    {
+      "type": "Do",
+      "value": "Keep Button labels succinct with no line breaks.",
+      "source": "primer",
+      "recommended": true,
+      "link": "https://primer.style/product/components/button/guidelines/"
+    },
+    {
+      "type": "Do",
+      "value": "Use sentence case for labels.",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/button/guidelines/"
+    },
+    {
+      "type": "Do",
+      "value": "place primary buttons at the end of a ButtonGroup",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/button/guidelines/"
+    },
+    {
+      "type": "Do",
+      "value": "Use a primary Button with a secondary Button",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/button/guidelines/"
+    },
+    {
+      "type": "Do",
+      "value": "Use the '2 selected' format when multiple items are selected",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/button/guidelines/"
+    },
+    {
+      "type": "Do",
+      "value": "Let the user send incomplete form and use error messages to explain what is wrong.",
+      "source": "orbit",
+      "recommended": false,
+      "link": "https://orbit.kiwi/components/action/button/"
+    },
+    {
+      "type": "Do",
+      "value": "Use short and clear labels.",
+      "source": "orbit",
+      "recommended": false,
+      "link": "https://orbit.kiwi/components/action/button/"
+    },
+    {
+      "type": "Do",
+      "value": "Use one primary button per page to indicate the most important action",
+      "source": "wise",
+      "recommended": false,
+      "link": "https://wise.design/components/button"
+    },
+    {
+      "type": "Do",
+      "value": "Use secondary buttons when you need to display multiple key actions at the same level of hierarchy.",
+      "source": "wise",
+      "recommended": false,
+      "link": "https://wise.design/components/button"
+    },
+    {
+      "type": "Do",
+      "value": "Pair primary and secondary neutral on neutral surfaces",
+      "source": "wise",
+      "recommended": false,
+      "link": "https://wise.design/components/button"
+    },
+    {
+      "type": "Do",
+      "value": "Use large button at the bottom of the page or content to aid the user to the next step.",
+      "source": "wise",
+      "recommended": false,
+      "link": "https://wise.design/components/button"
+    },
+    {
+      "type": "Do",
+      "value": "Use in line with other buttons at the same size",
+      "source": "wise",
+      "recommended": false,
+      "link": "https://wise.design/components/button"
+    },
+    {
+      "type": "Do",
+      "value": "Use icon right for actions and left to support the message",
+      "source": "wise",
+      "recommended": false,
+      "link": "https://wise.design/components/button"
+    },
+    {
+      "type": "Not",
+      "value": "Avoid using two contained buttons next to one another if they don’t have the same fill color.",
+      "source": "Material",
+      "recommended": true,
+      "link": "https://m2.material.io/components/buttons"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t place a button below another button if there is space to place them side by side.",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/buttons"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t ungroup elements inside of a button container. This can lead to unwanted movement, such as the icon and label anchoring to opposite sides of the button.",
+      "source": "Material",
+      "recommended": true,
+      "link": "https://m2.material.io/components/buttons"
+    },
+    {
+      "type": "Not",
+      "value": "An outlined button’s width shouldn’t be narrower than the button’s text length.",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/buttons"
+    },
+    {
+      "type": "Not",
+      "value": "Avoid text labels that are too long. They should be concise.",
+      "source": "Material",
+      "recommended": true,
+      "link": "https://m2.material.io/components/buttons"
+    },
+    {
+      "type": "Not",
+      "value": "A button container’s width shouldn’t be narrower than its text.",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/buttons"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t vertically align an icon and text in the center of a contained button.",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/buttons"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t use two icons in the same button.",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/buttons"
+    },
+    {
+      "type": "Not",
+      "value": "Do not use two high-emphasis buttons in a button group.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/button/usage/"
+    },
+    {
+      "type": "Not",
+      "value": "Do not use a tertiary button in a fluid application.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/button/usage/"
+    },
+    {
+      "type": "Not",
+      "value": "Do not mix primary, secondary, and tertiary buttons in the same button group.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/button/usage/"
+    },
+    {
+      "type": "Not",
+      "value": "Do not make buttons in a group different widths.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/button/usage/"
+    },
+    {
+      "type": "Not",
+      "value": "Do not use only a noun as a button label.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/button/usage/"
+    },
+    {
+      "type": "Not",
+      "value": "Do not place the icon on the left side of the button before the text.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/button/usage/"
+    },
+    {
+      "type": "Not",
+      "value": "Do not use buttons as navigational elements. Instead, use links when the desired action is to take the user to a new page.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/button/usage/"
+    },
+    {
+      "type": "Not",
+      "value": "Use long, redundant button labels. Drop unnecessary articles, such as ‘a’ or ‘the’, for a more concise label.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/button/usage"
+    },
+    {
+      "type": "Not",
+      "value": "Use title case captalization or all caps.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/button/usage"
+    },
+    {
+      "type": "Not",
+      "value": "Use vague and generic labels that make the user read the dialog before taking action.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/button/usage"
+    },
+    {
+      "type": "Not",
+      "value": "Do not use custom colors for buttons. The colors of different button variations have been designed to be consistent and accessible.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/button/"
+    },
+    {
+      "type": "Not",
+      "value": "Don't use the pending state for long progress",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/button/"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t use punctuation marks such as periods or exclamation points.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/button/"
+    },
+    {
+      "type": "Not",
+      "value": "Icons should not be used for decoration.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/button/"
+    },
+    {
+      "type": "Not",
+      "value": "Buttons should never contain line breaks and lose their Button shape.",
+      "source": "primer",
+      "recommended": true,
+      "link": "https://primer.style/product/components/button/guidelines/"
+    },
+    {
+      "type": "Not",
+      "value": "Don't use all-caps or other text formats.",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/button/guidelines/"
+    },
+    {
+      "type": "Not",
+      "value": "Don't place primary buttons at the start of a ButtonGroup",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/button/guidelines/"
+    },
+    {
+      "type": "Not",
+      "value": "Don't place multiple primary buttons together",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/button/guidelines/"
+    },
+    {
+      "type": "Not",
+      "value": "Avoid using disabled button as it doesn’t provide proper explanation to the user.",
+      "source": "orbit",
+      "recommended": false,
+      "link": "https://orbit.kiwi/components/action/button/"
+    },
+    {
+      "type": "Not",
+      "value": "Buttons shouldn’t contain more than 1-3 words.",
+      "source": "orbit",
+      "recommended": false,
+      "link": "https://orbit.kiwi/components/action/button/"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t use multiple primary buttons on a page.",
+      "source": "wise",
+      "recommended": false,
+      "link": "https://wise.design/components/button"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t pair a secondary with a negative action, use secondary neutral or tertiary instead.",
+      "source": "wise",
+      "recommended": false,
+      "link": "https://wise.design/components/button"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t use the secondary on a neutral surface.",
+      "source": "wise",
+      "recommended": false,
+      "link": "https://wise.design/components/button"
+    },
+    {
+      "type": "Not",
+      "value": "Avoid using secondary neutral buttons for dismissive actions, use tertiary instead.",
+      "source": "wise",
+      "recommended": false,
+      "link": "https://wise.design/components/button"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t use large buttons inside cards or list items.",
+      "source": "wise",
+      "recommended": false,
+      "link": "https://wise.design/components/button"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t use inside of list items",
+      "source": "wise",
+      "recommended": false,
+      "link": "https://wise.design/components/button"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t place actions on the left, or supporting icons on the right",
+      "source": "wise",
+      "recommended": false,
+      "link": "https://wise.design/components/button"
+    }
+  ]
+}

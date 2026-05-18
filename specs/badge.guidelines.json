@@ -1,0 +1,203 @@
+{
+  "component": "badge",
+  "schema_version": "0.1",
+  "source": "competitive research, imported 2026-05-17",
+  "entries": [
+    {
+      "type": "Accessibility",
+      "value": "Use badges in conjunction with a single item or label, to avoid ambiguity around which item is being quantified.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/badge/usage"
+    },
+    {
+      "type": "Accessibility",
+      "value": "Don't rely on color alone to signify whether a value is positive or negative.",
+      "source": "atlassian",
+      "recommended": true,
+      "link": "https://atlassian.design/components/badge/usage"
+    },
+    {
+      "type": "Best",
+      "value": "Badges should include tooltips, where necessary, to enhance user understanding. For example, a badge is used in conjunction with an icon.",
+      "source": "atlassian",
+      "recommended": true,
+      "link": "https://atlassian.design/components/badge/usage"
+    },
+    {
+      "type": "Best",
+      "value": "Badge placement varies widely depending on the use case. In cards, place the badge on the left side of the footer, if possible. If there is no footer or if that space is filled, affix the badge to the right edge of the preview. If there is no preview, affix the badge to the top right corner of the card.",
+      "source": "Spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/badge/"
+    },
+    {
+      "type": "Best",
+      "value": "When a badge's label is too long for the available horizontal space, it wraps to form another line. If there is no room for a second line of text, the badge should truncate and include a tooltip to expose the full text upon hover.",
+      "source": "Spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/badge/"
+    },
+    {
+      "type": "Description",
+      "value": "Badges show notifications, counts, or status information on navigation items and icons",
+      "source": "material",
+      "recommended": false,
+      "link": "https://m3.material.io/components/badges/guidelines"
+    },
+    {
+      "type": "Description",
+      "value": "A badge is a visual indicator for numeric values such as tallies and scores",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/badge/usage"
+    },
+    {
+      "type": "Description",
+      "value": "Similar to status lights, badges are for showing a small amount of color-categorized metadata. They're ideal for getting a user's attention.",
+      "source": "Spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/badge/"
+    },
+    {
+      "type": "Description",
+      "value": "A badge is a visual indicator that communicates a status or description of an associated component. They use short text, color, and icons for quick recognition and are placed near the relavant content.",
+      "source": "fluent",
+      "recommended": true,
+      "link": "https://fluent2.microsoft.design/components/web/react/core/badge/usage"
+    },
+    {
+      "type": "Do",
+      "value": "Change the position of the badge for right-to-left languages",
+      "source": "material",
+      "recommended": false,
+      "link": "https://m3.material.io/components/badges/guidelines"
+    },
+    {
+      "type": "Do",
+      "value": "Use the default badge color",
+      "source": "material",
+      "recommended": false,
+      "link": "https://m3.material.io/components/badges/guidelines"
+    },
+    {
+      "type": "Do",
+      "value": "Truncate badge labels as needed",
+      "source": "material",
+      "recommended": false,
+      "link": "https://m3.material.io/components/badges/guidelines"
+    },
+    {
+      "type": "Do",
+      "value": "Use a large badge to show count information when visual collisions aren’t an issue, such as in a navigation rail",
+      "source": "material",
+      "recommended": false,
+      "link": "https://m3.material.io/components/badges/guidelines"
+    },
+    {
+      "type": "Do",
+      "value": "When an icon with a badge is followed by text or another element, place a large badge at the trailing edge",
+      "source": "material",
+      "recommended": false,
+      "link": "https://m3.material.io/components/badges/guidelines"
+    },
+    {
+      "type": "Do",
+      "value": "Badges must use default color with at least 3:1 contrast",
+      "source": "material",
+      "recommended": false,
+      "link": "https://m3.material.io/components/badges/accessibility"
+    },
+    {
+      "type": "Do",
+      "value": "A badge should be placed in the footer, on the left side if possible.",
+      "source": "Spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/badge/"
+    },
+    {
+      "type": "Do",
+      "value": "Use icons only on left",
+      "source": "orbit",
+      "recommended": false,
+      "link": "https://orbit.kiwi/components/information/badge/"
+    },
+    {
+      "type": "Do",
+      "value": "Use progressive disclosure for other information.",
+      "source": "orbit",
+      "recommended": false,
+      "link": "https://orbit.kiwi/components/information/badge/"
+    },
+    {
+      "type": "Do",
+      "value": "Use words that describe a state or status.",
+      "source": "fluent",
+      "recommended": true,
+      "link": "https://fluent2.microsoft.design/components/web/react/core/badge/usage#behavior"
+    },
+    {
+      "type": "Not",
+      "value": "Badges have fixed positions. Don’t change the position of the badge arbitrarily or place the badge over the icon.",
+      "source": "material",
+      "recommended": false,
+      "link": "https://m3.material.io/components/badges/guidelines"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t let the badge get cut off or collide with another element",
+      "source": "material",
+      "recommended": true,
+      "link": "https://m3.material.io/components/badges/guidelines"
+    },
+    {
+      "type": "Not",
+      "value": "Avoid using a large badge when it might overlap with a trailing element. Either place it at the trailing edge or use a small badge instead.",
+      "source": "material",
+      "recommended": false,
+      "link": "https://m3.material.io/components/badges/guidelines"
+    },
+    {
+      "type": "Not",
+      "value": "Avoid using custom color roles for the badge container and label text. If custom roles are necessary, make sure they have contrast of at least 3:1.",
+      "source": "material",
+      "recommended": false,
+      "link": "https://m3.material.io/components/badges/accessibility"
+    },
+    {
+      "type": "Not",
+      "value": "Badges are meant to offer quick context about what category, status, or meaning an item is associated with. If your design requires multiple badges, consider using regular text metadata and reserve a single badge for only the most important status, category, or meaning instead.",
+      "source": "Spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/badge/"
+    },
+    {
+      "type": "Not",
+      "value": "It's best to use a text label on a badge whenever possible because communicating with an icon alone may be unclear or subjective. Reserve icon-only badges for responsive cases, such as for cards in a panel that don't have space for a full badge. In related contexts, pair the icon with a label to help teach a user what the icon means. Icon-only badges should always include a tooltip on hover to show their associated label.",
+      "source": "Spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/badge/"
+    },
+    {
+      "type": "Not",
+      "value": "A badge should only be fixed to the top right corner if there is no space for it in the footer.",
+      "source": "Spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/badge/"
+    },
+    {
+      "type": "Not",
+      "value": "Don't combine with text link",
+      "source": "orbit",
+      "recommended": false,
+      "link": "https://orbit.kiwi/components/information/badge/"
+    },
+    {
+      "type": "Not",
+      "value": "Avoid labels that will truncate.",
+      "source": "fluent",
+      "recommended": true,
+      "link": "https://fluent2.microsoft.design/components/web/react/core/badge/usage#behavior"
+    }
+  ]
+}

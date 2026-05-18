@@ -1,0 +1,217 @@
+{
+  "component": "slider",
+  "schema_version": "0.1",
+  "source": "competitive research, imported 2026-05-17",
+  "entries": [
+    {
+      "type": "Accessibility",
+      "value": "The slider handle changes width during interaction",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m3.material.io/components/sliders/accessibility"
+    },
+    {
+      "type": "Accessibility",
+      "value": "Use arrow keys to change the slider value",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m3.material.io/components/sliders/accessibility"
+    },
+    {
+      "type": "Accessibility",
+      "value": "Icons make it easier to identify the ends of the slider on a low-contrast background",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m3.material.io/components/sliders/accessibility"
+    },
+    {
+      "type": "Accessibility",
+      "value": "A slider’s accessibility label should match the adjacent UI text",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m3.material.io/components/sliders/accessibility"
+    },
+    {
+      "type": "Accessibility",
+      "value": "Icon buttons placed outside the slider should have the button role",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m3.material.io/components/sliders/accessibility"
+    },
+    {
+      "type": "Accessibility",
+      "value": "Every slider should have a label. A slider without a label is ambiguous and not accessible. Write the label in sentence case.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/slider/#Usage-guidelines"
+    },
+    {
+      "type": "Accessibility",
+      "value": "If the value ranges from negative to positive, prefix the value with a plus (+) or minus (-) sign.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/slider/#Usage-guidelines"
+    },
+    {
+      "type": "Accessibility",
+      "value": "Slider values can be shown with a unit when it helps provide context (e.g., “%” or “px”).",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/slider/#Usage-guidelines"
+    },
+    {
+      "type": "Accessibility",
+      "value": "Don't use a range if choosing a specific value is important. The slider interaction isn't as precise as explicitly typing or choosing an option from a list.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/range/usage"
+    },
+    {
+      "type": "Accessibility",
+      "value": "Don't use a range for values that aren't numeric. For example, selecting weekdays (Monday to Friday).",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/range/usage"
+    },
+    {
+      "type": "Best",
+      "value": "Place labels directly above the input, and align to the left.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/range/usage"
+    },
+    {
+      "type": "Best",
+      "value": "Don't use for ranges that are extremely large. For example, values over 100.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/range/usage"
+    },
+    {
+      "type": "Best",
+      "value": "Don't use for ranges that are very small (for example, 1-3). The range moves in steps when the range of values is lower.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/range/usage"
+    },
+    {
+      "type": "Best",
+      "value": "For left-to-right user interfaces, put the lowest value on the left of the slider. For right-to-left user interfaces, put the lowest value on the right.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/range/usage"
+    },
+    {
+      "type": "Description",
+      "value": "Sliders let users make selections from a range of values",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Description",
+      "value": "Sliders allow users to quickly select a value within a range. They should be used when the upper and lower bounds to the range are invariable.",
+      "source": "spectrum",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Description",
+      "value": "A range lets users choose an approximate value on a slider.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Description",
+      "value": "Sliders provide a visual indication of adjustable content, where the user can increase or decrease the value by moving the handle along a horizontal track.",
+      "source": "Carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Use when selecting a single value or range of number values.",
+      "source": "Carbon",
+      "recommended": true,
+      "link": "https://carbondesignsystem.com/components/slider/usage/"
+    },
+    {
+      "type": "Do",
+      "value": "Use sliders when there is a need to show a selection of a single value or range of values.",
+      "source": "Carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/slider/usage/"
+    },
+    {
+      "type": "Do",
+      "value": "Use when needing to expose a variety of options or to limit the number of options quickly.",
+      "source": "Carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/slider/usage/"
+    },
+    {
+      "type": "Do",
+      "value": "Do describe the range in numbers",
+      "source": "Carbon",
+      "recommended": true,
+      "link": "https://carbondesignsystem.com/components/slider/usage/"
+    },
+    {
+      "type": "Not",
+      "value": "Because of the additional cognitive load of a range slider, avoid using it in vertical orientation.",
+      "source": "Material",
+      "recommended": true,
+      "link": "https://m3.material.io/components/sliders/guidelines"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t use an inset icon with sliders that have track thicknesses under 40dp",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m3.material.io/components/sliders/guidelines"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t use an inset icon on a centered slider",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m3.material.io/components/sliders/guidelines"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t use an inset icon on a range slider",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m3.material.io/components/sliders/guidelines"
+    },
+    {
+      "type": "Not",
+      "value": "Do not use for extremely large ranges, for example, 1-1000.",
+      "source": "Carbon",
+      "recommended": true,
+      "link": "https://carbondesignsystem.com/components/slider/usage/"
+    },
+    {
+      "type": "Not",
+      "value": "Do not use ranges that are too small, for example, 1-3.",
+      "source": "Carbon",
+      "recommended": true,
+      "link": "https://carbondesignsystem.com/components/slider/usage/"
+    },
+    {
+      "type": "Not",
+      "value": "Do not use complex inputted values that are not numbers.",
+      "source": "Carbon",
+      "recommended": true,
+      "link": "https://carbondesignsystem.com/components/slider/usage/"
+    },
+    {
+      "type": "Not",
+      "value": "Do not use as a date selector",
+      "source": "Carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/slider/usage/"
+    }
+  ]
+}

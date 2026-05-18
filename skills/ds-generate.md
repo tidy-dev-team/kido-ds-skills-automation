@@ -190,7 +190,7 @@ If the spec is missing data needed to derive an item, surface the gap as a `[ ] 
 
 ## Step 4 — Generate in Figma
 
-Use Figma MCP tools to build the component set directly.
+Use the official Figma MCP (`claude.ai Figma` — see `CLAUDE.md` § Figma MCP) for every read and write. Writes go through **`use_figma`** with the target `fileKey`. The Plugin API surface inside `use_figma` is the same one referenced throughout this step, with two caveats: `loadAllPagesAsync()` is unsupported (the document is pre-loaded server-side — strip the call), and `figma.currentPage = page` must be written as `await figma.setCurrentPageAsync(page)`. Selection-aware reads (`get_design_context`, `get_screenshot`) and structured reads (`get_metadata`, `get_variable_defs`) are sibling tools you can call alongside `use_figma`.
 
 ### Generation scope
 
@@ -365,9 +365,16 @@ After generation, read the produced component set back from Figma and tick the S
 
 ### Read-back tools
 
-- `figma_get_component_details` — variant set, component properties (name + type + default), variant property format
-- `figma_get_design_context` — token bindings on the produced component
-- `get_screenshot` — visual confirmation of state anatomy
+- **`get_design_context`** (official MCP) — React+Tailwind reference of the produced component; useful for confirming resolved token bindings and overall structure
+- **`use_figma`** with a custom script — when you need exact `componentProperties`, `componentPropertyDefinitions`, `variantProperties`, or per-node sizing modes:
+  ```js
+  const cs = await figma.getNodeByIdAsync(COMP_SET_ID);
+  return {
+    props: cs.componentPropertyDefinitions,
+    variants: cs.children.map(c => ({ id: c.id, name: c.name, w: c.width, h: c.height, paxis: c.primaryAxisSizingMode, caxis: c.counterAxisSizingMode }))
+  };
+  ```
+- **`get_screenshot`** (official MCP) — visual confirmation of state anatomy
 
 ### Audit procedure
 

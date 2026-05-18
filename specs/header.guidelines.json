@@ -1,0 +1,189 @@
+{
+  "component": "header",
+  "schema_version": "0.1",
+  "source": "competitive research, imported 2026-05-17",
+  "entries": [
+    {
+      "type": "Accessibility",
+      "value": "Technique C27 outlined in WCAG 2.1 recommends matching the visual order of your UI objects with the order they appear in the Document Object Model (DOM). This technique ensures the designed hierarchy of information is communicated the same visually as it is by assistive technologies.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/patterns/global-header/"
+    },
+    {
+      "type": "Accessibility",
+      "value": "Users who rely on screen reader technology to navigate areas of a site also rely on screen readers to navigate the content of a page. In the same way users can visually scan for the larger and bolder type of a header, users of assistive technologies also must understand the hierarchy of the page’s content to efficiently navigate a page’s content.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/patterns/global-header/"
+    },
+    {
+      "type": "Accessibility",
+      "value": "Some users may use a keyboard to navigate your site. Starting focus in the main navigation lets them quickly navigate to other areas in your UI, but could block them from the main content if there is a large number of navigation items to tab through first.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/patterns/global-header/"
+    },
+    {
+      "type": "Accessibility",
+      "value": "Landmark regions are a way of grouping similar areas of content in your UI and assigning them roles. This technique lets users navigating with assistive technologies quickly get around your site by navigating between landmark regions in your UI rather than each individual element.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/patterns/global-header/"
+    },
+    {
+      "type": "Accessibility",
+      "value": "Navigating between landmark regions helps users who cannot see the visual grouping of your navigation. This grouping can be important to understanding the organization of the structure of the content and making it clear what users can do and where they can go in your UI.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/patterns/global-header/"
+    },
+    {
+      "type": "Accessibility",
+      "value": "Avoid truncating the text as much as possible.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/page-header/examples"
+    },
+    {
+      "type": "Best",
+      "value": "Top app bars appear at the top of each screen in an app, and can disappear upon scroll.",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Top app bars provide a reliable way to guide users through an app such as: back button, search icon etc.",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "The UI shell makes it easy to pivot between different offerings in your UI. Maintaining or restoring the state of a page helps your user pivot between different areas to complete tasks without losing context or progress. If state or progress will be lost, inform users of this consequence. Maintaining these states and filters will bring the user back to where they were if they had gone through levels of drill downs or welcome screens.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/patterns/global-header/"
+    },
+    {
+      "type": "Best",
+      "value": "The role of the global header goes beyond linking the user to different areas in the UI. The global qualities make the header an ideal location for your user to naturally reference when they need to orient themselves.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/patterns/global-header/"
+    },
+    {
+      "type": "Best",
+      "value": "When planning your product’s UI, put the emphasis on the tasks the user has to complete rather than business or technical limitations. Forcing the user to learn a new mental model for your product increases the time to productivity and creates a disjointed experience between your product and the platform.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/patterns/global-header/"
+    },
+    {
+      "type": "Description",
+      "value": "Headers are containers attached to the top of a page that house product-wide or global actions and navigation, as well as user preferences and branding.",
+      "source": "spectrum",
+      "recommended": true,
+      "link": "https://spectrum.adobe.com/page/headers/"
+    },
+    {
+      "type": "Description",
+      "value": "Users rely on the global header to navigate and orient themselves in your UI. This pattern outlines some of the qualities that make a global header consistent, familiar, and usable.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/patterns/global-header/"
+    },
+    {
+      "type": "Description",
+      "value": "A page header defines the top of a page. It contains a title and can be optionally combined with breadcrumbs buttons, search, and filters",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/page-header/examples"
+    },
+    {
+      "type": "Do",
+      "value": "A prominent top app bar with imagery (link)",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "If title text is long, use a prominent app bar and wrap the title to two lines.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Order action items by putting the most-used action (1) on the far left, second most used action (2) to its right, and so on. Any remaining or secondary actions should be placed in an overflow menu (3).",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Use one page header per page.",
+      "source": "atlassian",
+      "recommended": true,
+      "link": "https://atlassian.design/components/page-header/examples"
+    },
+    {
+      "type": "Do",
+      "value": "Use a page header at the start of any page in Atlassian products.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/page-header/examples"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t place imagery in a bar that makes the top app bar’s text and icons illegible.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Don’t wrap text in a regular top app bar.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Don’t truncate text, hiding the full title may cause misunderstanding.",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Don’t shrink text to fit on a single line.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Use a page header at the top of a smaller container like a popup, dialog, or drawer.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/page-header/examples"
+    },
+    {
+      "type": "Not",
+      "value": "Use multiple page headers in one page.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/page-header/examples"
+    },
+    {
+      "type": "Not",
+      "value": "Don't change component placement - Although most pieces of the header are optional, do not change the placement of the components if they are included in your header.",
+      "source": "spectrum",
+      "recommended": true,
+      "link": "https://spectrum.adobe.com/page/headers/"
+    }
+  ]
+}

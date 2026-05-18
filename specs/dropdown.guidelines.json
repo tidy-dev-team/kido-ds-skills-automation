@@ -1,0 +1,217 @@
+{
+  "component": "dropdown",
+  "schema_version": "0.1",
+  "source": "competitive research, imported 2026-05-17",
+  "entries": [
+    {
+      "type": "Best",
+      "value": "Nimble- Menus should be easy to open, close, and interact with.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Contextual- Menu content should be suited to user needs.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Scannable-Menu items should be easy to scan.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Dropdown menu-Dropdown menus display a list of options, triggered by an icon, button, or action. Their placement varies based on the element that opens them.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Exposed dropdown menu- Exposed dropdown menus display the currently selected menu item above the list of options. Some variations can accept user-entered input.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Menus appear at a higher elevation than all other permanent UI elements.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Menus can change their position to avoid being truncated by the screen or browser’s edge.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Dropdowns can be used in forms on full pages, in modals, or on side panels. The dropdown component is used to filter or sort contents on a page. It is a stylized version of the select component, and can be styled as needed.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/dropdown/usage/"
+    },
+    {
+      "type": "Best",
+      "value": "It is best practice not to use a dropdown if there are two options to choose from. In this case, use a radio button group instead.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/dropdown/usage/"
+    },
+    {
+      "type": "Best",
+      "value": "Do not nest dropdowns or use them to display overly complex information. Keep option selections as straight forward as possible.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/dropdown/usage/"
+    },
+    {
+      "type": "Best",
+      "value": "Consider using a select if most of your experience is form-based or frequently used on mobile platforms. The native select works more easily with a native form when submitting data and is also easier to use on a mobile platform",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/dropdown/usage/"
+    },
+    {
+      "type": "Best",
+      "value": "A number of components can be used to give people the ability to select options. See the list of related components below for advice on choosing the right one.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/dropdown-menu/dropdown-item/examples"
+    },
+    {
+      "type": "Best",
+      "value": "When organizing dropdown menu items, sort the list in a logical order by putting the most selected option at the top, if known. Test and refine over time to re-evaluate if all menu items are needed.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/dropdown-menu/dropdown-item/examples"
+    },
+    {
+      "type": "Best",
+      "value": "For long lists, group related menu items. If including radio buttons and checkboxes as menu items, try grouping related actions.",
+      "source": "atlassian",
+      "recommended": true,
+      "link": "https://atlassian.design/components/dropdown-menu/dropdown-item/examples"
+    },
+    {
+      "type": "Best",
+      "value": "Grouped items are separated by a short, uppercase title that describes the options in that sub-category.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/dropdown-menu/dropdown-item/examples"
+    },
+    {
+      "type": "Description",
+      "value": "Dropdowns have a list of options that a user can select from. These selections can fill in a form, filter, or sort content.",
+      "source": "carbon",
+      "recommended": true,
+      "link": "https://carbondesignsystem.com/components/dropdown/usage/"
+    },
+    {
+      "type": "Description",
+      "value": "A dropdown (sometimes called a select) lets users choose a single item from a dropdown list.",
+      "source": "wise",
+      "recommended": false,
+      "link": "https://wise.design/components/dropdown"
+    },
+    {
+      "type": "Description",
+      "value": "A dropdown lets people choose one or more options from a list. It can be used in forms to gather information where the options require custom styling or in UI to filter and sort information.",
+      "source": "Fluent",
+      "recommended": false,
+      "link": "https://fluent2.microsoft.design/components/web/react/core/dropdown/usage"
+    },
+    {
+      "type": "Do",
+      "value": "Do align default style dropdown containers flush to the grid so the input label aligns with other type on the page.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/dropdown/usage/"
+    },
+    {
+      "type": "Do",
+      "value": "Do place fluid components flush to on another with no spacing between them.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/dropdown/usage/"
+    },
+    {
+      "type": "Do",
+      "value": "Labels- Keep the label short and concise by limiting it to a single line of text.",
+      "source": "carbon",
+      "recommended": true,
+      "link": "https://carbondesignsystem.com/components/dropdown/usage/"
+    },
+    {
+      "type": "Do",
+      "value": "Helper text- Use sentence-style capitalization and write the text as full sentences with punctuation, unless space is limited.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/dropdown/usage/"
+    },
+    {
+      "type": "Do",
+      "value": "Keep menu items to a single line of text",
+      "source": "carbon",
+      "recommended": true,
+      "link": "https://carbondesignsystem.com/components/dropdown/usage/"
+    },
+    {
+      "type": "Do",
+      "value": "use sentence case and write concise labels that clearly indicate the purpose of the selection",
+      "source": "atlassian",
+      "recommended": true,
+      "link": "https://atlassian.design/components/dropdown-menu/dropdown-item/examples"
+    },
+    {
+      "type": "Do",
+      "value": "use verbs and verb phrases to describe the action that occurs when the item is chosen. For example, “Move”, “Log time”, or “Hide epic labels”.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/dropdown-menu/dropdown-item/examples"
+    },
+    {
+      "type": "Do",
+      "value": "In most cases, links should be nouns. For example, Profile or Keyboard shortcuts.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/dropdown-menu/dropdown-item/examples"
+    },
+    {
+      "type": "Do",
+      "value": "Exclude articles in menu items. For example, use \"Add flag\" instead of \"Add a flag\".",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/dropdown-menu/dropdown-item/examples"
+    },
+    {
+      "type": "Do",
+      "value": "Keep menu items to a single line of text",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/dropdown-menu/dropdown-item/examples"
+    },
+    {
+      "type": "Not",
+      "value": "Don't hang default style dropdowns into the grid gutters.",
+      "source": "carbon",
+      "recommended": true,
+      "link": "https://carbondesignsystem.com/components/dropdown/usage/"
+    },
+    {
+      "type": "Not",
+      "value": "Do not use fluid components with vertical or horizontal spacing between them.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/dropdown/usage/"
+    }
+  ]
+}

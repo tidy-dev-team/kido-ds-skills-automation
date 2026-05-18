@@ -1,0 +1,133 @@
+{
+  "component": "date-picker",
+  "schema_version": "0.1",
+  "source": "competitive research, imported 2026-05-17",
+  "entries": [
+    {
+      "type": "Accessibility",
+      "value": "If using a field with a label other than \"Date\", use the label prop. Assistive technologies will announce these along with the label from the field component when activated.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/datetime-picker/date-picker/usage"
+    },
+    {
+      "type": "Accessibility",
+      "value": "Allow multiple modes of data entry. Some users prefer entering date and time information by typing instead of selection, especially keyboard users.",
+      "source": "atlassian",
+      "recommended": true,
+      "link": "https://atlassian.design/components/datetime-picker/date-picker/usage"
+    },
+    {
+      "type": "Accessibility",
+      "value": "If some dates are disabled, provide accurate validation and error messaging for keyboard users, like: Please enter a future date.",
+      "source": "atlassian",
+      "recommended": true,
+      "link": "https://atlassian.design/components/datetime-picker/date-picker/usage"
+    },
+    {
+      "type": "Accessibility",
+      "value": "Use the shouldShowCalendarButton prop. It provides a button for users to show the calendar picker popup. This should also be used with both the openCalendarLabel and one of the following props: label, inputLabel, or inputLabelId. This ensures the calendar button gets a proper accessible name. This will become the standard in the future.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/datetime-picker/date-picker/usage"
+    },
+    {
+      "type": "Best",
+      "value": "When asking the user for an exact, approximate, or memorable date or time.",
+      "source": "carbon",
+      "recommended": true,
+      "link": "https://carbondesignsystem.com/components/date-picker/usage/#universal-behaviors"
+    },
+    {
+      "type": "Best",
+      "value": "For scheduling tasks.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/date-picker/usage/#universal-behaviors"
+    },
+    {
+      "type": "Best",
+      "value": "Date picker should open the native picker, like the native calendar.",
+      "source": "Wise",
+      "recommended": false,
+      "link": "https://wise.design/components/date-picker"
+    },
+    {
+      "type": "Description",
+      "value": "Date pickers let people select a date, or a range of dates",
+      "source": "material",
+      "recommended": true,
+      "link": "https://m2.material.io/components/date-pickers"
+    },
+    {
+      "type": "Description",
+      "value": "Date and time pickers allow users to select a single instance or range of dates and times.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/date-picker/usage/#universal-behaviors"
+    },
+    {
+      "type": "Description",
+      "value": "A date picker allows the user to select a particular date.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/datetime-picker/date-picker/usage"
+    },
+    {
+      "type": "Description",
+      "value": "Use date picker to let users pick a date from a calendar.",
+      "source": "Wise",
+      "recommended": false,
+      "link": "https://wise.design/components/date-picker"
+    },
+    {
+      "type": "Do",
+      "value": "Maintain 16dp left and right padding from the edge of the screen. The top and bottom of the picker should be vertically centered in the screen.",
+      "source": "material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/date-pickers"
+    },
+    {
+      "type": "Do",
+      "value": "For dates that don’t require a calendar view, make the mobile date input picker as the default prompt.",
+      "source": "material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/date-pickers"
+    },
+    {
+      "type": "Do",
+      "value": "Alternatively, a text field with appropriate hint text can prompt for dates, such as in a form.",
+      "source": "material",
+      "recommended": true,
+      "link": "https://m2.material.io/components/date-pickers"
+    },
+    {
+      "type": "Do",
+      "value": "Use hover states to preview a user’s selection.",
+      "source": "material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/date-pickers"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t use more than 16dp from the left and right screen edges, as it creates smaller touch targets.",
+      "source": "material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/date-pickers"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t use a calendar picker to prompt for dates in the distant past or future, such as a date of birth. In these cases, use a mobile input picker or a text field instead.",
+      "source": "material",
+      "recommended": true,
+      "link": "https://m2.material.io/components/date-pickers"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t use the same style for hover and selected states.",
+      "source": "material",
+      "recommended": true,
+      "link": "https://m2.material.io/components/date-pickers"
+    }
+  ]
+}

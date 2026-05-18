@@ -15,25 +15,30 @@ The choice between the single-page research plan and the three-page designer vis
 
 ## Decision
 
-`/ds-doc` produces **three Figma doc pages per component**, all in one run, into a dedicated `📄 Documentation` page in the target file. The three pages are:
+`/ds-doc` produces **three Figma doc frames per component**, all in one run, onto a dedicated per-component page named `{slug}_documentation` (lowercase, underscored — e.g. `button_documentation`) inserted directly below the component's source page in the target file. The three frames are:
 
-1. **Component Breakdown** — variants grid (rows × columns derived from the spec's `doc.variants_grid` axis declaration), max width/height, min width/height, icon-position variations
-2. **Mode** — a grid of cells, one per `theme.*` entry in `tokens.json`, each showing the polished component rendered in that mode/brand
-3. **Usage Guidelines** — prose-heavy: When-to-use / When-not-to-use / General / Behavior (Do/Don't pairs) / Content (Do/Don't) / Look & Feel (Do/Don't)
+> **2026-05-17 amendment:** the original ADR specified a single shared `📄 Documentation` page hosting all components' frames. That was retired in favor of one `{slug}_documentation` page per component, placed adjacent to its source page. The three-frames-per-component architecture below is unchanged; only the page-hosting model moved from singleton-shared to per-component-adjacent. Reason: designers wanted doc pages to live next to the component they describe, not in a separate catalog page that grew unbounded.
 
-Each page is a clone of a canonical Kido DS master template (`doc-template / component-breakdown`, `doc-template / mode`, `doc-template / usage-guidelines`). Masters contain layers named `slot/{section-id}` that the agent fills. Repeating slots (Do/Don't pairs) clone a `pair-template` component N times.
+
+1. **Component Breakdown** — max width/height, min width/height, icon-position variations
+2. **Mode** — variants grid (rows × columns derived from `spec.doc.variants_grid`) at the top, then a grid of cells one per `theme.*` entry in `tokens.json` showing the polished component rendered in each mode/brand
+3. **Usage Guidelines** — prose-heavy: When-to-use / When-not-to-use / General / Behavior (Do/Don't pairs) / Content (Do/Don't pairs) / Accessibility (bulleted list, at the bottom)
+
+Each page is a clone of a canonical doc-page master template (`doc-template / component-breakdown`, `doc-template / mode`, `doc-template / usage-guidelines`). Masters contain layers named `slot/{section-id}` that the agent fills. Repeating sub-elements are cloned from in-slot templates: bulleted slots clone existing `list-item` frames; Do/Don't pair slots clone existing `row` frames. The Header and Footer are shared INSTANCEs that the agent modifies via property overrides (Header) or ignores (Footer) rather than treating as `slot/*` layers.
+
+**Template source (current, 2026-05-13):** the temp file at `https://www.figma.com/design/ruXFua2pK1ZHVtpPaj9aU3/Documentation-template`. Designers iterate the layout there; once approved, masters promote to the Kido DS canonical file and the skill updates its source pointer.
 
 Data sources per section:
 
 | Section | Source |
 |---|---|
 | Header title / status pill | Hardcoded literal + page-type lookup (status renders as `IDEATION`) |
-| Variants grid axes | `specs/{component}.spec.json` → `doc.variants_grid.rows/cols` |
-| Variants grid cells | Polished Figma component-set variant matrix (live read) |
-| Max / Min width-height | `specs/{component}.spec.json` → `sizing.{size}.max_*` / `min_*` |
-| Icon positions | Derived from `anatomy.component_properties` BOOLEAN + INSTANCE_SWAP pairs (auto-detect) |
-| Mode grid cells | `working/{project}/tokens.json` → iterate `theme.*` |
-| Usage Guidelines prose | `specs/{component}.spec.notes.md` top sections (When to use / When not to use / General guidelines / Accessibility / Behavior / Content / Look & Feel) |
+| Variants grid axes (Mode page) | `specs/{component}.spec.json` → `doc.variants_grid.rows/cols` |
+| Variants grid cells (Mode page) | Polished Figma component-set variant matrix (live read). Template columns the spec doesn't declare stay empty — skill never invents state values to fill cells. |
+| Max / Min width-height (Component Breakdown) | `specs/{component}.spec.json` → `sizing.{size}.max_*` / `min_*` |
+| Icon positions (Component Breakdown) | Derived from `anatomy.component_properties` BOOLEAN + INSTANCE_SWAP pairs (auto-detect) |
+| Mode grid cells (Mode page) | `working/{project}/tokens.json` → iterate `theme.*` |
+| Usage Guidelines prose | `specs/{component}.spec.notes.md` top sections (When to use / When not to use / General guidelines / Behavior / Content / Accessibility) |
 | Do/Don't visual examples | `specs/{component}.dodont.json` mapping rule slugs → Kido DS Figma node IDs |
 
 ## Considered alternatives
@@ -88,8 +93,8 @@ Rejected for v1. The Claroty engagement is Workflow B and that's where the immed
 
 ### Negative
 
-- Three master templates to author and maintain in Kido DS (vs one)
-- Skill can't run end-to-end until masters are promoted from the Claroty file to Kido DS canonical
+- Three master templates to author and maintain (vs one)
+- Templates currently live in a temp file (`ruXFua2pK1ZHVtpPaj9aU3`) — skill reads from there until masters are promoted to the Kido DS canonical file. Workflow B Claroty engagement was the initial source of the design; the temp file inherits it.
 - `.spec.notes.md` now mixes Kido-internal rationale with user-facing prose; reader must understand the heading taxonomy
 - Spec schema 0.3 bump requires touching all six existing specs to declare `doc.variants_grid`
 - `dodont.json` becomes a new per-component artifact the DS team must author for full doc coverage
@@ -100,9 +105,18 @@ Rejected for v1. The Claroty engagement is Workflow B and that's where the immed
 - Status pill lifecycle (IDEATION → READY → PUBLISHED) is convention-only; no enforcement
 - Designer manually advances status; agent always renders IDEATION
 
+## Revisions since acceptance
+
+- **2026-05-13** — Added `## Accessibility` section to the Usage Guidelines page, prompted by the Tidy Do's and Don'ts sheet import (which had `Accessibility` as a first-class category).
+- **2026-05-13** — Designers delivered the temp template file (`ruXFua2pK1ZHVtpPaj9aU3/Documentation-template`) with three structural changes from the initial decision:
+  - **Variants grid moved from Component Breakdown to the Mode page.** Component Breakdown is now bounds + icon positions only; Mode is variants grid (top) + theme cells (bottom).
+  - **`Look & Feel` section removed** from Usage Guidelines. Six sections instead of seven: When to use / When not to use / General / Behavior / Content / Accessibility.
+  - **Accessibility moved to the bottom** of Usage Guidelines (after Content), rendered as a single bulleted list rather than a Do/Don't bucket.
+  - Template ships with state columns the current spec model doesn't declare (e.g., `Hover on active`, `Blinking`). Skill renders only spec-declared states; extra columns stay empty until specs are extended or template is pruned.
+
 ## Open questions / follow-ups
 
 - Workflow A support — when there's demand, define how the Mode page behaves with no `theme.*` block
 - Anatomy callouts (numbered annotations on a default instance) — not in the v1 layout; if designers add a fourth page (Anatomy), this ADR will need an update
 - Tokens table on the doc page — not in v1; Dev Mode + Code Connect cover the engineering audience for now
-- Accessibility section — **added 2026-05-13** to the Usage Guidelines page between General guidelines and Behavior, prompted by the Tidy Do's and Don'ts sheet import (which had `Accessibility` as a first-class category). Master template `doc-template / usage-guidelines` needs a new `slot/accessibility` layer; designer task, pending.
+- Promote masters from the temp `Documentation-template` file to the Kido DS canonical file once layouts stabilize; update the skill's source pointer at that time

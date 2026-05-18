@@ -149,7 +149,9 @@ Slot-mapping values are token paths into `tokens.json` (e.g. `colors.interactive
 
 ## Step 3 — Build in Figma
 
-Use `figma_execute` or `use_figma` to create the component set. Structure:
+Use the official Figma MCP (`claude.ai Figma` — see `CLAUDE.md` § Figma MCP) for every read and write. Writes go through **`use_figma`** with the target `fileKey` from REQUIREMENTS.md's Figma build target. `loadAllPagesAsync()` is unsupported in `use_figma` (document is pre-loaded server-side — strip the call from any ported script).
+
+Structure:
 
 - **Component set name** — follow library convention (e.g., Chakra → `Button`; shadcn → `button`)
 - **Variant properties** — exactly the library's axes (from `library-snapshot.json`)
@@ -222,7 +224,7 @@ Validator prompt template:
 >
 > **Checklist:**
 > 1. **Structure fidelity** — does the component tree match the library anatomy in `library-snapshot.json`? Slot count, nesting, compound children all present?
-> 2. **Token application** — read the Figma fills / strokes / typography back (via `figma_get_component_details`). Do they match `slot_mapping` in `token-map.json`? Are colors, typography, effects, and spacing bound to variables — no hardcoded hex values?
+> 2. **Token application** — read the Figma fills / strokes / typography back (via `use_figma` with a script that returns `componentProperties` + per-variant fills/strokes, or `get_design_context` for a React+Tailwind reference). Do they match `slot_mapping` in `token-map.json`? Are colors, typography, effects, and spacing bound to variables — no hardcoded hex values?
 > 2a. **Unbound-but-bindable slots** — for each slot that came out as a raw value (hex / number), check whether a variable with the matching token name exists in any local collection. If yes, this is an `error`: a binding was possible but missed. List each missed slot with its token name and the variable that should have been bound. (This is the canonical regression that motivates Workflow B's binding pass — flag it loudly.)
 > 3. **Variant completeness** — are all combinations from `variant_axes` × modes present?
 > 4. **Naming conventions** — do all node names honor the `naming_prefix` from REQUIREMENTS? Are layers named semantically (no "Frame 1", "Group 2")? Is variant property vocabulary consistent with the Kido naming table (sm/md/lg, default/hover/focused/disabled)?

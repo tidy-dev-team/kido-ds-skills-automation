@@ -1,0 +1,217 @@
+{
+  "component": "link",
+  "schema_version": "0.1",
+  "source": "competitive research, imported 2026-05-17",
+  "entries": [
+    {
+      "type": "Accessibility",
+      "value": "The default link appearance has an underline and color, making it distinguishable from regular text which is an accessibility requirement. Don't use 'subtle' appearance links in this context, as they are difficult to differentiate from regular text.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/link/usage"
+    },
+    {
+      "type": "Best",
+      "value": "Links enable users to navigate between pages or resources in a seamless way. Links can be used within a body of text or as a standalone element.",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/link/guidelines/"
+    },
+    {
+      "type": "Best",
+      "value": "Links navigate you to a new place or new content. Do not use links for triggering an action. Instead, use buttons, which are designed to activate a feature.",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/link/guidelines/"
+    },
+    {
+      "type": "Best",
+      "value": "Links should be concise and not exceed more than a few words.",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/link/guidelines/"
+    },
+    {
+      "type": "Description",
+      "value": "A link takes people to a new location in the app or another website.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/link/usage"
+    },
+    {
+      "type": "Description",
+      "value": "Links are used as navigational elements. They navigate users to another location, such as a different site, resource, or section within the same page.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/link/usage/"
+    },
+    {
+      "type": "Description",
+      "value": "Links are used to apply styles to hyperlink text.",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/link/accessibility/"
+    },
+    {
+      "type": "Description",
+      "value": "Links allow users to navigate to a different location. They can be presented inside a paragraph or as standalone text.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/link/#Usage-guidelines"
+    },
+    {
+      "type": "Do",
+      "value": "Use the default link appearance when surrounded by regular text.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/link/usage"
+    },
+    {
+      "type": "Do",
+      "value": "Use the subtle appearance when surrounding context makes it clear it's a link.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/link/usage"
+    },
+    {
+      "type": "Do",
+      "value": "Clearly describe the purpose of the link.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/link/usage"
+    },
+    {
+      "type": "Do",
+      "value": "Do use links when actions navigate users to resources",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/link/usage/"
+    },
+    {
+      "type": "Do",
+      "value": "Be descriptive with your links so that they can stand alone and be understood.",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/link/accessibility/"
+    },
+    {
+      "type": "Do",
+      "value": "Underline links in paragraphs and sentences",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/link/accessibility/"
+    },
+    {
+      "type": "Do",
+      "value": "Use a link color that has a 3:1 contrast against the text color",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/link/accessibility/"
+    },
+    {
+      "type": "Do",
+      "value": "Use an icon or a background shape to demarcate a link",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/link/accessibility/"
+    },
+    {
+      "type": "Do",
+      "value": "Accessible name fully includes the visible link text, \"Learn more\" and is well-formed with either label.",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/link/accessibility/"
+    },
+    {
+      "type": "Do",
+      "value": "Use links in body copy",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/link/#Usage-guidelines"
+    },
+    {
+      "type": "Not",
+      "value": "Use the subtle link appearance when surrounded by regular text.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/link/usage"
+    },
+    {
+      "type": "Not",
+      "value": "Use the default appearance when surrounding context already makes it clear it's a link.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/link/usage"
+    },
+    {
+      "type": "Not",
+      "value": "Link vague words or phrases.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/link/usage"
+    },
+    {
+      "type": "Not",
+      "value": "Do not use buttons when actions serve as a navigation purpose",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/link/usage/"
+    },
+    {
+      "type": "Not",
+      "value": "Don't use generic terms like 'click here' that can't be understood out of context.",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/link/accessibility/"
+    },
+    {
+      "type": "Not",
+      "value": "Don't use underlines for non-link highlights or forget to demarcate links",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/link/accessibility/"
+    },
+    {
+      "type": "Not",
+      "value": "Don't use a color that has less than a 3:1 contrast against the text color for links",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/link/accessibility/"
+    },
+    {
+      "type": "Not",
+      "value": "Don't use text styles like italic or bold to demarcate links",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/link/accessibility/"
+    },
+    {
+      "type": "Not",
+      "value": "Accessible name results in poorly-formed sentence, \"Learn more about keyboard shortcuts allow you to access common commands more quickly\".",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/link/accessibility/"
+    },
+    {
+      "type": "Not",
+      "value": "Links are for usage in body copy and are not appropriate in titles.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/link/#Usage-guidelines"
+    },
+    {
+      "type": "Not",
+      "value": "Avoid overly generic link language like “learn more,” “click here,” “more information,” or “continue reading.” It’s more accessible and inclusive to write link text as unique descriptions of the navigational target or function.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/link/#Usage-guidelines"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t use the same link text to link to different information in the same view.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/link/#Usage-guidelines"
+    }
+  ]
+}

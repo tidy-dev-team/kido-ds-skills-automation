@@ -1,0 +1,224 @@
+{
+  "component": "checkbox",
+  "schema_version": "0.1",
+  "source": "competitive research, imported 2026-05-17",
+  "entries": [
+    {
+      "type": "Accessibility",
+      "value": "Checkbox groups should be associated with a descriptive label component. Use the checkbox field component for built-in label functionality.",
+      "source": "fluent",
+      "recommended": true,
+      "link": "https://fluent2.microsoft.design/components/web/react/core/checkbox/usage#accessibility"
+    },
+    {
+      "type": "Best",
+      "value": "It should be visible at a glance if a checkbox has been selected, and selected items should be more visually prominent than unselected items.",
+      "source": "Material",
+      "recommended": true,
+      "link": "https://m3.material.io/components/checkbox/overview"
+    },
+    {
+      "type": "Best",
+      "value": "Checkboxes make it easy to compare available options.",
+      "source": "Material",
+      "recommended": true,
+      "link": "https://m3.material.io/components/checkbox/overview"
+    },
+    {
+      "type": "Best",
+      "value": "Checkbox labels are positioned to the right of their inputs. If there is a checkbox grouping, they can be laid out vertically or horizontally depending on the use case and the structure of the UI.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/checkbox/usage/"
+    },
+    {
+      "type": "Best",
+      "value": "Checkboxes in a form should be placed at least 32px (layout-03) below or before the next component.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/checkbox/usage/"
+    },
+    {
+      "type": "Best",
+      "value": "Spacing of 24px (layout-02) or 16px (layout-01) can also be used when space is more restricted or if the form is more complex.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/checkbox/usage/"
+    },
+    {
+      "type": "Best",
+      "value": "We recommend checkbox labels being fewer than three words.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/checkbox/usage/"
+    },
+    {
+      "type": "Best",
+      "value": "If you are tight on space, consider rewording the label. Do not truncate checkbox label text with an ellipsis.",
+      "source": "carbon",
+      "recommended": true,
+      "link": "https://carbondesignsystem.com/components/checkbox/usage/"
+    },
+    {
+      "type": "Best",
+      "value": "Checkboxes can be nested when a parent and child relationship is needed. Users can either select an entire set of options or only a subset.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/checkbox/usage/"
+    },
+    {
+      "type": "Best",
+      "value": "Keep checkbox labels short and descriptive.",
+      "source": "atlassian",
+      "recommended": true,
+      "link": "https://atlassian.design/components/checkbox/examples"
+    },
+    {
+      "type": "Best",
+      "value": "Start all checkbox labels with a capital letter.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/checkbox/examples"
+    },
+    {
+      "type": "Best",
+      "value": "Don't include punctuation after checkbox labels.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/checkbox/examples"
+    },
+    {
+      "type": "Description",
+      "value": "Checkboxes let users select one or more items from a list, or turn an item on or off",
+      "source": "Material",
+      "recommended": true,
+      "link": "https://m3.material.io/components/checkbox/overview"
+    },
+    {
+      "type": "Description",
+      "value": "Checkboxes allow users to select multiple items from a list of individual items, or to mark one individual item as selected.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/checkbox/"
+    },
+    {
+      "type": "Description",
+      "value": "Checkboxes are used when there are multiple items to select in a list. Users can select zero, one, or any number of items.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/checkbox/usage/"
+    },
+    {
+      "type": "Description",
+      "value": "A checkbox is an input control that allows a user to select one or more options from a number of choices.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/checkbox/examples"
+    },
+    {
+      "type": "Description",
+      "value": "Enables users to pick multiple options from a group.",
+      "source": "orbit",
+      "recommended": false,
+      "link": "https://orbit.kiwi/components/input/checkbox/"
+    },
+    {
+      "type": "Description",
+      "value": "Checkboxes let users select zero, one, or multiple items from a list.",
+      "source": "wise",
+      "recommended": false,
+      "link": "https://wise.design/components/checkbox"
+    },
+    {
+      "type": "Do",
+      "value": "Checkboxes should be used instead of switches if multiple options can be selected from a list.",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m3.material.io/components/checkbox/overview"
+    },
+    {
+      "type": "Do",
+      "value": "Checkboxes let users select one or more options from a list. A parent checkbox allows for easy selection or deselection of all items.",
+      "source": "Material",
+      "recommended": true,
+      "link": "https://m3.material.io/components/checkbox/overview"
+    },
+    {
+      "type": "Do",
+      "value": "Do use radio buttons when only one item can be selected.",
+      "source": "carbon",
+      "recommended": true,
+      "link": "https://carbondesignsystem.com/components/checkbox/usage/"
+    },
+    {
+      "type": "Do",
+      "value": "Long labels may wrap to a second line, and this is preferable to truncation.",
+      "source": "carbon",
+      "recommended": true,
+      "link": "https://carbondesignsystem.com/components/checkbox/usage/"
+    },
+    {
+      "type": "Do",
+      "value": "Do let text wrap beneath the checkbox so the control and label are top aligned.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/checkbox/usage/"
+    },
+    {
+      "type": "Do",
+      "value": "Checkboxes are best used for communicating selection (e.g., multiple table rows)",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/checkbox/"
+    },
+    {
+      "type": "Do",
+      "value": "Present only absolutely necessary information with interactions to offer more.",
+      "source": "orbit",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Checkbox labels should be concise and scannable. Use sentence fragments instead of full sentences and steer clear of multiple sentences unless it’s necessary.",
+      "source": "fluent",
+      "recommended": true,
+      "link": "https://fluent2.microsoft.design/components/web/react/core/checkbox/usage#content"
+    },
+    {
+      "type": "Not",
+      "value": "If a list consists of multiple options, don't use switches. Instead, use checkboxes. Checkboxes imply the items are related, and take up less visual space.",
+      "source": "Material",
+      "recommended": true,
+      "link": "https://m3.material.io/components/checkbox/overview"
+    },
+    {
+      "type": "Not",
+      "value": "Don't use checkboxes when only one item can be selected.",
+      "source": "carbon",
+      "recommended": true,
+      "link": "https://carbondesignsystem.com/components/checkbox/usage/"
+    },
+    {
+      "type": "Not",
+      "value": "Do not vertically center wrapped text with the checkbox.",
+      "source": "carbon",
+      "recommended": true,
+      "link": "https://carbondesignsystem.com/components/checkbox/usage/"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t overwhelm users with too much information at once.",
+      "source": "orbit",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Avoid labels that make a negative statement, which can be confusing. Stick with statements that make it obvious that checked means yes.",
+      "source": "fluent",
+      "recommended": false,
+      "link": "https://fluent2.microsoft.design/components/web/react/core/checkbox/usage#content"
+    }
+  ]
+}

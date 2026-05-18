@@ -1,0 +1,511 @@
+{
+  "component": "modal",
+  "schema_version": "0.1",
+  "source": "competitive research, imported 2026-05-17",
+  "entries": [
+    {
+      "type": "Accessibility",
+      "value": "Modal dialogs take focus on appearance, and the tab order is constrained to the modal’s controls until the modal is closed by choosing one of the buttons with Enter or Space, or is dismissed by pressing Esc.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Accessibility",
+      "value": "Keyboard navigation is constrained to the dialog. Tab cycles through the components that take focus.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Accessibility",
+      "value": "The tab order should proceed left and down from whichever item has focus then wrap back to the close button (X).",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Accessibility",
+      "value": "Modals must have a title or label available for users to understand what the modal is for.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Accessibility",
+      "value": "Use numerous ways to dismiss a modal dialog: \nclick Cancel in the footer\nclick X in the header (if included)\npress Esc on a keyboard\nclick anywhere on the blanket",
+      "source": "atlassian",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Dialogs should be used for: errors that block an app’s normal operation",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Or: critical information that requires a specific user task, decision, or acknowledgement",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Required: Dialogs block app usage until the user takes a dialog action or exits the dialog (if available)",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Side by side buttons - recommended choice",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Use sparingly, as modals interrupt the app actions and flow",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Avoid scrolling",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "While effective when used correctly, modals should be used sparingly to limit disruption to the user.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "When to use: Require an immediate response from the user",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "When to use: Notify the user of urgent information",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "When to use: Confirm a user decision",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "For short, direct messages the title can include the whole message to add visual clarity to an otherwise repetitive title and body message.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Single buttons are placed on the right side, span 50% of the modal, and bleed to the edge. In most scenarios, a primary button is used when one button is needed.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "When using two buttons, the secondary button is on the left and the primary button is placed on the right. Each button spans 50% of the dialog and are full bleed to the edge.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "In the rare case where three buttons are needed, each is 25% of the dialog width and aligned to the right side of the modal. Only the outmost right button is allowed to be a primary button with the other two being secondary buttons. If all three actions have the same weight then all three should be secondary buttons.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Any information or input requested should be directly related to the user’s task at hand.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Modal dialogs are invasive and should be used sparingly. The ability of the user to access and view their own content is paramount to a good experience.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Try to limit the number of interactions in a modal dialog. Simplify by removing unnecessary elements or content that does not support the task.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Avoid multiple steps that require navigation within the modal dialog.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Avoid complex decision making that requires additional sources of information unavailable in the modal.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "This modal dialog is responsive. When adding contents, respect the dimensions set by modal dialog to maintain responsiveness.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "It's best to support multiple methods for dismissal, however the use of both Cancel and X is not required on desktop.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Keep the content of the modal succinct — you have limited space overall, and the information in a modal should be aiming to achieve a goal.",
+      "source": "wise",
+      "recommended": false,
+      "link": "https://wise.design/components/modal"
+    },
+    {
+      "type": "Description",
+      "value": "Modals focus the user’s attention exclusively on one task or piece of information by using a window that is displayed on top of the page content.",
+      "source": "carbon",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Description",
+      "value": "A modal dialog displays content that requires user interaction, in a layer above the page",
+      "source": "atlassian",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Description",
+      "value": "Dialogs inform users about a task and can contain critical information, require decisions, or involve multiple tasks.",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/dialogs"
+    },
+    {
+      "type": "Description",
+      "value": "A modal is an overlay that interrupts the user’s task to show an important message, disabling the rest of the screen.",
+      "source": "wise",
+      "recommended": false,
+      "link": "https://wise.design/components/modal"
+    },
+    {
+      "type": "Do",
+      "value": "Contain a brief, clear statement or question",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Provide clear actions to the user",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Use side by side buttons for short actions and stacked for longer actions",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Keep full dialog content visible to the user",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "While scrolling, pin the dialog title at the top",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Keep background app content in a fixed position",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Disable confirming actions until a choice is made",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Place confirming actions to the right of the dismissive actions",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Provide single action only if the dialog is an acknowledgement",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Dialogs should contain a maximum of 2 actions",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Use short dialog titles to avoid truncation",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Selecting an item in the selection dialog will close the dialog automatically",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Tap out in the simple dialog to close it",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "In confirmation dialogs: provide confirmation and dismissive buttons",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "The title should be brief, using a verb plus noun combination that clearly describes the dialog’s task or purpose.",
+      "source": "carbon",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "A modal should include only content relevant to completing the current task.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Use descriptive words for the actions such as Add, Delete, and Save.",
+      "source": "carbon",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "If you need to include a “docs” or other non-primary action, include it as a link in the modal’s body.",
+      "source": "carbon",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "For modals with a lot of content, add vertical scroll with header and footer remaining in place",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Use a regular content page for large content amouns",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Use dialog titles that pose an ambiguous question",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Provide vague and unclear action titles",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Use side by side buttons for long actions",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Obscure dialog content by other elements or place the dialog partially",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Hide dialog title while scrolling",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Scroll the apps content together with dialog",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Keep all actions enabled at all times",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Place confirming actions to the left of the dismissive actions",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Present the users with unclear choices",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Provide more than 2 actions in a dialog",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Use with caution: dialog's titles that take more than 2 lines",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Use action text for selection dialogs",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Include dismissive actions (Cancel) in a simple dialog",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Provide a single action, as it's unclear how to dismiss the dialog",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Use long and vague titles in the header",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Include irrelevant content into the modal",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Use vague words like Done or OK",
+      "source": "carbon",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Use modal actions for secondary/additional information",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Include horizontal scroll into a modal",
+      "source": "carbon",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Make modals full page",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Don't display a modal on top of another modal (either add the extra information to the existing modal content, or direct users to a new screen).",
+      "source": "wise",
+      "recommended": true,
+      "link": "https://wise.design/components/modal"
+    }
+  ]
+}

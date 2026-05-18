@@ -1,0 +1,182 @@
+{
+  "component": "list",
+  "schema_version": "0.1",
+  "source": "competitive research, imported 2026-05-17",
+  "entries": [
+    {
+      "type": "Accessibility",
+      "value": "No accessibility annotations are needed for lists, but keep these considerations in mind if you are modifying Carbon or creating a custom component",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/list/accessibility/"
+    },
+    {
+      "type": "Best",
+      "value": "Lists are a continuous group of text or images. They are composed of items containing primary and supplemental actions, which are represented by icons and text.",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/list/usage/"
+    },
+    {
+      "type": "Best",
+      "value": "Lists should be sorted in logical ways that make content easy to scan, such as alphabetical, numerical, chronological, or by user preference.",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/list/usage/"
+    },
+    {
+      "type": "Best",
+      "value": "Lists present content in a way that makes it easy to identify a specific item in a collection and act on it.",
+      "source": "Material",
+      "recommended": true,
+      "link": "https://carbondesignsystem.com/components/list/usage/"
+    },
+    {
+      "type": "Best",
+      "value": "Lists should present icons, text, and actions in a consistent format.",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/list/usage/"
+    },
+    {
+      "type": "Best",
+      "value": "Lists are optimized for reading comprehension. A list consists of a single continuous column of subdivisions called rows that contain items of content.",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/list/usage/"
+    },
+    {
+      "type": "Best",
+      "value": "A list should be easily scannable, and any element of a list can be used to anchor and align list item content. Scannability is improved when elements (such as supporting visual and primary text) are placed in consistent locations across list items.",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/list/usage/"
+    },
+    {
+      "type": "Best",
+      "value": "Place a divider between rows with lots of content, such as those with three-line lists.",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/list/usage/"
+    },
+    {
+      "type": "Best",
+      "value": "Avoid excessively long lines of text when expanding containers and text-heavy components  within fluid layouts.",
+      "source": "Material",
+      "recommended": true,
+      "link": "https://carbondesignsystem.com/components/list/usage/"
+    },
+    {
+      "type": "Best",
+      "value": "Show and hide details of existing list items by expanding and collapsing list content vertically.",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/list/usage/"
+    },
+    {
+      "type": "Best",
+      "value": "Use bulleted lists when you don’t need to convey a specific order for list items.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/list/usage/"
+    },
+    {
+      "type": "Best",
+      "value": "Use numbered lists when you need to convey a priority, hierarchy, or sequence between list items.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/list/usage/"
+    },
+    {
+      "type": "Best",
+      "value": "Generally, lists should be used to present simple pieces of information. For more complex sets of data, consider using a data table.",
+      "source": "carbon",
+      "recommended": true,
+      "link": "https://carbondesignsystem.com/components/list/usage/"
+    },
+    {
+      "type": "Best",
+      "value": "Arrange list items in a logical way. For example, if the list is about resource use, the default order might be highest resource use to lowest. Grouping items in categories into smaller, more specific lists might be more meaningful in some contexts. Alternatively, organize in alphabetical or numeric order.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/list/usage/"
+    },
+    {
+      "type": "Best",
+      "value": "Use list items that are grammatically parallel. For example, do not mix passive voice with active voice or declarative sentences (statements) with imperative sentences (direct command).",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/list/usage/"
+    },
+    {
+      "type": "Best",
+      "value": "Break up chunks of related content to make the information easier for merchants to scan",
+      "source": "polaris",
+      "recommended": false,
+      "link": "https://polaris-react.shopify.com/components/lists/list#accessibility"
+    },
+    {
+      "type": "Best",
+      "value": "Be phrased consistently (try to start each item with a noun or a verb and be consistent with each item)",
+      "source": "polaris",
+      "recommended": false,
+      "link": "https://polaris-react.shopify.com/components/lists/list#accessibility"
+    },
+    {
+      "type": "Best",
+      "value": "Not be used for lists where the entire item represents an action",
+      "source": "polaris",
+      "recommended": false,
+      "link": "https://polaris-react.shopify.com/components/lists/list#accessibility"
+    },
+    {
+      "type": "Description",
+      "value": "Lists are vertical groupings of related content. List items begin with either a number or a bullet",
+      "source": "carbon",
+      "recommended": true,
+      "link": "https://carbondesignsystem.com/components/list/usage/"
+    },
+    {
+      "type": "Description",
+      "value": "Lists are continuous, vertical indexes of text and images",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m3.material.io/components/lists/overview"
+    },
+    {
+      "type": "Description",
+      "value": "Lists display a set of related text-only content. Each list item begins with a bullet or a number.",
+      "source": "polaris",
+      "recommended": false,
+      "link": "https://polaris-react.shopify.com/components/lists/list"
+    },
+    {
+      "type": "Do",
+      "value": "Improve scannability by anchoring supporting visuals, such as thumbnails, along the row's edge.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Adjust margins to create a more comfortable line length for reading.",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Placing supporting visuals in the center of the row can make it difficult to see the relationship between primary content and supporting content.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Don’t scale components without adjusting other affected areas of the screen, such as text length. This can result in line lengths that make reading difficult.",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    }
+  ]
+}

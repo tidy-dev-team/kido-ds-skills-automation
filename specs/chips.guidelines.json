@@ -1,0 +1,140 @@
+{
+  "component": "chips",
+  "schema_version": "0.1",
+  "source": "competitive research, imported 2026-05-17",
+  "entries": [
+    {
+      "type": "Accessibility",
+      "value": "The chip label needs at least 3:1 contrast with the background.",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m3.material.io/components/chips/accessibility"
+    },
+    {
+      "type": "Accessibility",
+      "value": "Ensure sufficient color contrast between chip container and its content (text/icon) so that users with low vision can distinguish them",
+      "source": "Material",
+      "recommended": true,
+      "link": "https://m3.material.io/components/chips/guidelines"
+    },
+    {
+      "type": "Accessibility",
+      "value": "Chips should stay in the same position when selected, as the movement of reordering the list based on selection would add too much cognitive load for users.",
+      "source": "Wise",
+      "recommended": false,
+      "link": "https://wise.design/components/chip"
+    },
+    {
+      "type": "Accessibility",
+      "value": "With filter chips, if a new chip is added from a bottom sheet or dropdown, it should appear at the front of the list. But the rest of the order should stay the same.",
+      "source": "Wise",
+      "recommended": true,
+      "link": "https://wise.design/components/chip"
+    },
+    {
+      "type": "Best",
+      "value": "Chips help people enter information, make selections, filter content, or trigger actions. They're best used to help people accomplish their current task faster and easier.",
+      "source": "Material",
+      "recommended": true,
+      "link": "https://m3.material.io/components/chips/guidelines"
+    },
+    {
+      "type": "Best",
+      "value": "Always use chips in a set — they should never stand alone.",
+      "source": "Wise",
+      "recommended": false,
+      "link": "https://wise.design/components/chip"
+    },
+    {
+      "type": "Best",
+      "value": "Try to optimise the list, by putting the most frequently selected chip at the start.",
+      "source": "Wise",
+      "recommended": false,
+      "link": "https://wise.design/components/chip"
+    },
+    {
+      "type": "Best",
+      "value": "Don't let the list of chips get too long.",
+      "source": "Wise",
+      "recommended": false,
+      "link": "https://wise.design/components/chip"
+    },
+    {
+      "type": "Description",
+      "value": "Chips help people enter information, make selections, filter content, or trigger actions",
+      "source": "Material",
+      "recommended": true,
+      "link": "https://m3.material.io/components/chips/guidelines"
+    },
+    {
+      "type": "Description",
+      "value": "Chips allow users to filter content or make a choice from a set of options within a compact area.",
+      "source": "Wise",
+      "recommended": false,
+      "link": "https://wise.design/components/chip"
+    },
+    {
+      "type": "Do",
+      "value": "Use chips to present contextual, supplemental options",
+      "source": "Material",
+      "recommended": true,
+      "link": "https://m3.material.io/components/chips/guidelines"
+    },
+    {
+      "type": "Do",
+      "value": "Use buttons for the final step in a task",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m3.material.io/components/chips/guidelines"
+    },
+    {
+      "type": "Do",
+      "value": "Chips can be scrolled horizontally",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m3.material.io/components/chips/guidelines"
+    },
+    {
+      "type": "Do",
+      "value": "Use an outline to define the edge of the chip's container on regular backgrounds",
+      "source": "Material",
+      "recommended": true,
+      "link": "https://m3.material.io/components/chips/guidelines"
+    },
+    {
+      "type": "Do",
+      "value": "Chips may use elevation when placed on an image",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m3.material.io/components/chips/guidelines"
+    },
+    {
+      "type": "Do",
+      "value": "Keep chip labels short",
+      "source": "Material",
+      "recommended": true,
+      "link": "https://m3.material.io/components/chips/guidelines"
+    },
+    {
+      "type": "Not",
+      "value": "Avoid replacing major actions with chips. Actions that progress people to the next or previous step should always be displayed as buttons.",
+      "source": "Material",
+      "recommended": true,
+      "link": "https://m3.material.io/components/chips/guidelines"
+    },
+    {
+      "type": "Not",
+      "value": "Avoid using chips to finish or progress a task",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m3.material.io/components/chips/guidelines"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t display a single chip by itself. Chips should appear in a set.",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m3.material.io/components/chips/guidelines"
+    }
+  ]
+}

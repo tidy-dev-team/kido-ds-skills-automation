@@ -1,0 +1,175 @@
+{
+  "component": "radio-button",
+  "schema_version": "0.1",
+  "source": "competitive research, imported 2026-05-17",
+  "entries": [
+    {
+      "type": "Accessibility",
+      "value": "A radio button may not be used on its own: it must be rendered in a group of related radio buttons using a radio group.",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/getting-started/rails/components/radio_group/"
+    },
+    {
+      "type": "Best",
+      "value": "It should be visible at a glance if a radio button has been selected, and selected items should be more visually prominent than unselected items.",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Radio buttons can be selected or unselected. Radio buttons have enabled, disabled, hover, focused and pressed states.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Radio buttons are used for mutually exclusive choices, not for multiple choices.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "button can be selected at a time. When a user chooses a new item, the previous choice is automatically deselected.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Can be used in tiles, data tables, modals, side panels, and in forms on full pages.",
+      "source": "carbon",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "We recommend radio button labels being fewer than three words.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "If you are tight on space, consider rewording the label. Do not truncate radio button label text with an ellipsis.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "A radio input allows users to select only one option from a number of choices. Radio is generally displayed in a radio group.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Radio buttons are best used for selecting a single option from a list of mutually exclusive options.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/radio-group/"
+    },
+    {
+      "type": "Description",
+      "value": "Radio buttons let people select one option from a set of option",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Description",
+      "value": "A radio input allows users to select only one option from a number of choices. Radio is generally displayed in a radio group",
+      "source": "atlassian",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Description",
+      "value": "Use radio buttons when you have a group of mutually exclusive choices and only one selection from the group is allowed.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Description",
+      "value": "Radio button is a form control for making a single selection from a short list of options.",
+      "source": "primer",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Description",
+      "value": "A radio lets users select a single item from a mutually exclusive list.",
+      "source": "wise",
+      "recommended": false,
+      "link": "https://wise.design/components/radio"
+    },
+    {
+      "type": "Do",
+      "value": "Use radio buttons when only one item can be selected from a list.",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Do use checkboxes when multiple items can be selected.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Radio button labels are positioned to the right of their inputs in languages that read left to right.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "If there is a radio button grouping, they can be laid out vertically or horizontally depending on the use case and the structure of the UI.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Radio buttons in a form should be placed at least 32px (layout-03) below or before the next component.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Spacing of 24px (layout-02) or 16px (layout-01) can also be used when space is more restricted or if the form is more complex.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Do let text wrap beneath the radio button so the control and label are top aligned.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Use radio buttons for mutually exclusive options",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/radio-group/"
+    },
+    {
+      "type": "Not",
+      "value": "Don't use checkboxes when only one item can be selected from a list. Use radio buttons instead.",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    }
+  ]
+}

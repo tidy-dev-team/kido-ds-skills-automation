@@ -1,0 +1,259 @@
+{
+  "component": "tooltip",
+  "schema_version": "0.1",
+  "source": "competitive research, imported 2026-05-17",
+  "entries": [
+    {
+      "type": "Accessibility",
+      "value": "To ensure the tooltip content can be understood, the tooltip remains displayed if the cursor is moved over the tooltip area, even if it leaves the associated element’s area.",
+      "source": "design sis",
+      "recommended": false,
+      "link": "https://design.sis.gov.uk/components/tooltip/accessibility?utm_source=chatgpt.com"
+    },
+    {
+      "type": "Best",
+      "value": "Display the tooltip for 1.5 seconds. If the user takes another action before that time ends, the tooltip will disappear.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "On desktop, tooltips appear in the center of click targets and stay in place while cursor moves within the target.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Should contain brief, read-only text",
+      "source": "carbon",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Use on proper nouns, technical terms, or acronyms with two letters or more",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Do not use a definition tooltip on words with fewer than two letters",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Tooltips should only appear when the user has paused on the target element. They should remain visible if the user briefly moves the mouse off and back on to the target.",
+      "source": "atlassian",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Tooltips should not immediately disappear, unless the user hovers over another element with a tooltip.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "When the user scrolls, their attention is no longer on the tooltip. We take this opportunity to immediately hide the tooltip.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "The position of tooltips is flexible and will change depending on how close the element is to the edge of the screen.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Use a Tooltip on an IconButton to help convey the purpose of the action",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/tooltip/guidelines/"
+    },
+    {
+      "type": "Best",
+      "value": "Don't use Tooltips on non-interactive elements",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/tooltip/guidelines/"
+    },
+    {
+      "type": "Description",
+      "value": "A tooltip describes an interactive element on mouse hover or keyboard focus.",
+      "source": "atlassian",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Description",
+      "value": "Tooltips display brief labels or messages",
+      "source": "material",
+      "recommended": false,
+      "link": "https://m3.material.io/components/tooltips/overview"
+    },
+    {
+      "type": "Description",
+      "value": "Tooltips display additional information upon hover or focus that is contextual, helpful, and nonessential while providing the ability to communicate and give clarity to a user",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/notification/usage/"
+    },
+    {
+      "type": "Description",
+      "value": "Tooltips show contextual help or information about specific components when a user hovers or focuses on them.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/tooltip/"
+    },
+    {
+      "type": "Description",
+      "value": "Tooltips add additional context to interactive UI elements and appear on mouse hover or keyboard focus",
+      "source": "primer",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Keep the position of the tooltip visible.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Use tooltips for interactive imagery.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Do use helper text for pertinent information.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "se succinct, directive text.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "When writing tooltips, be short and concise",
+      "source": "atlassian",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Use tooltips to describe icons - When you use components that don’t have labels",
+      "source": "spectrum",
+      "recommended": true,
+      "link": "https://spectrum.adobe.com/page/tooltip/"
+    },
+    {
+      "type": "Do",
+      "value": "Find an appropriate permanent place to display additional information.",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/tooltip/guidelines/"
+    },
+    {
+      "type": "Do",
+      "value": "Consider using a modal, which is accessible for mobile users and allows you to structure content that may otherwise be crammed into a Tooltip.",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/tooltip/guidelines/"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t crop tooltips.",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Don’t use tooltips to restate visible UI text.",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Don’t display shadows on tooltips",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Don’t display rich information and imagery on tooltips",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Do not use tooltips for information for a user to complete their task.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Do not use interactive elements within a tooltip.",
+      "source": "carbon",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Don't use tooltips to communicate crucial information - A tooltip should only be used to provide supplementary context or hints",
+      "source": "spectrum",
+      "recommended": true,
+      "link": "https://spectrum.adobe.com/page/tooltip/"
+    },
+    {
+      "type": "Not",
+      "value": "Don't place actions inside a tooltip - Tooltips appear only on hover or when in keyboard focus. They should not contain actions or links.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/tooltip/"
+    },
+    {
+      "type": "Not",
+      "value": "If the Tooltip duplicates content that is already available on the page, remove it.",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/tooltip/guidelines/"
+    },
+    {
+      "type": "Not",
+      "value": "Don't place long content inside a Tooltip",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/tooltip/guidelines/"
+    },
+    {
+      "type": "Not",
+      "value": "Don't use Tooltips on non-interactive elements",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/tooltip/guidelines/"
+    }
+  ]
+}

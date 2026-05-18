@@ -1,0 +1,133 @@
+{
+  "component": "tag",
+  "schema_version": "0.1",
+  "source": "competitive research, imported 2026-05-17",
+  "entries": [
+    {
+      "type": "Accessibility",
+      "value": "Color should not be used as the only means to differentiate tag categories.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Accessibility",
+      "value": "When using custom colors be sure the minimum contrast requirements are met.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Chips allow users to enter information, make selections, filter content, or trigger actions. While buttons are expected to appear consistently and with familiar calls to action, chips should appear dynamically as a group of multiple interactive elements.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "4 types of chips: input, choice, filter, action chips",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Multiple or single tags can be used to categorize items.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Use short labels for easy scanning. Use two words only if necessary to describe the status and differentiate it from other tags.",
+      "source": "carbon",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Use tags when content is mapped to multiple categories, and the user needs a way to differentiate between them.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Tags can also be used as a method of filtering data, to show only items within that particular category.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Tags are used to visually label UI objects for quick recognition and navigation. They can be used for various types of objects, including: free form text, predefined text, rules, or contacts.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Tags can increase the amount of visual noise on a screen, particularly when combined with other visual elements, so use them in moderation.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Custom color tags can be used to organize a large amount of content. For example, using epic tags for organizing issues in a Jira backlog.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "In almost every situation, the collection of tags inside a tag group should be a consistent type of tag. To avoid creating a confusing user experience, don't mix and match removable tags with non-removable tags or have only some tags act as links.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Tags should always include a label. These can represent search terms, filters, or keywords.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/tag/#Usage-guidelines"
+    },
+    {
+      "type": "Description",
+      "value": "Use tags to label, categorize, or organize items using keywords that describe them.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Description",
+      "value": "Tags allow users to categorize content. They can represent keywords or people, and are grouped to describe an item or a search request.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Description",
+      "value": "A tag labels UI objects for quick recognition and navigation.",
+      "source": "atlassian",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Allow bulk actions - In some instances, it's possible to add an action next to a group of tags to provide a way to easily take an action on the entire group at once. Make sure to reveal the action only when there is more than one tag displayed.",
+      "source": "spectrum",
+      "recommended": true,
+      "link": "https://spectrum.adobe.com/page/tag/#Usage-guidelines"
+    },
+    {
+      "type": "Not",
+      "value": "Avoid disabling a large group of tags - In cases where users cannot interact with a large group of tags, consider hiding the group and its greater construct rather than disabling all of the individual tags.",
+      "source": "spectrum",
+      "recommended": true,
+      "link": "https://spectrum.adobe.com/page/tag/#Usage-guidelines"
+    }
+  ]
+}

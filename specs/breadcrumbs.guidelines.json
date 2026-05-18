@@ -1,0 +1,343 @@
+{
+  "component": "breadcrumbs",
+  "schema_version": "0.1",
+  "source": "competitive research, imported 2026-05-17",
+  "entries": [
+    {
+      "type": "Accessibility",
+      "value": "Users can navigate between breadcrumb links by pressing Tab and Shift-Tab. Users can trigger a breadcrumb link by pressing Enter while the link has focus. For additional keyboard interactions, see the accessibility tab.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/breadcrumb/usage/"
+    },
+    {
+      "type": "Accessibility",
+      "value": "Make sure your breadcrumb items reflect the page or product section titles exactly for screen readers.",
+      "source": "atlassian",
+      "recommended": true,
+      "link": "https://atlassian.design/components/breadcrumbs/usage"
+    },
+    {
+      "type": "Best",
+      "value": "Breadcrumbs are effective in products and experiences that have a large amount of content organized in a hierarchy of more than two levels. They take up little space but still provide context for the user’s place in the navigation hierarchy.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/breadcrumb/usage/"
+    },
+    {
+      "type": "Best",
+      "value": "Breadcrumbs are always treated as secondary and should never entirely replace the primary navigation. They shouldn’t be used for products that have single level navigation because they create unnecessary clutter.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/breadcrumb/usage/"
+    },
+    {
+      "type": "Best",
+      "value": "Breadcrumbs are placed in the top left portion of the page. They sit underneath the header and navigation, but above the page title.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/breadcrumb/usage/"
+    },
+    {
+      "type": "Best",
+      "value": "Each page link should be short and clearly reflect the location or entity it links to.",
+      "source": "carbon",
+      "recommended": true,
+      "link": "https://carbondesignsystem.com/components/breadcrumb/usage/"
+    },
+    {
+      "type": "Best",
+      "value": "Start with the highest level parent page and move deeper into the information architecture as the breadcrumb trail progresses.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/breadcrumb/usage/"
+    },
+    {
+      "type": "Best",
+      "value": "By default, the current page is not listed in the breadcrumb trail.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/breadcrumb/usage/"
+    },
+    {
+      "type": "Best",
+      "value": "When space becomes limited, use an overflow menu to truncate the breadcrumbs. The first and last two page links should be shown, but the remaining breadcrumbs in between are condensed into an overflow menu. Breadcrumbs should never wrap onto a second line.",
+      "source": "carbon",
+      "recommended": true,
+      "link": "https://carbondesignsystem.com/components/breadcrumb/usage/"
+    },
+    {
+      "type": "Best",
+      "value": "All the pages in the breadcrumb component should be interactive (except the current page) and link to their respective pages.",
+      "source": "carbon",
+      "recommended": true,
+      "link": "https://carbondesignsystem.com/components/breadcrumb/usage/"
+    },
+    {
+      "type": "Best",
+      "value": "Users can trigger an item by clicking on a breadcrumb page link. The separators between page links are not interactive.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/breadcrumb/usage/"
+    },
+    {
+      "type": "Best",
+      "value": "By default, Carbon breadcrumb trails should not include the current page. If a page doesn’t have a title or the current page is not clear, it can be included in the breadcrumb trail. If the current page is included in a breadcrumb trail, it is always the last text listed and is not an interactive link.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/breadcrumb/usage/"
+    },
+    {
+      "type": "Best",
+      "value": "When a breadcrumb contains more than eight items, the breadcrumb auto-collapses and uses ellipses to indicate more information. The first and last items are shown by default. Users expand the breadcrumb by clicking on the ellipsis.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/breadcrumbs/usage"
+    },
+    {
+      "type": "Best",
+      "value": "The maximum number of items in a breadcrumb can be customized. When there are more than the maximum number, the breadcrumb auto-collapses.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/breadcrumbs/usage"
+    },
+    {
+      "type": "Best",
+      "value": "To reduce screen clutter, it's best practice to only display the first and last items when collapsing.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/breadcrumbs/usage"
+    },
+    {
+      "type": "Best",
+      "value": "long item names will truncate and a tooltip containing the full item name will appear on hover. If unspecified, truncation will only occur when an item cannot fit alone on a line.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/breadcrumbs/usage"
+    },
+    {
+      "type": "Best",
+      "value": "Use breadcrumbs when the user is most likely to have landed on the page from an external source.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/breadcrumbs/usage"
+    },
+    {
+      "type": "Best",
+      "value": "Use for large websites and complex products that have hierarchically arranged pages, so that users who land on the page can quickly know where they are.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/breadcrumbs/usage"
+    },
+    {
+      "type": "Best",
+      "value": "In products, breadcrumbs can adapt to the state of navigation by being toggled on, off, or auto-collapsing.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/breadcrumbs/usage"
+    },
+    {
+      "type": "Best",
+      "value": "Make sure breadcrumbs don’t visually overwhelm the page.",
+      "source": "atlassian",
+      "recommended": true,
+      "link": "https://atlassian.design/components/breadcrumbs/usage"
+    },
+    {
+      "type": "Best",
+      "value": "Place breadcrumbs at the top left corner of the screen, above the page title.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/breadcrumbs/usage"
+    },
+    {
+      "type": "Best",
+      "value": "In product, avoid using the topmost level of the hierarchy unless the navigation sidebar is collapsed.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/breadcrumbs/usage"
+    },
+    {
+      "type": "Best",
+      "value": "Are deeply nested within a site",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/breadcrumbs/guidelines/#best-practices"
+    },
+    {
+      "type": "Best",
+      "value": "Lack section-level navigation",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/breadcrumbs/guidelines/#best-practices"
+    },
+    {
+      "type": "Best",
+      "value": "Need a quick way to navigate back to the parent page",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/breadcrumbs/guidelines/#best-practices"
+    },
+    {
+      "type": "Best",
+      "value": "Each breadcrumb should contain a link, with the last item showing the current page context.",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/breadcrumbs/guidelines/#best-practices"
+    },
+    {
+      "type": "Description",
+      "value": "Breadcrumbs are a navigation system used to show a user's location in a site or app.",
+      "source": "atlassian",
+      "recommended": true,
+      "link": "https://atlassian.design/components/breadcrumbs/usage"
+    },
+    {
+      "type": "Description",
+      "value": "Breadcrumbs show hierarchy and navigational context for a user’s location within an app.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/breadcrumbs/"
+    },
+    {
+      "type": "Description",
+      "value": "Breadcrumbs display the current page or context within the site, allowing them to navigate different levels of the hierarchy.",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/breadcrumbs/"
+    },
+    {
+      "type": "Description",
+      "value": "The breadcrumb is a secondary navigation pattern that helps a user understand the hierarchy among levels and navigate back through them.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/breadcrumb/usage/"
+    },
+    {
+      "type": "Description",
+      "value": "A breadcrumb helps people understand and move through the hierarchy of a complex site or app. It lists at least two location names, usually links, separated by dividers.",
+      "source": "fluent",
+      "recommended": false,
+      "link": "https://fluent2.microsoft.design/components/web/react/core/breadcrumb/usage"
+    },
+    {
+      "type": "Description",
+      "value": "Breadcrumbs are secondary navigation. They provide wayfinding and fast access to higher levels of the hierarchy. Don’t use breadcrumbs alone. Always combine them with other navigation elements, like top or sidebar navigation.",
+      "source": "fluent",
+      "recommended": false,
+      "link": "https://fluent2.microsoft.design/components/web/react/core/breadcrumb/usage"
+    },
+    {
+      "type": "Do",
+      "value": "Use breadcrumbs to communicate hierarchical relationships.",
+      "source": "spectrum",
+      "recommended": true,
+      "link": "https://spectrum.adobe.com/page/breadcrumbs/"
+    },
+    {
+      "type": "Do",
+      "value": "Truncate labels with an ellipsis.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/breadcrumbs/"
+    },
+    {
+      "type": "Do",
+      "value": "When the breadcrumb title is truncated, a tooltip should display the full title when the user hovers, keyboard focuses, or single-taps on mobile.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/breadcrumbs/"
+    },
+    {
+      "type": "Do",
+      "value": "Place breadcrumbs in the truncation menu to display long labels.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/breadcrumbs/"
+    },
+    {
+      "type": "Do",
+      "value": "Only expose the relevant amount of items.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/breadcrumbs/"
+    },
+    {
+      "type": "Do",
+      "value": "Use alternate navigation for traversing a hierarchy.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/breadcrumbs/"
+    },
+    {
+      "type": "Do",
+      "value": "Expand on truncated breadcrumb items in a tooltip",
+      "source": "fluent",
+      "recommended": true,
+      "link": "https://fluent2.microsoft.design/components/web/react/core/breadcrumb/usage#accessibility"
+    },
+    {
+      "type": "Do",
+      "value": "Truncate text over the character count limit",
+      "source": "fluent",
+      "recommended": false,
+      "link": "https://fluent2.microsoft.design/components/web/react/core/breadcrumb/usage#accessibility"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t use breadcrumbs as filters.",
+      "source": "spectrum",
+      "recommended": true,
+      "link": "https://spectrum.adobe.com/page/breadcrumbs/"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t indent menu items.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/breadcrumbs/"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t wrap breadcrumb labels.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/breadcrumbs/"
+    },
+    {
+      "type": "Not",
+      "value": "Don't truncate multiple labels at once.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/breadcrumbs/"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t display too many breadcrumb items at once",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/breadcrumbs/"
+    },
+    {
+      "type": "Not",
+      "value": "Don't use icons in breadcrumbs.",
+      "source": "spectrum",
+      "recommended": true,
+      "link": "https://spectrum.adobe.com/page/breadcrumbs/"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t modify breadcrumbs for navigating within a single layer of hierarchy.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/breadcrumbs/"
+    },
+    {
+      "type": "Not",
+      "value": "Do not wrap long item names",
+      "source": "fluent",
+      "recommended": true,
+      "link": "https://fluent2.microsoft.design/components/web/react/core/breadcrumb/usage#accessibility"
+    }
+  ]
+}

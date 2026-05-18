@@ -1,0 +1,238 @@
+{
+  "component": "snack-bar",
+  "schema_version": "0.1",
+  "source": "competitive research, imported 2026-05-17",
+  "entries": [
+    {
+      "type": "Accessibility",
+      "value": "Don’t trigger snackbars too often — frequent interruptions are disruptive for people with cognitive and visual impairments.",
+      "source": "wise",
+      "recommended": false,
+      "link": "https://wise.design/components/snackbar"
+    },
+    {
+      "type": "Best",
+      "value": "A snackbar can contain a single action. \"Dismiss\" or \"cancel\" actions are optional.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Snackbars communicate messages that are minimally interruptive and don’t require user action.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Snackbars contain a text label that directly relates to the process being performed. On mobile, the text label can contain up to two lines of text.",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "To distinguish the action from the text label, text buttons should display colored text.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "On small screens, snackbars should expand vertically from 48dp to 64dp to accommodate one or two lines of text, while maintaining a  fixed distance from the leading, trailing, and bottom edges of the screen.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "On medium and large screens, snackbars should scale horizontally to accommodate longer text strings, keeping in mind that the ideal line length for text is typically between 40-60 characters.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Snackbars use a flexible distance from the trailing edge of the screen. Whenever possible, snackbars on medium and large displays should aim for a single line of text with an  optional button.",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Snackbars should be placed at the bottom of a UI, in front of app content. Avoid placing a snackbar in front of frequently used touch targets or navigation.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Snackbars should appear directly above persistent footer elements.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Description",
+      "value": "Snackbars show short updates about app processes at the bottom of the screen",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m3.material.io/components/snackbar/overview"
+    },
+    {
+      "type": "Description",
+      "value": "A snackbar is a brief, temporary notification that confirms the outcome of an action or process that’s just happened.",
+      "source": "wise",
+      "recommended": false,
+      "link": "https://wise.design/components/snackbar"
+    },
+    {
+      "type": "Do",
+      "value": "Only one snackbar may be displayed at a time.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "On mobile, use up to two lines of text to communicate the snackbar message.",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "In wide UIs like desktop and tablet, snackbars should have only a single line of text.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Snackbar containers use a solid background color with a shadow to stand out against content. (Note: An app can apply slight transparency to the container background, as long as text remains clearly legible.)",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "In wide layouts, extend the container width to accommodate longer text labels.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "If an action is long, it can be displayed on a third line.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "To allow users to amend choices, display an \"Undo\" action.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Place snackbars in front of medium extended sheets.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Snackbars should appear above FABs.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Don’t use icons in snackbars. If your message needs an icon, consider using a different component.",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Avoid significantly altering the shape of a snackbar container.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "The text label shouldn’t share the same color as the text button.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Don’t use a filled or elevated button in a snackbar, as it draws too much attention.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Avoid stacking snackbars on top of one another.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Don’t animate other components along with snackbar animations, such as the floating action button.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Avoid placing snackbars in front of navigation components.",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Don’t place a snackbar in front or behind of a FAB.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Avoid pushing bottom persistent elements up when snackbars appear.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Avoid placing snackbars flushed to one edge of the layout. (In wide layout)",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Avoid placing consecutive snackbars side by side or next to one another. (In wide layout)",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Never use snackbars for critical information — some users may not notice it, or might not have time to read the text before it fades out.",
+      "source": "wise",
+      "recommended": false,
+      "link": "https://wise.design/components/snackbar"
+    }
+  ]
+}

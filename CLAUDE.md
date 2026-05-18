@@ -74,6 +74,7 @@ Ask the designer early: "Does your client already have a UI library in productio
 **Who:** DS team. Not a per-project task.
 **Input:** Component name + Kido DS Figma URL.
 **Output:** `specs/{component}.spec.json` + `specs/{component}.spec.notes.md` + updated `specs/_index.json`.
+**Reads `specs/{component}.guidelines.json`** when present to draft Usage Guidelines prose in `.spec.notes.md` (filters to `recommended=true`, type → section mapping, synthesised into Kido voice — never pasted verbatim). The curated `.spec.notes.md` is what `/ds-doc` renders.
 
 ### `ds-extract-design` — per-client token extraction (Workflow B)
 **File:** `skills/ds-extract-design.md`
@@ -120,20 +121,22 @@ The `{project}` is a short slug the designer names at the start (e.g., `acme`, `
 **Philosophy:** Map Figma variant axes → React props → 8–12 named stories. Pseudo-state axes become decorators.
 **Works for both workflows.**
 
-### `ds-doc` — canvas documentation pages
+### `ds-doc` — component documentation as chat markdown
 **File:** `skills/ds-doc.md`
-**When:** Component is polished and needs canvas documentation in Figma. Sibling to `ds-storybook` — both run after polish; `ds-storybook` produces code-side stories, `ds-doc` produces canvas-side doc pages.
+**When:** Component is polished and needs written documentation (variant descriptions + Usage Guidelines prose). Sibling to `ds-storybook` — both run after polish; `ds-storybook` produces code-side CSF3 stories, `ds-doc` produces markdown documentation prose the designer can paste into Figma rich-text, spec notes, Notion, or wherever.
 **Who:** DS specialist or designer.
-**Input:** Component name + polished Figma component-set URL.
-**Output:** Three Figma frames on a `📄 Documentation` page in the target file — Component Breakdown / Mode / Usage Guidelines.
-**Philosophy:** Clone three canonical Kido DS master templates (`doc-template / {page-id}`), fill named slots from spec + `.spec.notes.md` prose + `.dodont.json` example refs + `tokens.json` modes. Missing prose / examples render as `NEEDS_CONTENT` / `NEEDS_EXAMPLE` pink stubs.
-**Workflow B only for v1.** See [`docs/adr/0001-ds-doc-three-page-architecture.md`](docs/adr/0001-ds-doc-three-page-architecture.md) for rationale.
+**Input:** Polished Figma component-set URL.
+**Output:** One markdown document returned in the chat — variant descriptions (one per semantic variant) + Usage Guidelines (When-to-use / When-not-to-use / General / Behavior / Content / Accessibility). No files written, no canvas edits.
+**Philosophy:** Read-only on Figma via the official MCP (`get_design_context`, `get_metadata`, `get_screenshot`, `get_variable_defs`). Pulls Usage Guidelines source material from `specs/{component}.guidelines.json` (filters to `recommended=true`) when present; otherwise searches the web for industry best practices (Material, Carbon, Atlassian, Primer, Spectrum, Polaris, Wise, Orbit) and synthesises into Kido voice. Variant descriptions are grounded in the polished component-set's actual variant axes + any relevant design decisions from `.spec.notes.md`.
+**Both workflows supported** — no `tokens.json` requirement. The earlier canvas-rendering version (three Figma doc pages, master template cloning) is retired; see [`docs/adr/0001-ds-doc-three-page-architecture.md`](docs/adr/0001-ds-doc-three-page-architecture.md) for historical rationale.
 
 ---
 
 ## Spec & Reference Library
 
 **Kido component specs** (`specs/*.spec.json`): authoritative structure for Workflow A. Read `specs/_index.json` first for lookup.
+
+**Competitive Do/Don't research** (`specs/*.guidelines.json`): prose guidance from external design systems (Material, Carbon, Atlassian, Primer, Spectrum, Orbit, Wise, Kiwi), tagged by type (`Accessibility | Best | Description | Do | Not`), source, and Kido's `recommended` stance. Source material for spec authoring and `/ds-doc` Usage Guidelines prose. Not the same as `*.dodont.json` (visual example refs — legacy from the retired canvas-rendering `/ds-doc`; left in place for any future canvas tooling that wants them).
 
 **Library mappings** (`specs/libraries/*.json`): conventions of known UI libraries (Chakra, Mantine, shadcn) — variant prop names, size scales, compound component patterns. Used by `ds-build` when a library is detected from a `package.json`.
 
@@ -150,18 +153,32 @@ When no spec exists for the component being worked on, each workflow has its own
 
 ## Figma MCP
 
-Used across all workflows for reading Kido/client foundations and writing components into Figma.
+**Canonical transport: the official `claude.ai Figma` MCP server.** Every Figma interaction in every skill goes through it — reads and writes alike. Do not fall back to `figma-console` or any other third-party Figma plugin/MCP. If the official MCP is unavailable, stop and ask the designer to authenticate it (`/mcp` → `claude.ai Figma`) before continuing.
 
 | Tool | Used in | Purpose |
 |------|---------|---------|
 | `get_metadata` | spec-authoring | Locate component, get variant IDs |
-| `get_design_context` | spec-authoring, generate, build | Layer structure, variants, tokens |
-| `get_variable_defs` / `figma_get_variables` | spec-authoring, extract-design | Design token definitions |
-| `figma_get_styles` | extract-design | Color/text/effect styles |
-| `figma_get_design_system_kit` | extract-design | Combined token + component extraction |
-| `get_screenshot` | generate, build | Visual input/validation |
-| `figma_execute` / `use_figma` | generate, build | Write component variants into Figma |
-| `figma_get_component_details` | build (validator) | Read back applied values |
+| `get_design_context` | spec-authoring, generate, build, push | Layer structure, variants, resolved tokens (React+Tailwind reference output) |
+| `get_variable_defs` | spec-authoring, extract-design, push | Design token / variable definitions in the file |
+| `get_screenshot` | generate, build, doc, push, storybook | Visual input / post-write validation |
+| `get_libraries` | extract-design, doc | Subscribed and available libraries for a file |
+| `search_design_system` | doc, build, generate | Locate published components / variables / styles across subscribed libraries (replaces `figma_search_components`) |
+| `use_figma` | every write-touching skill | General-purpose Plugin-API runner. Replaces `figma_execute`, `figma_get_component_details` (custom read scripts), and every writer-side `figma_*` tool. Takes a `fileKey` arg, so cross-file flows do not require Bridge switching. |
+| `upload_assets` | (future) | PNG/JPG/GIF/WebP into Figma fills |
+| `whoami` | (diagnostic) | Confirm authenticated identity + seat type when a write fails |
+
+### `use_figma` runtime notes
+
+The official MCP sandboxes the Plugin API on Figma's hosted service rather than a local Desktop Bridge. Two gotchas worth knowing:
+
+- **`figma.loadAllPagesAsync()` is unsupported** — the document is pre-loaded server-side. Strip the call from any script ported from `figma-console`.
+- **`figma.currentPage = page` is unsupported** — use `await figma.setCurrentPageAsync(page)`.
+- **Plugin-data is shared-only** — `getPluginData` / `setPluginData` aren't available (they require a plugin manifest). Use `getSharedPluginData(namespace, key)` / `setSharedPluginData(namespace, key, value)` with a stable namespace.
+- **Inter weights have spaces** — `"Semi Bold"`, `"Extra Bold"` — not `"SemiBold"` / `"ExtraBold"`.
+
+### Seat / permission requirements
+
+`use_figma`, `upload_assets`, and any other write tool require a **Full or Dev seat** on the plan that owns the target file. View / Collab seats can only call read tools, and are capped at 6 tool calls per month total. If a write fails with "this figma file could not be accessed", run `whoami` first — most often the user is authenticated with the wrong identity (e.g. a personal account with View access instead of the team account with Full access).
 
 ---
 
@@ -171,8 +188,9 @@ Used across all workflows for reading Kido/client foundations and writing compon
 specs/
   _index.json                      ← Kido component lookup (schema_version 0.3)
   {component}.spec.json            ← compact Kido component spec
-  {component}.spec.notes.md        ← human-readable rationale + Usage Guidelines prose (consumed by /ds-doc)
-  {component}.dodont.json          ← Do/Don't visual example refs (Kido DS Figma node IDs) — consumed by /ds-doc
+  {component}.spec.notes.md        ← human-readable rationale + optional Usage Guidelines prose (informs /ds-doc)
+  {component}.dodont.json          ← Do/Don't visual example refs (Kido DS Figma node IDs) — legacy, retained for future canvas tooling
+  {component}.guidelines.json      ← prose Do/Don't research, multi-source (Material, Carbon, Atlassian, Primer, Spectrum, Orbit, Wise, …) with Kido's `recommended` stance — primary source for /ds-doc Usage Guidelines
   libraries/
     _index.json                    ← UI library mapping lookup
     chakra.json                    ← Chakra UI conventions
@@ -187,7 +205,7 @@ skills/
   ds-build.md                      ← Workflow B orchestrator
   ds-push.md
   ds-storybook.md
-  ds-doc.md                        ← canvas documentation (Workflow B v1)
+  ds-doc.md                        ← component documentation as chat markdown (variant descriptions + Usage Guidelines)
   templates/
     REQUIREMENTS.template.md       ← per-job rules template
     CHANGES.template.md            ← per-project change log template

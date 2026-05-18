@@ -1,0 +1,154 @@
+{
+  "component": "avatar",
+  "schema_version": "0.1",
+  "source": "competitive research, imported 2026-05-17",
+  "entries": [
+    {
+      "type": "Accessibility",
+      "value": "Use the name prop to ensure there is an alternative text equivalent for screen readers.",
+      "source": "atlassian",
+      "recommended": true,
+      "link": "https://atlassian.design/components/avatar/usage"
+    },
+    {
+      "type": "Accessibility",
+      "value": "To avoid confusion, do not use a tooltip with an avatar when it is non-interactive or disabled, as the tooltip may not work consistently for keyboard users and screen readers.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/avatar/usage"
+    },
+    {
+      "type": "Accessibility",
+      "value": "Never use an avatar in isolation without copy or interaction cues (such as a chevron icon). This is so that they are clearly identifiable, and aid comprehension and interaction.",
+      "source": "wise",
+      "recommended": false,
+      "link": "https://wise.design/components/avatar"
+    },
+    {
+      "type": "Best",
+      "value": "Check you’re using the appropriately sized shape and sized avatar for your use case.",
+      "source": "atlassian",
+      "recommended": true,
+      "link": "https://atlassian.design/components/avatar/usage"
+    },
+    {
+      "type": "Best",
+      "value": "Body: The image representing the user or entity.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/avatar/usage"
+    },
+    {
+      "type": "Best",
+      "value": "Status: An icon that displays the avatar’s status.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/avatar/usage"
+    },
+    {
+      "type": "Best",
+      "value": "Presence: Indicates if a user is available, away, focused, or busy.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/avatar/usage"
+    },
+    {
+      "type": "Description",
+      "value": "An avatar is a visual representation of a user or entity.",
+      "source": "atlassian",
+      "recommended": true,
+      "link": "https://atlassian.design/components/avatar/usage"
+    },
+    {
+      "type": "Description",
+      "value": "An avatar is a thumbnail representation of an entity, such as a user or an organization.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/avatar/#Usage-guidelines"
+    },
+    {
+      "type": "Description",
+      "value": "An avatar shows an image or text to represent a person or group as well as give additional information like their status and activity.",
+      "source": "fluent",
+      "recommended": true,
+      "link": "https://fluent2.microsoft.design/components/web/react/core/avatar/usage"
+    },
+    {
+      "type": "Do",
+      "value": "circular avatars to quickly identify users",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/avatar/usage"
+    },
+    {
+      "type": "Do",
+      "value": "square avatars to help identify large product entities like projects, spaces, groups, rooms, or repositories",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/avatar/usage"
+    },
+    {
+      "type": "Do",
+      "value": "a presence indicator to indicate presence for a single user",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/avatar/usage"
+    },
+    {
+      "type": "Do",
+      "value": "Use branded generic avatars when a user has not set their avatar image. These images are designed to be abstracted from all genders, locales, and cultures.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/avatar/#Usage-guidelines"
+    },
+    {
+      "type": "Do",
+      "value": "If no profile image is available fallback to initials on the text avatar type.",
+      "source": "wise",
+      "recommended": true,
+      "link": "https://wise.design/components/avatar"
+    },
+    {
+      "type": "Do",
+      "value": "If no logo is available fallback to category icon on the icon type.",
+      "source": "wise",
+      "recommended": false,
+      "link": "https://wise.design/components/avatar"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t make assumptions and use gendered placeholder avatars.",
+      "source": "spectrum",
+      "recommended": true,
+      "link": "https://spectrum.adobe.com/page/avatar/#Usage-guidelines"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t add more than 2 characters.",
+      "source": "wise",
+      "recommended": false,
+      "link": "https://wise.design/components/avatar"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t use more than one badge in the avatar.",
+      "source": "wise",
+      "recommended": false,
+      "link": "https://wise.design/components/avatar"
+    },
+    {
+      "type": "Not",
+      "value": "Avoid using a double horizontal avatar if it affects the content alignment, such as in a navigation option.",
+      "source": "wise",
+      "recommended": false,
+      "link": "https://wise.design/components/avatar"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t use more than 2 avatars.",
+      "source": "wise",
+      "recommended": false,
+      "link": "https://wise.design/components/avatar"
+    }
+  ]
+}

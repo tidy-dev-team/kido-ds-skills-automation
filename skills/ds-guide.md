@@ -48,7 +48,7 @@ Two questions max. Q1 is always shown; Q2 only fires when Q1's choice covers two
 |---|---|---|
 | Push values to repo | `ds-push`. Sync resolved CSS variables, Tailwind config, and/or component source from the polished Figma component to the client repo as a PR. | `ds-push` |
 | Add Storybook stories | `ds-storybook`. Generate a CSF3 `{component}.stories.tsx` file for a production-ready component. | `ds-storybook` |
-| Build canvas doc pages | `ds-doc`. Build the three Figma doc pages (Component Breakdown / Mode / Usage Guidelines) on a `📄 Documentation` page in the target file. Workflow B only. | `ds-doc` |
+| Write component documentation | `ds-doc`. Generate markdown documentation in the chat — variant descriptions + Usage Guidelines (When-to-use / When-not-to-use / General / Behavior / Content / Accessibility) — from a polished Figma component-set URL. No canvas writes. | `ds-doc` |
 
 ### Other
 
@@ -59,7 +59,7 @@ Two questions max. Q1 is always shown; Q2 only fires when Q1's choice covers two
 - **generate / build / component set** → ask Q2a
 - **push / sync / PR** → `ds-push`
 - **stories / Storybook / CSF3** → `ds-storybook`
-- **doc / docs / documentation / canvas docs / doc page / breakdown / usage guidelines** → `ds-doc`
+- **doc / docs / documentation / variant descriptions / usage guidelines / write docs** → `ds-doc`
 
 If the free text is ambiguous, ask once more with the two closest options as a follow-up `AskUserQuestion`. If it doesn't match any of the seven routes, reply: "There's no skill for that yet." and stop.
 

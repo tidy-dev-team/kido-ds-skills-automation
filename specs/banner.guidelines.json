@@ -1,0 +1,224 @@
+{
+  "component": "banner",
+  "schema_version": "0.1",
+  "source": "competitive research, imported 2026-05-17",
+  "entries": [
+    {
+      "type": "Accessibility",
+      "value": "Don't rely on color alone to indicate severity. Provide an accessible label for the warning and error icons.",
+      "source": "atlassian",
+      "recommended": true,
+      "link": "https://atlassian.design/components/banner/usage"
+    },
+    {
+      "type": "Accessibility",
+      "value": "The banner will truncate if the content spans beyond the width of the screen. To avoid truncation, keep banner content concise.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/banner/usage"
+    },
+    {
+      "type": "Best",
+      "value": "Use banners sparingly, particularly warning and error banners, as they are persistent and disrupt the user’s workflow.",
+      "source": "atlassian",
+      "recommended": true,
+      "link": "https://atlassian.design/components/banner/usage"
+    },
+    {
+      "type": "Best",
+      "value": "Always be clear, concise and, where possible, give follow up actions to help people resolve the issue.",
+      "source": "atlassian",
+      "recommended": true,
+      "link": "https://atlassian.design/components/banner/usage"
+    },
+    {
+      "type": "Best",
+      "value": "Use banners sparingly and only when necessary. Banners can disrupt the user experience and should only be used when and where relevant.",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/banner/guidelines/"
+    },
+    {
+      "type": "Best",
+      "value": "Keep the message concise and direct. Don't use heading styling or multiple type sizes in banners, rely on the default paragraph size and use the title when appropriate.",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/banner/guidelines/"
+    },
+    {
+      "type": "Best",
+      "value": "Do not display more than one banner (full-width or otherwise) on a single page at the same time. This prevents stacking issues, avoids confusing user experiences, and helps reduce alert fatigue.",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/banner/guidelines/"
+    },
+    {
+      "type": "Description",
+      "value": "A banner displays a prominent message at the top of the screen.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/banner/usage"
+    },
+    {
+      "type": "Description",
+      "value": "A banner displays a prominent message and related optional actions.",
+      "source": "material",
+      "recommended": true,
+      "link": "https://m2.material.io/components/banners"
+    },
+    {
+      "type": "Description",
+      "value": "Banner is used to highlight important information.",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/banner/guidelines/"
+    },
+    {
+      "type": "Description",
+      "value": "Alert banners show pressing and high-signal messages, such as system alerts. They're meant to be noticed and prompt users to take action.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/alert-banner/"
+    },
+    {
+      "type": "Do",
+      "value": "Banners may have one or two low-emphasis text buttons.",
+      "source": "material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/banners"
+    },
+    {
+      "type": "Do",
+      "value": "Icons can help communicate a banner’s message.",
+      "source": "material",
+      "recommended": true,
+      "link": "https://m2.material.io/components/banners"
+    },
+    {
+      "type": "Do",
+      "value": "Banners persist until the user acts on them or dismisses them.",
+      "source": "material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/banners"
+    },
+    {
+      "type": "Do",
+      "value": "Whenever possible, add an in-line action button if there's a way for a user to quickly address the issue associated with an alert.",
+      "source": "spectrum",
+      "recommended": true,
+      "link": "https://spectrum.adobe.com/page/alert-banner/"
+    },
+    {
+      "type": "Do",
+      "value": "The close button is optional, depending on context. Consider adding one to let a user easily dismiss the alert.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/alert-banner/"
+    },
+    {
+      "type": "Do",
+      "value": "Overlay an alert banner when it's expected to fade in and out without impacting the content underneath it, and when it's not hiding any important actions or information by being there. An alert banner should only overlay content if it is dismissible.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/alert-banner/"
+    },
+    {
+      "type": "Do",
+      "value": "Push an alert banner when it's expected to stay in place, when it's not dismissible, or when no information should be hidden from the view.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/alert-banner/"
+    },
+    {
+      "type": "Not",
+      "value": "Only one banner should be shown at a time.",
+      "source": "material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/banners"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t include links in a banner message. All available actions should be represented as buttons.",
+      "source": "material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/banners"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t combine buttons with different emphasis levels, which could appear to promote one action over another.",
+      "source": "material",
+      "recommended": true,
+      "link": "https://m2.material.io/components/banners"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t use a close affordance icon as the only method of dismissing a banner. All actions should be shown as text buttons.",
+      "source": "material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/banners"
+    },
+    {
+      "type": "Not",
+      "value": "An icon used as an illustration can be ambiguous and make a banner too prominent in a layout. Illustrations support the banner message and aren’t the primary method of communication.",
+      "source": "material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/banners"
+    },
+    {
+      "type": "Not",
+      "value": "The surface containing a banner should be clearly distinguished from the top app bar surface.",
+      "source": "material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/banners"
+    },
+    {
+      "type": "Not",
+      "value": "Banners shouldn’t appear in front of the top bar.",
+      "source": "material",
+      "recommended": false,
+      "link": "https://m2.material.io/components/banners"
+    },
+    {
+      "type": "Not",
+      "value": "Avoid stacking multiple banners.",
+      "source": "material",
+      "recommended": true,
+      "link": "https://m2.material.io/components/banners"
+    },
+    {
+      "type": "Not",
+      "value": "Alert banners should be reserved only for high-signal, system-level alert messages, such as internet connection issues, expirations of subscriptions, or major changes.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/alert-banner/"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t use yellow or orange colors for errors because the contrast is not accessible.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/alert-banner/"
+    },
+    {
+      "type": "Not",
+      "value": "Don't include more than one action in an alert banner. Having more than one action to choose from can be overwhelming, and it can become difficult for users to decide what to do next in such a small space.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/alert-banner/"
+    },
+    {
+      "type": "Not",
+      "value": "Alert banners should appear at the top of a page, below the header.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/alert-banner/"
+    },
+    {
+      "type": "Not",
+      "value": "Don't show multiple alert banners at the same time. If a new alert banner appears with a higher priority message, it should replace an existing alert banner of lesser importance until the higher priority one has been addressed.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/alert-banner/"
+    }
+  ]
+}

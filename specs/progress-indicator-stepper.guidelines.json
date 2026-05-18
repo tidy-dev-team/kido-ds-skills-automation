@@ -1,0 +1,147 @@
+{
+  "component": "progress-indicator-stepper",
+  "schema_version": "0.1",
+  "source": "competitive research, imported 2026-05-17",
+  "entries": [
+    {
+      "type": "Accessibility",
+      "value": "Ensure the indicator’s color provides at least 3:1 contrast against the surface it's on",
+      "source": "material",
+      "recommended": false,
+      "link": "https://m3.material.io/components/progress-indicators/overview"
+    },
+    {
+      "type": "Accessibility",
+      "value": "Avoid using a color below 3:1 contrast",
+      "source": "material",
+      "recommended": false,
+      "link": "https://m3.material.io/components/progress-indicators/overview"
+    },
+    {
+      "type": "Accessibility",
+      "value": "Always provide a clear ariaLabel that describes the current state of the progress bar. For example, \"5 of 10 files uploaded\", not \"Files uploading\".",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/progress-bar/usage"
+    },
+    {
+      "type": "Accessibility",
+      "value": "Wherever possible, also include this text as visual helper text. This lets people know what sub-processes are taking place.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/progress-bar/usage"
+    },
+    {
+      "type": "Accessibility",
+      "value": "Use a clear success state when the actions required to continue have been fulfilled.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/progress-bar/usage"
+    },
+    {
+      "type": "Best",
+      "value": "Keep the task concise. Use a maximum of seven steps in your journey so that people aren't overwhelmed.",
+      "source": "atlassian",
+      "recommended": true,
+      "link": "https://atlassian.design/components/progress-indicator/usage"
+    },
+    {
+      "type": "Best",
+      "value": "Use a minimum of 3 steps and keep each step concise.",
+      "source": "ebay playbook",
+      "recommended": false,
+      "link": "https://playbook.ebay.com/design-system/components/progress-stepper"
+    },
+    {
+      "type": "Description",
+      "value": "A progress indicator guides users through any linear, multistep task by showing the user their completed, current, and future steps.",
+      "source": "carbon",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Indicate overall progress of a group of items",
+      "source": "material",
+      "recommended": true,
+      "link": "https://m3.material.io/components/progress-indicators/overview"
+    },
+    {
+      "type": "Do",
+      "value": "Use a stop indicator when placing the progress indicator inside a container with low contrast",
+      "source": "material",
+      "recommended": false,
+      "link": "https://m3.material.io/components/progress-indicators/overview"
+    },
+    {
+      "type": "Do",
+      "value": "Use circular indicators for short, indeterminate activities under 5 seconds",
+      "source": "material",
+      "recommended": false,
+      "link": "https://m3.material.io/components/progress-indicators/overview"
+    },
+    {
+      "type": "Do",
+      "value": "use the built-in label style. Use the built-in style for showing a label associated with the operation. The built-in style always has a left aligned label and a right aligned percentage value above the track.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/progress-bar/"
+    },
+    {
+      "type": "Do",
+      "value": "Use progress circles for loading views",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/progress-bar/"
+    },
+    {
+      "type": "Do",
+      "value": "place text close to the progress bar.",
+      "source": "carbon",
+      "recommended": true,
+      "link": "https://primer.style/product/components/progress-bar/"
+    },
+    {
+      "type": "Do",
+      "value": "Use the progress bar component as a loading indicator or to communicate the status of a system process.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/progress-bar/usage"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t show the progress of each activity in a group",
+      "source": "material",
+      "recommended": false,
+      "link": "https://m3.material.io/components/progress-indicators/overview"
+    },
+    {
+      "type": "Not",
+      "value": "Avoid applying progress indicators to every button in a list",
+      "source": "material",
+      "recommended": false,
+      "link": "https://m3.material.io/components/progress-indicators/overview"
+    },
+    {
+      "type": "Not",
+      "value": "Do not embed text into the progress bar.",
+      "source": "carbon",
+      "recommended": true,
+      "link": "https://primer.style/product/components/progress-bar/"
+    },
+    {
+      "type": "Not",
+      "value": "Do not place text far away from the progress bar.",
+      "source": "carbon",
+      "recommended": true,
+      "link": "https://primer.style/product/components/progress-bar/"
+    },
+    {
+      "type": "Not",
+      "value": "Don't use the progress bar for data visualization. Use a custom component instead.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/progress-bar/usage"
+    }
+  ]
+}

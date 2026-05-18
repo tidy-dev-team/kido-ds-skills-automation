@@ -67,17 +67,40 @@ Write two files:
 - Known gaps or deviations
 - Version history
 
-*User-facing Usage Guidelines (consumed by `/ds-doc`):* placed **above** the internal sections so designers see them first. Heading taxonomy parsed by `/ds-doc`:
+*User-facing Usage Guidelines (consumed by `/ds-doc`):* placed **above** the internal sections so designers see them first. Heading taxonomy parsed by `/ds-doc` (order matches the doc-page slot order top-to-bottom):
 
 - `## When to use` — bullets
 - `## When not to use` — bullets
 - `## General guidelines` — bullets
-- `## Accessibility` — bullets (added 2026-05-13 alongside the `/ds-doc` skill)
 - `## Behavior` — Do/Don't pairs by rule (sub-headings `### Do: …` / `### Don't: …` with optional `**Slug:** {kebab-case-id}` for `.dodont.json` cross-reference)
 - `## Content` — Do/Don't pairs by rule
-- `## Look & Feel` — Do/Don't pairs by rule
+- `## Accessibility` — bullets (added 2026-05-13; rendered at the bottom of the Usage Guidelines page)
+
+`## Look & Feel` is **not** part of the v1 doc model. An earlier draft included it as a third Do/Don't bucket; designers dropped it in the 2026-05-13 temp template. If a `.spec.notes.md` file contains a `## Look & Feel` heading, `/ds-doc` ignores it and flags it in the summary.
 
 Missing sections in this taxonomy render as `NEEDS_CONTENT` pink stubs at `/ds-doc` time. The internal Rationale / Token Derivation / Known Gaps / History sections remain unchanged below the Usage Guidelines block.
+
+#### Drafting Usage Guidelines from `specs/{component}.guidelines.json`
+
+If `specs/{component}.guidelines.json` exists, read it before drafting the Usage Guidelines block. It is competitive research from external design systems (Material, Carbon, Atlassian, Primer, Spectrum, Orbit, Wise, Kiwi), pre-filtered by Kido's `recommended` flag.
+
+**Filter rule:** consider only entries with `recommended: true`. The other entries are research record, not Kido guidance.
+
+**Type → section mapping** (use as a starting point, override when context justifies it):
+
+| Entry `type` | Drafts into |
+|---|---|
+| `Do` | `## When to use`, `## General guidelines`, or Do-side of `## Behavior` / `## Content` |
+| `Not` | `## When not to use`, or Don't-side of `## Behavior` / `## Content` |
+| `Accessibility` | `## Accessibility` |
+| `Best` | `## General guidelines` (treat as background context, not strict rule) |
+| `Description` | Not rendered — component description lives in `spec.json`, not `.spec.notes.md` |
+
+**Synthesise, don't paste.** Recommended entries are competitor prose; rewrite each into Kido voice — short, imperative, no competitor brand names in the rendered bullet. If three sources say the same thing, write one bullet and credit all three in the History section at the bottom of the file (e.g. `- Usage Guidelines drafted from button.guidelines.json (Material, Carbon, Atlassian)`).
+
+**Do/Don't pair slots (`## Behavior`, `## Content`)** require a Do and a Don't that mirror each other. The guidelines file doesn't pre-pair them — pair recommended `Do` + `Not` entries on the same topic (e.g. label length, icon placement). Assign each pair a kebab-case `**Slug:** {slug}` so `/ds-doc` can cross-reference `.dodont.json` for visual examples.
+
+**When `.guidelines.json` is absent:** draft from spec extraction + your own DS judgment. No fabrication required — leaving a section empty is fine; `/ds-doc` will render `NEEDS_CONTENT` and the section can be filled later when research lands.
 
 ### Step 5 — Update the Index
 

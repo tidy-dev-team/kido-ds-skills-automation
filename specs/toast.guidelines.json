@@ -1,0 +1,161 @@
+{
+  "component": "toast",
+  "schema_version": "0.1",
+  "source": "competitive research, imported 2026-05-17",
+  "entries": [
+    {
+      "type": "Accessibility",
+      "value": "Avoid using a toast notification for critical alerts or long messages because they are timed and will disappear automatically making it difficult for people with various disabilities to get the entire message.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Toasts are non-modal, time-based window elements used to display short messages",
+      "source": "carbon",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "They usually appear at the top of the screen and disappear after a few seconds.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Toast notifications can include a time stamp that shows the time the notification was sent.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Toast notifications use a fixed width and their height depends on the length of the notification message",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "New toast notifications should appear at the top of the list, with older notifications being pushed down until they are dismissed.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Toasts do have the option to timeout and dismiss automatically after five seconds on the screen.",
+      "source": "carbon",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Toasts should only be used for confirmations, simple notifications, and low-priority alerts that do not need to completely interrupt the user experience.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/toast/#Usage-guidelines"
+    },
+    {
+      "type": "Best",
+      "value": "Be used for short messages to confirm an action",
+      "source": "polaris",
+      "recommended": false,
+      "link": "https://polaris-react.shopify.com/components/deprecated/toast#best-practices"
+    },
+    {
+      "type": "Best",
+      "value": "Not go over 3 words",
+      "source": "polaris",
+      "recommended": false,
+      "link": "https://polaris-react.shopify.com/components/deprecated/toast#best-practices"
+    },
+    {
+      "type": "Best",
+      "value": "Rarely be used for error messages",
+      "source": "polaris",
+      "recommended": false,
+      "link": "https://polaris-react.shopify.com/components/deprecated/toast#best-practices"
+    },
+    {
+      "type": "Description",
+      "value": "Toasts display brief, temporary notifications. They're meant to be noticed without disrupting a user's experience or requiring an action to be taken.",
+      "source": "spectrum",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Description",
+      "value": "Notifications are messages that communicate information to the user. The four variants of notifications are toast, inline, actionable, and callout.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/notification/usage/"
+    },
+    {
+      "type": "Description",
+      "value": "The toast component is a non-disruptive message that appears at the bottom of the interface to provide quick, at-a-glance feedback on the outcome of an action",
+      "source": "polaris",
+      "recommended": false,
+      "link": "https://polaris-react.shopify.com/components/deprecated/toast"
+    },
+    {
+      "type": "Do",
+      "value": "Limit toast notifications to two lines of text",
+      "source": "carbon",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Place toasts in a consistent location",
+      "source": "Fluent",
+      "recommended": false,
+      "link": "https://fluent2.microsoft.design/components/web/react/core/toast/usage#layout"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t place mobile toasts over navigation",
+      "source": "spectrum",
+      "recommended": true,
+      "link": "https://spectrum.adobe.com/page/toast/#Usage-guidelines"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t display more than one action",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/toast/#Usage-guidelines"
+    },
+    {
+      "type": "Not",
+      "value": "Don't include a redundant action - For example, including a “Dismiss” button would be redundant because all toasts already have a close button.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/toast/#Usage-guidelines"
+    },
+    {
+      "type": "Not",
+      "value": "Don't show multiple toasts at the same time.",
+      "source": "spectrum",
+      "recommended": true,
+      "link": "https://spectrum.adobe.com/page/toast/#Usage-guidelines"
+    },
+    {
+      "type": "Not",
+      "value": "Avoid using toast for error messages. Always try to use a banner to prominently inform merchants about persistent errors.",
+      "source": "polaris",
+      "recommended": true,
+      "link": "https://polaris-react.shopify.com/components/deprecated/toast#accessibility"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t block the main content",
+      "source": "",
+      "recommended": false,
+      "link": null
+    }
+  ]
+}

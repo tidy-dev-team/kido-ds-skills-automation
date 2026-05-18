@@ -1,0 +1,217 @@
+{
+  "component": "menu",
+  "schema_version": "0.1",
+  "source": "competitive research, imported 2026-05-17",
+  "entries": [
+    {
+      "type": "Accessibility",
+      "value": "Overflow menu is used when additional options are available to the user and there is a space constraint",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Accessibility",
+      "value": "The text within an overflow menu should be direct so users can quickly decide on an action",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Accessibility",
+      "value": "Actions that could cause a significant change to the user’s data (delete app, delete service, etc.) are separated by a divider and live below the primary set of actions.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Accessibility",
+      "value": "Compose your menu with the correct semantic elements using sections, heading items, button items, and link items.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/menu/usage"
+    },
+    {
+      "type": "Accessibility",
+      "value": "Always compose your menu using sections, even if there’s only one section. Sections support better navigation for assistive technology.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/menu/usage"
+    },
+    {
+      "type": "Accessibility",
+      "value": "Using headingLevel prop to change the level of the heading. The default heading level is h2. Make sure that headings are in the correct order relative to the pages the menu is on, and don’t skip levels.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/menu/usage"
+    },
+    {
+      "type": "Accessibility",
+      "value": "Leave the menu item enabled, and use visual affordance and error messaging to let people know why the menu item is unavailable.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/menu/usage"
+    },
+    {
+      "type": "Accessibility",
+      "value": "f your menu appears in more than one place, make sure that the order and availability of menu items is consistent throughout your app.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/menu/usage"
+    },
+    {
+      "type": "Accessibility",
+      "value": "If icons must be included, make sure any meaningful imagery has alternative text",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/menu/usage"
+    },
+    {
+      "type": "Best",
+      "value": "See Dropdown menu tab <----- REPLACE",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Overflow menu is used when additional options are available to the user and there is a space constraint",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "The text within an overflow menu should be direct so users can quickly decide on an action",
+      "source": "carbon",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Actions that could cause a significant change to the user’s data (delete app, delete service, etc.) are separated by a divider and live below the primary set of actions.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Description",
+      "value": "A menu is a list of interactive options that appears when users interact with an element or perform a specific action.",
+      "source": "carbon",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Description",
+      "value": "A list of options to help users navigate, or perform actions",
+      "source": "atlassian",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Description",
+      "value": "Menus help users take actions, choose from a list of options, configure settings, and more. They can be placed in a transient container, like a popover or tray.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Description",
+      "value": "Menus display a list of choices on a temporary surface",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Use a consistent size between the menu trigger and the menu.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/menu/"
+    },
+    {
+      "type": "Do",
+      "value": "Only use descriptions in menu items when the information will help a user to decide which action to take from the menu.",
+      "source": "spectrum",
+      "recommended": true,
+      "link": "https://spectrum.adobe.com/page/menu/"
+    },
+    {
+      "type": "Do",
+      "value": "Use button menu items when users need an action performed, e.g. Copy.",
+      "source": "atlassian",
+      "recommended": true,
+      "link": "https://atlassian.design/components/menu/usage"
+    },
+    {
+      "type": "Do",
+      "value": "Use link menu items to navigate users to a resource.",
+      "source": "atlassian",
+      "recommended": true,
+      "link": "https://atlassian.design/components/menu/usage"
+    },
+    {
+      "type": "Do",
+      "value": "Use icons to support and indicate if menu items are taking users to a new resource.",
+      "source": "atlassian",
+      "recommended": true,
+      "link": "https://atlassian.design/components/menu/usage"
+    },
+    {
+      "type": "Do",
+      "value": "Use a divider for more visual distinction between groups",
+      "source": "Fluent",
+      "recommended": false,
+      "link": "https://fluent2.microsoft.design/components/web/react/core/menu/usage"
+    },
+    {
+      "type": "Do",
+      "value": "Group items to make them easier to scan",
+      "source": "Fluent",
+      "recommended": true,
+      "link": "https://fluent2.microsoft.design/components/web/react/core/menu/usage"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t use different sizes between the menu trigger and the menu.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/menu/"
+    },
+    {
+      "type": "Not",
+      "value": "Avoid using ellipses (…) in menu item names within products whenever possible",
+      "source": "spectrum",
+      "recommended": true,
+      "link": "https://spectrum.adobe.com/page/menu/"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t overload menu items with repetitive information or with promotional calls-to-action.",
+      "source": "spectrum",
+      "recommended": true,
+      "link": "https://spectrum.adobe.com/page/menu/"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t use buttons if navigating users to a specific place.",
+      "source": "atlassian",
+      "recommended": true,
+      "link": "https://atlassian.design/components/menu/usage"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t use link menu items for actions required by users.",
+      "source": "atlassian",
+      "recommended": true,
+      "link": "https://atlassian.design/components/menu/usage"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t use link menu items as button menu items. Use an icon to indicate if a button menu item is taking users to a new place.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/menu/usage"
+    }
+  ]
+}

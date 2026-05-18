@@ -1,0 +1,392 @@
+{
+  "component": "navigation",
+  "schema_version": "0.1",
+  "source": "competitive research, imported 2026-05-17",
+  "entries": [
+    {
+      "type": "Best",
+      "value": "Bottom navigation bars display three to five destinations at the bottom of a screen. Each destination is represented by an icon and an optional text label. When a bottom navigation icon is tapped, the user is taken to the top-level navigation destination associated with that icon.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Bottom navigation should be used for:\nTop-level destinations that need to be accessible from anywhere in the app\nThree to five destinations\nMobile or tablet only.",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Bottom navigation destinations always include an icon. It’s best to pair icons with text labels, especially if the icon doesn’t have obvious meaning.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Text labels provide short, meaningful descriptions of bottom navigation destinations.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Active and inactive icons and text labels should have sufficient contrast with the container.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Bottom navigation icons can include badges in their upper right corner. These badges can contain dynamic information, such as a number of pending requests.",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Upon scroll, the bottom navigation bar can appear or disappear: Scrolling downward hides the bar Scrolling upward reveals it",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "A fade-through transition pattern is recommended for transitions between bottom navigation destinations.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "At medium breakpoints, replace the bottom navigation bar with a navigation rail. At large breakpoints, replace the navigation rail with a navigation drawer.",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "The navigation rail is placed on the left side of the screen for left-to-right languages, and on the right side of the screen for right-to-left languages.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "The rail provides access to three to seven top-level destinations. A modal navigation drawer can work as a complementary component by supporting your navigation structure with secondary destinations or additional actions. A navigation drawer is unnecessary if there are no secondary destinations or actions in an app.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Standard navigation drawers allow interaction with both screen content and the drawer at the same time. They can be used on tablet and desktop, but they aren’t suitable for mobile due to limited screen size.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Navigation drawers can be vertically scrolled, independent of the rest of the screen’s content and UI. If the list of navigation destinations is longer than the height of the drawer, the drawer’s contents can be scrolled within the drawer.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Bottom navigation drawers are modal drawers that are anchored to the bottom of the screen instead of the left or right edge. They are only used with bottom app bars.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "A global navigation is always present in the UI.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "The local navigation takes users between areas of a product. Generally, these areas are collections of pages that should be grouped together so a user can undertake an end-to-end workflow without changing areas.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "The UI shell makes it easy to pivot between different offerings in your UI. Maintaining or restoring the state of a page helps your user pivot between different areas to complete tasks without losing context or progress. If state or progress will be lost, inform users of this consequence. Maintaining these states and filters will bring the user back to where they were if they had gone through levels of drill downs or welcome screens.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "This sense of place applies to location as well as states. The header can be used to indicate the user’s logged in status, which account they are using, or if they have entered a different mode.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "When planning your product’s UI, put the emphasis on the tasks the user has to complete rather than business or technical limitations.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Side navigation component Uses 100% of its parent's height and width.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Description",
+      "value": "Navigation lets users navigate the entire content of a product or a section. These can be used for a single level or a multi-level navigation.",
+      "source": "spectrum",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Description",
+      "value": "Navigation bars let people switch between UI views on smaller devices",
+      "source": "material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Use tabs for fewer than three destinations",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "For more than five destinationstry, use tabs or a navigation drawer.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Use short text labels.",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Transition between active and inactive bottom navigation destinations using a cross-fade animation.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Only use bottom navigation on mobile and small tablet interfaces.",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Bottom navigation bar destinations have fixed positions.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Navigation rails should be used for:\nTop-level destinations that need to be accessible anywhere in an app\nThree to seven main destinations in a product\nTablet or desktop layouts",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Rail destinations remain fixed while on-screen content scrolls vertically.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Navigation drawers can use text labels without icons.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Use dividers to separate groups of destinations.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Don’t use dividers to separate individual destinations.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Make use of drill down patterns.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Use descriptive titles",
+      "source": "spectrum",
+      "recommended": true,
+      "link": "https://spectrum.adobe.com/page/side-navigation/#Usage-guidelines"
+    },
+    {
+      "type": "Do",
+      "value": "Be concise - Along with being descriptive, navigation items should be succinct. Reduce any unnecessary words in order to ensure simplicity.",
+      "source": "spectrum",
+      "recommended": true,
+      "link": "https://spectrum.adobe.com/page/side-navigation/#Usage-guidelines"
+    },
+    {
+      "type": "Do",
+      "value": "Use sentence case -Write navigation items in sentence case",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/side-navigation/#Usage-guidelines"
+    },
+    {
+      "type": "Do",
+      "value": "Use icons in first-level items only - In multi-level side navigation, only the first-level items can have icons. Any sub-level items should always be text-only to ensure clear hierarchy.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/side-navigation/#Usage-guidelines"
+    },
+    {
+      "type": "Do",
+      "value": "Combining icon and text-only navigation items, Icon and text-only navigation items can be used in combination.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/side-navigation/#Usage-guidelines"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t use a bottom navigation bar for fewer than three destinations",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Don’t use more than five destinations in a bottom navigatior.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Use labels longer that 2 words. Don’t truncate text. The truncation may obscure important destination information. avoid wrapping text. Don’t shrink text to fit on a single line.",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Don’t use multiple or low-contrast colors in a bottom navigation bar, as they make it harder for users to distinguish the active item and navigate to other destinations.",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Avoid using lateral motion to transition between views. Lateral motion is reserved for navigating between peers.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Bottom navigation bar destinations don’t scroll.",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "navigation rails shouldn’t be used for:\nSmall screen sizes\nSingle tasks, such as viewing a single email\nSecondary navigation destinations",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Do not use a navigation rail and bottom navigation on the same screen.",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Do not pair the rail with a permanent or persistent navigation drawer.",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Don’t use the same icon to represent different primary destinations.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Don’t apply icons to some destinations and not others. Icons should be used for all destinations, or none.",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Don’t use dividers to separate individual destinations.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Avoid placing unbounded content in the shell side navigation. Usability drops when the number of items within the shell get too high. For this reason, do not place content that has no upper limit (such as content created by users) within the shell’s side navigation.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Don't make the width too condensed - Make sure the width is generous enough so that it doesn’t feel too condensed. This ensures it doesn’t get confused with buttons or other controls.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/side-navigation/#Usage-guidelines"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t mix behavior, styles, or variations together in a single navigation menu",
+      "source": "spectrum",
+      "recommended": true,
+      "link": "https://spectrum.adobe.com/page/side-navigation/#Usage-guidelines"
+    },
+    {
+      "type": "Not",
+      "value": "Avoid deeply nested menus - The multi-level side navigation goes to three levels deep. Adding more than three levels will make the indentation indiscernible, which becomes a major usability issue.",
+      "source": "spectrum",
+      "recommended": true,
+      "link": "https://spectrum.adobe.com/page/side-navigation/#Usage-guidelines"
+    }
+  ]
+}

@@ -41,7 +41,7 @@ by the Figma polish pass. Only the values change — the structure stays.
 
 ## Step 1 — Read the Polished Component Set
 
-Use `get_design_context` on the Figma component set node to extract resolved token values.
+Use the official Figma MCP (`claude.ai Figma` — see `CLAUDE.md` § Figma MCP). The primary call is **`get_design_context`** on the Figma component set node to extract resolved token values. For node-level reads that `get_design_context` abstracts away (auto-layout properties, child order, exact `componentProperties`), use **`use_figma`** with a custom script.
 
 **Target variants to read:**
 
@@ -75,7 +75,7 @@ For each target variant, also extract the following auto-layout properties from 
 | `textAlignHorizontal` (on text node) | `"LEFT"` \| `"CENTER"` \| `"RIGHT"` | `text-left` / `text-center` / `text-right` |
 | Child order (icon vs. label) | array index | determines `flex-row` vs. `flex-row-reverse` |
 
-Use `figma_execute` or `figma_get_component_details` to read these — `get_design_context` may abstract them away. Example read script:
+Use **`use_figma`** to read these — `get_design_context` may abstract them away. Example read script:
 
 ```javascript
 const node = await figma.getNodeByIdAsync(VARIANT_ID);

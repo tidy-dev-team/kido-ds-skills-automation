@@ -1,0 +1,189 @@
+{
+  "component": "toggle-switch",
+  "schema_version": "0.1",
+  "source": "competitive research, imported 2026-05-17",
+  "entries": [
+    {
+      "type": "Accessibility",
+      "value": "Do not change the toggle’s label based on its state",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Accessibility",
+      "value": "If there is additional information about the setting, it should be provided as a caption underneath the control",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/toggle-switch/guidelines/"
+    },
+    {
+      "type": "Accessibility",
+      "value": "A ToggleSwitch must have a clear, descriptive, and permanently visible label so that users understand the purpose of the input",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/toggle-switch/accessibility/"
+    },
+    {
+      "type": "Best",
+      "value": "Switches should be used instead of radio buttons if each item in a set can be independently controlled",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Switches can be on or off. Switches have enabled, disabled, hover, focused, and pressed states.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Toggles have six states: on, off, focus, disabled, skeleton, and read-only.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Let people know what happens when the toggle is switched by using a tooltip.",
+      "source": "atlassian",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Toggles should never require users to press a button to apply the settings.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "When writing tooltips for toggle states, be short and concise",
+      "source": "atlassian",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Description",
+      "value": "A toggle is used to view or switch between enabled or disabled states.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Description",
+      "value": "A toggle is used to quickly switch between two possible states. They are commonly used for “on/off” switches",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Description",
+      "value": "Switches toggle the selection of an item on or off",
+      "source": "material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Description",
+      "value": "Switches allow users to turn an individual option on or off. They are usually used to activate or deactivate a specific setting.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Description",
+      "value": "ToggleSwitch is used to immediately toggle a setting on or off.",
+      "source": "primer",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Description",
+      "value": "A switch lets the user toggle an individual setting on or off.",
+      "source": "wise",
+      "recommended": false,
+      "link": "https://wise.design/components/switch"
+    },
+    {
+      "type": "Do",
+      "value": "Use switches to turn an item on or off, especially on mobile instead of a checkbox.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Do keep the label consistent. Only change the state text between On and Off.",
+      "source": "carbon",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Use a neutral tone - Because switches are used for controls and utility, their labels are written in a neutral, utilitarian way. There’s no need for overly celebratory language.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/switch/"
+    },
+    {
+      "type": "Do",
+      "value": "Use succinct phrases with verbs or nouns",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/toggle-switch/guidelines/"
+    },
+    {
+      "type": "Do",
+      "value": "Use a ToggleSwitch like a button",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/toggle-switch/guidelines/"
+    },
+    {
+      "type": "Not",
+      "value": "Don't use radio buttons to toggle items on or off. Radio buttons convey that a set of items are options, and that only one can be selected at a time. Instead, use switches.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Do not change the label text as a way of indicating the toggle's on/off state.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "No partial state - Switches can only be on or off.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/switch/"
+    },
+    {
+      "type": "Not",
+      "value": "Avoid using verb phrases related to a state of activity - such as “turn on” or “turn off.”",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/switch/"
+    },
+    {
+      "type": "Not",
+      "value": "Don't use phrases that describe the switch's state",
+      "source": "primer",
+      "recommended": true,
+      "link": "https://primer.style/product/components/toggle-switch/guidelines/"
+    },
+    {
+      "type": "Not",
+      "value": "Don't use a ToggleSwitch as a replacement for a checkbox",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/toggle-switch/guidelines/"
+    }
+  ]
+}

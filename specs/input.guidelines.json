@@ -1,0 +1,182 @@
+{
+  "component": "input",
+  "schema_version": "0.1",
+  "source": "competitive research, imported 2026-05-17",
+  "entries": [
+    {
+      "type": "Accessibility",
+      "value": "Carbon’s text inputs and text areas replicate the default HTML component operation. Each input field is a tab stop",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/text-input/usage/"
+    },
+    {
+      "type": "Accessibility",
+      "value": "Avoid using placeholder text whenever possible. Make sure any critical information is communicated either in the field label or using helper text below the field.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/textfield/usage"
+    },
+    {
+      "type": "Accessibility",
+      "value": "Never disable a submit button, even if all of the required fields aren't filled in. Instead, describe what needs to be done using validation and error messages.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/textfield/usage"
+    },
+    {
+      "type": "Accessibility",
+      "value": "Don’t use placeholder text - Putting instructions for how to complete an input, requirements, or any other essential information into placeholder text is not accessible.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/text-field/"
+    },
+    {
+      "type": "Best",
+      "value": "Label text is used to inform users as to what information is requested for a text field. Every text field should have a label.and always visible",
+      "source": "Material",
+      "recommended": true,
+      "link": "https://m3.material.io/components/text-fields/guidelines"
+    },
+    {
+      "type": "Best",
+      "value": "The type of text field used should reflect the length of the content you expect the user to enter. The default text input is for short, one-line content, whereas text area is for longer, multi-line entries.",
+      "source": "carbon",
+      "recommended": true,
+      "link": "https://carbondesignsystem.com/components/text-input/usage/"
+    },
+    {
+      "type": "Best",
+      "value": "Placeholder text: Avoid placeholders when possible. Never use placeholder text to communicate critical information",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/textfield/usage"
+    },
+    {
+      "type": "Best",
+      "value": "Place labels directly above the input, and align to the left.",
+      "source": "atlassian",
+      "recommended": true,
+      "link": "https://atlassian.design/components/textfield/usage"
+    },
+    {
+      "type": "Best",
+      "value": "Required field label: Mark required fields with an asterisk (*). If all fields in the form are mandatory, this isn't necessary.",
+      "source": "atlassian",
+      "recommended": true,
+      "link": "https://atlassian.design/components/textfield/usage"
+    },
+    {
+      "type": "Best",
+      "value": "Every text field should have a label. A field without a label is ambiguous and not accessible.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/text-field/"
+    },
+    {
+      "type": "Best",
+      "value": "Field labels should be in sentence case.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/text-field/"
+    },
+    {
+      "type": "Description",
+      "value": "Text inputs enable users to enter free-form text data. You can use them for long and short-form entries.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/text-input/usage/"
+    },
+    {
+      "type": "Description",
+      "value": "Text fields allow users to input custom text entries with a keyboard. Various options can be shown with the field to communicate the input requirements.",
+      "source": "spectrum",
+      "recommended": true,
+      "link": "https://spectrum.adobe.com/page/text-field/"
+    },
+    {
+      "type": "Description",
+      "value": "Text fields let users enter text into a UI",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m3.material.io/components/text-fields/guidelines"
+    },
+    {
+      "type": "Description",
+      "value": "A text field is an input that allows a user to write or edit text.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": "https://atlassian.design/components/textfield/usage"
+    },
+    {
+      "type": "Do",
+      "value": "When using multiple types of text fields in a UI, separate them by region.",
+      "source": "Material",
+      "recommended": true,
+      "link": "https://m3.material.io/components/text-fields/guidelines"
+    },
+    {
+      "type": "Do",
+      "value": "Label text should always be visible",
+      "source": "Material",
+      "recommended": true,
+      "link": "https://m3.material.io/components/text-fields/guidelines"
+    },
+    {
+      "type": "Do",
+      "value": "A user needs to input unique information that cannot be predicted with a preset of options.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/text-input/usage/"
+    },
+    {
+      "type": "Do",
+      "value": "A user needs to input memorable data that can be entered more quickly in a free-hand format versus a more complex control.",
+      "source": "carbon",
+      "recommended": true,
+      "link": "https://carbondesignsystem.com/components/text-input/usage/"
+    },
+    {
+      "type": "Do",
+      "value": "In a single form, mark only the required fields or only the optional fields",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/text-field/"
+    },
+    {
+      "type": "Not",
+      "value": "When using multiple types of text fields, don't use them next to each other, or within the same form.",
+      "source": "Material",
+      "recommended": false,
+      "link": "https://m3.material.io/components/text-fields/guidelines"
+    },
+    {
+      "type": "Not",
+      "value": "Label text shouldn't be truncated. Keep it short, clear, and fully visible.",
+      "source": "Material",
+      "recommended": true,
+      "link": "https://m3.material.io/components/text-fields/guidelines"
+    },
+    {
+      "type": "Not",
+      "value": "Label text shouldn’t take up multiple lines.",
+      "source": "Material",
+      "recommended": true,
+      "link": "https://m3.material.io/components/text-fields/guidelines"
+    },
+    {
+      "type": "Not",
+      "value": "If a user can only enter an option from a predefined list then avoid using a free-form text input as it is likely to result in an error. Consider using a selection control such as a dropdown, select, or radio button group instead.",
+      "source": "carbon",
+      "recommended": false,
+      "link": "https://carbondesignsystem.com/components/text-input/usage/"
+    },
+    {
+      "type": "Not",
+      "value": "label should be no more than 3 words",
+      "source": "wise",
+      "recommended": false,
+      "link": "https://wise.design/components/text-input"
+    }
+  ]
+}

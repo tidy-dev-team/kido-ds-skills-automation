@@ -1,0 +1,588 @@
+{
+  "component": "table",
+  "schema_version": "0.1",
+  "source": "competitive research, imported 2026-05-17",
+  "entries": [
+    {
+      "type": "Accessibility",
+      "value": "For people who use screen magnification, the selected checkbox may appear outside of the magnified screen area. The addition of a background color fill provides an additional way to indicate that a row has been selected.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Accessibility",
+      "value": "Any interactive controls in data cells are in the tab order and maintain normal keyboard operation",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Accessibility",
+      "value": "This component has accessibility issues. This is something we are aware of and are working on. If this is a direct blocker for usage of the component we'd recommend seeking alternative solutions in the interim.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Column header names describe the type of content displayed in each column. Each row contains data related to a single entity.",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Controls that manipulate how table data is displayed should be placed directly above or below a table.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Column header cell needs to be visuali differentiate from table contnt cell.",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Text that is longer than the column width is truncated with an ellipsis. On hover, a tooltip shows the full name.",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "To help users sort information, column can be displayed sorting by default.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "To indicate which column is sorted by default, place a downward or upward arrow icon next to the column header’s name.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "To reverse the sort order of a column, a user taps the header name or arrow icon. Upon sorting, the arrow icon reverses direction.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "A linear progress indicator is used in data tables when sorting is initiated. The progress indicator communicates to users that sorting is in process.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "When a row checkbox is selected, the row should display with some kind of visual indication.",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "When a user hovers over a row, the row should display with some kind of visual indication.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "When the user hovers over a column header: A tooltip can display the full column name (if it’s truncated) or a more detailed description of the column",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "When using keyboard focus, an indicator appears as users tab through interactive items such as checkboxes",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Inline menus allow selection from a predefined set of menu items. They're embedded directly in a table cell.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Pagination is placed at the bottom of a table.",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Table cell padding is minimized to improve content density.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Align numbers to the right for improved scannability.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "The column headers can sort data in ascending or descending order, rows can be expanded to progressively disclose information, and single or batch actions can be taken on rows.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "The basic data table has only the header and table element rows. It is available in five row sizes.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "The selection variant enables users to select individual rows in a data table. Selection options include a single-select radio button option and a multi-select checkbox option. Users can perform a single action or batch actions against selected items.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "The expandable variant helps present large amounts of data in a small space. Users can expand and collapse row panels to reveal and hide additional information.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Table row: can be configured to show different types of data. Rows can be selectable, expandable, and modified to show alternating zebra stripe background colors.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "The data table is available in five different row sizes: extra large, large, medium, small, extra small.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "The column header row. it should always match the row size of the table. Extra large row heights are only recommended if your data is expected to have 2 lines of content in a single row.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "A small toolbar on a short data table and a tall toolbar on a normal data table",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "The data table can be placed on the grid guidelines (Although, the data table can share horizontal space with other components and content)",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "consider giving your data table the most width on the page to help your user view dense data.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "The table title should make it clear to the user what this the data has in common and what purpose it serves in the UI.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "A description can be added under the title to provide more information about the data or its source.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Column titles should stick to one or two words that describe the data in that column.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "In cases where a column title is too long, wrap the text to two lines and then truncate the rest of the text. The full text should be shown in a tooltip on hover.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Expandable: When the content in the expanded area feels cramped, consider taking the user to a dedicated page, side panel, or modal to view the information and complete tasks.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Batch expansion: When appropriate, a batch expansion feature can be added to the table column header to allow the user to open all collapsed sections simultaneously. However, the expand-all chevron is not shown by default in the expandable data table variant. Keeping detailed information in the expanded section saves user loading time by postponing some data queries until needed. Expanding all rows at once will typically negate this advantage of the expandable table.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "checkbox & radio button is placed in the first column on the left side.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "The expandable icon should appears first and to the left of the selection icon.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "The data table’s row hover state should always be enabled as it can help the user visually scan the columns of data in a row even if the row is not interactive.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "We recommend showing at most five actions within the table toolbar. Additional actions can be made available through an overflow menu, combo button, or similar components.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "The search should be closed by default, and placed below the table title.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "When batch mode is active, single action icons and overflow menus on the row should be disabled.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "When a overflow menu contains fewer than three options, keep the actions inline as icon buttons instead. This reduces a click and makes available actions visible at a glance.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "On simple tables, where there's only a single type of content to display, an edit button is not required. In more complex tables where there are multiple types of content displayed, you may want to add an edit link to the more actions button. If your table is complex, with a large number of input fields, you should consider using a modal dialog or dedicated page for entering content instead of a dynamic table.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Use either a delete action in the \"more\" menu (if multiple user actions are available) or an \"x\" icon to allow users to delete a row. Once the row is deleted, both the content rows and input row will shift upwards.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "If an error occurs, the affected row or text input should be highlighted with a supporting error icon.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Provide a description for complex tables. This helps the user gain context about the data. It also helps people with screen readers have an overview of the table.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "Use a standard table when a table is the main focus of an experience. Quiet tables are for when a table is meant to be supplementary, subtle, or lightweight.",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/table/#Usage-guidelines"
+    },
+    {
+      "type": "Best",
+      "value": "Data should be initially rendered in an intuitive order. For example, starting with the most recently created items. By default, sort alphabetically by the first column's content. Rows will be re-ordered as the user updates the sort parameters",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/data-table/guidelines/#best-practices"
+    },
+    {
+      "type": "Best",
+      "value": "It's easier to scan many rows than it is to scan many columns. Consider swapping columns and rows when it's unlikely that there will ever be more rows than columns.",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/data-table/guidelines/#best-practices"
+    },
+    {
+      "type": "Best",
+      "value": "Use the column width options to appropriately size the columns depending on the content and the available horizontal space.",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/data-table/guidelines/#best-practices"
+    },
+    {
+      "type": "Best",
+      "value": "Column headers are short labels used to define the kind of data that is shown in that column.",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/data-table/guidelines/#best-practices"
+    },
+    {
+      "type": "Best",
+      "value": "Cells should represent data in the shortest possible format. This makes the table easier to scan, and preserves horizontal space",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/data-table/guidelines/#best-practices"
+    },
+    {
+      "type": "Best",
+      "value": "The column header should accurately represent the data point rendered in the column's cells. It would also be unclear which data point is being used when sorting.",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/data-table/guidelines/#best-practices"
+    },
+    {
+      "type": "Best",
+      "value": "Keep cell content short and succinct",
+      "source": "wise",
+      "recommended": false,
+      "link": "https://wise.design/components/table"
+    },
+    {
+      "type": "Best",
+      "value": "Don’t write long form content inside of table cells",
+      "source": "wise",
+      "recommended": false,
+      "link": "https://wise.design/components/table"
+    },
+    {
+      "type": "Description",
+      "value": "tables are used to organize and display data efficiently. The data table component allows for customization with additional functionality, as needed by your product’s users.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Description",
+      "value": "Data tables display sets of data across rows and columns.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Description",
+      "value": "A table is used to display data.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Description",
+      "value": "Tables are containers for displaying information. They allow users to quickly scan, sort, compare, and take action on large amounts of data.",
+      "source": "spectrum",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Description",
+      "value": "DataTable is a 2-dimensional data structure where each row is an item, and each column is a data point about the item.",
+      "source": "primer",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Description",
+      "value": "Tables allow users to review large amounts of sequential information at a glance.",
+      "source": "wise",
+      "recommended": false,
+      "link": "https://wise.design/components/table"
+    },
+    {
+      "type": "Do",
+      "value": "Do use the same row height for the table and header rows.",
+      "source": "carbon",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Data tables should be placed in a page’s main content area and given plenty of space to display data without truncation.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "when loading use skeleton states",
+      "source": "carbon",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Use only relevant text or data so that it’s easy to understand.",
+      "source": "atlassian",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Left align textual data",
+      "source": "spectrum",
+      "recommended": true,
+      "link": "https://spectrum.adobe.com/page/table/#Usage-guidelines"
+    },
+    {
+      "type": "Do",
+      "value": "Right align numerical data",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/table/#Usage-guidelines"
+    },
+    {
+      "type": "Do",
+      "value": "Use an en dash (–) for missing values",
+      "source": "spectrum",
+      "recommended": true,
+      "link": "https://spectrum.adobe.com/page/table/#Usage-guidelines"
+    },
+    {
+      "type": "Do",
+      "value": "Use a DataTable for data in a flat hierarchical structur",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/data-table/guidelines/#best-practices"
+    },
+    {
+      "type": "Do",
+      "value": "Restrict the data in a column to represent one type of data",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/data-table/guidelines/#best-practices"
+    },
+    {
+      "type": "Do",
+      "value": "Leave the cell blank (preferred) or show text that explains the absence",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/data-table/guidelines/#best-practices"
+    },
+    {
+      "type": "Do",
+      "value": "Allow the title in the page header to act as a table title when appropriate",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/data-table/guidelines/#best-practices"
+    },
+    {
+      "type": "Not",
+      "value": "Data tables don’t express elevation as they're often in front of solid color backgrounds. They also don’t move in front of or behind other surfaces.",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Don’t mix row heights for the table and header rows.",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Avoid placing data tables inside modals or smaller containers where the information can feel cramped or needs truncation.",
+      "source": "carbon",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "dont use spinners",
+      "source": "carbon",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Don't use zebra stripes",
+      "source": "spectrum",
+      "recommended": false,
+      "link": "https://spectrum.adobe.com/page/table/#Usage-guidelines"
+    },
+    {
+      "type": "Not",
+      "value": "Don't use a DataTable for information that has hierarchical relationship",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/data-table/guidelines/#best-practices"
+    },
+    {
+      "type": "Not",
+      "value": "Don't group data in a column cell that isn't described by the column header",
+      "source": "primer",
+      "recommended": true,
+      "link": "https://primer.style/product/components/data-table/guidelines/#best-practices"
+    },
+    {
+      "type": "Not",
+      "value": "Don't show a character, icon, or emoji to indicate a cell is empty",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/data-table/guidelines/#best-practices"
+    },
+    {
+      "type": "Not",
+      "value": "Don't repeat or rephrase the title in the page header as the table title",
+      "source": "primer",
+      "recommended": false,
+      "link": "https://primer.style/product/components/data-table/guidelines/#best-practices"
+    },
+    {
+      "type": "Not",
+      "value": "Avoid using detailed tables in small spaces like modals or drawers",
+      "source": "wise",
+      "recommended": false,
+      "link": "https://wise.design/components/table"
+    },
+    {
+      "type": "Not",
+      "value": "Don’t use tables for minimal information where you can use a list item component instead",
+      "source": "wise",
+      "recommended": false,
+      "link": "https://wise.design/components/table"
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "component": "footer",
+  "schema_version": "0.1",
+  "source": "competitive research, imported 2026-05-17",
+  "entries": [
+    {
+      "type": "Accessibility",
+      "value": "Use accessible accordions. On small screens: when collapsed into an accordion, the navigation should also meet the accessibility requirements outlined in the “Accordion” section.",
+      "source": "USWDS",
+      "recommended": false,
+      "link": "https://designsystem.digital.gov/components/footer/"
+    },
+    {
+      "type": "Accessibility",
+      "value": "Use tab focus. Code the navigation so that pressing the tab key moves focus from link to link in the navigation, even when the navigation has collapsed into an accordion.",
+      "source": "USWDS",
+      "recommended": false,
+      "link": "https://designsystem.digital.gov/components/footer/"
+    },
+    {
+      "type": "Best",
+      "value": "Bottom app bars highlight important screen actions and raise awareness of the floating action button.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "A bottom app bar's layout and actions change based on the needs of the screen.",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Best",
+      "value": "The bottom app bar is easy to reach from a handheld position on a mobile device.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Description",
+      "value": "A global footer featuring legal links, GitHub logomarks and footnotes.",
+      "source": "Primer",
+      "recommended": false,
+      "link": "https://primer.style/brand/components/MinimalFooter/"
+    },
+    {
+      "type": "Description",
+      "value": "The bottom layout with the default style, in which any element can be nested, and must be placed in Layout.",
+      "source": "Ant Desing",
+      "recommended": true,
+      "link": "https://ant.design/components/layout?utm_source=chatgpt.com"
+    },
+    {
+      "type": "Description",
+      "value": "The footer provides copyright, licensing and other information about your service",
+      "source": "MOD.UK",
+      "recommended": false,
+      "link": "https://design-system.service.mod.gov.uk/components/footer/"
+    },
+    {
+      "type": "Description",
+      "value": "A footer serves site visitors who arrive at the bottom of a page without finding what they want.",
+      "source": "USWDS",
+      "recommended": false,
+      "link": "https://designsystem.digital.gov/components/footer/"
+    },
+    {
+      "type": "Do",
+      "value": "Use a bottom app bar to provide convenient access to actions.",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Use bottom app bars on home screens that feature a navigation menu control and a prominent action (such as a FAB). A minimum of one and a maximum of two additional actions can be placed on the opposite side of the bar.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Use a FAB on secondary screens that require a floating action button and three to four additional actions.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "When no floating action button is needed, the bottom app bar can accommodate a navigation menu icon and up to four actions aligned on the opposing edge.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "In landscape orientation, actions remain aligned to screen edges for easy handheld access.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "A keyboard can temporarily cover a bottom app bar.",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Provide navigation outside of a bottom app bar that allows users to return to the previous app screen.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Use a top app bar as a container for upwards navigation on secondary screens.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Do",
+      "value": "Place an overflow menu as the last action between the app bars.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Don't use a bottom app bar on screens with one or no actions (other than a FAB).",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Do not place a FAB outside of a bottom app bar, as it makes it harder to reach.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Don't attach a bottom app bar to the top of the keyboard.",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "Don't place navigation actions in a bottom app bar, as they can be covered by temporary surfaces.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "On a home screen, don't place a navigation menu control in both a top and bottom app bar. Only one app bar should have this control.",
+      "source": "Material",
+      "recommended": true,
+      "link": null
+    },
+    {
+      "type": "Not",
+      "value": "A bottom app bar can provide consistent access to actions, such as navigation and search, allowing the top app bar to hold contextual, screen-specific actions.",
+      "source": "Material",
+      "recommended": false,
+      "link": null
+    }
+  ]
+}

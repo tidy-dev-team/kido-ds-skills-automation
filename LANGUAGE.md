@@ -125,25 +125,35 @@ The client-supplied visual primitives extracted in Workflow A: brand colors, rad
 The lightweight in-skill checks performed by `/ds-generate` (e.g., font availability, token coverage). Distinct from the **validator subagent** that runs in `/ds-build`.
 
 ### Doc page
-A Figma frame produced by `/ds-doc` describing a component on the canvas. Three doc pages exist per component: **Component Breakdown**, **Mode**, **Usage Guidelines**. All three live side-by-side on a `📄 Documentation` page in the target Figma file. Each is a clone of a canonical Kido DS master template. The Usage Guidelines page is organized into seven sub-sections: **When to use** / **When not to use** / **General guidelines** / **Accessibility** / **Behavior** / **Content** / **Look & Feel**.
+A Figma frame produced by `/ds-doc` describing a component on the canvas. Three doc frames exist per component: **Component Breakdown** (max/min size + icon positions), **Mode** (variants grid at the top + theme cells at the bottom), **Usage Guidelines** (prose-heavy). All three live side-by-side on a per-component Figma **page** named `{slug}_documentation` (lowercase, underscored — e.g. `button_documentation`, `button_icon_documentation`), inserted directly below the component's source page in the file's page list. Each frame is a clone of a canonical doc-page master template. The Usage Guidelines frame is organized into six sub-sections, top to bottom: **When to use** / **When not to use** / **General guidelines** / **Behavior** / **Content** / **Accessibility**. (Pre-2026-05-17 all components shared one `📄 Documentation` page; that model is retired.)
 
 ### Doc-page master template
 A canonical frame in the Kido DS Figma file, named `doc-template / {page-id}` (lowercase, slash-separated). Three exist: `doc-template / component-breakdown`, `doc-template / mode`, `doc-template / usage-guidelines`. `/ds-doc` clones a master into the target file and fills its slots. **Designers own the visual layout; the agent never draws layout procedurally.**
 
 ### Slot
-A named empty layer in a doc-page master (e.g., `slot/title`, `slot/variants-grid`, `slot/when-to-use`). The agent locates slots by exact-name search and replaces their content. Repeating slots (Do/Don't pairs) clone a `pair-template` component N times inside the slot.
+A named layer inside a doc-page master (e.g., `slot/variants-grid`, `slot/when-to-use`, `slot/behavior`) where the agent places generated content. Located by exact-name search. The temp template (`ruXFua2pK1ZHVtpPaj9aU3`) defines these slot conventions:
+
+- **Bulleted slots** (`slot/when-to-use`, `slot/when-not-to-use`, `slot/general-guidelines`, `slot/accessibility`) — contain `list-item` frames the agent clones; each `list-item` has a `🪄DS/Helpers/do-dont` icon instance + `text` TEXT node.
+- **Do/Don't pair slots** (`slot/behavior`, `slot/content`) — contain a `rows` frame holding `row` frames; each `row` has a `description` (title + body) + `containers` (two `container`s with do-dont icons and `Frame 2580` visual placeholders).
+- **Container slots** (`slot/variants-grid`, `slot/mode-cells`) — host a single instance (the polished component-set or a mode cell). Agent instance-swaps rather than painting cells.
+- **Bounds slots** (`slot/max-size`, `slot/min-size`, `slot/icon-positions`) — host generated rows showing component at specific sizes / icon configurations.
+
+Header and Footer are **shared INSTANCEs** (`_🌐Local components/Section/Header`, `_🌐Local components/Section/Footer logo`), not slot/* layers. The agent sets the Header's component-name subtitle and status chip variant via instance overrides; the Footer is static and ignored.
 
 ### Status pill
 The colored badge on each doc page's header showing its lifecycle stage. Three values: **IDEATION** (default; rendered by `/ds-doc` on first run), **READY** (polished, awaiting approval), **PUBLISHED** (approved and shared). Advanced manually by the designer — the agent never changes it (preserves on re-run).
 
 ### Do/Don't pair
-A two-cell visual example inside the Usage Guidelines page's Behavior / Content / Look & Feel sections — one cell shows correct usage (green check), the other shows an anti-pattern (red X). Each pair has a **rule slug** identifying it. The slug maps to Kido DS Figma node IDs in `specs/{component}.dodont.json`. Missing entries render as `NEEDS_EXAMPLE` pink stubs.
+A two-cell visual example inside the Usage Guidelines page's Behavior / Content sections — one cell shows correct usage (green check), the other shows an anti-pattern (red X). Each pair has a **rule slug** identifying it. The slug maps to Kido DS Figma node IDs in `specs/{component}.dodont.json`. Missing entries render as `NEEDS_EXAMPLE` pink stubs. (Earlier drafts included a third bucket, Look & Feel — dropped in the 2026-05-13 temp template.)
 
 ### `NEEDS_CONTENT` / `NEEDS_EXAMPLE`
 Pink-fill placeholder frames rendered by `/ds-doc` when prose (in `.spec.notes.md`) or visual examples (in `.dodont.json`) are missing. Same convention as `NEEDS_VALUE` used by `/ds-generate` and `/ds-build` — visible stubs are always better than invented content.
 
 ### ADR (Architectural Decision Record)
 A short markdown document at `docs/adr/{NNNN}-{slug}.md` capturing a hard-to-reverse architectural decision, the alternatives considered, and the trade-offs accepted. Created sparingly — only when a decision is (1) hard to reverse, (2) surprising without context, and (3) the result of a real trade-off. Numbered sequentially.
+
+### Figma MCP
+The **official `claude.ai Figma` MCP server** — the canonical (and only) transport for every Figma read and write across all skills. Authenticated per-user via `/mcp`; surfaces `use_figma` (general Plugin-API runner with a `fileKey` argument), `get_design_context`, `get_variable_defs`, `get_metadata`, `get_screenshot`, `search_design_system`, `get_libraries`, `upload_assets`, `whoami`. Writes require a Full or Dev seat on the plan that owns the target file. See `CLAUDE.md` § Figma MCP for the tool reference and runtime gotchas. **Deprecated alternative:** the third-party `figma-console` MCP (Desktop Bridge plugin) — historically used during early skill development; superseded 2026-05-14.
 
 ---
 
@@ -219,7 +229,7 @@ Each skill owns one stage. If two skills appear to do the same thing, one of the
 | `/ds-build` | Workflow B end-to-end: interview → resolve library → map tokens from `tokens.json` → build Figma component set → validator. | Extracting tokens (delegated to `/ds-extract-design`). Authoring specs. |
 | `/ds-push` | Reading polished Figma values → opening a PR that updates **token values** (CSS vars, Tailwind config, component class swaps). | Adding new files. Changing component structure. Generating stories. |
 | `/ds-storybook` | Reading Figma variant axes → opening a PR that adds `{component}.stories.tsx`. | Updating tokens. Editing existing files except stories config. |
-| `/ds-doc` | Cloning three Kido DS canonical doc-page master templates into the target file's `📄 Documentation` page, filling slots from spec + `.spec.notes.md` prose + `.dodont.json` example refs + `tokens.json` modes. | Writing prose. Generating Do/Don't visual examples. Touching code. Workflow A (v1 scope). |
+| `/ds-doc` | Cloning three Kido DS canonical doc-page master templates onto a per-component `{slug}_documentation` page (inserted directly below the component's source page), filling slots from spec + `.spec.notes.md` prose + `.dodont.json` example refs + `tokens.json` modes. | Writing prose. Generating Do/Don't visual examples. Touching code. Workflow A (v1 scope). |
 
 ### Known overlap watchpoints
 
